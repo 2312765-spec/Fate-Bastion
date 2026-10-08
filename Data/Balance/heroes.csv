@@ -1,0 +1,11 @@
+﻿id,displayName,rarity,element,role,damageType,attackType,damage,attacksPerSecond,range,areaRadius,buffType,buffValue,buffRadius,notes
+# Mã (không dấu),Tên hiển thị,Độ hiếm,"Hệ: Fire=Lửa, Ice=Băng, Lightning=Lôi","Vai trò: SingleDps=DPS đơn, Mage=Pháp sư, Control=Khống chế, Support=Hỗ trợ",Loại sát thương,"Kiểu đánh: Melee, Projectile, Area, Cone",Sát thương gốc,Đòn/giây,Tầm (m),Bán kính vùng (m),"Buff: None, Damage, AttackSpeed",Giá trị buff,Bán kính buff (m),Kỹ năng / ghi chú
+hero_cung_thu,Cung thủ Làng,Common,Lightning,SingleDps,Physical,Projectile,12,1.25,9,0,None,0,0,"Mũi tên, sét nảy 2 quái theo hệ Lôi; ưu tiên boss"
+hero_phu_thuy_lua,Phù thủy Lửa,Common,Fire,Mage,Magic,Area,14,0.7,7,2,None,0,0,Cầu lửa nổ vùng
+hero_linh_bang,Lính Băng,Common,Ice,Control,Magic,Projectile,6,1,7,0,None,0,0,Ném băng làm chậm 30%
+hero_tu_si,Tu sĩ Làng,Common,Fire,Support,Physical,Projectile,5,1,6,0,Damage,0.15,5,Buff sát thương tướng trong 5 m
+hero_nguoi_tuyet,Người Tuyết,Rare,Ice,Control,Magic,Area,4,1,3,3,None,0,0,"Vùng tuyết quanh mình, làm chậm liên tục"
+hero_phap_su_sam,Pháp sư Sấm,Rare,Lightning,Mage,Magic,Area,13,0.8,7,2.5,None,0,0,"Sét đánh vùng, nảy sang quái gần"
+hero_chien_binh_sam,Chiến binh Sấm,Epic,Lightning,SingleDps,Physical,Melee,20,1,2.5,0,None,0,0,Cận chiến; mỗi đòn thứ 3 ×2; ưu tiên boss
+hero_thanh_nu,Thánh Nữ,Epic,Fire,Support,Physical,Projectile,6,1,6,0,AttackSpeed,0.3,5,Buff tốc đánh tướng trong 5 m
+hero_long_vuong,Long Vương,Legendary,Fire,Mage,Magic,Cone,16,0.8,8,3,None,0,0,Thở lửa hình nón; Ultimate Rồng Thiêng Giáng Thế (+5 Nộ mỗi đòn)

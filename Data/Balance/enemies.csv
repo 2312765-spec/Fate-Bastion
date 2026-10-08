@@ -1,0 +1,7 @@
+﻿id,displayName,baseHP,moveSpeed,armor,magicResist,flying,boss,goldReward,castleDamage
+# Mã (không dấu),Tên hiển thị,Máu gốc (HP_0),Tốc độ (m/s),Giáp (vật lý),Kháng phép,Bay (TRUE/FALSE),Boss (TRUE/FALSE),Vàng khi hạ,Trừ máu Thành
+enemy_thuong,Thường,40,2.5,0,0,FALSE,FALSE,5,1
+enemy_nhanh,Nhanh,20,4.5,0,0,FALSE,FALSE,10,2
+enemy_giap,Giáp nặng,60,1.8,0.5,0,FALSE,FALSE,10,2
+enemy_bay,Bay,32,3,0,0,TRUE,FALSE,10,2
+enemy_boss,Boss,600,1.5,0.2,0.2,FALSE,TRUE,150,10
