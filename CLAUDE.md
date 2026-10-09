@@ -96,7 +96,7 @@ Assets/
 │   │   ├── Player/      FateBastion.Player    Movement/ (C: PlayerController, CameraRig, SummonerInputRouter) · Abilities/ (A: CommandAura, Meteor)
 │   │   ├── Game/        FateBastion.Game      (GameManager, TimeController, Castle)
 │   │   ├── Meta/        FateBastion.Meta      Gacha/, Collection/ (B) · Save/ (A)
-│   │   ├── UI/          FateBastion.UI        view, UIManager, HUD, Debug/ (B) · Tutorial/ (A)
+│   │   ├── UI/          FateBastion.UI        view, UIManager, HUD tĩnh, Debug/, Tutorial/ (B) · World/ (C: thanh máu, cảnh báo, số sát thương, nháy trắng)
 │   │   ├── Audio/       FateBastion.Audio
 │   │   └── Editor/      FateBastion.Editor    Import/, Debug/ (B) · Heroes/ (C) – asmdef chỉ Editor
 │   ├── Data/            ScriptableObject asset (Heroes/, Enemies/, Waves/, Levels/, Skills/, Settings/)
@@ -119,11 +119,11 @@ Core ← Combat ← Enemies ← Skills ← Heroes ← Player     (chuỗi gamepl
 Core ← Meta                                            (gacha, túi, deck, lưu)
 Game  → Heroes, Enemies, Player, Meta                  (điều phối trận, trả Ngọc sau trận)
 UI    → Core, Combat, Enemies, Skills, Heroes, Game, Meta
-Audio → chỉ Core
+Audio → Core (+ package Cinemachine cho rung camera)
 Editor → được tham chiếu mọi asmdef, chỉ build cho Editor
 ```
 
-Tham chiếu package: `Enemies` → `Unity.Splines`, `Unity.Mathematics` · `Player` → `Unity.InputSystem`, `Unity.Cinemachine` · `UI` → `UnityEngine.UI`, `Unity.TextMeshPro`, `PrimeTween.Runtime` · Newtonsoft là DLL tự tham chiếu (asmdef test khai báo trong `precompiledReferences`).
+Tham chiếu package: `Enemies` → `Unity.Splines`, `Unity.Mathematics` · `Player` → `Unity.InputSystem`, `Unity.Cinemachine` · `Audio` → `Unity.Cinemachine` · `UI` → `UnityEngine.UI`, `Unity.TextMeshPro`, `PrimeTween.Runtime` · Newtonsoft là DLL tự tham chiếu (asmdef test khai báo trong `precompiledReferences`).
 
 Không tạo phụ thuộc vòng. Nếu cần gọi ngược chiều (vd Enemies báo cho Heroes), dùng event trong `FateBastion.Core` hoặc interface khai báo ở Core.
 
@@ -177,6 +177,7 @@ public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 | `HeroEvents` | `OnHeroPlaced`, `OnHeroSold`, `OnHeroUpgraded`, `OnHeroSelected` (`HeroEventInfo`) | B |
 | `AbilityEvents` | `OnMeteorCooldownChanged(float remaining, float total)`, `OnMeteorExploded(Vector3, float radius)` | A |
 
+- Hàm và event ở từng điểm nối giữa hai người (quái tới Thành, wave, pool tướng, cấp tướng, Nộ, Esc, Vàng) chốt ở `Docs/TEAM_ASSIGNMENT.md` **mục 3.1** – dùng đúng tên đó, kể cả khi viết stub.
 - Phát bằng `Raise…()` của hub, **không** `Invoke` trực tiếp. Payload là struct trong Core nên UI/Audio không cần tham chiếu Combat.
 - Event là `static` nên sống qua load scene và qua từng test: gọi `ResetAll()` khi khởi tạo trận và trong `[TearDown]`.
 - Event chỉ dùng trong một hệ thống thì để trong thư mục của hệ thống đó, không đưa vào Core.
@@ -195,7 +196,7 @@ public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 - Chỉ `InputRouter` đọc Input System và phát event. Hệ thống khác **không** đọc phím trực tiếp.
 - Đúng **một** Action Map bật tại một thời điểm (`Summoner` hoặc `UI`).
 - Phím: WASD di chuyển, Shift chạy nhanh, 1–5 chọn tướng, Q Thiên thạch, chuột trái chọn/đặt/thả, **giữ** chuột phải xoay camera, **bấm nhanh** chuột phải hủy (interaction `Tap`, < 0.2 s, di chuyển < 5 px), U nâng cấp, X bán, R Ultimate, N bỏ qua chờ wave, Esc, F1 debug.
-- **Esc theo thứ tự ưu tiên, mỗi lần bấm chỉ một bước:** hủy ngắm Thiên thạch / hủy đặt tướng → đóng bảng thông tin tướng → mở Tạm dừng.
+- **Esc theo thứ tự ưu tiên, mỗi lần bấm chỉ một bước:** hủy ngắm Thiên thạch / hủy đặt tướng → đóng bảng thông tin tướng → mở Tạm dừng. Cài bằng `Core/CancelStack`: vào chế độ thì `Push(this)`, tự thoát thì `Remove(this)`; **không** tự nghe `InputRouter.Cancel` để hủy chế độ của mình. Mở Tạm dừng nghe `InputRouter.PauseRequested` (Esc khi stack rỗng). Bấm nhanh chuột phải khi stack rỗng không làm gì.
 - Click lên UI không được xuyên xuống thế giới: kiểm tra `EventSystem.current.IsPointerOverGameObject()` trước khi xử lý Select.
 
 ### Chiến đấu
@@ -368,6 +369,7 @@ Khi làm hệ thống mà hệ thống phụ thuộc chưa xong: dùng **stub** 
 - [ ] Không hardcode số cân bằng; không `Instantiate`/`Destroy` trong trận; không alloc trong `Update`.
 - [ ] Không đọc input trực tiếp ngoài `InputRouter`; không sửa `timeScale` ngoài `TimeController`.
 - [ ] Có mục **"Hướng dẫn lắp trong Unity"** (asset cần tạo, component, tham chiếu, layer).
+- [ ] Nếu là việc "→ giao": có mục **"Cách dùng"** (API khớp `TEAM_ASSIGNMENT.md` 3.1) và scene Sandbox, theo định nghĩa bàn giao ở mục 4.1 của file đó.
 - [ ] Liệt kê giả định (`// ASSUMPTION:`) và stub (`// STUB:`) còn lại.
 - [ ] Cập nhật bảng trạng thái ở mục 10 nếu được yêu cầu.
 

@@ -33,11 +33,11 @@
 | R20 | Tốc độ ×1/×2; tạm dừng; Alt-Tab tự tạm dừng | GDD 9 | S5 | B |
 | R21 | HUD trận + bảng thông tin tướng + cảnh báo quái sắp tới Thành | GDD 9 | S10 | B, C |
 | R22 | Màn hình ngoài trận: Sảnh, Chọn màn, Gacha, Túi & Deck, Kết quả, Cài đặt | GDD 9 | S10 | B, C |
-| R23 | Hướng dẫn màn 1 (4 bước, chỉ lần đầu) | GDD 9 | S10 | A |
+| R23 | Hướng dẫn màn 1 (4 bước, chỉ lần đầu) | GDD 9 | S10 | B |
 | R24 | Bảng Debug F1, chỉ Editor/Development | GDD 9 | S9, S10 | B |
 | R25 | Lưu tiến trình an toàn (tmp → Replace/Move → bak) | GDD 11 | S9 | A |
 | R26 | Âm thanh, rung camera, số sát thương | GDD 9 | S11 | C |
-| R27 | Hiệu năng: ≥ 60 FPS (RTX 3050), ≥ 30 FPS (GPU tích hợp), GC ≈ 0 B/frame, 100 quái | GDD 10, 13 | S1–S11 | C (đo), mọi người (giữ) |
+| R27 | Hiệu năng: ≥ 60 FPS (RTX 3050), ≥ 30 FPS (GPU tích hợp), GC ≈ 0 B/frame, 100 quái | GDD 10, 13 | S1–S11 | C (tối ưu, đo), mọi người (giữ) |
 | R28 | Dữ liệu cân bằng import từ CSV, không hardcode | GDD 12 | S0 | B (công cụ), A (số liệu) |
 | R29 | Đổi ngoại hình tướng không cần sửa code (HeroVisual) | GDD 12 | S0b | C |
 | R30 | Build Release IL2CPP + Development cho buổi bảo vệ | GDD 9, 10 | — | C |
@@ -69,13 +69,13 @@
 | R18 | A-12, A-13 | ☐ |
 | R19 | C-05 | ☐ |
 | R20 | B-06 | ☐ |
-| R21 | B-13, B-14, C-11 | ☐ |
+| R21 | B-13, B-14, C-11, C-14 | ☐ |
 | R22 | B-15, C-12 | ☐ |
-| R23 | A-16 | ☐ |
+| R23 | B-17 | ☐ |
 | R24 | B-16 | ☐ |
 | R25 | A-14, A-15 | ☐ |
-| R26 | C-13, C-14 | ☐ |
-| R27 | C-15, mọi PR (mục 6) | ☐ |
+| R26 | C-13, C-14, C-18 | ☐ |
+| R27 | C-14, C-15, mọi PR (mục 6) | ☐ |
 | R28 | S0-04, S0-05, A-06, A-17 | ☑ công cụ · ☐ số liệu |
 | R29 | C-01, C-02, C-08 | ☐ |
 | R30 | C-16 | ☐ |
@@ -112,6 +112,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | S0-12 | 2 | Bổ sung tham chiếu asmdef theo `S0.md` mục "Assembly và hướng phụ thuộc" (Enemies → Splines; Skills/Heroes/Player → Enemies; Game → Meta; UI → Game, Meta, TMP, PrimeTween; asmdef test đủ assembly) | `*.asmdef` | Tay: compile 0 lỗi **sau** S0-08 | ☑ | Merge PR #1 (Console 0 lỗi khi mở PR) |
 | S0-13 | 2 | Chốt tài liệu: ghi tên trưởng nhóm kỹ thuật (`TEAM_ASSIGNMENT.md` mục 1), điền ngày thật vào `ROADMAP.md` | `Docs/` | Tay | ☑ | Trưởng nhóm: Thuận · Ngày 1 = 10/10/2026, khóa 30/10, nộp 06/11 |
 | S0-14 | 2 | Mỗi người: `git lfs install`, clone `main` sau khi merge S0, mở Unity compile được | máy từng người | Tay: A ☐ · B ☐ · C ☐ | ◐ | A ☐ · B ☐ · C ☐ (mỗi người tự tick) |
+| S0-15 | 3 | Hợp đồng API giữa hệ thống (`TEAM_ASSIGNMENT.md` 3.1, 4.1); `Core/CancelStack`, `ICancelable`, `InputRouter.PauseRequested` + 7 test `CancelStackTests`; đồng bộ S0, S2–S7, S10 | `Core/`, `Docs/` | EM: `CancelStackTests` xanh | ☐ | Cần PR 3 người duyệt |
 
 ---
 
@@ -122,20 +123,19 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | A-01 | 3 | `DamageCalculator` (`DamageInfo` đã có từ S0, vùng khóa) (kháng 0/50/80%, True, hệ số kỹ năng, làm tròn, tối thiểu 1) | S1 | `Combat/` | EM | ☐ | |
 | A-02 | 4 | `StatusEffectController`: Bỏng lấy mạnh nhất, Chậm ≤ 60% và boss 50%, Nảy không lặp | S1 | `Combat/` | EM | ☐ | |
 | A-03 | 4 | Chết một lần khi 3 đòn cùng frame; đạn bay tới vị trí cuối khi mục tiêu chết; XZ | S1 | `Combat/`, `Heroes/Runtime/` | EM + PM | ☐ | |
-| A-04 | 5 | `EnemyController` trên Spline (lấy từ `LevelPaths`), `EnemyManager` (≤ 100 quái), `WaveManager` (nhóm song song, lệch 2 s), pool | S2 | `Enemies/` | PM: tới Thành trừ đúng 1 lần ở ×1 và ×2 | ☐ | |
+| A-04 | 5 | `EnemyController` trên Spline (lấy từ `LevelPaths`), `EnemyManager` (≤ 100 quái), `WaveManager` (nhóm song song, lệch 2 s), pool · API 3.1 #1, #2: `OnEnemyReachedCastle`, `Init/StartWave/StopAndClear/OnWaveFinished`; không đụng `Wallet` (#8) · API 3.1 #9 cho UI thế giới (C): `OnEnemySpawned/Despawned`, `ActiveEnemies`, `CurrentHP/MaxHP/IsBoss/Progress/HealthBarAnchor`, `OnHealthChanged` | S2 | `Enemies/` | PM: tới Thành trừ đúng 1 lần ở ×1 và ×2 | ☐ | |
 | A-05 | 6 | Quái Bay (đường riêng, cao 2 m), boss gọi 3 quái Nhanh mỗi 12 s | S2 | `Enemies/` | PM: wave kết thúc đúng khi có quái con | ☐ | |
 | A-06 | 6, 13 | Máu theo công thức có `hpMultiplier`; dữ liệu 3 màn + Vô tận kiểm tra sau import | S2 | `Enemies/`, `Data/Balance/` | EM: wave 1/5/15 cả 3 màn khớp sheet Wave | ☐ | |
-| A-07 | 6–7 | `HeroController`, `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay), `AttackModule` (timer, bắn từ `HeroVisual.muzzle`) | S1, S6 | `Heroes/Runtime/` | PM | ☐ | |
+| A-07 | 6–7 | `HeroController`, `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay), `AttackModule` (timer, bắn từ `HeroVisual.muzzle`) · API 3.1 #3, #4: `Init(HeroData)`, `ResetState()`, `OnDespawn()`, `HeroStats.SetLevelMultipliers` | S1, S6 | `Heroes/Runtime/` | PM | ☐ | |
 | A-08 | 8–9 | `SkillData`, `SkillRunner`, 7 kind: MeleeHit, Projectile, AreaAtPoint, Cone, Line, Zone, Buff | S6 | `Skills/` | PM: mỗi kind một kỹ năng mẫu | ☐ | |
 | A-09 | 9 | Cộng buff: cùng loại lấy mạnh nhất, khác nguồn cộng, trần +60% | S6 | `Heroes/Runtime/`, `Skills/` | EM: 2 Thánh Nữ = +30%, Thánh Nữ + Hào quang = +55% | ☐ | |
-| A-10 | 10 | Nộ +5 mỗi đòn, Ultimate Long Vương kích hoạt tay | S6 | `Skills/` | EM | ☐ | |
+| A-10 | 10 | Nộ +5 mỗi đòn, Ultimate Long Vương kích hoạt tay · API 3.1 #5: `OnRageChanged`, `TryActivateUltimate()` | S6 | `Skills/` | EM | ☐ | |
 | A-11 | 11 | `CommandAura` (6 m, +25%, 5 lần/s, chỉ tính lại khi vào/ra) | S7 | `Player/Abilities/` | PM: vào/ra đổi tốc đánh; bán tướng gỡ buff | ☐ | |
-| A-12 | 12 | `MeteorAbility` (state machine thuần): hủy không tốn hồi chiêu, hồi 45 s game time | S7 | `Player/Abilities/` | EM: 45 s (×1), 22.5 s thực (×2) | ☐ | |
+| A-12 | 12 | `MeteorAbility` (state machine thuần): hủy không tốn hồi chiêu, hồi 45 s game time · `CancelStack` + nghe `DeckSlot` để hủy ngắm (3.1 #6, #7) | S7 | `Player/Abilities/` | EM: 45 s (×1), 22.5 s thực (×2) | ☐ | |
 | A-13 | 12 | `MeteorAimIndicator`, tầm 20 m, sát thương theo wave × k_màn, trúng quái Bay | S7 | `Player/Abilities/` | EM: sát thương wave 1/5/15 | ☐ | |
 | A-14 | 15 | `SaveData`, `SaveService` ghi an toàn | S9 | `Meta/Save/` | EM: lưu/đọc giống hệt; lần lưu đầu | ☐ | |
 | A-15 | 16 | Đọc lỗi → bak → tạo mới từ `StarterSettings` | S9 | `Meta/Save/` | EM: file hỏng, cả hai hỏng | ☐ | |
-| A-16 | 17–18 | Hướng dẫn màn 1: 4 bước theo event, nút Bỏ qua, `tutorialDone` | S10 | `UI/Tutorial/` | Tay | ☐ | |
-| A-17 | 19, 23 | Cân bằng lần 1 và 2 (Excel → CSV → import), ghi lý do vào cột ghi chú | — | `Docs/Can bang…xlsx`, `Data/Balance/` | Tay: chơi 3 màn | ☐ | |
+| A-17 | 18–19, 23 | Cân bằng lần 1 và 2 (Excel → CSV → import), ghi lý do vào cột ghi chú | — | `Docs/Can bang…xlsx`, `Data/Balance/` | Tay: chơi 3 màn | ☐ | |
 
 ---
 
@@ -144,11 +144,11 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | ID | Ngày | Việc | Spec | Vùng file | Kiểm tra | Xong | Ghi chú |
 |---|---|---|---|---|---|---|---|
 | B-01 | 3 | `PlacementRules`, kiểm tra hợp lệ theo thứ tự 6 bước (class thuần) | S4 | `Heroes/Placement/` | EM: giới hạn số con, quân số 15, thiếu Vàng | ☐ | |
-| B-02 | 4–5 | `PlacementSystem`, `GhostPreview`; giữ chế độ đặt nếu còn đặt được; Q hủy xem trước | S4 | `Heroes/Placement/` | PM: không đặt trên đường, nước, vách, chồng tướng | ☐ | |
-| B-03 | 4 | `Wallet` + `OnGoldChanged` | S4 | `Heroes/Placement/` | EM | ☐ | |
-| B-04 | 8 | `HeroLevel`, `HeroLevelTable` 3 cấp, hiệu ứng cấp 3 qua `HeroVisual.auraAnchor` | S4 | `Heroes/Placement/` | EM: giá và chỉ số khớp bảng | ☐ | |
+| B-02 | 4–5 | `PlacementSystem`, `GhostPreview`; giữ chế độ đặt nếu còn đặt được; Q hủy xem trước · `HeroPool` (3.1 #3), `CancelStack` (#6), nghe `InputRouter.Meteor` để thoát (#7) | S4 | `Heroes/Placement/` | PM: không đặt trên đường, nước, vách, chồng tướng | ☐ | |
+| B-03 | 4 | `Wallet` + `OnGoldChanged` · nghe `OnEnemyKilled` cộng `GoldReward` (3.1 #8) | S4 | `Heroes/Placement/` | EM | ☐ | |
+| B-04 | 8 | `HeroLevel`, `HeroLevelTable` 3 cấp, hiệu ứng cấp 3 qua `HeroVisual.auraAnchor` · gọi `HeroStats.SetLevelMultipliers` (3.1 #4) | S4 | `Heroes/Placement/` | EM: giá và chỉ số khớp bảng | ☐ | |
 | B-05 | 5 | Bán: `floor(goldSpent × 0.5)` | S4 | `Heroes/Placement/` | EM: Epic cấp 2 bán 306 | ☐ | |
-| B-06 | 6–7 | `GameManager` (state machine thuần), `TimeController`, `Castle`, sao, Alt-Tab tạm dừng | S5 | `Game/` | EM: mọi dòng bảng chuyển trạng thái; sao ở 20/15/14/8/7/1 | ☐ | |
+| B-06 | 6–7 | `GameManager` (state machine thuần), `TimeController`, `Castle`, sao, Alt-Tab tạm dừng · gọi `WaveManager` + nghe `OnWaveFinished` (3.1 #2); `Castle` nghe `OnEnemyReachedCastle` (#1); Tạm dừng nghe `PauseRequested` (#6) | S5 | `Game/` | EM: mọi dòng bảng chuyển trạng thái; sao ở 20/15/14/8/7/1 | ☐ | |
 | B-07 | 7, 17 | Ngọc thưởng sau trận, chỉ trả phần sao cao hơn; Vô tận ghi kỷ lục | S5 | `Game/` | EM: lần đầu 2 sao, lần sau 3 sao +50 | ☐ | |
 | B-08 | 15 | `GachaService`: x1, x10 tính trước trong bộ nhớ, bảo đảm Epic+ | S8 | `Meta/Gacha/` | EM: 100.000 lượt lệch ≤ 0.5 điểm % | ☐ | |
 | B-09 | 15 | Pity 25, giữ qua lưu/tải | S8 | `Meta/Gacha/` | EM | ☐ | |
@@ -156,9 +156,10 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | B-11 | 16 | `StarterSettings`: 5 tướng + 1.000 Ngọc, `ownedEver` có sẵn 5 tướng | S8 | `Meta/Collection/` | EM | ☐ | |
 | B-12 | 16 | `DeckService`: 5 tướng khác nhau, kiểm tra trước khi vào trận | S8 | `Meta/Collection/` | EM | ☐ | |
 | B-13 | 9 | `UIManager` (Push/Pop, Esc đóng màn trên cùng), `ConfirmDialog` | S10 | `UI/` | PM | ☐ | |
-| B-14 | 9–12 | HUD trận: thanh trên, 5 ô deck, ô Thiên thạch, bảng tướng, `OffscreenWarning`, `WorldHealthBar` – chỉ nhận event | S10 | `UI/` | EM: phát event giả, giá trị khớp | ☐ | |
+| B-14 | 9–12 | HUD trận (Canvas tĩnh): thanh trên, 5 ô deck, ô Thiên thạch, bảng tướng – chỉ nhận event · thanh Nộ (3.1 #5); bảng tướng dùng `CancelStack` (#6). Thanh máu, cảnh báo, số sát thương: xem C-14 | S10 | `UI/` | EM: phát event giả, giá trị khớp | ☐ | |
 | B-15 | 18 | Script cho màn hình sảnh: Chọn màn, Gacha, Túi & Deck, Kết quả, Cài đặt | S10 | `UI/` | Tay | ☐ | |
 | B-16 | 22 | Bảng Debug F1 (`#if UNITY_EDITOR \|\| DEVELOPMENT_BUILD`) | S9, S10 | `UI/Debug/`, `Editor/Debug/` | Tay: không có trong build Release | ☐ | |
+| B-17 | 11, 17 | Hướng dẫn màn 1: `TutorialController`, 4 bước theo event (đặt tướng `OnHeroPlaced`, nâng cấp `OnHeroUpgraded`, Hào quang, Thiên thạch `OnMeteorExploded`), nút Bỏ qua, chỉ lần đầu. Ngày 11: khung + bước 1–2; ngày 17: bước 3–4 + lưu `tutorialDone` (S9) | S10 | `UI/Tutorial/` | Tay: chơi màn 1 lần đầu và lần hai | ☐ | Chuyển từ A-16 (phiên bản 1.1) |
 
 ---
 
@@ -167,10 +168,10 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | ID | Ngày | Việc | Spec | Vùng file | Kiểm tra | Xong | Ghi chú |
 |---|---|---|---|---|---|---|---|
 | C-01 | 3 | `HeroVisual` (`muzzle`, `overhead`, `auraAnchor`, `animator`) | S0b | `Heroes/Visual/` | Tay | ☐ | |
-| C-02 | 3, 14 | Tools → Validate Hero Prefabs, Tools → Render Hero Icons | S0b | `Editor/Heroes/` | Tay: báo thiếu đúng; icon 256×256 | ☐ | |
+| C-02 | 3, 16 | Tools → Validate Hero Prefabs, Tools → Render Hero Icons | S0b | `Editor/Heroes/` | Tay: báo thiếu đúng; icon 256×256 | ☐ | |
 | C-03 | 3 | `PlayerController` (6 / 9 m/s, `unscaledDeltaTime`, không nhảy) | S3 | `Player/Movement/` | PM: ở ×2 vẫn 6 m/s thực | ☐ | |
 | C-04 | 4 | `CameraRig` Cinemachine 3 (Third Person Follow, Deoccluder, Impulse), Brain Ignore Time Scale | S3 | `Player/Movement/`, `Prefabs/Player/` | Tay: không xuyên vật cản | ☐ | |
-| C-05 | 4 | `InputRouter` + Input Actions: Hold/Tap chuột phải, thứ tự Esc, 1 Action Map bật tại một thời điểm, click UI không xuyên | S3 | `Player/Movement/`, `Input/` | EM/PM: chuyển Action Map; Esc 3 tình huống | ☐ | |
+| C-05 | 4 | `InputRouter` + Input Actions: Hold/Tap chuột phải, thứ tự Esc, 1 Action Map bật tại một thời điểm, click UI không xuyên · `SummonerInputRouter` điều phối `CancelStack`, phát `PauseRequested` (3.1 #6) | S3 | `Player/Movement/`, `Input/` | EM/PM: chuyển Action Map; Esc 3 tình huống | ☐ | |
 | C-06 | 5 | Map graybox thành prefab `Map_Level1`: mặt đất, Spline đường chính (~90 m) + đường bay gắn vào `LevelPaths`, Cổng, Thành, layer Placeable/Path/Obstacle | GDD 3, S2 | `Prefabs/Map/`, `Scenes/Game.unity` | Tay | ☐ | |
 | C-07 | 6 | Chọn asset pack, ghi `ThirdParty/CREDITS.md` | — | `Assets/ThirdParty/` | Tay | ☐ | |
 | C-08 | 8–12 | Model + animation 9 tướng, 5 loại quái, Triệu Hồi Sư; Prefab Variant + `HeroVisual`; gắn prefab + icon vào `HeroData` | GDD 12 | `Art/`, `Prefabs/Heroes/`, `Prefabs/Enemies/` | Tay: Validate Hero Prefabs không báo lỗi | ☐ | |
@@ -179,8 +180,9 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | C-11 | 9–10 | Bố cục prefab HUD trận (theo hình HUD trong GDD mục 9) | S10 | `Prefabs/UI/` | Tay: 1920×1080 và 1366×768 | ☐ | |
 | C-12 | 17 | Bố cục prefab màn hình sảnh | S10 | `Prefabs/UI/` | Tay | ☐ | |
 | C-13 | 18 | `AudioManager` (Mixer Master/Music/SFX, pool 24, tối đa 4 bản cùng lúc), `MusicPlayer` | S11 | `Audio/` | PM: 100 quái chết không quá 4 âm thanh | ☐ | |
-| C-14 | 19 | `FeedbackService`: số sát thương (≤ 60), rung camera (tắt được), nháy trắng | S11 | `Audio/` | Tay | ☐ | |
-| C-15 | 7, 20 | Đo hiệu năng: FPS 2 cấu hình, GC Alloc, Memory sau 50 wave Vô tận ×2 | GDD 13 | — | Tay: ghi số liệu vào báo cáo | ☐ | |
+| C-14 | 14, 19 | **UI thế giới** (`UI/World/`, Canvas động): `WorldHealthBar` (pool, gắn/gỡ theo `OnEnemySpawned/Despawned`, ẩn khi đầy máu, thanh to cho boss), `OffscreenWarning` (quái `Progress` ≥ 0.8, mũi tên rìa màn hình), `DamageNumberSpawner` (pool, ≤ 60 số cùng lúc), `HitFlash` (nháy trắng, MaterialPropertyBlock). Ngày 14: thanh máu + cảnh báo; ngày 19: số sát thương + nháy trắng. API 3.1 #9 | S10, S11 | `UI/World/` | PM: 100 quái, GC Alloc 0 B/frame khi thanh máu cập nhật; Tay: Profiler | ☐ | Chuyển từ B-14 (phiên bản 1.1) |
+| C-18 | 19 | `FeedbackService`: rung camera (Impulse) khi Thiên thạch nổ, boss xuất hiện, Thành mất máu; tắt được trong Cài đặt | S11 | `Audio/` | Tay | ☐ | Tách từ C-14 cũ |
+| C-15 | 7, 20, 23 | **Tối ưu hiệu năng** (không chỉ đo): ngày 7 đo mốc ban đầu; ngày 20 GPU Instancing, SRP Batcher, LOD quái, giảm draw call, gộp Canvas, kiểm GC Alloc; ngày 23 đo lại. Số liệu trước/sau: FPS 2 cấu hình, draw call, GC Alloc, Memory sau 50 wave Vô tận ×2 | GDD 13 | `Art/`, `Prefabs/`, `Data/Settings/` | Tay: bảng trước/sau + ảnh Profiler vào báo cáo | ☐ | |
 | C-16 | 22, 24 | Build Release IL2CPP + Development | GDD 9 | `Builds/` (không commit) | Tay: chạy trên máy sạch | ☐ | |
 | C-17 | 15–16 | Dựng map thật, ánh sáng, LOD | GDD 3 | `Scenes/Game.unity`, `Art/` | Tay: FPS vẫn đạt mục tiêu | ☐ | |
 
