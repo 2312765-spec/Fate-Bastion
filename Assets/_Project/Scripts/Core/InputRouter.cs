@@ -23,8 +23,14 @@ namespace FateBastion.Core
         // Pointer actions.
         public event Action Select;
 
-        /// <summary>Right mouse tap or Esc; handled by priority order in S3.</summary>
+        /// <summary>
+        /// Raw right mouse tap or Esc, in either action map. Systems never cancel their own mode from this:
+        /// the router hands the press to <see cref="CancelStack"/> first (S3). The UI map uses it to close the top screen.
+        /// </summary>
         public event Action Cancel;
+
+        /// <summary>Esc in the Summoner map while <see cref="CancelStack"/> was empty; opens the pause screen (S3, S5).</summary>
+        public event Action PauseRequested;
 
         // Hero and ability actions.
         /// <summary>Deck slot index 0..4 (keys 1-5).</summary>
@@ -78,6 +84,7 @@ namespace FateBastion.Core
         protected void RaiseZoom(float value) => Zoom?.Invoke(value);
         protected void RaiseSelect() => Select?.Invoke();
         protected void RaiseCancel() => Cancel?.Invoke();
+        protected void RaisePauseRequested() => PauseRequested?.Invoke();
         protected void RaiseDeckSlot(int index) => DeckSlot?.Invoke(index);
         protected void RaiseMeteor() => Meteor?.Invoke();
         protected void RaiseUpgrade() => Upgrade?.Invoke();

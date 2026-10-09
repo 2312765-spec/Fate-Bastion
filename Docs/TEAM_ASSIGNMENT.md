@@ -9,9 +9,9 @@
 
 | Người | Vai trò | Hệ thống phụ trách | Review chéo |
 |---|---|---|---|
-| **A** | Gameplay | S1 Chiến đấu · S2 Quái và Wave · S6 Kỹ năng và Ultimate · S7 Hào quang và Thiên thạch · S9 Lưu trữ · Hướng dẫn màn 1 · nội dung file cân bằng | Review PR của **B** |
-| **B** | Hệ thống và UI | S4 Đặt tướng và nâng cấp · S5 Luồng trận · S8 Gacha, Túi, Ghép, Deck · S10 code HUD/UI · công cụ Import Balance CSV · Bảng Debug | Review PR của **C** |
-| **C** | Art và kỹ thuật hình ảnh | S0b HeroVisual · S3 Triệu Hồi Sư và Camera · S10 bố cục và prefab UI · S11 Âm thanh · map, model, animation, VFX · tối ưu hiệu năng · build | Review PR của **A** |
+| **A** | Gameplay | S1 Chiến đấu · S2 Quái và Wave · S6 Kỹ năng và Ultimate · S7 Hào quang và Thiên thạch · S9 Lưu trữ · nội dung file cân bằng | Review PR của **B** |
+| **B** | Hệ thống và UI | S4 Đặt tướng và nâng cấp · S5 Luồng trận · S8 Gacha, Túi, Ghép, Deck · S10 code HUD tĩnh và màn hình · Hướng dẫn màn 1 · công cụ Import Balance CSV · Bảng Debug | Review PR của **C** |
+| **C** | Art và kỹ thuật hình ảnh | S0b HeroVisual · S3 Triệu Hồi Sư và Camera · S10 bố cục và prefab UI · **S10 UI thế giới** (thanh máu quái, cảnh báo quái gần Thành, số sát thương – 100 quái, GC ≈ 0) · S11 Âm thanh · map, model, animation, VFX · **tối ưu hiệu năng** (Profiler trước/sau) · build | Review PR của **A** |
 
 **Trưởng nhóm kỹ thuật (giữ "hợp đồng" chung):** ghi tên ở đây → **Thuận**. Người này duyệt mọi thay đổi ở vùng **Dùng chung** (mục 2.3).
 
@@ -38,16 +38,17 @@ Quy tắc vàng: **chỉ commit vào thư mục mình sở hữu.** Cần thay �
 | `Game/` | `FateBastion.Game` | B | `GameManager`, `TimeController`, `Castle` (`MatchResult` nằm ở Core vì `GameEvents.OnMatchEnded` dùng) |
 | `Meta/Gacha/`, `Meta/Collection/` | `FateBastion.Meta` | B | `GachaService`, `CollectionService`, `DeckService`, `StarterSettings` |
 | `Meta/Save/` | `FateBastion.Meta` | A | `SaveData`, `SaveService` |
-| `UI/` | `FateBastion.UI` | B | View script, `UIManager`, `ConfirmDialog`, `OffscreenWarning`, `WorldHealthBar`, `CooldownSlot`, `UI/Debug/` (Bảng Debug) |
-| `UI/Tutorial/` | `FateBastion.UI` | A | `TutorialController`, các bước hướng dẫn màn 1 |
-| `Audio/` | `FateBastion.Audio` | C | `SoundData`, `AudioManager`, `MusicPlayer`, `FeedbackService` |
+| `UI/` | `FateBastion.UI` | B | View script, `UIManager`, `ConfirmDialog`, `CooldownSlot`, HUD tĩnh, `UI/Debug/` (Bảng Debug) |
+| `UI/Tutorial/` | `FateBastion.UI` | B | `TutorialController`, các bước hướng dẫn màn 1 |
+| `UI/World/` | `FateBastion.UI` | C | `WorldHealthBar`, `OffscreenWarning`, `DamageNumberSpawner` (pool số sát thương), `HitFlash` (nháy trắng quái) – Canvas động, tách khỏi HUD |
+| `Audio/` | `FateBastion.Audio` | C | `SoundData`, `AudioManager`, `MusicPlayer`, `FeedbackService` (rung camera; số sát thương và nháy trắng nằm ở `UI/World/`) |
 | `Editor/Import/` | `FateBastion.Editor` | B | Import Balance CSV, bộ đọc CSV |
 | `Editor/Heroes/` | `FateBastion.Editor` | C | Validate Hero Prefabs, Render Hero Icons |
 | `Editor/Debug/` | `FateBastion.Editor` | B | Menu debug Editor (Bảng Debug runtime nằm ở `UI/Debug/`, chủ B) |
 | `Tests/EditMode/<Hệ thống>/` | — | Chủ hệ thống tương ứng | Mỗi người test trong thư mục con của mình |
 | `Tests/PlayMode/<Hệ thống>/` | — | Chủ hệ thống tương ứng | |
 
-> `CLAUDE.md` mục 4 dùng cấu trúc này. Hai người chung một asmdef (`Heroes`, `Player`, `Meta`, `UI`) nhưng **khác thư mục con** nên không đụng file của nhau.
+> `CLAUDE.md` mục 4 dùng cấu trúc này. Hai người chung một asmdef (`Heroes`, `Player`, `Meta`, `UI` – B và C) nhưng **khác thư mục con** nên không đụng file của nhau.
 
 ### 2.2 Asset, prefab, scene
 
@@ -97,14 +98,14 @@ Ai **phát** (publisher) thì sở hữu chữ ký event. Người nghe không s
 | Event / Interface | Khai báo ở | Người phát | Người nghe |
 |---|---|---|---|
 | `IDamageable.TakeDamage(in DamageInfo)` | Core | A | A (quái), C (FX) |
-| `CombatEvents.OnDamageDealt(DamageDealtInfo)`, `OnEnemyKilled(EnemyKilledInfo)` | Core | A | B (Vàng, HUD), C (số sát thương, âm thanh) |
+| `CombatEvents.OnDamageDealt(DamageDealtInfo)`, `OnEnemyKilled(EnemyKilledInfo)` | Core | A | B (Vàng, HUD), C (số sát thương ở `UI/World/`, âm thanh) |
 | `GameEvents.OnStateChanged`, `OnWaveStarted(n)`, `OnWaveCleared(n)`, `OnCastleDamaged`, `OnMatchEnded(result)` | Core | B | A (wave), C (nhạc, rung) |
 | `Wallet.OnGoldChanged` | Heroes/Placement | B | B (HUD) |
 | `HeroEvents.OnHeroPlaced`, `OnHeroSold`, `OnHeroUpgraded`, `OnHeroSelected` (payload `HeroEventInfo`) | Core | B | A (buff Hào quang), C (âm thanh, FX) |
 | `AbilityEvents.OnMeteorCooldownChanged(remaining, total)`, `OnMeteorExploded(point, radius)` | Core | A | B (HUD), C (rung, âm thanh) |
-| `InputRouter`: `Move`, `SprintChanged`, `Look`, `Zoom`, `Select`, `Cancel`, `DeckSlot(int 0-4)`, `Meteor`, `Upgrade`, `Sell`, `Ultimate`, `SkipWave`, `DebugPanel`, `ActionMapChanged` | Core (khai báo) / Player/Movement (cài đặt) | C | A, B |
+| `InputRouter`: `Move`, `SprintChanged`, `Look`, `Zoom`, `Select`, `Cancel`, `PauseRequested`, `DeckSlot(int 0-4)`, `Meteor`, `Upgrade`, `Sell`, `Ultimate`, `SkipWave`, `DebugPanel`, `ActionMapChanged` | Core (khai báo) / Player/Movement (cài đặt) | C | A, B |
 | `TimeController.SetSpeed`, `Pause`, `Resume` | Game | B | Mọi người gọi, **chỉ B sửa** |
-| `HeroVisual.muzzle`, `overhead`, `auraAnchor`, `animator` | Heroes/Visual | C | A (bắn đạn), B (thanh/nhãn UI) |
+| `HeroVisual.muzzle`, `overhead`, `auraAnchor`, `animator` | Heroes/Visual | C | A (bắn đạn), B (hiệu ứng cấp 3 qua `auraAnchor`), C (nhãn/số trên đầu qua `overhead`) |
 | `SaveService.Save()`, `SaveData`, hàm xóa save cho Bảng Debug | Meta/Save | A | B (gacha, deck, cài đặt, Bảng Debug) |
 | `LevelPaths` (`SplineContainer` theo `pathIndex` 0 = đường chính, 1 = đường bay) | Enemies | A khai báo, C gắn trong prefab map | A (`WaveManager`, `EnemyController`) |
 | Hàm lệnh cho nút UI: `TimeController.SetSpeed/Pause/Resume`, `GachaService`, `CollectionService`, `DeckService`, bán/nâng tướng ở `Heroes/Placement` | Game, Meta, Heroes | B | B (UI) – chỉ gọi khi người chơi bấm; hiển thị vẫn qua event (`CLAUDE.md` mục 4) |
@@ -114,15 +115,42 @@ Thêm event mới vào Core = sửa vùng dùng chung → PR 3 người duyệt.
 Hai lưu ý về `InputRouter`:
 
 - `Core/InputRouter.cs` là MonoBehaviour chỉ khai báo event + `SetActionMap`, với các hàm `protected Raise…()`. C **không sửa file đó** (vùng khóa) mà viết `SummonerInputRouter : InputRouter` trong `Player/Movement/`, đọc Input System và gọi `Raise…()`. Các hệ thống khác luôn dùng qua `InputRouter.Instance`.
-- **Không có action `Pause` riêng.** Esc đi qua `Cancel` và được xử lý theo thứ tự ưu tiên ở S3 (hủy ngắm/hủy đặt → đóng bảng tướng → mở Tạm dừng).
+- **Không có action `Pause` riêng.** Esc và bấm nhanh chuột phải đi qua `CancelStack` (mục 3.1 #6). Chỉ khi stack rỗng **và** phím là Esc thì `SummonerInputRouter` phát `PauseRequested`. `Cancel` là sự kiện thô, dùng cho Action Map UI (đóng màn trên cùng), **không** dùng để tự hủy chế độ của mình.
 
 ---
+
+### 3.1 API giữa các hệ thống (hợp đồng chốt sau S0)
+
+Bảng mục 3 là event dùng chung; bảng này là **hàm và event cụ thể ở mỗi điểm nối hai người**. Người cung cấp giữ đúng tên và chữ ký; muốn đổi → issue `[Cần <người dùng>]` trước, sửa Spec tương ứng. Tham số có thể thêm khi làm (ghi vào PR "Cách dùng"), nhưng không đổi ý nghĩa.
+
+| # | Điểm nối | Người cung cấp → người dùng | API | Spec |
+|---|---|---|---|---|
+| 1 | Quái tới Thành | A → B | `EnemyManager.OnEnemyReachedCastle(int castleDamage)` (event instance). `Castle` (B) nghe, trừ máu, rồi phát `GameEvents.RaiseCastleDamaged`. A **không** gọi `Castle` | S2, S5 |
+| 2 | Bắt đầu / kết thúc wave | B gọi A, A báo B | `WaveManager.Init(LevelData level, EndlessSettings endless)` (`endless` = null ở chiến dịch), `StartWave(int wave)`, `StopAndClear()` (B gọi khi trận kết thúc), event `OnWaveFinished(int wave)` (sinh hết + không còn quái sống, kể cả quái con). **Chỉ B** phát `GameEvents.OnWaveStarted/OnWaveCleared` | S2, S5 |
+| 3 | Đặt tướng → tướng hoạt động | B dùng API của A | **B giữ pool tướng** (`HeroPool` trong `Heroes/Placement/`, prefab `Hero_Base` của A). A cung cấp `HeroController.Init(HeroData data)`, `ResetState()` (gọi khi lấy từ pool), `OnDespawn()` (gọi trước khi trả pool: dừng coroutine, hủy đăng ký, gỡ buff) | S4, S6 |
+| 4 | Nâng cấp → chỉ số | B dùng API của A | `HeroStats.SetLevelMultipliers(float damage, float attackSpeed, float range)` (vd cấp 2 = 1.4, 1.1, 1.1). `HeroLevel` (B) đọc `HeroLevelTable` rồi gọi; `HeroStats` (A) tự tính lại chỉ số cùng buff | S4, S6 |
+| 5 | Nộ và nút Ultimate | A → B | `HeroController.OnRageChanged(float current, float max)` (event instance), `HeroController.TryActivateUltimate()` trả `bool` (false khi chưa đầy hoặc không có quái trong tầm). HUD (B) đăng ký khi nhận `OnHeroSelected`, hủy khi bỏ chọn | S6, S10 |
+| 6 | Esc / bấm nhanh chuột phải | C điều phối; A, B dùng | `Core/CancelStack`: hệ thống vào chế độ thì `CancelStack.Push(this)` (cài `ICancelable.OnCancel()`), tự thoát thì `CancelStack.Remove(this)`. `SummonerInputRouter` (C): chuột phải tap → `CancelStack.TryCancelTop()`; Esc → `if (!CancelStack.TryCancelTop()) RaisePauseRequested()`. Dùng stack: chế độ đặt tướng (B), ngắm Thiên thạch (A), bảng thông tin tướng (B). `GameManager` (B) nghe `PauseRequested` | S3, S4, S7, S10 |
+| 7 | Hai chế độ loại trừ: đặt tướng ↔ ngắm Thiên thạch | A ↔ B | Mỗi bên tự thoát khi phím của bên kia được bấm: `PlacementSystem` nghe `InputRouter.Meteor` → thoát xem trước; `MeteorAbility` nghe `InputRouter.DeckSlot` → hủy ngắm (không tốn hồi chiêu). Không gọi thẳng vào nhau | S4, S7 |
+| 8 | Vàng khi hạ quái | A → B | A chỉ phát `CombatEvents.OnEnemyKilled` (có `GoldReward`). **Chỉ `Wallet` (B)** cộng Vàng (nghe event này). Vàng cuối wave và bỏ qua chờ: `GameManager` (B) gọi `Wallet` | S2, S4, S5 |
+| 9 | Dữ liệu cho UI thế giới (thanh máu, cảnh báo) | A → C | `EnemyManager.OnEnemySpawned(EnemyController)` / `OnEnemyDespawned(EnemyController)` (gắn/gỡ thanh máu, không quét mỗi frame), `EnemyManager.ActiveEnemies` (`IReadOnlyList`, chỉ đọc). `EnemyController`: `CurrentHP`, `MaxHP`, `IsBoss`, `Progress` (0–1), `HealthBarAnchor` (`Transform`), event `OnHealthChanged(float current, float max)`. C **không** sửa máu/trạng thái quái. Số sát thương dùng `CombatEvents.OnDamageDealt` (đã có) | S2, S10 |
 
 ## 4. Làm việc khi phụ thuộc chưa xong
 
 - Dùng **stub** theo interface ở Core. Đánh dấu `// STUB: thay bằng S<số>` để tìm lại (`grep -r "STUB:"`).
 - Không chờ người khác để bắt đầu. Thứ tự phụ thuộc ở `ROADMAP.md` mục 3.
 - Khi hệ thống thật merge, **người dùng stub** tự gỡ stub trong vùng của mình.
+- Stub phải dùng **đúng tên và chữ ký** ở mục 3.1, để khi đổi sang bản thật chỉ cần xóa stub.
+
+### 4.1 Thế nào là "đã bàn giao"
+
+Một dòng "→ giao" trong `ROADMAP.md` chỉ được tính xong khi có **đủ 5 điều**:
+
+1. PR đã merge vào `main`, test của hệ thống đó xanh.
+2. Mô tả PR có mục **"Cách dùng"**: API/event public người khác được gọi (khớp mục 3.1) + một đoạn code ví dụ ngắn.
+3. Mô tả PR có **"Hướng dẫn lắp trong Unity"**: prefab, component, Settings SO, layer cần dùng.
+4. Có scene `Sandbox/<người giao>_*` chạy được để người nhận xem hệ thống hoạt động.
+5. Người nhận xác nhận trong PR (comment "Đã thử, dùng được") hoặc mở issue nếu API không dùng được. Trễ quá 1 ngày → báo trong họp sáng.
 
 ---
 
