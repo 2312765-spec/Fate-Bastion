@@ -312,7 +312,7 @@ public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 
 | # | Hệ thống | Tuần | Phụ thuộc | Người | Trạng thái |
 |---|---|---|---|---|---|
-| S0 | Interface, data dùng chung, Import Balance CSV | Ngày 1–2 | — | Cả nhóm | ◐ |
+| S0 | Interface, data dùng chung, Import Balance CSV | Ngày 1–2 | — | Cả nhóm | ☑ |
 | S0b | HeroVisual, Validate Hero Prefabs, Render Hero Icons | Ngày 3 | S0 | C | ☐ |
 | S1 | Chiến đấu và sát thương | 1 | S0 | A | ☐ |
 | S2 | Quái và Wave | 1 | S1 | A | ☐ |

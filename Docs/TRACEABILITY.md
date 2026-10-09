@@ -103,15 +103,15 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | S0-03 | 1–2 | Enum, `HeroData`, `EnemyData`, `WaveData`, `SpawnGroup`, `LevelData` (+`hpMultiplier`), `SkillData`, `StatusEffectData`, `DamageInfo`, `IDamageable`, 4 event hub (`GameEvents`, `CombatEvents`, `HeroEvents`, `AbilityEvents`), `InputRouter` (khai báo) | `Core/`, `Combat/`, `Heroes/Data/`, `Enemies/`, `Skills/` | Tay: compile | ☑ | |
 | S0-04 | 1–2 | Bộ đọc CSV: BOM, ngoặc kép, `,`/`;`, InvariantCulture | `Editor/Import/` | EM: 3 trường hợp file mẫu | ☑ | 19 test `CsvReaderTests` |
 | S0-05 | 2 | Tools → Import Balance CSV | `Editor/Import/` | Tay: 9 HeroData, 9 SkillData, 5 EnemyData, 45 WaveData, 3 LevelData; chạy lại không tạo thêm | ☑ | 20 test `BalanceImporterTests` |
-| S0-06 | 1 | Tags & Layers: Placeable, Path, Obstacle, Hero, Enemy | `ProjectSettings/` | Tay | ☐ | |
-| S0-07 | 1 | Scene Boot, Lobby, Game, Sandbox/A_, B_, C_ (trống) | `Scenes/` | Tay | ☐ | |
-| S0-08 | 1 | Package: Splines, Cinemachine 3.x, TextMeshPro, Newtonsoft Json; PrimeTween vào `ThirdParty/` | `Packages/manifest.json` | Tay: compile sau khi thêm | ☐ | Chặn S2, S3, S9, S10 |
-| S0-09 | 1 | UnityYAMLMerge làm merge tool cho `.unity`/`.prefab` | `.git/config` hoặc `~/.gitconfig` (mỗi máy) | Tay: tạo xung đột scene thử rồi merge | ☐ | Mỗi người tự chạy trên máy mình |
-| S0-10 | 2 | Gắn tay (người làm: A) field `LevelData` không có trong CSV: `hpMultiplier` (1.0 / 1.15 / 1.3), `displayName`, `enemyTypesPreview` | `Data/Levels/` | Tay: đối chiếu cột `calc_totalHP` sheet Wave | ☐ | **Chặn A-06** – importer không ghi cột này |
-| S0-11 | 1 | Xóa rác template URP (`Assets/Scenes/`, `TutorialInfo/`, `Readme.asset`, `InputSystem_Actions.inputactions`); giữ `Assets/Settings/` | `Assets/` | Tay: project vẫn mở và chạy được | ☐ | `Assets/Scenes/` đụng tên `_Project/Scenes/` |
-| S0-12 | 2 | Bổ sung tham chiếu asmdef theo `S0.md` mục "Assembly và hướng phụ thuộc" (Enemies → Splines; Skills/Heroes/Player → Enemies; Game → Meta; UI → Game, Meta, TMP, PrimeTween; asmdef test đủ assembly) | `*.asmdef` | Tay: compile 0 lỗi **sau** S0-08 | ☐ | File đã sửa, chờ compile |
-| S0-13 | 2 | Chốt tài liệu: ghi tên trưởng nhóm kỹ thuật (`TEAM_ASSIGNMENT.md` mục 1), điền ngày thật vào `ROADMAP.md` | `Docs/` | Tay | ☐ | |
-| S0-14 | 2 | Mỗi người: `git lfs install`, clone `main` sau khi merge S0, mở Unity compile được | máy từng người | Tay: A ☐ · B ☐ · C ☐ | ☐ | Ghép với S0-09 |
+| S0-06 | 1 | Tags & Layers: Placeable, Path, Obstacle, Hero, Enemy | `ProjectSettings/` | Tay | ☑ | User Layer 6–10 |
+| S0-07 | 1 | Scene Boot, Lobby, Game, Sandbox/A_, B_, C_ (trống) | `Scenes/` | Tay | ☑ | Build list: Boot (0), Lobby, Game |
+| S0-08 | 1 | Package: Splines, Cinemachine 3.x, TextMeshPro, Newtonsoft Json; PrimeTween vào `ThirdParty/` | `Packages/manifest.json` | Tay: compile sau khi thêm | ☑ | Splines 2.9.1, Cinemachine 3.1.7, Newtonsoft 3.2.1, PrimeTween 1.3.3 qua OpenUPM (không nằm trong `ThirdParty/`; cảnh báo "no signature" là bình thường) |
+| S0-09 | 1 | UnityYAMLMerge làm merge tool cho `.unity`/`.prefab` | `.git/config` hoặc `~/.gitconfig` (mỗi máy) | Tay: tạo xung đột scene thử rồi merge | ◐ | Đã cấu hình trên máy mở PR #1 ☑ · 2 máy còn lại ☐ |
+| S0-10 | 2 | Gắn tay (người làm: A) field `LevelData` không có trong CSV: `hpMultiplier` (1.0 / 1.15 / 1.3), `displayName`, `enemyTypesPreview` | `Data/Levels/` | Tay: đối chiếu cột `calc_totalHP` sheet Wave | ◐ | `hpMultiplier` ☑ 1.0/1.15/1.3 · còn thiếu: `displayName` cả 3 màn; `enemyTypesPreview` màn 2 thêm `enemy_giap`, màn 3 thêm `enemy_giap` + `enemy_bay` |
+| S0-11 | 1 | Xóa rác template URP (`Assets/Scenes/`, `TutorialInfo/`, `Readme.asset`, `InputSystem_Actions.inputactions`); giữ `Assets/Settings/` | `Assets/` | Tay: project vẫn mở và chạy được | ◐ | Còn: xóa thư mục rỗng `TutorialInfo/`; Project Settings → Input System Package → Project-wide Actions đang trỏ tới file đã xóa → đặt None |
+| S0-12 | 2 | Bổ sung tham chiếu asmdef theo `S0.md` mục "Assembly và hướng phụ thuộc" (Enemies → Splines; Skills/Heroes/Player → Enemies; Game → Meta; UI → Game, Meta, TMP, PrimeTween; asmdef test đủ assembly) | `*.asmdef` | Tay: compile 0 lỗi **sau** S0-08 | ☑ | Merge PR #1 (Console 0 lỗi khi mở PR) |
+| S0-13 | 2 | Chốt tài liệu: ghi tên trưởng nhóm kỹ thuật (`TEAM_ASSIGNMENT.md` mục 1), điền ngày thật vào `ROADMAP.md` | `Docs/` | Tay | ☑ | Trưởng nhóm: Thuận · Ngày 1 = 10/10/2026, khóa 30/10, nộp 06/11 |
+| S0-14 | 2 | Mỗi người: `git lfs install`, clone `main` sau khi merge S0, mở Unity compile được | máy từng người | Tay: A ☐ · B ☐ · C ☐ | ◐ | A ☐ · B ☐ · C ☐ (mỗi người tự tick) |
 
 ---
 

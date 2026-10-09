@@ -13,7 +13,7 @@
 | **B** | Hệ thống và UI | S4 Đặt tướng và nâng cấp · S5 Luồng trận · S8 Gacha, Túi, Ghép, Deck · S10 code HUD/UI · công cụ Import Balance CSV · Bảng Debug | Review PR của **C** |
 | **C** | Art và kỹ thuật hình ảnh | S0b HeroVisual · S3 Triệu Hồi Sư và Camera · S10 bố cục và prefab UI · S11 Âm thanh · map, model, animation, VFX · tối ưu hiệu năng · build | Review PR của **A** |
 
-**Trưởng nhóm kỹ thuật (giữ "hợp đồng" chung):** ghi tên ở đây → 'Thuận`. Người này duyệt mọi thay đổi ở vùng **Dùng chung** (mục 2.3).
+**Trưởng nhóm kỹ thuật (giữ "hợp đồng" chung):** ghi tên ở đây → **Thuận**. Người này duyệt mọi thay đổi ở vùng **Dùng chung** (mục 2.3).
 
 ---
 

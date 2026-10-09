@@ -1,6 +1,6 @@
 # Lộ trình 4 tuần – Fate Bastion
 
-> Phiên bản 1.0 · khớp GDD v1.3 mục 14. Ngày bắt đầu (Ngày 1): `_10_/_10_/2026` → khóa tính năng cuối Ngày 21: `__/__` → nộp cuối Ngày 28: `__/__`.
+> Phiên bản 1.0 · khớp GDD v1.3 mục 14. Ngày bắt đầu (Ngày 1): `10/10/2026` → khóa tính năng cuối Ngày 21: `30/10/2026` → nộp cuối Ngày 28: `06/11/2026`.
 > Ai sở hữu gì: `Docs/TEAM_ASSIGNMENT.md`. Từng việc nhỏ và tiêu chí kiểm tra: `Docs/TRACEABILITY.md` (cột **Ngày** ở đó khớp bảng mục 2 dưới đây; mã việc A-xx/B-xx/C-xx ghi trong ngoặc).
 
 ---
@@ -112,7 +112,7 @@ Nếu đến **Ngày 18** mà M3 có nguy cơ trễ, cắt theo thứ tự (quy�
 
 | Mốc | Trạng thái | Ghi chú |
 |---|---|---|
-| M0 | ☐ | |
+| M0 | ☑ | Merge PR #1. Còn việc dọn nhỏ không chặn ai: S0-09, S0-10, S0-11, S0-14 (xem TRACEABILITY mục 3) |
 | M1 | ☐ | |
 | M2 | ☐ | |
 | M3 | ☐ | |
