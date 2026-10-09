@@ -1,6 +1,6 @@
 # Truy vết yêu cầu và checklist công việc – Fate Bastion
 
-> Phiên bản 1.0 · khớp GDD v1.3, `Docs/Specs/S0–S11`, `Docs/TEAM_ASSIGNMENT.md`, `Docs/ROADMAP.md`.
+> Phiên bản 1.1 (09/10/2026: B-17, C-14, C-15, C-18; hợp đồng 3.1 #9, #10) · khớp GDD v1.3, `Docs/Specs/S0–S11`, `Docs/TEAM_ASSIGNMENT.md`, `Docs/ROADMAP.md`.
 > **Cách dùng:** mỗi người chỉ tick ☐ → ☑ ở **phần của mình** (mục 4 = A, 5 = B, 6 = C; mục 3 tick chung trong PR S0) trong PR của việc đó. Không sửa phần của người khác → không xung đột khi merge. Bảng mục 2 do trưởng nhóm kỹ thuật cập nhật cuối tuần.
 > Cột **Ngày** khớp lịch `ROADMAP.md` mục 2 (dời ngày ở đây thì dời cả ở ROADMAP và ngược lại). Cột **Vùng file** khớp `TEAM_ASSIGNMENT.md` mục 2.
 > Ký hiệu cột **Kiểm tra**: `EM` = unit test EditMode, `PM` = test PlayMode, `Tay` = kiểm tra tay trong Unity (ghi người kiểm và ngày vào cột Ghi chú).
@@ -130,7 +130,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | A-08 | 8–9 | `SkillData`, `SkillRunner`, 7 kind: MeleeHit, Projectile, AreaAtPoint, Cone, Line, Zone, Buff | S6 | `Skills/` | PM: mỗi kind một kỹ năng mẫu | ☐ | |
 | A-09 | 9 | Cộng buff: cùng loại lấy mạnh nhất, khác nguồn cộng, trần +60% | S6 | `Heroes/Runtime/`, `Skills/` | EM: 2 Thánh Nữ = +30%, Thánh Nữ + Hào quang = +55% | ☐ | |
 | A-10 | 10 | Nộ +5 mỗi đòn, Ultimate Long Vương kích hoạt tay · API 3.1 #5: `OnRageChanged`, `TryActivateUltimate()` | S6 | `Skills/` | EM | ☐ | |
-| A-11 | 11 | `CommandAura` (6 m, +25%, 5 lần/s, chỉ tính lại khi vào/ra) | S7 | `Player/Abilities/` | PM: vào/ra đổi tốc đánh; bán tướng gỡ buff | ☐ | |
+| A-11 | 11 | `CommandAura` (6 m, +25%, 5 lần/s, chỉ tính lại khi vào/ra) · event `OnHeroEnteredAura` cho Hướng dẫn (3.1 #10) | S7 | `Player/Abilities/` | PM: vào/ra đổi tốc đánh; bán tướng gỡ buff | ☐ | |
 | A-12 | 12 | `MeteorAbility` (state machine thuần): hủy không tốn hồi chiêu, hồi 45 s game time · `CancelStack` + nghe `DeckSlot` để hủy ngắm (3.1 #6, #7) | S7 | `Player/Abilities/` | EM: 45 s (×1), 22.5 s thực (×2) | ☐ | |
 | A-13 | 12 | `MeteorAimIndicator`, tầm 20 m, sát thương theo wave × k_màn, trúng quái Bay | S7 | `Player/Abilities/` | EM: sát thương wave 1/5/15 | ☐ | |
 | A-14 | 15 | `SaveData`, `SaveService` ghi an toàn | S9 | `Meta/Save/` | EM: lưu/đọc giống hệt; lần lưu đầu | ☐ | |
@@ -156,10 +156,10 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | B-11 | 16 | `StarterSettings`: 5 tướng + 1.000 Ngọc, `ownedEver` có sẵn 5 tướng | S8 | `Meta/Collection/` | EM | ☐ | |
 | B-12 | 16 | `DeckService`: 5 tướng khác nhau, kiểm tra trước khi vào trận | S8 | `Meta/Collection/` | EM | ☐ | |
 | B-13 | 9 | `UIManager` (Push/Pop, Esc đóng màn trên cùng), `ConfirmDialog` | S10 | `UI/` | PM | ☐ | |
-| B-14 | 9–12 | HUD trận (Canvas tĩnh): thanh trên, 5 ô deck, ô Thiên thạch, bảng tướng – chỉ nhận event · thanh Nộ (3.1 #5); bảng tướng dùng `CancelStack` (#6). Thanh máu, cảnh báo, số sát thương: xem C-14 | S10 | `UI/` | EM: phát event giả, giá trị khớp | ☐ | |
-| B-15 | 18 | Script cho màn hình sảnh: Chọn màn, Gacha, Túi & Deck, Kết quả, Cài đặt | S10 | `UI/` | Tay | ☐ | |
+| B-14 | 9–10, 12 | HUD trận (Canvas tĩnh): thanh trên, 5 ô deck, ô Thiên thạch, bảng tướng – chỉ nhận event · thanh Nộ (3.1 #5); bảng tướng dùng `CancelStack` (#6). Thanh máu, cảnh báo, số sát thương: xem C-14 | S10 | `UI/` | EM: phát event giả, giá trị khớp | ☐ | |
+| B-15 | 13, 18–20 | Script cho màn hình sảnh: Chọn màn, Gacha, Túi & Deck, Kết quả, Cài đặt · ngày 13 màn Kết quả; 18 sảnh; 19 hiệu ứng gacha, xác nhận Ghép; 20 Cài đặt | S10 | `UI/` | Tay | ☐ | |
 | B-16 | 22 | Bảng Debug F1 (`#if UNITY_EDITOR \|\| DEVELOPMENT_BUILD`) | S9, S10 | `UI/Debug/`, `Editor/Debug/` | Tay: không có trong build Release | ☐ | |
-| B-17 | 11, 17 | Hướng dẫn màn 1: `TutorialController`, 4 bước theo event (đặt tướng `OnHeroPlaced`, nâng cấp `OnHeroUpgraded`, Hào quang, Thiên thạch `OnMeteorExploded`), nút Bỏ qua, chỉ lần đầu. Ngày 11: khung + bước 1–2; ngày 17: bước 3–4 + lưu `tutorialDone` (S9) | S10 | `UI/Tutorial/` | Tay: chơi màn 1 lần đầu và lần hai | ☐ | Chuyển từ A-16 (phiên bản 1.1) |
+| B-17 | 11, 17 | Hướng dẫn màn 1: `TutorialController`, 4 bước theo event (đặt tướng `OnHeroPlaced`, nâng cấp `OnHeroUpgraded`, Hào quang, Thiên thạch `OnMeteorExploded`), nút Bỏ qua, chỉ lần đầu. Ngày 11: khung + bước 1–2; ngày 17: bước 3–4 + lưu `tutorialDone` (S9) · bước 3 nghe `CommandAura.OnHeroEnteredAura` (3.1 #10) | S10 | `UI/Tutorial/` | Tay: chơi màn 1 lần đầu và lần hai | ☐ | Chuyển từ A-16 (phiên bản 1.1) |
 
 ---
 
@@ -174,17 +174,17 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | C-05 | 4 | `InputRouter` + Input Actions: Hold/Tap chuột phải, thứ tự Esc, 1 Action Map bật tại một thời điểm, click UI không xuyên · `SummonerInputRouter` điều phối `CancelStack`, phát `PauseRequested` (3.1 #6) | S3 | `Player/Movement/`, `Input/` | EM/PM: chuyển Action Map; Esc 3 tình huống | ☐ | |
 | C-06 | 5 | Map graybox thành prefab `Map_Level1`: mặt đất, Spline đường chính (~90 m) + đường bay gắn vào `LevelPaths`, Cổng, Thành, layer Placeable/Path/Obstacle | GDD 3, S2 | `Prefabs/Map/`, `Scenes/Game.unity` | Tay | ☐ | |
 | C-07 | 6 | Chọn asset pack, ghi `ThirdParty/CREDITS.md` | — | `Assets/ThirdParty/` | Tay | ☐ | |
-| C-08 | 8–12 | Model + animation 9 tướng, 5 loại quái, Triệu Hồi Sư; Prefab Variant + `HeroVisual`; gắn prefab + icon vào `HeroData` | GDD 12 | `Art/`, `Prefabs/Heroes/`, `Prefabs/Enemies/` | Tay: Validate Hero Prefabs không báo lỗi | ☐ | |
+| C-08 | 8–10, 12 | Model + animation 9 tướng, 5 loại quái, Triệu Hồi Sư; Prefab Variant + `HeroVisual`; gắn prefab + icon vào `HeroData` | GDD 12 | `Art/`, `Prefabs/Heroes/`, `Prefabs/Enemies/` | Tay: Validate Hero Prefabs không báo lỗi | ☐ | |
 | C-09 | 11, 13 | VFX: đạn, nổ, Bỏng, Băng, Sét, Hào quang độ hiếm, Thiên thạch, Ultimate | GDD 6, 12 | `Prefabs/FX/` | Tay | ☐ | |
 | C-10 | 9 | Font TextMeshPro Dynamic có đủ dấu tiếng Việt | S10 | `Art/Fonts/` | Tay: mọi màn hình | ☐ | |
 | C-11 | 9–10 | Bố cục prefab HUD trận (theo hình HUD trong GDD mục 9) | S10 | `Prefabs/UI/` | Tay: 1920×1080 và 1366×768 | ☐ | |
 | C-12 | 17 | Bố cục prefab màn hình sảnh | S10 | `Prefabs/UI/` | Tay | ☐ | |
-| C-13 | 18 | `AudioManager` (Mixer Master/Music/SFX, pool 24, tối đa 4 bản cùng lúc), `MusicPlayer` | S11 | `Audio/` | PM: 100 quái chết không quá 4 âm thanh | ☐ | |
+| C-13 | 18–19 | `AudioManager` (Mixer Master/Music/SFX, pool 24, tối đa 4 bản cùng lúc), `MusicPlayer` | S11 | `Audio/` | PM: 100 quái chết không quá 4 âm thanh | ☐ | |
 | C-14 | 14, 19 | **UI thế giới** (`UI/World/`, Canvas động): `WorldHealthBar` (pool, gắn/gỡ theo `OnEnemySpawned/Despawned`, ẩn khi đầy máu, thanh to cho boss), `OffscreenWarning` (quái `Progress` ≥ 0.8, mũi tên rìa màn hình), `DamageNumberSpawner` (pool, ≤ 60 số cùng lúc), `HitFlash` (nháy trắng, MaterialPropertyBlock). Ngày 14: thanh máu + cảnh báo; ngày 19: số sát thương + nháy trắng. API 3.1 #9 | S10, S11 | `UI/World/` | PM: 100 quái, GC Alloc 0 B/frame khi thanh máu cập nhật; Tay: Profiler | ☐ | Chuyển từ B-14 (phiên bản 1.1) |
-| C-18 | 19 | `FeedbackService`: rung camera (Impulse) khi Thiên thạch nổ, boss xuất hiện, Thành mất máu; tắt được trong Cài đặt | S11 | `Audio/` | Tay | ☐ | Tách từ C-14 cũ |
-| C-15 | 7, 20, 23 | **Tối ưu hiệu năng** (không chỉ đo): ngày 7 đo mốc ban đầu; ngày 20 GPU Instancing, SRP Batcher, LOD quái, giảm draw call, gộp Canvas, kiểm GC Alloc; ngày 23 đo lại. Số liệu trước/sau: FPS 2 cấu hình, draw call, GC Alloc, Memory sau 50 wave Vô tận ×2 | GDD 13 | `Art/`, `Prefabs/`, `Data/Settings/` | Tay: bảng trước/sau + ảnh Profiler vào báo cáo | ☐ | |
+| C-15 | 7, 20, 23 | **Tối ưu hiệu năng** (không chỉ đo): ngày 7 đo mốc ban đầu; ngày 20 GPU Instancing, SRP Batcher, LOD quái, giảm draw call, gộp Canvas, kiểm GC Alloc; ngày 23 đo lại. Số liệu trước/sau: FPS 2 cấu hình, draw call, GC Alloc, Memory sau 50 wave Vô tận ×2 · đổi `ProjectSettings/` (Quality, Graphics) → PR 3 người; LOD đặt trên Variant quái của C, không sửa `Enemy_Base` của A | GDD 13 | `Art/`, `Prefabs/`, `Data/Settings/` | Tay: bảng trước/sau + ảnh Profiler vào báo cáo | ☐ | |
 | C-16 | 22, 24 | Build Release IL2CPP + Development | GDD 9 | `Builds/` (không commit) | Tay: chạy trên máy sạch | ☐ | |
 | C-17 | 15–16 | Dựng map thật, ánh sáng, LOD | GDD 3 | `Scenes/Game.unity`, `Art/` | Tay: FPS vẫn đạt mục tiêu | ☐ | |
+| C-18 | 19 | `FeedbackService`: rung camera (Impulse) khi Thiên thạch nổ, boss xuất hiện, Thành mất máu; tắt được trong Cài đặt | S11 | `Audio/` | Tay | ☐ | Tách từ C-14 cũ |
 
 ---
 

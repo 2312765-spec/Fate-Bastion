@@ -1,6 +1,6 @@
 # Phân công nhóm – Fate Bastion
 
-> Phiên bản 1.0 · khớp GDD v1.3, Đặc tả v1.3, CLAUDE.md. Mục tiêu của file này: **mỗi người chỉ sửa vùng của mình**, mọi chỗ giao nhau đều đi qua "hợp đồng" (interface, event, asset dùng chung) đã chốt ở S0.
+> Phiên bản 1.1 (09/10/2026: mục 3.1, 4.1; UI thế giới sang C, Hướng dẫn màn 1 sang B) · khớp GDD v1.3, Đặc tả v1.3, CLAUDE.md. Mục tiêu của file này: **mỗi người chỉ sửa vùng của mình**, mọi chỗ giao nhau đều đi qua "hợp đồng" (interface, event, asset dùng chung) đã chốt ở S0.
 > Đi kèm: `Docs/ROADMAP.md` (lịch) và `Docs/TRACEABILITY.md` (checklist công việc, cột Vùng file lấy từ mục 2 file này). Đổi chủ sở hữu ở đây thì cập nhật cả `CLAUDE.md` mục 4 và cột Vùng file trong TRACEABILITY.
 
 ---
@@ -68,6 +68,7 @@ Quy tắc vàng: **chỉ commit vào thư mục mình sở hữu.** Cần thay �
 | `Prefabs/Systems/` (`_GameSystems`, `_UIRoot`, `_Audio`) | B / B / C | Mỗi nhóm manager một prefab, scene chỉ chứa instance |
 | `Prefabs/UI/` | C (bố cục) | B gắn script view vào prefab của C qua PR được C duyệt |
 | `Prefabs/FX/` | C | |
+| `Assets/Settings/` (URP Asset, Renderer, Volume Profile) | C | Ánh sáng, post-processing, tối ưu (C-15, C-17). Đổi Quality/Graphics trong `ProjectSettings/` vẫn là vùng Dùng chung → PR 3 người |
 | `Prefabs/Map/Map_Level<n>.prefab` | C | Địa hình, Cổng, Thành, Spline đường chính + đường bay, component `LevelPaths` (script của A). A/B kéo prefab này vào Sandbox để thử, không sửa |
 | `Art/`, `Audio/`, `Assets/ThirdParty/` | C | Ghi nguồn vào `ThirdParty/CREDITS.md` |
 | `Scenes/Game.unity` | C | Chỉ chứa instance của `Map_Level<n>`, `_GameSystems`, `_UIRoot`, `_Audio`, `Player`. **Chỉ C mở và lưu** |
@@ -134,6 +135,7 @@ Bảng mục 3 là event dùng chung; bảng này là **hàm và event cụ th�
 | 7 | Hai chế độ loại trừ: đặt tướng ↔ ngắm Thiên thạch | A ↔ B | Mỗi bên tự thoát khi phím của bên kia được bấm: `PlacementSystem` nghe `InputRouter.Meteor` → thoát xem trước; `MeteorAbility` nghe `InputRouter.DeckSlot` → hủy ngắm (không tốn hồi chiêu). Không gọi thẳng vào nhau | S4, S7 |
 | 8 | Vàng khi hạ quái | A → B | A chỉ phát `CombatEvents.OnEnemyKilled` (có `GoldReward`). **Chỉ `Wallet` (B)** cộng Vàng (nghe event này). Vàng cuối wave và bỏ qua chờ: `GameManager` (B) gọi `Wallet` | S2, S4, S5 |
 | 9 | Dữ liệu cho UI thế giới (thanh máu, cảnh báo) | A → C | `EnemyManager.OnEnemySpawned(EnemyController)` / `OnEnemyDespawned(EnemyController)` (gắn/gỡ thanh máu, không quét mỗi frame), `EnemyManager.ActiveEnemies` (`IReadOnlyList`, chỉ đọc). `EnemyController`: `CurrentHP`, `MaxHP`, `IsBoss`, `Progress` (0–1), `HealthBarAnchor` (`Transform`), event `OnHealthChanged(float current, float max)`. C **không** sửa máu/trạng thái quái. Số sát thương dùng `CombatEvents.OnDamageDealt` (đã có) | S2, S10 |
+| 10 | Hào quang cho Hướng dẫn màn 1 (bước 3) | A → B | `CommandAura.OnHeroEnteredAura(GameObject hero)` (event instance, phát khi một tướng **bắt đầu** nhận buff Hào quang). `TutorialController` (B) nghe lần đầu rồi hủy đăng ký. Bước 4 (Thiên thạch) dùng `AbilityEvents.OnMeteorExploded` đã có | S7, S10 |
 
 ## 4. Làm việc khi phụ thuộc chưa xong
 
