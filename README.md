@@ -32,8 +32,8 @@ git config --global user.email "email-github-cua-ban@example.com"
 ### Bước 3 – Clone repo
 
 ```bash
-git clone https://github.com/2312765-spec/TowerDefenseRNG.git
-cd TowerDefenseRNG
+git clone https://github.com/2312765-spec/Fate-Bastion.git
+cd Fate-Bastion
 git lfs pull          # chắc chắn đã tải đủ file ảnh, model, xlsx
 ```
 
