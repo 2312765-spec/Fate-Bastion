@@ -20,9 +20,31 @@ Tài liệu gốc:
 |---|---|
 | `Docs/GDD - Tower Defense RNG.docx` | Thiết kế game v1.3 (luật, số liệu, HUD, lộ trình) |
 | `Docs/Dac ta ky thuat.docx` | Đặc tả kỹ thuật S0–S11 (bản gốc của `Docs/Specs/`) |
-| `Docs/Specs/S0.md` … `S11.md` | Đặc tả từng hệ thống – **đọc file tương ứng trước khi code** |
+| `Docs/Specs/S0.md`, `S0b.md` … `S11.md` | Đặc tả từng hệ thống – **đọc file tương ứng trước khi code** |
 | `Docs/Can bang - Fate Bastion.xlsx` | File cân bằng; xuất ra CSV |
+| `Docs/TEAM_ASSIGNMENT.md` | Ai sở hữu thư mục, asset, scene nào; hợp đồng event giữa các người |
+| `Docs/ROADMAP.md` | Lịch 28 ngày, mốc, bàn giao |
+| `Docs/TRACEABILITY.md` | Yêu cầu R01–R31 → việc A-xx / B-xx / C-xx, checklist PR |
 | `Data/Balance/heroes.csv`, `enemies.csv`, `waves.csv` | Dữ liệu cân bằng, import vào asset bằng công cụ Editor |
+
+### Các tài liệu nối với nhau thế nào
+
+```
+GDD (luật) → Specs/S<số>.md (làm thế nào) → TRACEABILITY (R-xx → việc A/B/C-xx, tick khi xong)
+                                           ↘ TEAM_ASSIGNMENT (ai sở hữu file/asset, hợp đồng event)
+                                           ↘ ROADMAP (ngày nào, bàn giao cho ai)
+CLAUDE.md = quy tắc chung rút gọn từ tất cả các file trên
+```
+
+**Khi thay đổi một thứ, cập nhật cùng lúc trong cùng PR:**
+
+| Thay đổi | Sửa cả |
+|---|---|
+| Luật / số thiết kế | `Specs/S<số>.md` → mục 9 file này (nếu có trong bảng) → Excel/CSV |
+| Thêm/đổi event ở Core, interface, asmdef | `Specs/S0.md` hoặc Spec chủ event → mục 4, 6 file này → `TEAM_ASSIGNMENT.md` mục 3 |
+| Đổi chủ sở hữu thư mục/asset | `TEAM_ASSIGNMENT.md` mục 2 → mục 4 file này → cột Vùng file trong `TRACEABILITY.md` |
+| Thêm/bớt/dời việc | `TRACEABILITY.md` (mục 2–6) → `ROADMAP.md` (ngày, bàn giao) |
+| Cắt tính năng (phao cứu sinh) | `ROADMAP.md` mục 4 → mục 1 file này → đánh dấu dòng R-xx trong `TRACEABILITY.md` là "cắt" |
 
 ---
 
@@ -68,22 +90,23 @@ Assets/
 │   ├── Scripts/
 │   │   ├── Core/        FateBastion.Core      (enum, event, pool, time, input, save interface)
 │   │   ├── Combat/      FateBastion.Combat    (DamageInfo, DamageCalculator, status effect)
-│   │   ├── Heroes/      FateBastion.Heroes    (HeroData, HeroController, placement, level)
-│   │   ├── Enemies/     FateBastion.Enemies   (EnemyData, WaveData, LevelData, WaveManager)
+│   │   ├── Heroes/      FateBastion.Heroes    Data/ (HeroData) · Runtime/ (A) · Placement/ (B) · Visual/ (C)
+│   │   ├── Enemies/     FateBastion.Enemies   (EnemyData, WaveData, LevelData, WaveManager, LevelPaths)
 │   │   ├── Skills/      FateBastion.Skills    (SkillData, SkillRunner, các kind)
-│   │   ├── Player/      FateBastion.Player    (PlayerController, CameraRig, CommandAura, Meteor)
+│   │   ├── Player/      FateBastion.Player    Movement/ (C: PlayerController, CameraRig, SummonerInputRouter) · Abilities/ (A: CommandAura, Meteor)
 │   │   ├── Game/        FateBastion.Game      (GameManager, TimeController, Castle)
-│   │   ├── Meta/        FateBastion.Meta      (Gacha, Collection, Deck, Save)
-│   │   ├── UI/          FateBastion.UI        (view, UIManager, HUD)
+│   │   ├── Meta/        FateBastion.Meta      Gacha/, Collection/ (B) · Save/ (A)
+│   │   ├── UI/          FateBastion.UI        view, UIManager, HUD, Debug/ (B) · Tutorial/ (A)
 │   │   ├── Audio/       FateBastion.Audio
-│   │   └── Editor/      FateBastion.Editor    (Import Balance CSV, debug menu) – asmdef chỉ Editor
+│   │   └── Editor/      FateBastion.Editor    Import/, Debug/ (B) · Heroes/ (C) – asmdef chỉ Editor
 │   ├── Data/            ScriptableObject asset (Heroes/, Enemies/, Waves/, Levels/, Skills/, Settings/)
-│   ├── Prefabs/
+│   ├── Input/           FateBastion.inputactions (chủ: C)
+│   ├── Prefabs/         Heroes/, Enemies/, Player/, Map/, Systems/, UI/, FX/
 │   ├── Art/  Audio/
-│   ├── Scenes/          Boot, Lobby, Game, Sandbox/<tên>
+│   ├── Scenes/          Boot, Lobby, Game, Sandbox/A_*, B_*, C_*
 │   └── Tests/
-│       ├── EditMode/    FateBastion.Tests.EditMode
-│       └── PlayMode/    FateBastion.Tests.PlayMode
+│       ├── EditMode/    FateBastion.Tests.EditMode – một thư mục con mỗi hệ thống (S0/, S1/…)
+│       └── PlayMode/    FateBastion.Tests.PlayMode – một thư mục con mỗi hệ thống
 ├── ThirdParty/          asset tải về + CREDITS.md
 Data/Balance/            heroes.csv, enemies.csv, waves.csv (ngoài Assets/)
 Docs/                    GDD, Đặc tả, file cân bằng, Specs/
@@ -92,15 +115,25 @@ Docs/                    GDD, Đặc tả, file cân bằng, Specs/
 **Assembly Definition:** mỗi thư mục trong `Scripts/` một asmdef cùng tên namespace. Hướng phụ thuộc chỉ đi một chiều:
 
 ```
-Core ← Combat ← Skills ← Heroes ← Player
-Core ← Enemies (dùng Combat)
-Core ← Game (dùng Heroes, Enemies, Player)
-Core ← Meta
-UI, Audio → chỉ phụ thuộc Core (+ đọc data class), nhận dữ liệu qua event
+Core ← Combat ← Enemies ← Skills ← Heroes ← Player     (chuỗi gameplay, một chiều)
+Core ← Meta                                            (gacha, túi, deck, lưu)
+Game  → Heroes, Enemies, Player, Meta                  (điều phối trận, trả Ngọc sau trận)
+UI    → Core, Combat, Enemies, Skills, Heroes, Game, Meta
+Audio → chỉ Core
 Editor → được tham chiếu mọi asmdef, chỉ build cho Editor
 ```
 
-Không tạo phụ thuộc vòng. Nếu cần gọi ngược chiều, dùng event trong `FateBastion.Core` hoặc interface khai báo ở Core.
+Tham chiếu package: `Enemies` → `Unity.Splines`, `Unity.Mathematics` · `Player` → `Unity.InputSystem`, `Unity.Cinemachine` · `UI` → `UnityEngine.UI`, `Unity.TextMeshPro`, `PrimeTween.Runtime` · Newtonsoft là DLL tự tham chiếu (asmdef test khai báo trong `precompiledReferences`).
+
+Không tạo phụ thuộc vòng. Nếu cần gọi ngược chiều (vd Enemies báo cho Heroes), dùng event trong `FateBastion.Core` hoặc interface khai báo ở Core.
+
+Vì sao chuỗi gameplay như trên: tướng và kỹ năng chọn mục tiêu theo `distance` trên Spline, boss, quái Bay → cần đọc `EnemyController`; Thiên thạch (Player) tính máu theo `LevelData`/`EnemyData`.
+
+**Quy tắc cho `UI`:**
+- **Hiển thị**: chỉ qua event (Core hub hoặc event của hệ thống, vd `Wallet.OnGoldChanged`) và đọc field ScriptableObject (`HeroData`, `EnemyData`, `LevelData`, `SkillData`). Không đọc trạng thái gameplay trong `Update`.
+- **Lệnh từ nút bấm**: được gọi hàm lệnh public của service khi người chơi bấm (`TimeController.SetSpeed/Pause/Resume`, `GachaService.Pull…`, `CollectionService.Merge…`, `DeckService.Set…`, bán/nâng tướng). Không sửa field, không gọi logic mỗi frame.
+
+Ai sở hữu thư mục con nào: `Docs/TEAM_ASSIGNMENT.md` mục 2.
 
 ---
 
@@ -112,8 +145,8 @@ Không tạo phụ thuộc vòng. Nếu cần gọi ngược chiều, dùng even
 - **Mỗi file một class public**, tên file trùng tên class.
 - **Không hardcode số cân bằng.** Mọi con số (giá, máu, tầm, hồi chiêu, %) nằm trong ScriptableObject hoặc CSV. Hằng số kỹ thuật (kích thước mảng NonAlloc, số lần quét/giây) để trong Settings SO hoặc `const` có comment.
 - **Logic thuần tách khỏi MonoBehaviour:** tính sát thương, gacha, ghép, kinh tế, state machine, Meteor state… viết thành class C# thường (không phụ thuộc scene) để unit test EditMode. MonoBehaviour chỉ nối với Unity (input, transform, hiển thị).
-- **Giao tiếp giữa hệ thống bằng event** (C# `event Action<T>` hoặc SO event channel). UI chỉ đăng ký event, không gọi thẳng vào logic, không đọc dữ liệu trong `Update`.
-- **Singleton:** chỉ cho vài Manager cấp cao (GameManager, TimeController, AudioManager, SaveService). Không dùng `FindObjectOfType` trong gameplay.
+- **Giao tiếp giữa hệ thống bằng event** (C# `event Action<T>` hoặc SO event channel). UI nhận dữ liệu qua event, chỉ gọi hàm lệnh khi người chơi bấm nút (mục 4), không đọc dữ liệu trong `Update`.
+- **Singleton:** chỉ cho vài Manager cấp cao (GameManager, TimeController, AudioManager, SaveService, InputRouter). Không dùng `FindObjectOfType` trong gameplay.
 - **Comment** bằng tiếng Việt hoặc tiếng Anh đều được, ngắn gọn, giải thích *vì sao*. Mỗi class public có XML summary 1 dòng.
 - **`#nullable`**: không bắt buộc, nhưng kiểm tra null cho tham chiếu Inspector trong `Awake`/`OnValidate` và log lỗi rõ ràng.
 
@@ -134,6 +167,19 @@ public enum SkillKind  { MeleeHit, Projectile, AreaAtPoint, Cone, Line, Zone, Bu
 public enum AimMode    { Auto, GroundPoint }
 public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 ```
+
+### Event hub dùng chung (`FateBastion.Core`, khóa sau S0)
+
+| Hub | Event | Người phát |
+|---|---|---|
+| `CombatEvents` | `OnDamageDealt(DamageDealtInfo)`, `OnEnemyKilled(EnemyKilledInfo)` | A |
+| `GameEvents` | `OnStateChanged(GameState)`, `OnWaveStarted(int)`, `OnWaveCleared(int)`, `OnCastleDamaged(int current, int max)`, `OnMatchEnded(MatchResult)` | B |
+| `HeroEvents` | `OnHeroPlaced`, `OnHeroSold`, `OnHeroUpgraded`, `OnHeroSelected` (`HeroEventInfo`) | B |
+| `AbilityEvents` | `OnMeteorCooldownChanged(float remaining, float total)`, `OnMeteorExploded(Vector3, float radius)` | A |
+
+- Phát bằng `Raise…()` của hub, **không** `Invoke` trực tiếp. Payload là struct trong Core nên UI/Audio không cần tham chiếu Combat.
+- Event là `static` nên sống qua load scene và qua từng test: gọi `ResetAll()` khi khởi tạo trận và trong `[TearDown]`.
+- Event chỉ dùng trong một hệ thống thì để trong thư mục của hệ thống đó, không đưa vào Core.
 
 ---
 
@@ -189,6 +235,19 @@ public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 ### Debug
 - Toàn bộ code Bảng Debug (F1) bọc trong `#if UNITY_EDITOR || DEVELOPMENT_BUILD`. Bản nộp là build Release (không có Debug).
 
+### Hình ảnh tướng (HeroVisual – S0b)
+- Code gameplay **không** tìm vào bên trong model (không `transform.Find("RightHand")`, không tìm xương theo tên).
+- Mỗi model tướng có component `HeroVisual` (`FateBastion.Heroes`, thư mục `Heroes/Visual/`) ở gốc model, giữ: `muzzle` (điểm bắn đạn/tung phép), `overhead` (thanh máu, nhãn), `auraAnchor` (hào quang độ hiếm, hiệu ứng cấp 3), `animator`.
+- `HeroController` lấy `HeroVisual` bằng `GetComponentInChildren<HeroVisual>()` trong `Awake` và cache lại. Thiếu thì log lỗi rõ ràng và dùng vị trí tướng làm mặc định, không crash.
+- Đổi ngoại hình = thay model dưới `ModelRoot` trong Prefab Variant + gắn lại `HeroVisual`. Không sửa code, không sửa HeroData.
+
+### Vùng sở hữu (bắt buộc)
+- Đầu mỗi phiên, người dùng sẽ nói mình là **A, B hay C**. Nếu chưa nói, hỏi trước khi sửa file.
+- **Chỉ tạo/sửa file trong vùng của người đó** theo `Docs/TEAM_ASSIGNMENT.md` mục 2. Vùng **Dùng chung** (danh sách đầy đủ ở `TEAM_ASSIGNMENT.md` mục 2.3: `Core/`, các SO dữ liệu do importer ghi, `DamageInfo`/`IDamageable`, mọi `*.asmdef`, `ProjectSettings/`, `Packages/`, `CLAUDE.md`, `Docs/Specs/`, `TEAM_ASSIGNMENT.md`, `ROADMAP.md`, `.gitignore`/`.gitattributes`) chỉ sửa khi người dùng xác nhận đã có PR 3 người duyệt.
+- Cần thay đổi ở vùng người khác: **dừng lại**, soạn sẵn nội dung GitHub issue `[Cần <A/B/C>] …` (file nào, vì sao, đề xuất) để người dùng gửi; trong lúc chờ dùng stub `// STUB:` trong vùng của mình.
+- Không mở/sửa scene của người khác (`Game.unity` của C, `Lobby.unity`/`Boot.unity` của B, `Sandbox/<người khác>_*`).
+- Khi xong việc, nhắc người dùng tick dòng tương ứng trong `Docs/TRACEABILITY.md`.
+
 ---
 
 ## 8. Dữ liệu cân bằng và công cụ import (S0)
@@ -212,6 +271,16 @@ public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 
 - Asset đã có cùng tên → cập nhật (giữ tham chiếu prefab/model/icon đã gắn tay). Không xóa asset thiếu trong CSV, chỉ cảnh báo.
 - Ultimate của Long Vương, prefab, model, icon, VFX **không** có trong CSV – gắn tay trong Inspector; importer không được ghi đè các field này.
+- **Ai gắn tay field nào** (chi tiết `TEAM_ASSIGNMENT.md` mục 2.2):
+
+| Asset | Field gắn tay | Người gắn |
+|---|---|---|
+| `HeroData` | prefab, icon | C |
+| `SkillData` | Ultimate Long Vương (cả asset), tham chiếu VFX prefab | A (VFX prefab do C làm) |
+| `LevelData` | `hpMultiplier` (1.0 / 1.15 / 1.3), `displayName`, `enemyTypesPreview` | A (TRACEABILITY S0-10) |
+| `EnemyData` | prefab | A (`Enemy_Base` + Variant của C) |
+
+- **Đường đi không nằm trong `LevelData`** (SO không tham chiếu được object trong scene): component `LevelPaths` (A viết, `Enemies/`) giữ `SplineContainer` đường chính (`pathIndex` 0) và đường bay (`pathIndex` 1); C đặt nó trong prefab map và kéo Spline vào (S2).
 - Tiêu chí: import ra đúng 9 HeroData, 9 SkillData bị động, 5 EnemyData, 45 WaveData, 3 LevelData; chạy lần 2 không tạo thêm asset.
 
 ---
@@ -243,16 +312,17 @@ public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 
 | # | Hệ thống | Tuần | Phụ thuộc | Người | Trạng thái |
 |---|---|---|---|---|---|
-| S0 | Interface, data dùng chung, Import Balance CSV | Ngày 1–2 | — | Cả nhóm | ☐ |
+| S0 | Interface, data dùng chung, Import Balance CSV | Ngày 1–2 | — | Cả nhóm | ◐ |
+| S0b | HeroVisual, Validate Hero Prefabs, Render Hero Icons | Ngày 3 | S0 | C | ☐ |
 | S1 | Chiến đấu và sát thương | 1 | S0 | A | ☐ |
 | S2 | Quái và Wave | 1 | S1 | A | ☐ |
 | S3 | Triệu Hồi Sư và Camera | 1 | S0 | C | ☐ |
 | S4 | Đặt tướng và nâng cấp | 1–2 | S0, S3 | B | ☐ |
 | S5 | Luồng trận (GameManager) | 1–2 | S2, S4 | B | ☐ |
-| S6 | Kỹ năng và Ultimate | 2 | S1 | A | ☐ |
+| S6 | Kỹ năng và Ultimate | 2 | S1, S0b | A | ☐ |
 | S7 | Hào quang Chỉ huy và Thiên thạch | 2 | S3, S6 | A | ☐ |
 | S8 | Gacha, Túi, Ghép, Deck | 3 | S0 | B | ☐ |
-| S9 | Lưu trữ | 3 | S8 | A, B | ☐ |
+| S9 | Lưu trữ | 3 | S8 | A (B review; B nối S8 vào Save) | ☐ |
 | S10 | HUD và UI | 2–3 | event S1–S9 | B, C | ☐ |
 | S11 | Âm thanh và phản hồi | 3 | S1–S10 | C | ☐ |
 

@@ -1,0 +1,14 @@
+{
+    "name": "FateBastion.Combat",
+    "rootNamespace": "FateBastion.Combat",
+    "references": ["FateBastion.Core"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

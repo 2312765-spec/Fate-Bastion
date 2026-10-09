@@ -1,0 +1,20 @@
+{
+    "name": "FateBastion.Game",
+    "rootNamespace": "FateBastion.Game",
+    "references": [
+        "FateBastion.Core",
+        "FateBastion.Heroes",
+        "FateBastion.Enemies",
+        "FateBastion.Player",
+        "FateBastion.Meta"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

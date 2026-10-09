@@ -1,0 +1,14 @@
+{
+    "name": "FateBastion.Meta",
+    "rootNamespace": "FateBastion.Meta",
+    "references": ["FateBastion.Core"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

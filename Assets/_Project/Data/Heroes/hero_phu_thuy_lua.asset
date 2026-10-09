@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815467817e695734183c1c4b9d83df6a, type: 3}
+  m_Name: hero_phu_thuy_lua
+  m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.HeroData
+  id: hero_phu_thuy_lua
+  displayName: "Ph\xF9 th\u1EE7y L\u1EEDa"
+  rarity: 0
+  element: 0
+  role: 1
+  damageType: 1
+  attackType: 2
+  damage: 14
+  attacksPerSecond: 0.7
+  range: 7
+  icon: {fileID: 0}
+  prefab: {fileID: 0}
+  passiveSkill: {fileID: 11400000, guid: dc78b454969319847bf0df53bf8f5237, type: 2}
+  ultimateSkill: {fileID: 0}

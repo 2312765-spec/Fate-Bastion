@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ff1dd44dab7df4a866d735031a7504, type: 3}
+  m_Name: level_3
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.LevelData
+  level: 3
+  waves:
+  - {fileID: 11400000, guid: a8f5d56f003e6114f8ead6c2a63654e6, type: 2}
+  - {fileID: 11400000, guid: fb1dfd3247658e54380071c19e523080, type: 2}
+  - {fileID: 11400000, guid: e8f34177d8997e74e8837521ef7f492e, type: 2}
+  - {fileID: 11400000, guid: fd6bed91104c49f49b5d74ba4cbceff6, type: 2}
+  - {fileID: 11400000, guid: 25a3b9371bb5e594fa2136119ef551fc, type: 2}
+  - {fileID: 11400000, guid: 8e014bedb3e504740a70707d6274a5ed, type: 2}
+  - {fileID: 11400000, guid: 913cf905a4f0ca04aa7edd1b23193604, type: 2}
+  - {fileID: 11400000, guid: a0651453d75d165468af64209783ac3d, type: 2}
+  - {fileID: 11400000, guid: cbb8891be96f6cd48bdc3bf0ac1437b5, type: 2}
+  - {fileID: 11400000, guid: ee1ecf907a9caa94a8fe5e1a1d6b9d65, type: 2}
+  - {fileID: 11400000, guid: 8ac46118185342c40943c3014c2cd27c, type: 2}
+  - {fileID: 11400000, guid: 713f374447125e44598f332f8d1bf252, type: 2}
+  - {fileID: 11400000, guid: eb0ba9ca53331004d9d2b79a43ded395, type: 2}
+  - {fileID: 11400000, guid: 4ba8dd39dbc28974f801ad88e9e3a3bf, type: 2}
+  - {fileID: 11400000, guid: acd5900cccb114f4596b15f782462111, type: 2}
+  displayName: 
+  enemyTypesPreview:
+  - {fileID: 11400000, guid: c52dcfc465dd50045be7f6b62f4a49b7, type: 2}
+  - {fileID: 11400000, guid: 0f69a40db9ee77e44a58e00d208ba225, type: 2}
+  - {fileID: 11400000, guid: 9e977ca2cbf1cd24bb3fe8533b031e8c, type: 2}
+  - {fileID: 11400000, guid: e804692af381fb04db948db2381ec6ea, type: 2}
+  - {fileID: 11400000, guid: 53c8573ce17220b47b7fbaadebcd32c6, type: 2}
+  hpGrowth: 1.12
+  hpMultiplier: 1.3
+  startingGold: 300
+  castleHP: 20
+  prepareSeconds: 15
+  restSeconds: 8
+  star3CastleHP: 15
+  star2CastleHP: 8
+  firstClearGems: 300
+  gemsPerNewStar: 50

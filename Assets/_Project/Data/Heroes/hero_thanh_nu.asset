@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815467817e695734183c1c4b9d83df6a, type: 3}
+  m_Name: hero_thanh_nu
+  m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.HeroData
+  id: hero_thanh_nu
+  displayName: "Th\xE1nh N\u1EEF"
+  rarity: 2
+  element: 0
+  role: 3
+  damageType: 0
+  attackType: 1
+  damage: 6
+  attacksPerSecond: 1
+  range: 6
+  icon: {fileID: 0}
+  prefab: {fileID: 0}
+  passiveSkill: {fileID: 11400000, guid: a7e1d1d2c8101d24cb3c3d1f5c50854c, type: 2}
+  ultimateSkill: {fileID: 0}

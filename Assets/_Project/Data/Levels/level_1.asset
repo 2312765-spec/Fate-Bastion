@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ff1dd44dab7df4a866d735031a7504, type: 3}
+  m_Name: level_1
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.LevelData
+  level: 1
+  waves:
+  - {fileID: 11400000, guid: 0183f361fb185ac4da94908730eef13a, type: 2}
+  - {fileID: 11400000, guid: 87d8fe7466aceb54e8aeab4a8c5cd715, type: 2}
+  - {fileID: 11400000, guid: 8fbd07698776ec344b8e88c3b798bbfb, type: 2}
+  - {fileID: 11400000, guid: 395a7a2229161d3458188bc0b94baa81, type: 2}
+  - {fileID: 11400000, guid: d177da79d301e614db4dff79d031694b, type: 2}
+  - {fileID: 11400000, guid: 805cc7318f08f5b4590e46a062544c41, type: 2}
+  - {fileID: 11400000, guid: 0244c3d6180caa543bf1776fdbe6226c, type: 2}
+  - {fileID: 11400000, guid: ad292fa70ec37124d8784f01c7f8023b, type: 2}
+  - {fileID: 11400000, guid: 81f10a60d6d140843a0609ea3d03bf70, type: 2}
+  - {fileID: 11400000, guid: 83d8eaae00db6dd48ada339c526f771f, type: 2}
+  - {fileID: 11400000, guid: 52e2e40a8c92e294582f9f1954ba2f83, type: 2}
+  - {fileID: 11400000, guid: 0925bdb09e0e63c4dbbe495e10d07d5c, type: 2}
+  - {fileID: 11400000, guid: 8abceb5eaeb0f7b4baf569c36cf48c91, type: 2}
+  - {fileID: 11400000, guid: 08b0c47ff6ccd9d41827c63f79642be7, type: 2}
+  - {fileID: 11400000, guid: 6f6c384c85acd494f840c69c93bcf28b, type: 2}
+  displayName: 
+  enemyTypesPreview:
+  - {fileID: 11400000, guid: c52dcfc465dd50045be7f6b62f4a49b7, type: 2}
+  - {fileID: 11400000, guid: 0f69a40db9ee77e44a58e00d208ba225, type: 2}
+  - {fileID: 11400000, guid: 9e977ca2cbf1cd24bb3fe8533b031e8c, type: 2}
+  hpGrowth: 1.12
+  hpMultiplier: 1
+  startingGold: 300
+  castleHP: 20
+  prepareSeconds: 15
+  restSeconds: 8
+  star3CastleHP: 15
+  star2CastleHP: 8
+  firstClearGems: 300
+  gemsPerNewStar: 50
