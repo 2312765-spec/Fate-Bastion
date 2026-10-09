@@ -1,6 +1,6 @@
 # Lộ trình 4 tuần – Fate Bastion
 
-> Phiên bản 1.0 · khớp GDD v1.3 mục 14. Ngày bắt đầu (Ngày 1): `10/10/2026` → khóa tính năng cuối Ngày 21: `30/10/2026` → nộp cuối Ngày 28: `06/11/2026`.
+> Phiên bản 1.1 (09/10/2026: mã việc trong mọi ô lịch, UI thế giới sang C, Hướng dẫn sang B) · khớp GDD v1.3 mục 14. Ngày bắt đầu (Ngày 1): `10/10/2026` → khóa tính năng cuối Ngày 21: `30/10/2026` → nộp cuối Ngày 28: `06/11/2026`.
 > Ai sở hữu gì: `Docs/TEAM_ASSIGNMENT.md`. Từng việc nhỏ và tiêu chí kiểm tra: `Docs/TRACEABILITY.md` (cột **Ngày** ở đó khớp bảng mục 2 dưới đây; mã việc A-xx/B-xx/C-xx ghi trong ngoặc).
 
 ---
@@ -27,43 +27,43 @@ Ký hiệu: **→ giao** = bàn giao cho người khác dùng (cần xong đúng
 |---|---|---|---|
 | 1 | S0 cùng nhóm: enum, Data SO, Core event | S0 cùng nhóm: dựng repo, Import Balance CSV | S0 cùng nhóm: InputRouter (khai báo), Tags/Layers, scene Boot/Game/Sandbox, cài package |
 | 2 | S0: test, review | S0: test bộ đọc CSV, import thử | S0: review · **→ giao M0** |
-| 3 | S1 Chiến đấu: `DamageCalculator` + test | S4 Đặt tướng: `PlacementRules`, kiểm tra hợp lệ (class thuần) + test | S0b HeroVisual + Validate Hero Prefabs · S3: `PlayerController` |
-| 4 | S1: status effect (Bỏng, Chậm, Nảy), `IDamageable` · **→ giao S1** | S4: `PlacementSystem`, `GhostPreview`, `Wallet` (dùng stub InputRouter) | S3: `CameraRig`, `CursorController`, cài đặt `InputRouter` · **→ giao S3** |
-| 5 | S2 Quái và Wave: `EnemyController` trên Spline, `WaveManager`, pool | S4: nối InputRouter thật, bán tướng · **→ giao S4** | Map graybox thành prefab `Map_Level1`: mặt đất, đường chính + đường bay (Spline) gắn vào `LevelPaths`, Cổng, Thành (C-06) · **→ giao map** |
-| 6 | S2: boss gọi quái con, quái Bay, test PlayMode · **→ giao S2** | S5 Luồng trận: state machine (class thuần) + test, `TimeController` | Chọn và tải asset pack (Quaternius/Kenney), thử import 1 tướng + 1 quái |
-| 7 | `HeroController`, `TargetingModule`, `AttackModule` cơ bản (A-07, bắt đầu ngày 6 nếu kịp); ghép S1+S2 với S4/S5 | S5: `Castle`, thắng/thua, tính sao · **→ giao S5** | Đo FPS GPU tích hợp, sửa camera theo phản hồi · **M1** |
+| 3 | S1 Chiến đấu: `DamageCalculator` + test (A-01) | S4 Đặt tướng: `PlacementRules`, kiểm tra hợp lệ (class thuần) + test (B-01) | S0b HeroVisual + Validate Hero Prefabs (C-01, C-02) · S3: `PlayerController` (C-03) |
+| 4 | S1: status effect Bỏng, Chậm, Nảy; chết một lần, đạn tới vị trí cuối (A-02, A-03) · **→ giao S1** | S4: `PlacementSystem`, `GhostPreview`, `Wallet` (dùng stub InputRouter) (B-02, B-03) | S3: `CameraRig`, `CursorController`, `SummonerInputRouter` + `CancelStack` (C-04, C-05) · **→ giao S3** |
+| 5 | S2 Quái và Wave: `EnemyController` trên Spline, `WaveManager`, pool; API 3.1 #1, #2, #9 (A-04) | S4: nối InputRouter thật, `HeroPool`, `CancelStack`, bán tướng (B-02, B-05) · **→ giao S4** | Map graybox thành prefab `Map_Level1`: mặt đất, đường chính + đường bay (Spline) gắn vào `LevelPaths`, Cổng, Thành (C-06) · **→ giao map** |
+| 6 | S2: boss gọi quái con, quái Bay, máu theo `hpMultiplier`, test PlayMode (A-05, A-06) · **→ giao S2** · nếu kịp: bắt đầu `HeroController` (A-07) | S5 Luồng trận: state machine (class thuần) + test, `TimeController` (B-06) | Chọn và tải asset pack (Quaternius/Kenney), thử import 1 tướng + 1 quái (C-07) |
+| 7 | `HeroController`, `TargetingModule`, `AttackModule` cơ bản (A-07, bắt đầu ngày 6 nếu kịp); ghép S1+S2 với S4/S5 | S5: `Castle`, thắng/thua, tính sao, Ngọc thưởng (logic) (B-06, B-07) · **→ giao S5** | Đo mốc hiệu năng ban đầu trên GPU tích hợp (C-15), sửa camera theo phản hồi · **M1** |
 
 ### Tuần 2 – Nội dung trận
 
 | Ngày | A – Gameplay | B – Hệ thống và UI | C – Art và kỹ thuật |
 |---|---|---|---|
-| 8 | S6 Kỹ năng: `SkillData`, `SkillRunner`, MeleeHit/Projectile/AreaAtPoint | Nâng cấp 3 cấp (`HeroLevel`) + test giá/hoàn tiền | Import model 5 tướng khởi đầu, Humanoid rig, gắn `HeroVisual` |
-| 9 | S6: Cone, Line, Zone, Buff + quy tắc cộng buff | S10: `UIManager`, `ConfirmDialog`, HUD thanh trên (Wave, Thành, Vàng) | Animation Mixamo (Idle/Attack/Spawn) + Override Controller cho 5 tướng; font TMP tiếng Việt (C-10); bố cục prefab HUD trận (C-11) · **→ giao HUD cho B** |
-| 10 | S6: Nộ + Ultimate Long Vương · **→ giao S6** | S10: 5 ô deck, bảng thông tin tướng | Model 5 loại quái, animation đi/chết |
-| 11 | S7: `CommandAura` + test buff vào/ra | Hướng dẫn màn 1: `TutorialController` + bước 1–2 (đặt tướng, nâng cấp) (B-17) | VFX cơ bản: đạn, nổ, bỏng, băng, sét; Hào quang độ hiếm |
-| 12 | S7: `MeteorAbility`, `MeteorAimIndicator` · **→ giao S7** | S10: ô Thiên thạch (`CooldownSlot`), tạm dừng | Model + animation 4 tướng còn lại (Rare/Epic/Legendary) |
-| 13 | Dữ liệu wave 3 màn + Vô tận (kiểm tra sau import), boss | S10: màn Kết quả trận | VFX Thiên thạch, Ultimate; dựng khung báo cáo phần Art |
+| 8 | S6 Kỹ năng: `SkillData`, `SkillRunner`, MeleeHit/Projectile/AreaAtPoint (A-08) | Nâng cấp 3 cấp (`HeroLevel`) + test giá/hoàn tiền (B-04) | Import model 5 tướng khởi đầu, Humanoid rig, gắn `HeroVisual` (C-08) |
+| 9 | S6: Cone, Line, Zone, Buff + quy tắc cộng buff (A-08, A-09) | S10: `UIManager`, `ConfirmDialog`, HUD thanh trên (Wave, Thành, Vàng) (B-13, B-14) | Animation Mixamo (Idle/Attack/Spawn) + Override Controller cho 5 tướng (C-08); font TMP tiếng Việt (C-10); bắt đầu bố cục prefab HUD trận (C-11) |
+| 10 | S6: Nộ + Ultimate Long Vương (A-10) · **→ giao S6** | S10: 5 ô deck, bảng thông tin tướng (B-14) | Model 5 loại quái, animation đi/chết (C-08); xong prefab HUD trận (C-11) · **→ giao HUD cho B** |
+| 11 | S7: `CommandAura` + test buff vào/ra, event 3.1 #10 (A-11) | Hướng dẫn màn 1: `TutorialController` + bước 1–2 (đặt tướng, nâng cấp) (B-17) | VFX cơ bản: đạn, nổ, bỏng, băng, sét; Hào quang độ hiếm (C-09) |
+| 12 | S7: `MeteorAbility`, `MeteorAimIndicator` (A-12, A-13) · **→ giao S7** | S10: ô Thiên thạch (`CooldownSlot`), màn Tạm dừng (B-14) | Model + animation 4 tướng còn lại (Rare/Epic/Legendary) (C-08) |
+| 13 | Dữ liệu wave 3 màn + Vô tận (kiểm tra sau import), boss (A-06) | S10: màn Kết quả trận (B-15) | VFX Thiên thạch, Ultimate (C-09); dựng khung báo cáo phần Art |
 | 14 | Ghép, sửa lỗi, cân bằng nhanh | Ghép HUD với mọi event, sửa lỗi | UI thế giới: `WorldHealthBar`, `OffscreenWarning` (C-14) · **M2** |
 
 ### Tuần 3 – Meta và hình ảnh (khóa tính năng cuối Ngày 21)
 
 | Ngày | A – Gameplay | B – Hệ thống và UI | C – Art và kỹ thuật |
 |---|---|---|---|
-| 15 | S9 Lưu trữ: `SaveData`, ghi an toàn tmp/Replace/bak + test | S8 Gacha: `GachaService` + test 100.000 lượt, pity, x10 | Dựng map thật: địa hình, cây, đá |
-| 16 | S9: đọc lỗi → bak → tạo mới, lần lưu đầu · **→ giao S9** | S8: `CollectionService` (ghép), `DeckService`, `StarterSettings` + test | Ánh sáng, post-processing nhẹ, LOD cho quái; Render Hero Icons (C-02) · **→ giao icon cho B** |
-| 17 | Dự phòng: sửa lỗi S1–S7 tồn đọng, kiểm Vô tận và boss; hỗ trợ B nối S8 ↔ S9 (review) | S8 nối S9: lưu sau quay/ghép/đổi deck; Hướng dẫn màn 1 bước 3–4 + lưu `tutorialDone` (B-17) | Bố cục UI sảnh: Sảnh, Chọn màn, Gacha, Túi & Deck |
-| 18 | Cân bằng lần 1 (sửa Excel → import) (A-17) | Màn hình sảnh: gắn script vào prefab của C | S11: `AudioManager`, `MusicPlayer`, AudioMixer |
-| 19 | Cân bằng lần 1: chơi thử 3 màn, chỉnh tiếp | Hiệu ứng ra tướng gacha, ConfirmDialog cho Ghép | S11: âm thanh tướng/quái/UI; số sát thương (C-14); `FeedbackService` rung, nháy trắng (C-18) |
-| 20 | Sửa lỗi gameplay | Cài đặt (âm lượng, rung, hỏi khi bỏ qua) nối S9 | **Tối ưu hiệu năng** (C-15): GPU Instancing, LOD, draw call, Canvas, GC Alloc – ghi số liệu trước/sau |
+| 15 | S9 Lưu trữ: `SaveData`, ghi an toàn tmp/Replace/bak + test (A-14) | S8 Gacha: `GachaService` + test 100.000 lượt, pity, x10 (B-08, B-09) | Dựng map thật: địa hình, cây, đá (C-17) |
+| 16 | S9: đọc lỗi → bak → tạo mới, lần lưu đầu (A-15) · **→ giao S9** | S8: `CollectionService` (ghép), `DeckService`, `StarterSettings` + test (B-10, B-11, B-12) | Ánh sáng, post-processing nhẹ, LOD cho quái (C-17); Render Hero Icons (C-02) · **→ giao icon cho B** |
+| 17 | Dự phòng: sửa lỗi S1–S7 tồn đọng, kiểm Vô tận và boss; hỗ trợ B nối S8 ↔ S9 (review) | S8 nối S9: lưu sau quay/ghép/đổi deck; Ngọc thưởng sau trận ghi vào save (B-07); Hướng dẫn màn 1 bước 3–4 + lưu `tutorialDone` (B-17) | Bố cục UI sảnh: Sảnh, Chọn màn, Gacha, Túi & Deck (C-12) |
+| 18 | Cân bằng lần 1 (sửa Excel → import) (A-17) | Màn hình sảnh: gắn script vào prefab của C (B-15) | S11: `AudioManager`, `MusicPlayer`, AudioMixer (C-13) |
+| 19 | Cân bằng lần 1: chơi thử 3 màn, chỉnh tiếp (A-17) | Hiệu ứng ra tướng gacha, ConfirmDialog cho Ghép (B-15) | S11: âm thanh tướng/quái/UI (C-13); số sát thương (C-14); `FeedbackService` rung, nháy trắng (C-18) |
+| 20 | Sửa lỗi gameplay | Cài đặt (âm lượng, rung, hỏi khi bỏ qua) nối S9 (B-15) | **Tối ưu hiệu năng** (C-15): GPU Instancing, LOD, draw call, Canvas, GC Alloc – ghi số liệu trước/sau |
 | 21 | Ghép toàn bộ, chơi thử 3 màn | Ghép toàn bộ | Ghép toàn bộ · **M3 – khóa tính năng** |
 
 ### Tuần 4 – Cân bằng, build, báo cáo
 
 | Ngày | A – Gameplay | B – Hệ thống và UI | C – Art và kỹ thuật |
 |---|---|---|---|
-| 22 | Playtest có người ngoài, ghi log | Bảng Debug (`#if DEVELOPMENT_BUILD`) | Build Development đầu tiên |
-| 23 | Cân bằng lần 2 | Sửa lỗi UI ở 1920×1080 và 1366×768 | Sửa lỗi hình ảnh, kiểm tra font tiếng Việt; đo lại hiệu năng sau tối ưu (C-15) |
-| 24 | Sửa lỗi | Sửa lỗi | Build Release IL2CPP, chạy trên máy sạch |
+| 22 | Playtest có người ngoài, ghi log | Bảng Debug (`#if UNITY_EDITOR \|\| DEVELOPMENT_BUILD`) (B-16) | Build Development đầu tiên (C-16) |
+| 23 | Cân bằng lần 2 (A-17) | Sửa lỗi UI ở 1920×1080 và 1366×768 | Sửa lỗi hình ảnh, kiểm tra font tiếng Việt; đo lại hiệu năng sau tối ưu (C-15) |
+| 24 | Sửa lỗi | Sửa lỗi | Build Release IL2CPP, chạy trên máy sạch (C-16) |
 | 25 | Báo cáo: thiết kế gameplay, cân bằng | Báo cáo: kiến trúc, test | Báo cáo: art, hiệu năng (ảnh Profiler) |
 | 26 | Slide bảo vệ (phần mình) | Slide bảo vệ (phần mình) | Quay video demo |
 | 27 | Chạy thử buổi bảo vệ | Chạy thử buổi bảo vệ | Chạy thử buổi bảo vệ |
