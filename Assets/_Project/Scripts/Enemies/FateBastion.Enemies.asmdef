@@ -1,0 +1,19 @@
+{
+    "name": "FateBastion.Enemies",
+    "rootNamespace": "FateBastion.Enemies",
+    "references": [
+        "FateBastion.Core",
+        "FateBastion.Combat",
+        "Unity.Splines",
+        "Unity.Mathematics"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

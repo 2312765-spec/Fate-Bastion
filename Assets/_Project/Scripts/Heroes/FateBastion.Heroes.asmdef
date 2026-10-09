@@ -1,0 +1,19 @@
+{
+    "name": "FateBastion.Heroes",
+    "rootNamespace": "FateBastion.Heroes",
+    "references": [
+        "FateBastion.Core",
+        "FateBastion.Combat",
+        "FateBastion.Skills",
+        "FateBastion.Enemies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

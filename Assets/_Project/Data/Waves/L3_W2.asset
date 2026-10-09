@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff03cf10c78b0834d9634cd788cad73e, type: 3}
+  m_Name: L3_W2
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.WaveData
+  level: 3
+  wave: 2
+  groups:
+  - enemy: {fileID: 11400000, guid: c52dcfc465dd50045be7f6b62f4a49b7, type: 2}
+    count: 7
+    interval: 1.2
+    startDelay: 0
+    pathIndex: 0
+  isBossWave: 0

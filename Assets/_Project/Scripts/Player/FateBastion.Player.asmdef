@@ -1,0 +1,23 @@
+{
+    "name": "FateBastion.Player",
+    "rootNamespace": "FateBastion.Player",
+    "references": [
+        "FateBastion.Core",
+        "FateBastion.Combat",
+        "FateBastion.Skills",
+        "FateBastion.Heroes",
+        "FateBastion.Enemies",
+        "Unity.InputSystem",
+        "Unity.Cinemachine",
+        "Unity.Mathematics"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

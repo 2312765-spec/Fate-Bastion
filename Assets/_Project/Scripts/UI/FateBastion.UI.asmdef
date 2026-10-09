@@ -1,0 +1,25 @@
+{
+    "name": "FateBastion.UI",
+    "rootNamespace": "FateBastion.UI",
+    "references": [
+        "FateBastion.Core",
+        "FateBastion.Combat",
+        "FateBastion.Skills",
+        "FateBastion.Heroes",
+        "FateBastion.Enemies",
+        "FateBastion.Game",
+        "FateBastion.Meta",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro",
+        "PrimeTween.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

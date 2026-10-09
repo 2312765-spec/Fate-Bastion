@@ -1,0 +1,14 @@
+{
+    "name": "FateBastion.Editor",
+    "rootNamespace": "FateBastion.Editor",
+    "references": ["FateBastion.Core", "FateBastion.Combat", "FateBastion.Skills", "FateBastion.Heroes", "FateBastion.Enemies", "FateBastion.Player", "FateBastion.Game", "FateBastion.Meta", "FateBastion.UI", "FateBastion.Audio"],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
