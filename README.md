@@ -1,4 +1,4 @@
-# Fate Bastion (Thủ Thành Vận Mệnh)
+# Fate Bastion (Thành Trì Vận Mệnh)
 
 Tower Defense 3D góc nhìn thứ ba, PC, Unity 6.3 LTS + URP. Đồ án 3 người, 4 tuần.
 
