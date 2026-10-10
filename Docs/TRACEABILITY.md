@@ -126,7 +126,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | A-04 | 5 | `EnemyController` trên Spline (lấy từ `LevelPaths`), `EnemyManager` (≤ 100 quái), `WaveManager` (nhóm song song, lệch 2 s), pool · API 3.1 #1, #2: `OnEnemyReachedCastle`, `Init/StartWave/StopAndClear/OnWaveFinished`; không đụng `Wallet` (#8) · API 3.1 #9 cho UI thế giới (C): `OnEnemySpawned/Despawned`, `ActiveEnemies`, `CurrentHP/MaxHP/IsBoss/Progress/HealthBarAnchor`, `OnHealthChanged` | S2 | `Enemies/` | PM: tới Thành trừ đúng 1 lần ở ×1 và ×2 | ☐ | |
 | A-05 | 6 | Quái Bay (đường riêng, cao 2 m), boss gọi 3 quái Nhanh mỗi 12 s | S2 | `Enemies/` | PM: wave kết thúc đúng khi có quái con | ☐ | |
 | A-06 | 6, 13 | Máu theo công thức có `hpMultiplier`; dữ liệu 3 màn + Vô tận kiểm tra sau import | S2 | `Enemies/`, `Data/Balance/` | EM: wave 1/5/15 cả 3 màn khớp sheet Wave | ☐ | |
-| A-07 | 6–7 | `HeroController`, `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay), `AttackModule` (timer, bắn từ `HeroVisual.muzzle`) · API 3.1 #3, #4: `Init(HeroData)`, `ResetState()`, `OnDespawn()`, `HeroStats.SetLevelMultipliers` | S1, S6 | `Heroes/Runtime/` | PM | ☐ | |
+| A-07 | 6–7 | `HeroController`, `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay), `AttackModule` (timer, bắn từ `HeroVisual.Muzzle`) · API 3.1 #3, #4: `Init(HeroData)`, `ResetState()`, `OnDespawn()`, `HeroStats.SetLevelMultipliers` | S1, S6 | `Heroes/Runtime/` | PM | ☐ | |
 | A-08 | 8–9 | `SkillData`, `SkillRunner`, 7 kind: MeleeHit, Projectile, AreaAtPoint, Cone, Line, Zone, Buff | S6 | `Skills/` | PM: mỗi kind một kỹ năng mẫu | ☐ | |
 | A-09 | 9 | Cộng buff: cùng loại lấy mạnh nhất, khác nguồn cộng, trần +60% | S6 | `Heroes/Runtime/`, `Skills/` | EM: 2 Thánh Nữ = +30%, Thánh Nữ + Hào quang = +55% | ☐ | |
 | A-10 | 10 | Nộ +5 mỗi đòn, Ultimate Long Vương kích hoạt tay · API 3.1 #5: `OnRageChanged`, `TryActivateUltimate()` | S6 | `Skills/` | EM | ☐ | |
@@ -146,7 +146,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | B-01 | 3 | `PlacementRules`, kiểm tra hợp lệ theo thứ tự 6 bước (class thuần) | S4 | `Heroes/Placement/` | EM: giới hạn số con, quân số 15, thiếu Vàng | ☐ | |
 | B-02 | 4–5 | `PlacementSystem`, `GhostPreview`; giữ chế độ đặt nếu còn đặt được; Q hủy xem trước · `HeroPool` (3.1 #3), `CancelStack` (#6), nghe `InputRouter.Meteor` để thoát (#7) | S4 | `Heroes/Placement/` | PM: không đặt trên đường, nước, vách, chồng tướng | ☐ | |
 | B-03 | 4 | `Wallet` + `OnGoldChanged` · nghe `OnEnemyKilled` cộng `GoldReward` (3.1 #8) | S4 | `Heroes/Placement/` | EM | ☐ | |
-| B-04 | 8 | `HeroLevel`, `HeroLevelTable` 3 cấp, hiệu ứng cấp 3 qua `HeroVisual.auraAnchor` · gọi `HeroStats.SetLevelMultipliers` (3.1 #4) | S4 | `Heroes/Placement/` | EM: giá và chỉ số khớp bảng | ☐ | |
+| B-04 | 8 | `HeroLevel`, `HeroLevelTable` 3 cấp, hiệu ứng cấp 3 qua `HeroVisual.AuraAnchor` · gọi `HeroStats.SetLevelMultipliers` (3.1 #4) | S4 | `Heroes/Placement/` | EM: giá và chỉ số khớp bảng | ☐ | |
 | B-05 | 5 | Bán: `floor(goldSpent × 0.5)` | S4 | `Heroes/Placement/` | EM: Epic cấp 2 bán 306 | ☐ | |
 | B-06 | 6–7 | `GameManager` (state machine thuần), `TimeController`, `Castle`, sao, Alt-Tab tạm dừng · gọi `WaveManager` + nghe `OnWaveFinished` (3.1 #2); `Castle` nghe `OnEnemyReachedCastle` (#1); Tạm dừng nghe `PauseRequested` (#6) | S5 | `Game/` | EM: mọi dòng bảng chuyển trạng thái; sao ở 20/15/14/8/7/1 | ☐ | |
 | B-07 | 7, 17 | Ngọc thưởng sau trận, chỉ trả phần sao cao hơn; Vô tận ghi kỷ lục | S5 | `Game/` | EM: lần đầu 2 sao, lần sau 3 sao +50 | ☐ | |
@@ -167,7 +167,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 
 | ID | Ngày | Việc | Spec | Vùng file | Kiểm tra | Xong | Ghi chú |
 |---|---|---|---|---|---|---|---|
-| C-01 | 3 | `HeroVisual` (`muzzle`, `overhead`, `auraAnchor`, `animator`) | S0b | `Heroes/Visual/` | Tay | ☐ | |
+| C-01 | 3 | `HeroVisual` (`Muzzle`, `Overhead`, `AuraAnchor`, `Animator`) | S0b | `Heroes/Visual/` | Tay | ☐ | |
 | C-02 | 3, 16 | Tools → Validate Hero Prefabs, Tools → Render Hero Icons | S0b | `Editor/Heroes/` | Tay: báo thiếu đúng; icon 256×256 | ☐ | |
 | C-03 | 3 | `PlayerController` (6 / 9 m/s, `unscaledDeltaTime`, không nhảy) | S3 | `Player/Movement/` | PM: ở ×2 vẫn 6 m/s thực | ☐ | |
 | C-04 | 4 | `CameraRig` Cinemachine 3 (Third Person Follow, Deoccluder, Impulse), Brain Ignore Time Scale | S3 | `Player/Movement/`, `Prefabs/Player/` | Tay: không xuyên vật cản | ☐ | |

@@ -238,7 +238,7 @@ public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 
 ### Hình ảnh tướng (HeroVisual – S0b)
 - Code gameplay **không** tìm vào bên trong model (không `transform.Find("RightHand")`, không tìm xương theo tên).
-- Mỗi model tướng có component `HeroVisual` (`FateBastion.Heroes`, thư mục `Heroes/Visual/`) ở gốc model, giữ: `muzzle` (điểm bắn đạn/tung phép), `overhead` (thanh máu, nhãn), `auraAnchor` (hào quang độ hiếm, hiệu ứng cấp 3), `animator`.
+- Mỗi model tướng có component `HeroVisual` (`FateBastion.Heroes`, thư mục `Heroes/Visual/`) ở gốc model, giữ 4 property chỉ đọc: `Muzzle` (điểm bắn đạn/tung phép), `Overhead` (thanh máu, nhãn), `AuraAnchor` (hào quang độ hiếm, hiệu ứng cấp 3), `Animator`.
 - `HeroController` lấy `HeroVisual` bằng `GetComponentInChildren<HeroVisual>()` trong `Awake` và cache lại. Thiếu thì log lỗi rõ ràng và dùng vị trí tướng làm mặc định, không crash.
 - Đổi ngoại hình = thay model dưới `ModelRoot` trong Prefab Variant + gắn lại `HeroVisual`. Không sửa code, không sửa HeroData.
 
