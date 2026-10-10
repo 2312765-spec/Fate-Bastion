@@ -10,11 +10,11 @@ namespace FateBastion.Heroes
     [DisallowMultipleComponent]
     public class HeroVisual : MonoBehaviour
     {
-        // Names reported by validation; they match the Spec field names so messages read like S0b.
-        public const string MuzzleField = "muzzle";
-        public const string OverheadField = "overhead";
-        public const string AuraAnchorField = "auraAnchor";
-        public const string AnimatorField = "animator";
+        // Names reported by validation; they match the property names in Spec S0b and the Inspector labels.
+        public const string MuzzleField = "Muzzle";
+        public const string OverheadField = "Overhead";
+        public const string AuraAnchorField = "AuraAnchor";
+        public const string AnimatorField = "Animator";
 
         [Tooltip("Projectile spawn point and start of cast effects (bow tip, hand, dragon mouth).")]
         [SerializeField] private Transform _muzzle;
