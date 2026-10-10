@@ -106,7 +106,7 @@ Ai **phát** (publisher) thì sở hữu chữ ký event. Người nghe không s
 | `AbilityEvents.OnMeteorCooldownChanged(remaining, total)`, `OnMeteorExploded(point, radius)` | Core | A | B (HUD), C (rung, âm thanh) |
 | `InputRouter`: `Move`, `SprintChanged`, `Look`, `Zoom`, `Select`, `Cancel`, `PauseRequested`, `DeckSlot(int 0-4)`, `Meteor`, `Upgrade`, `Sell`, `Ultimate`, `SkipWave`, `DebugPanel`, `ActionMapChanged` | Core (khai báo) / Player/Movement (cài đặt) | C | A, B |
 | `TimeController.SetSpeed`, `Pause`, `Resume` | Game | B | Mọi người gọi, **chỉ B sửa** |
-| `HeroVisual.muzzle`, `overhead`, `auraAnchor`, `animator` | Heroes/Visual | C | A (bắn đạn), B (hiệu ứng cấp 3 qua `auraAnchor`), C (nhãn/số trên đầu qua `overhead`) |
+| `HeroVisual.Muzzle`, `Overhead`, `AuraAnchor`, `Animator` (property chỉ đọc) | Heroes/Visual | C | A (bắn đạn), B (hiệu ứng cấp 3 qua `AuraAnchor`), C (nhãn/số trên đầu qua `Overhead`) |
 | `SaveService.Save()`, `SaveData`, hàm xóa save cho Bảng Debug | Meta/Save | A | B (gacha, deck, cài đặt, Bảng Debug) |
 | `LevelPaths` (`SplineContainer` theo `pathIndex` 0 = đường chính, 1 = đường bay) | Enemies | A khai báo, C gắn trong prefab map | A (`WaveManager`, `EnemyController`) |
 | Hàm lệnh cho nút UI: `TimeController.SetSpeed/Pause/Resume`, `GachaService`, `CollectionService`, `DeckService`, bán/nâng tướng ở `Heroes/Placement` | Game, Meta, Heroes | B | B (UI) – chỉ gọi khi người chơi bấm; hiển thị vẫn qua event (`CLAUDE.md` mục 4) |
