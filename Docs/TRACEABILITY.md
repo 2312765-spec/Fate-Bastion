@@ -55,7 +55,7 @@
 | R04 | B-01, B-02, B-03 | ☐ |
 | R05 | B-04, B-05 | ☐ |
 | R06 | A-01 | ☑ |
-| R07 | A-02 | ☐ |
+| R07 | A-02 | ☑ |
 | R08 | A-07, A-08, A-09 | ☐ |
 | R09 | A-10 | ☐ |
 | R10 | A-04, A-05 | ☐ |
@@ -107,7 +107,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | S0-07 | 1 | Scene Boot, Lobby, Game, Sandbox/A_, B_, C_ (trống) | `Scenes/` | Tay | ☑ | Build list: Boot (0), Lobby, Game |
 | S0-08 | 1 | Package: Splines, Cinemachine 3.x, TextMeshPro, Newtonsoft Json; PrimeTween vào `ThirdParty/` | `Packages/manifest.json` | Tay: compile sau khi thêm | ☑ | Splines 2.9.1, Cinemachine 3.1.7, Newtonsoft 3.2.1, PrimeTween 1.3.3 qua OpenUPM (không nằm trong `ThirdParty/`; cảnh báo "no signature" là bình thường) |
 | S0-09 | 1 | UnityYAMLMerge làm merge tool cho `.unity`/`.prefab` | `.git/config` hoặc `~/.gitconfig` (mỗi máy) | Tay: tạo xung đột scene thử rồi merge | ◐ | Đã cấu hình trên máy mở PR #1 ☑ · 2 máy còn lại ☐ |
-| S0-10 | 2 | Gắn tay (người làm: A) field `LevelData` không có trong CSV: `hpMultiplier` (1.0 / 1.15 / 1.3), `displayName`, `enemyTypesPreview` | `Data/Levels/` | Tay: đối chiếu cột `calc_totalHP` sheet Wave | ◐ | `hpMultiplier` ☑ 1.0/1.15/1.3 · còn thiếu: `displayName` cả 3 màn; `enemyTypesPreview` màn 2 thêm `enemy_giap`, màn 3 thêm `enemy_giap` + `enemy_bay` |
+| S0-10 | 2 | Gắn tay (người làm: A) field `LevelData` không có trong CSV: `hpMultiplier` (1.0 / 1.15 / 1.3), `displayName`, `enemyTypesPreview` | `Data/Levels/` | Tay: đối chiếu cột `calc_totalHP` sheet Wave | ☑ | `hpMultiplier` 1.0/1.15/1.3 · `displayName` "Màn 1/2/3" · `enemyTypesPreview` màn 1: thường, nhanh, boss; màn 2 + `enemy_giap`; màn 3 + `enemy_giap`, `enemy_bay` |
 | S0-11 | 1 | Xóa rác template URP (`Assets/Scenes/`, `TutorialInfo/`, `Readme.asset`, `InputSystem_Actions.inputactions`); giữ `Assets/Settings/` | `Assets/` | Tay: project vẫn mở và chạy được | ◐ | Còn: xóa thư mục rỗng `TutorialInfo/`; Project Settings → Input System Package → Project-wide Actions đang trỏ tới file đã xóa → đặt None |
 | S0-12 | 2 | Bổ sung tham chiếu asmdef theo `S0.md` mục "Assembly và hướng phụ thuộc" (Enemies → Splines; Skills/Heroes/Player → Enemies; Game → Meta; UI → Game, Meta, TMP, PrimeTween; asmdef test đủ assembly) | `*.asmdef` | Tay: compile 0 lỗi **sau** S0-08 | ☑ | Merge PR #1 (Console 0 lỗi khi mở PR) |
 | S0-13 | 2 | Chốt tài liệu: ghi tên trưởng nhóm kỹ thuật (`TEAM_ASSIGNMENT.md` mục 1), điền ngày thật vào `ROADMAP.md` | `Docs/` | Tay | ☑ | Trưởng nhóm: Thuận · Ngày 1 = 10/10/2026, khóa 30/10, nộp 06/11 |
@@ -121,8 +121,8 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | ID | Ngày | Việc | Spec | Vùng file | Kiểm tra | Xong | Ghi chú |
 |---|---|---|---|---|---|---|---|
 | A-01 | 3 | `DamageCalculator` (`DamageInfo` đã có từ S0, vùng khóa) (kháng 0/50/80%, True, hệ số kỹ năng, làm tròn, tối thiểu 1) | S1 | `Combat/` | EM | ☑ | 33 test EditMode pass; làm tròn xuống có epsilon tương đối 1e-6 (ASSUMPTION) |
-| A-02 | 4 | `StatusEffectController`: Bỏng lấy mạnh nhất, Chậm ≤ 60% và boss 50%, Nảy không lặp | S1 | `Combat/` | EM | ☐ | |
-| A-03 | 4 | Chết một lần khi 3 đòn cùng frame; đạn bay tới vị trí cuối khi mục tiêu chết; XZ | S1 | `Combat/`, `Heroes/Runtime/` | EM + PM | ☐ | |
+| A-02 | 4 | `StatusEffectController`: Bỏng lấy mạnh nhất, Chậm ≤ 60% và boss 50%, Nảy không lặp | S1 | `Combat/` | EM | ☑ | `StatusEffectController`, `ChainLightning`, `CombatSettings` (trần chậm, boss, nảy); Sandbox `A_Combat` |
+| A-03 | 4 | Chết một lần khi 3 đòn cùng frame; đạn bay tới vị trí cuối khi mục tiêu chết; XZ | S1 | `Combat/`, `Heroes/Runtime/` | EM + PM | ☑ | `Health`, `ProjectileFlight`/`Projectile` (đặt ở `Combat/` để S6 dùng chung), `CombatMath`; 93 EM + 5 PM |
 | A-04 | 5 | `EnemyController` trên Spline (lấy từ `LevelPaths`), `EnemyManager` (≤ 100 quái), `WaveManager` (nhóm song song, lệch 2 s), pool · API 3.1 #1, #2: `OnEnemyReachedCastle`, `Init/StartWave/StopAndClear/OnWaveFinished`; không đụng `Wallet` (#8) · API 3.1 #9 cho UI thế giới (C): `OnEnemySpawned/Despawned`, `ActiveEnemies`, `CurrentHP/MaxHP/IsBoss/Progress/HealthBarAnchor`, `OnHealthChanged` | S2 | `Enemies/` | PM: tới Thành trừ đúng 1 lần ở ×1 và ×2 | ☐ | |
 | A-05 | 6 | Quái Bay (đường riêng, cao 2 m), boss gọi 3 quái Nhanh mỗi 12 s | S2 | `Enemies/` | PM: wave kết thúc đúng khi có quái con | ☐ | |
 | A-06 | 6, 13 | Máu theo công thức có `hpMultiplier`; dữ liệu 3 màn + Vô tận kiểm tra sau import | S2 | `Enemies/`, `Data/Balance/` | EM: wave 1/5/15 cả 3 màn khớp sheet Wave | ☐ | |
