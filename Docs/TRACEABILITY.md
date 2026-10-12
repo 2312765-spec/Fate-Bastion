@@ -54,7 +54,7 @@
 | R03 | B-11, B-12 | ☐ |
 | R04 | B-01, B-02, B-03 | ☐ |
 | R05 | B-04, B-05 | ☐ |
-| R06 | A-01 | ☐ |
+| R06 | A-01 | ☑ |
 | R07 | A-02 | ☐ |
 | R08 | A-07, A-08, A-09 | ☐ |
 | R09 | A-10 | ☐ |
@@ -120,7 +120,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 
 | ID | Ngày | Việc | Spec | Vùng file | Kiểm tra | Xong | Ghi chú |
 |---|---|---|---|---|---|---|---|
-| A-01 | 3 | `DamageCalculator` (`DamageInfo` đã có từ S0, vùng khóa) (kháng 0/50/80%, True, hệ số kỹ năng, làm tròn, tối thiểu 1) | S1 | `Combat/` | EM | ☐ | |
+| A-01 | 3 | `DamageCalculator` (`DamageInfo` đã có từ S0, vùng khóa) (kháng 0/50/80%, True, hệ số kỹ năng, làm tròn, tối thiểu 1) | S1 | `Combat/` | EM | ☑ | 33 test EditMode pass; làm tròn xuống có epsilon tương đối 1e-6 (ASSUMPTION) |
 | A-02 | 4 | `StatusEffectController`: Bỏng lấy mạnh nhất, Chậm ≤ 60% và boss 50%, Nảy không lặp | S1 | `Combat/` | EM | ☐ | |
 | A-03 | 4 | Chết một lần khi 3 đòn cùng frame; đạn bay tới vị trí cuối khi mục tiêu chết; XZ | S1 | `Combat/`, `Heroes/Runtime/` | EM + PM | ☐ | |
 | A-04 | 5 | `EnemyController` trên Spline (lấy từ `LevelPaths`), `EnemyManager` (≤ 100 quái), `WaveManager` (nhóm song song, lệch 2 s), pool · API 3.1 #1, #2: `OnEnemyReachedCastle`, `Init/StartWave/StopAndClear/OnWaveFinished`; không đụng `Wallet` (#8) · API 3.1 #9 cho UI thế giới (C): `OnEnemySpawned/Despawned`, `ActiveEnemies`, `CurrentHP/MaxHP/IsBoss/Progress/HealthBarAnchor`, `OnHealthChanged` | S2 | `Enemies/` | PM: tới Thành trừ đúng 1 lần ở ×1 và ×2 | ☐ | |
