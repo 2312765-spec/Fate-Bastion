@@ -167,11 +167,11 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 
 | ID | Ngày | Việc | Spec | Vùng file | Kiểm tra | Xong | Ghi chú |
 |---|---|---|---|---|---|---|---|
-| C-01 | 3 | `HeroVisual` (`Muzzle`, `Overhead`, `AuraAnchor`, `Animator`) | S0b | `Heroes/Visual/` | Tay | ☐ | |
-| C-02 | 3, 16 | Tools → Validate Hero Prefabs, Tools → Render Hero Icons | S0b | `Editor/Heroes/` | Tay: báo thiếu đúng; icon 256×256 | ☐ | |
-| C-03 | 3 | `PlayerController` (6 / 9 m/s, `unscaledDeltaTime`, không nhảy) | S3 | `Player/Movement/` | PM: ở ×2 vẫn 6 m/s thực | ☐ | |
-| C-04 | 4 | `CameraRig` Cinemachine 3 (Third Person Follow, Deoccluder, Impulse), Brain Ignore Time Scale | S3 | `Player/Movement/`, `Prefabs/Player/` | Tay: không xuyên vật cản | ☐ | |
-| C-05 | 4 | `InputRouter` + Input Actions: Hold/Tap chuột phải, thứ tự Esc, 1 Action Map bật tại một thời điểm, click UI không xuyên · `SummonerInputRouter` điều phối `CancelStack`, phát `PauseRequested` (3.1 #6) | S3 | `Player/Movement/`, `Input/` | EM/PM: chuyển Action Map; Esc 3 tình huống | ☐ | |
+| C-01 | 3 | `HeroVisual` (`Muzzle`, `Overhead`, `AuraAnchor`, `Animator`) | S0b | `Heroes/Visual/` | Tay | ☑ | `HeroVisual` 4 property chỉ đọc; merge PR #6, #7 |
+| C-02 | 3, 16 | Tools → Validate Hero Prefabs, Tools → Render Hero Icons | S0b | `Editor/Heroes/` | Tay: báo thiếu đúng; icon 256×256 | ◐ | Công cụ xong (PR #6, test `Tests/EditMode/S0b`) · render icon thật ngày 16 khi có model (C-08) ☐ |
+| C-03 | 3 | `PlayerController` (6 / 9 m/s, `unscaledDeltaTime`, không nhảy) | S3 | `Player/Movement/` | PM: ở ×2 vẫn 6 m/s thực | ☑ | `PlayerController` + `SummonerMotor` (class thuần), `PlayerMovementSettings`; `minMoveDistance` = 0 (mất bước khi FPS cao); 11 EM + 6 PM |
+| C-04 | 4 | `CameraRig` Cinemachine 3 (Third Person Follow, Deoccluder, Impulse), Brain Ignore Time Scale | S3 | `Player/Movement/`, `Prefabs/Player/` | Tay: không xuyên vật cản | ☑ | `CameraRig` + `CameraOrbit` (class thuần), `CameraSettings`, `CursorController`; prefab `Prefabs/Player/Player`; 12 EM; tay trong Sandbox `C_Main` |
+| C-05 | 4 | `InputRouter` + Input Actions: Hold/Tap chuột phải, thứ tự Esc, 1 Action Map bật tại một thời điểm, click UI không xuyên · `SummonerInputRouter` điều phối `CancelStack`, phát `PauseRequested` (3.1 #6) | S3 | `Player/Movement/`, `Input/` | EM/PM: chuyển Action Map; Esc 3 tình huống | ☑ | `SummonerInputRouter`, `CancelPressRouter`, `TapMovementGuard`, `FateBastion.inputactions`; `Cancel` thô phát trước `PauseRequested`; Alt-Tab → `PauseRequested` (ASSUMPTION, tắt trong Editor); Player asmdef + `UnityEngine.UI`; 13 EM + 7 PM |
 | C-06 | 5 | Map graybox thành prefab `Map_Level1`: mặt đất, Spline đường chính (~90 m) + đường bay gắn vào `LevelPaths`, Cổng, Thành, layer Placeable/Path/Obstacle | GDD 3, S2 | `Prefabs/Map/`, `Scenes/Game.unity` | Tay | ☐ | |
 | C-07 | 6 | Chọn asset pack, ghi `ThirdParty/CREDITS.md` | — | `Assets/ThirdParty/` | Tay | ☐ | |
 | C-08 | 8–10, 12 | Model + animation 9 tướng, 5 loại quái, Triệu Hồi Sư; Prefab Variant + `HeroVisual`; gắn prefab + icon vào `HeroData` | GDD 12 | `Art/`, `Prefabs/Heroes/`, `Prefabs/Enemies/` | Tay: Validate Hero Prefabs không báo lỗi | ☐ | |
