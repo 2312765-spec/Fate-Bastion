@@ -123,7 +123,7 @@ Audio → Core (+ package Cinemachine cho rung camera)
 Editor → được tham chiếu mọi asmdef, chỉ build cho Editor
 ```
 
-Tham chiếu package: `Enemies` → `Unity.Splines`, `Unity.Mathematics` · `Player` → `Unity.InputSystem`, `Unity.Cinemachine` · `Audio` → `Unity.Cinemachine` · `UI` → `UnityEngine.UI`, `Unity.TextMeshPro`, `PrimeTween.Runtime` · Newtonsoft là DLL tự tham chiếu (asmdef test khai báo trong `precompiledReferences`).
+Tham chiếu package: `Enemies` → `Unity.Splines`, `Unity.Mathematics` · `Player` → `Unity.InputSystem`, `Unity.Cinemachine`, `UnityEngine.UI` (EventSystem: click UI không xuyên, S3) · `Audio` → `Unity.Cinemachine` · `UI` → `UnityEngine.UI`, `Unity.TextMeshPro`, `PrimeTween.Runtime` · Newtonsoft là DLL tự tham chiếu (asmdef test khai báo trong `precompiledReferences`).
 
 Không tạo phụ thuộc vòng. Nếu cần gọi ngược chiều (vd Enemies báo cho Heroes), dùng event trong `FateBastion.Core` hoặc interface khai báo ở Core.
 
