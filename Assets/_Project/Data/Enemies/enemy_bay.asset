@@ -22,5 +22,5 @@ MonoBehaviour:
   boss: 0
   goldReward: 10
   castleDamage: 2
-  prefab: {fileID: 0}
+  prefab: {fileID: 8090377211977855051, guid: 16e25f12d352f7640959923d2b970580, type: 3}
   icon: {fileID: 0}
