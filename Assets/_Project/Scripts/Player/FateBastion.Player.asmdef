@@ -9,7 +9,8 @@
         "FateBastion.Enemies",
         "Unity.InputSystem",
         "Unity.Cinemachine",
-        "Unity.Mathematics"
+        "Unity.Mathematics",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
