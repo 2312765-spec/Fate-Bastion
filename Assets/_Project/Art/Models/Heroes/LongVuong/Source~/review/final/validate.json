@@ -1,0 +1,171 @@
+{
+  "blend": "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\CH_LongVuong_master.blend",
+  "summary": {
+    "tris_by_lod": {
+      "0": 8086,
+      "1": 3500,
+      "2": 1500
+    },
+    "fail": [],
+    "warn": [
+      "CH_LongVuong_Body_LOD0: 9 edges shared by more than two faces",
+      "CH_LongVuong_Body_LOD0: 14 doubled vertices within 0.0001",
+      "CH_LongVuong_Body_LOD1: 9 edges shared by more than two faces",
+      "CH_LongVuong_Body_LOD2: 9 edges shared by more than two faces"
+    ]
+  },
+  "objects": [
+    {
+      "name": "CH_LongVuong_Body_LOD0",
+      "type": "MESH",
+      "warn": [
+        "9 edges shared by more than two faces",
+        "14 doubled vertices within 0.0001"
+      ],
+      "fail": [],
+      "info": {
+        "tris_evaluated": 8086,
+        "verts_evaluated": 5109,
+        "verts": 5109,
+        "faces": 8086,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 9,
+        "islands": 533,
+        "uv_loops_outside_0_1": 0,
+        "materials": [
+          "M_LV_Palette"
+        ],
+        "modifiers": [
+          "ARMATURE:Armature"
+        ],
+        "skin": {
+          "armature": "CH_LongVuong_Rig",
+          "unweighted": 0,
+          "over_influences": 0,
+          "not_normalised": 0,
+          "tiny_weights": 0,
+          "orphan_groups": []
+        }
+      }
+    },
+    {
+      "name": "CH_LongVuong_Body_LOD1",
+      "type": "MESH",
+      "warn": [
+        "9 edges shared by more than two faces"
+      ],
+      "fail": [],
+      "info": {
+        "tris_evaluated": 3500,
+        "verts_evaluated": 2816,
+        "verts": 2816,
+        "faces": 3500,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 9,
+        "islands": 533,
+        "uv_loops_outside_0_1": 0,
+        "materials": [
+          "M_LV_Palette"
+        ],
+        "modifiers": [
+          "ARMATURE:Armature"
+        ],
+        "skin": {
+          "armature": "CH_LongVuong_Rig",
+          "unweighted": 0,
+          "over_influences": 0,
+          "not_normalised": 0,
+          "tiny_weights": 0,
+          "orphan_groups": []
+        }
+      }
+    },
+    {
+      "name": "CH_LongVuong_Body_LOD2",
+      "type": "MESH",
+      "warn": [
+        "9 edges shared by more than two faces"
+      ],
+      "fail": [],
+      "info": {
+        "tris_evaluated": 1500,
+        "verts_evaluated": 1816,
+        "verts": 1816,
+        "faces": 1500,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 9,
+        "islands": 533,
+        "uv_loops_outside_0_1": 0,
+        "materials": [
+          "M_LV_Palette"
+        ],
+        "modifiers": [
+          "ARMATURE:Armature"
+        ],
+        "skin": {
+          "armature": "CH_LongVuong_Rig",
+          "unweighted": 0,
+          "over_influences": 0,
+          "not_normalised": 0,
+          "tiny_weights": 0,
+          "orphan_groups": []
+        }
+      }
+    },
+    {
+      "name": "CH_LongVuong_Rig",
+      "type": "ARMATURE",
+      "warn": [],
+      "fail": [],
+      "info": {
+        "bones": 22,
+        "deform_bones": 22,
+        "roots": [
+          "Hips"
+        ]
+      }
+    },
+    {
+      "name": "SOCKET_Muzzle",
+      "type": "SOCKET",
+      "warn": [],
+      "fail": [],
+      "info": {
+        "parent": "CH_LongVuong_Rig",
+        "parent_bone": "LeftHand",
+        "props": {
+          "owner": "phase:06_rig",
+          "role": "muzzle"
+        }
+      }
+    },
+    {
+      "name": "SOCKET_Overhead",
+      "type": "SOCKET",
+      "warn": [],
+      "fail": [],
+      "info": {
+        "parent": "CH_LongVuong_Rig",
+        "parent_bone": null,
+        "props": {
+          "owner": "phase:06_rig",
+          "role": "overhead"
+        }
+      }
+    },
+    {
+      "name": "SOCKET_AuraAnchor",
+      "type": "SOCKET",
+      "warn": [],
+      "fail": [],
+      "info": {
+        "parent": "CH_LongVuong_Rig",
+        "parent_bone": null,
+        "props": {
+          "owner": "phase:06_rig",
+          "role": "aura"
+        }
+      }
+    }
+  ]
+}

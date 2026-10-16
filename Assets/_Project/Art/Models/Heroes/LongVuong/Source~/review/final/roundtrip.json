@@ -1,0 +1,162 @@
+{
+  "file": "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\exports\\CH_LongVuong.fbx",
+  "errors": [],
+  "meshes": [
+    {
+      "name": "CH_LongVuong_Body_LOD1",
+      "tris": 3099,
+      "verts": 2816,
+      "uv": true,
+      "materials": [
+        "M_LV_Palette"
+      ],
+      "skinned": true,
+      "shape_keys": 0
+    },
+    {
+      "name": "CH_LongVuong_Body_LOD2",
+      "tris": 1005,
+      "verts": 1816,
+      "uv": true,
+      "materials": [
+        "M_LV_Palette"
+      ],
+      "skinned": true,
+      "shape_keys": 0
+    },
+    {
+      "name": "CH_LongVuong_Body_LOD0",
+      "tris": 8056,
+      "verts": 5109,
+      "uv": true,
+      "materials": [
+        "M_LV_Palette"
+      ],
+      "skinned": true,
+      "shape_keys": 0
+    }
+  ],
+  "armatures": [
+    {
+      "name": "CH_LongVuong_Rig",
+      "bones": [
+        "Hips",
+        "Spine",
+        "Chest",
+        "UpperChest",
+        "Neck",
+        "Head",
+        "LeftShoulder",
+        "LeftUpperArm",
+        "LeftLowerArm",
+        "LeftHand",
+        "RightShoulder",
+        "RightUpperArm",
+        "RightLowerArm",
+        "RightHand",
+        "LeftUpperLeg",
+        "LeftLowerLeg",
+        "LeftFoot",
+        "LeftToes",
+        "RightUpperLeg",
+        "RightLowerLeg",
+        "RightFoot",
+        "RightToes"
+      ],
+      "roots": [
+        "Hips"
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "name": "CH_LongVuong_Rig|CH_LongVuong_Rig|LongVuong_Attack",
+      "frames": [
+        1,
+        30
+      ],
+      "length_s": 0.9667
+    },
+    {
+      "name": "CH_LongVuong_Rig|CH_LongVuong_Rig|LongVuong_Idle",
+      "frames": [
+        1,
+        61
+      ],
+      "length_s": 2.0
+    },
+    {
+      "name": "CH_LongVuong_Rig|CH_LongVuong_Rig|LongVuong_Spawn",
+      "frames": [
+        1,
+        30
+      ],
+      "length_s": 0.9667
+    },
+    {
+      "name": "CH_LongVuong_Rig|CH_LongVuong_Rig|LongVuong_Ultimate",
+      "frames": [
+        1,
+        60
+      ],
+      "length_s": 1.9667
+    }
+  ],
+  "materials": [
+    "M_LV_Palette"
+  ],
+  "images": [
+    {
+      "name": "CH_LongVuong_Palette_basecolor.png",
+      "size": [
+        64,
+        64
+      ],
+      "ok": true
+    },
+    {
+      "name": "CH_LongVuong_Palette_emission.png",
+      "size": [
+        64,
+        64
+      ],
+      "ok": true
+    }
+  ],
+  "empties": [
+    {
+      "name": "SOCKET_AuraAnchor",
+      "parent": "CH_LongVuong_Rig",
+      "parent_bone": null
+    },
+    {
+      "name": "SOCKET_Overhead",
+      "parent": "CH_LongVuong_Rig",
+      "parent_bone": null
+    },
+    {
+      "name": "SOCKET_Muzzle",
+      "parent": "CH_LongVuong_Rig",
+      "parent_bone": "LeftHand"
+    }
+  ],
+  "bounds_m": {
+    "min": [
+      -0.689,
+      -0.4548,
+      -0.0087
+    ],
+    "max": [
+      0.6883,
+      0.5839,
+      2.5659
+    ],
+    "size": [
+      1.3774,
+      1.0387,
+      2.5745
+    ]
+  },
+  "height_m": 2.5745,
+  "render": "D:/TowerDenfenseRNG/Assets/_Project/Art/Models/Heroes/LongVuong/Source~/review/09_roundtrip\\roundtrip_clay_threequarter.png"
+}

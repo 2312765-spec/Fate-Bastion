@@ -1,0 +1,212 @@
+{
+  "asset": "CH_LongVuong",
+  "generated": "2026-10-15T10:45:59",
+  "blender": "5.2.2 LTS",
+  "source": "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\CH_LongVuong_master.blend",
+  "target_engine": "unity",
+  "units": {
+    "system": "METRIC",
+    "scale_length": 1.0,
+    "authoring_up": "Z",
+    "authoring_forward": "-Y",
+    "export_up": "Y",
+    "export_forward": "-Z",
+    "note": "glTF converts Z up to Y up; a subject facing -Y in Blender faces +Z in glTF"
+  },
+  "target_height_m": 2.34,
+  "bounds_m": {
+    "min": [
+      -0.8264,
+      -0.2789,
+      -0.0087
+    ],
+    "max": [
+      0.8264,
+      0.5839,
+      2.5641
+    ],
+    "size": [
+      1.6529,
+      0.8628,
+      2.5728
+    ]
+  },
+  "files": {
+    "all": "D:/TowerDenfenseRNG/Assets/_Project/Art/Models/Heroes/LongVuong/Source~/exports\\CH_LongVuong.fbx"
+  },
+  "lods": [
+    {
+      "level": 0,
+      "objects": [
+        "CH_LongVuong_Body_LOD0"
+      ],
+      "tris": 8086
+    },
+    {
+      "level": 1,
+      "objects": [
+        "CH_LongVuong_Body_LOD1"
+      ],
+      "tris": 3500
+    },
+    {
+      "level": 2,
+      "objects": [
+        "CH_LongVuong_Body_LOD2"
+      ],
+      "tris": 1500
+    }
+  ],
+  "materials": [
+    "M_LV_Palette"
+  ],
+  "textures": [
+    {
+      "name": "CH_LongVuong_Palette_basecolor.png",
+      "size": [
+        64,
+        64
+      ],
+      "colorspace": "sRGB",
+      "packed": false,
+      "filepath": "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\textures\\CH_LongVuong_Palette_basecolor.png"
+    },
+    {
+      "name": "CH_LongVuong_Palette_metallic.png",
+      "size": [
+        64,
+        64
+      ],
+      "colorspace": "Non-Color",
+      "packed": false,
+      "filepath": "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\textures\\CH_LongVuong_Palette_metallic.png"
+    },
+    {
+      "name": "CH_LongVuong_Palette_emission.png",
+      "size": [
+        64,
+        64
+      ],
+      "colorspace": "sRGB",
+      "packed": false,
+      "filepath": "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\textures\\CH_LongVuong_Palette_emission.png"
+    }
+  ],
+  "texture_contract": {
+    "basecolor": "sRGB",
+    "normal": "Non-Color, tangent space, OpenGL +Y",
+    "roughness": "Non-Color",
+    "metallic": "Non-Color",
+    "ao": "Non-Color",
+    "packed_channels": "none by default; document any ORM packing here"
+  },
+  "skeleton": [
+    {
+      "armature": "CH_LongVuong_Rig",
+      "bones": 22,
+      "deform_bones": [
+        "Hips",
+        "Spine",
+        "Chest",
+        "UpperChest",
+        "Neck",
+        "Head",
+        "LeftShoulder",
+        "LeftUpperArm",
+        "LeftLowerArm",
+        "LeftHand",
+        "RightShoulder",
+        "RightUpperArm",
+        "RightLowerArm",
+        "RightHand",
+        "LeftUpperLeg",
+        "LeftLowerLeg",
+        "LeftFoot",
+        "LeftToes",
+        "RightUpperLeg",
+        "RightLowerLeg",
+        "RightFoot",
+        "RightToes"
+      ],
+      "roots": [
+        "Hips"
+      ],
+      "rest_pose": "as exported"
+    }
+  ],
+  "sockets": [
+    {
+      "name": "SOCKET_Muzzle",
+      "parent": "CH_LongVuong_Rig",
+      "parent_bone": "LeftHand",
+      "world_location": [
+        0.7636,
+        -0.013,
+        1.2897
+      ],
+      "world_rotation_deg": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "axes": "local +Y forward of the attachment, +Z up",
+      "props": {
+        "owner": "phase:06_rig",
+        "role": "muzzle"
+      }
+    },
+    {
+      "name": "SOCKET_Overhead",
+      "parent": "CH_LongVuong_Rig",
+      "parent_bone": null,
+      "world_location": [
+        0.0,
+        0.0,
+        2.7
+      ],
+      "world_rotation_deg": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "axes": "local +Y forward of the attachment, +Z up",
+      "props": {
+        "owner": "phase:06_rig",
+        "role": "overhead"
+      }
+    },
+    {
+      "name": "SOCKET_AuraAnchor",
+      "parent": "CH_LongVuong_Rig",
+      "parent_bone": null,
+      "world_location": [
+        0.0,
+        0.0,
+        0.02
+      ],
+      "world_rotation_deg": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "axes": "local +Y forward of the attachment, +Z up",
+      "props": {
+        "owner": "phase:06_rig",
+        "role": "aura"
+      }
+    }
+  ],
+  "colliders": [],
+  "animation_contract": "animation-contract.json",
+  "inferred_from_no_reference": [
+    "far (right) side mirrored from left",
+    "legs under the robe",
+    "pauldron underside",
+    "boot backs"
+  ],
+  "dependencies": [
+    "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\textures\\CH_LongVuong_Palette_basecolor.png",
+    "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\textures\\CH_LongVuong_Palette_metallic.png",
+    "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\LongVuong\\Source~\\textures\\CH_LongVuong_Palette_emission.png"
+  ]
+}
