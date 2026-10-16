@@ -54,7 +54,7 @@ Quy tắc vàng: **chỉ commit vào thư mục mình sở hữu.** Cần thay �
 
 | Đường dẫn | Chủ | Ghi chú |
 |---|---|---|
-| `Data/Balance/*.csv`, `Docs/Can bang - Fate Bastion.xlsx` | A | Người khác đề xuất số qua issue; A sửa Excel → xuất CSV |
+| `Data/Balance/*.csv`, `Docs/root/Can bang - Fate Bastion.xlsx` | A | Người khác đề xuất số qua issue; A sửa Excel → xuất CSV |
 | `Assets/_Project/Data/Heroes/`, `Enemies/`, `Waves/`, `Levels/`, `Skills/*_passive` | **Sinh tự động** | Chỉ công cụ Import ghi. Không ai sửa tay các field có trong CSV |
 | ↳ field gắn tay trong `HeroData` (prefab, icon) | C | Làm cùng Variant tướng và Render Hero Icons |
 | ↳ field gắn tay trong `LevelData` (`hpMultiplier`, `displayName`, `enemyTypesPreview`) | A | TRACEABILITY S0-10 |
@@ -168,7 +168,7 @@ Một dòng "→ giao" trong `ROADMAP.md` chỉ được tính xong khi có **đ
 
 ## 6. Git và Pull Request
 
-- Nhánh: `feature/s<số>-<tên>` (vd `feature/s4-placement`), sửa lỗi `fix/<mô tả>`, prototype `prototype/<tên>`.
+- Nhánh: `feature/<Sxx>_<mã>` lấy mã trong `TRACEABILITY.md` (vd `feature/S04_B02`; cách đặt, nhánh cha/con và việc phát sinh ở `CLAUDE.md` mục 12), sửa lỗi `fix/<mô tả>`, tài liệu `docs/<tên>`, prototype `prototype/<tên>`.
 - **Một PR = một hệ thống hoặc một việc nhỏ**, chỉ chạm vùng của người mở PR. PR chạm vùng khác bị trả lại.
 - Người review theo bảng mục 1 (A → B → C → A). PR chạm vùng dùng chung: cả 3 duyệt.
 - Trước khi mở PR: pull `main`, chạy Test Runner, tick dòng tương ứng trong `TRACEABILITY.md`.
