@@ -37,7 +37,7 @@ cd Fate-Bastion
 git lfs pull          # chắc chắn đã tải đủ file ảnh, model, xlsx
 ```
 
-Kiểm tra: mở `Docs/` – file `.docx`/`.xlsx` phải mở được. Nếu chỉ vài trăm byte và mở ra là chữ `version https://git-lfs...` thì bước 2.1 chưa chạy → chạy `git lfs install` rồi `git lfs pull`.
+Kiểm tra: mở `Docs/root/` – file `.docx`/`.xlsx` (GDD, Đặc tả, Cân bằng) phải mở được. Nếu chỉ vài trăm byte và mở ra là chữ `version https://git-lfs...` thì bước 2.1 chưa chạy → chạy `git lfs install` rồi `git lfs pull`.
 
 ### Bước 4 – Cấu hình UnityYAMLMerge (chạy **trong thư mục repo**, sau khi clone)
 
@@ -83,13 +83,15 @@ Trước khi pull/đổi nhánh: **lưu scene và đóng các scene không phả
 | `Assets/_Project/Data/` | ScriptableObject – `Heroes/`, `Enemies/`, `Waves/`, `Levels/`, `Skills/` do công cụ import sinh ra |
 | `Assets/_Project/Tests/` | Test EditMode và PlayMode, một thư mục con mỗi hệ thống |
 | `Data/Balance/*.csv` | Số liệu cân bằng xuất từ Excel (ngoài `Assets/`) |
-| `Docs/` | GDD, đặc tả `Specs/S0–S11`, phân công, lộ trình, truy vết |
+| `Docs/` | `Specs/S0–S11`, `SRS.md`, phân công, lộ trình, truy vết |
+| `Docs/root/` | Tài liệu gốc: GDD, Đặc tả kỹ thuật, file Cân bằng (`.md`/`.docx`/`.xlsx`), `CanBang/` |
+| `Docs/Tson/` | Khu làm việc của thành viên A: plan 22 ngày, hiện trạng, bàn giao, nhật ký `daily/dayNN/` |
 
 ## Dữ liệu cân bằng
 
 Không sửa tay asset trong `Assets/_Project/Data/Heroes|Enemies|Waves|Levels|Skills`.
 
-1. Sửa số trong `Docs/Can bang - Fate Bastion.xlsx`.
+1. Sửa số trong `Docs/root/Can bang - Fate Bastion.xlsx`.
 2. Save As → **CSV UTF-8** vào `Data/Balance/` (`heroes.csv`, `enemies.csv`, `waves.csv`).
 3. Trong Unity: **Tools → Import Balance CSV** → **Import All**.
 4. Kết quả phải là `9 HeroData / 9 SkillData / 5 EnemyData / 45 WaveData / 3 LevelData`, `Errors: 0`.
@@ -121,6 +123,7 @@ Các field không có trong CSV (`prefab`, `icon`, Ultimate của Long Vương, 
 | `CLAUDE.md` | Quy ước code, quy tắc bắt buộc, hướng phụ thuộc asmdef, event hub dùng chung |
 | `Docs/TEAM_ASSIGNMENT.md` | **Ai sở hữu thư mục nào**, hợp đồng event (mục 3), **API giữa các hệ thống (mục 3.1)**, thế nào là "đã bàn giao" (mục 4.1) |
 | `Docs/ROADMAP.md` | Lịch 28 ngày, mốc M0–M4, hạn bàn giao |
+| `Docs/SRS.md` | Yêu cầu FR/NFR toàn game (IEEE 830), ma trận R01–R31 |
 | `Docs/TRACEABILITY.md` | Việc của mình (A-xx / B-xx / C-xx), checklist PR |
 | `Docs/Specs/S<số>.md` | Đặc tả hệ thống đang làm – **đọc trước khi code** |
 
@@ -129,8 +132,18 @@ Luật ngắn gọn:
 - Chỉ commit vào thư mục mình sở hữu. Cần sửa vùng người khác → mở issue `[Cần <A/B/C>]`, không tự sửa.
 - Vùng dùng chung (`Scripts/Core/**`, các ScriptableObject do importer ghi, mọi `*.asmdef`, `ProjectSettings/`, `Packages/`, `CLAUDE.md`, `Docs/Specs/`) chỉ sửa qua PR cả 3 người duyệt.
 - Mỗi hệ thống một nhánh `feature/s<số>-<tên>`; commit message tiếng Anh.
+- Không commit trực tiếp lên `main` (kể cả sửa nhỏ) — luôn tạo nhánh rồi mở PR.
 - Không commit file `.unity` của người khác. Unity tự đánh dấu scene không phải của mình → **discard**.
 - Luôn commit file `.meta` đi kèm.
+
+### Quy ước riêng của thành viên A (Gameplay)
+
+Thành viên A dùng quy ước nhánh riêng, **không thay đổi quy ước chung ở trên**:
+
+- Nhánh chức năng: `feature_xxx` (`xxx` = mã việc `T-xx`/`A-xx` hoặc tên ngắn), vd `feature_a05_boss_summon`.
+- Nhánh tài liệu: `docs_xxx` (vd `docs_tson_setup`). Nhánh sửa lỗi: `fix_xxx`.
+- Kế hoạch, hiện trạng, bàn giao và nhật ký từng ngày của A ở `Docs/Tson/` (luật đầy đủ tại `Docs/Tson/README.md`).
+- Khi mở PR, ghi rõ quy ước đang áp dụng để người duyệt biết.
 
 ## Dùng Claude Code
 

@@ -18,10 +18,12 @@ Tài liệu gốc:
 
 | File | Nội dung |
 |---|---|
-| `Docs/GDD - Tower Defense RNG.docx` | Thiết kế game v1.3 (luật, số liệu, HUD, lộ trình) |
-| `Docs/Dac ta ky thuat.docx` | Đặc tả kỹ thuật S0–S11 (bản gốc của `Docs/Specs/`) |
+| `Docs/root/GDD - Tower Defense RNG.docx` | Thiết kế game v1.3 (luật, số liệu, HUD, lộ trình) |
+| `Docs/root/Dac ta ky thuat.docx` | Đặc tả kỹ thuật S0–S11 (bản gốc của `Docs/Specs/`) |
 | `Docs/Specs/S0.md`, `S0b.md` … `S11.md` | Đặc tả từng hệ thống – **đọc file tương ứng trước khi code** |
-| `Docs/Can bang - Fate Bastion.xlsx` | File cân bằng; xuất ra CSV |
+| `Docs/root/Can bang - Fate Bastion.xlsx` | File cân bằng; xuất ra CSV |
+| `Docs/SRS.md` | Yêu cầu phần mềm (FR/NFR) toàn game, IEEE 830; ánh xạ R01–R31 |
+| `Docs/Tson/README.md` | Khu làm việc của A (Gameplay): luật, plan 22 ngày, hiện trạng, bàn giao, nhật ký ngày |
 | `Docs/TEAM_ASSIGNMENT.md` | Ai sở hữu thư mục, asset, scene nào; hợp đồng event giữa các người |
 | `Docs/ROADMAP.md` | Lịch 28 ngày, mốc, bàn giao |
 | `Docs/TRACEABILITY.md` | Yêu cầu R01–R31 → việc A-xx / B-xx / C-xx, checklist PR |
@@ -353,6 +355,8 @@ Khi làm hệ thống mà hệ thống phụ thuộc chưa xong: dùng **stub** 
 ## 12. Git
 
 - `main` luôn chạy được. Mỗi hệ thống một nhánh `feature/s<số>-<tên>` (vd `feature/s1-combat`); sửa lỗi `fix/<mô tả>`.
+- **Quy ước riêng của A (Gameplay):** A dùng `feature_xxx` (`xxx` = mã `T-xx`/`A-xx` hoặc tên ngắn, vd `feature_a05_boss_summon`), nhánh tài liệu `docs_xxx` (vd `docs_tson_setup`), nhánh sửa lỗi `fix_xxx`. Quy ước này **không thay** quy ước chung `feature/s<số>-<tên>` của nhóm; A ghi rõ khi mở PR. Kế hoạch/nhật ký của A ở `Docs/Tson/`.
+- Không commit trực tiếp lên `main` (kể cả sửa nhỏ) — luôn tạo nhánh rồi mở PR.
 - Commit nhỏ, message tiếng Anh dạng `S1: add DamageCalculator with armor clamp`.
 - Merge qua Pull Request, ít nhất 1 người khác review và chơi thử.
 - Asset Serialization = Force Text; Git LFS cho `.fbx .png .psd .wav .mp3 .tga`; luôn commit file `.meta` đi kèm.
@@ -377,6 +381,6 @@ Khi làm hệ thống mà hệ thống phụ thuộc chưa xong: dùng **stub** 
 
 ## 14. Khi gặp tình huống không có trong Spec
 
-1. Tìm trong GDD (`Docs/GDD…docx`) hoặc các Spec liên quan.
+1. Tìm trong GDD (`Docs/root/GDD…docx`) hoặc các Spec liên quan.
 2. Nếu vẫn không có: đề xuất 1–2 phương án đơn giản nhất phù hợp phạm vi 1 tháng, hỏi người dùng chọn.
 3. Không thêm tính năng ngoài phạm vi (mục 1). Không "chuẩn bị sẵn" cho Nhập Hồn, mạng, Mythic…
