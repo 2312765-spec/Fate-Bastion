@@ -68,9 +68,9 @@ Nếu Unity cài ở chỗ khác: Unity Hub → Installs → bánh răng của `
 
 ```bash
 git checkout main && git pull            # lấy bản mới nhất
-git checkout -b feature/s<số>-<tên>      # mỗi hệ thống một nhánh, vd feature/s1-combat
+git checkout -b feature/<Sxx>_<mã>       # theo TRACEABILITY, vd feature/S02_A05
 # ... làm việc, commit nhỏ, message tiếng Anh: "S1: add DamageCalculator"
-git push -u origin feature/s<số>-<tên>   # rồi mở Pull Request trên GitHub
+git push -u origin feature/<Sxx>_<mã>    # rồi mở Pull Request trên GitHub
 ```
 
 Trước khi pull/đổi nhánh: **lưu scene và đóng các scene không phải của mình**. Unity đánh dấu thay đổi ở scene/prefab không phải của bạn → `git restore <file>` (discard), không commit.
@@ -131,19 +131,16 @@ Luật ngắn gọn:
 
 - Chỉ commit vào thư mục mình sở hữu. Cần sửa vùng người khác → mở issue `[Cần <A/B/C>]`, không tự sửa.
 - Vùng dùng chung (`Scripts/Core/**`, các ScriptableObject do importer ghi, mọi `*.asmdef`, `ProjectSettings/`, `Packages/`, `CLAUDE.md`, `Docs/Specs/`) chỉ sửa qua PR cả 3 người duyệt.
-- Mỗi hệ thống một nhánh `feature/s<số>-<tên>`; commit message tiếng Anh.
+- Nhánh `feature/<Sxx>_<mã>` lấy mã trong `TRACEABILITY.md` (xem mục "Tên nhánh"); commit message tiếng Anh.
 - Không commit trực tiếp lên `main` (kể cả sửa nhỏ) — luôn tạo nhánh rồi mở PR.
 - Không commit file `.unity` của người khác. Unity tự đánh dấu scene không phải của mình → **discard**.
 - Luôn commit file `.meta` đi kèm.
 
-### Quy ước riêng của thành viên A (Gameplay)
+### Tên nhánh (thống nhất trong PR #14)
 
-Thành viên A dùng quy ước nhánh riêng, **không thay đổi quy ước chung ở trên**:
-
-- Nhánh chức năng: `feature_xxx` (`xxx` = mã việc `T-xx`/`A-xx` hoặc tên ngắn), vd `feature_a05_boss_summon`.
-- Nhánh tài liệu: `docs_xxx` (vd `docs_tson_setup`). Nhánh sửa lỗi: `fix_xxx`.
+- Nhánh chức năng: `feature/<Sxx>_<mã>` lấy mã trong `TRACEABILITY.md`, vd `feature/S02_A05`. Chi tiết (việc 2 hệ, nhánh cha/con, việc phát sinh) ở `CLAUDE.md` mục 12.
+- Nhánh tài liệu: `docs/<tên>`; nhánh sửa lỗi: `fix/<mô tả>`. Nhánh cũ sai chuẩn giữ nguyên đến khi mở lại việc đó.
 - Kế hoạch, hiện trạng, bàn giao và nhật ký từng ngày của A ở `Docs/Tson/` (luật đầy đủ tại `Docs/Tson/README.md`).
-- Khi mở PR, ghi rõ quy ước đang áp dụng để người duyệt biết.
 
 ## Dùng Claude Code
 

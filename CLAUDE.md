@@ -354,8 +354,14 @@ Khi làm hệ thống mà hệ thống phụ thuộc chưa xong: dùng **stub** 
 
 ## 12. Git
 
-- `main` luôn chạy được. Mỗi hệ thống một nhánh `feature/s<số>-<tên>` (vd `feature/s1-combat`); sửa lỗi `fix/<mô tả>`.
-- **Quy ước riêng của A (Gameplay):** A dùng `feature_xxx` (`xxx` = mã `T-xx`/`A-xx` hoặc tên ngắn, vd `feature_a05_boss_summon`), nhánh tài liệu `docs_xxx` (vd `docs_tson_setup`), nhánh sửa lỗi `fix_xxx`. Quy ước này **không thay** quy ước chung `feature/s<số>-<tên>` của nhóm; A ghi rõ khi mở PR. Kế hoạch/nhật ký của A ở `Docs/Tson/`.
+- `main` luôn chạy được. **Tên nhánh tính năng lấy đúng mã trong `TRACEABILITY.md`** (đề xuất thống nhất thay quy ước `feature/s<số>-<tên>` và `feature_xxx` trước đây — chốt trong PR #14):
+  - Việc gắn một hệ: `feature/<Sxx>_<mã việcvd A-05 (S2) → `feature/S02_A05`, B-02 (S4) → `feature/S04_B02`.
+  - Việc thuộc hai hệ (vd A-07 = S01 + S06): hôm đó người chịu trách nhiệm phải có plan tách việc, mỗi phần một nhánh `feature/S01_A07`, `feature/S06_A07`.
+  - Một hệ có nhiều nhánh con (nhiều việc hoặc nhiều người): tạo nhánh cha `feature/<Sxx>`; nhánh con **chỉ merge vào nhánh cha**, chỉ nhánh cha merge vào `main` — không mỗi người PR thẳng vào `main`.
+  - Việc phát sinh không gắn S nào: đặt tên khác được nhưng phải ngắn gọn, dễ tìm (vd `rebalance` cho A-17, `GDD03_C06` cho việc theo GDD mục 3). Nội dung để trong mô tả PR, **không tràn vào tên nhánh/tiêu đề PR**.
+  - Nhánh tài liệu `docs/<tên>`, sửa lỗi `fix/<mô tả>`, prototype `prototype/<tên>`.
+  - Nhánh cũ không đúng chuẩn (`feature_a05_a06_s9`, `docs_tson_setup`, `feature/s1-combat`…) giữ nguyên đến khi mở lại việc đó; **không đổi tên nhánh khi PR đang mở**.
+  - Kế hoạch/nhật ký của A ở `Docs/Tson/`.
 - Không commit trực tiếp lên `main` (kể cả sửa nhỏ) — luôn tạo nhánh rồi mở PR.
 - Commit nhỏ, message tiếng Anh dạng `S1: add DamageCalculator with armor clamp`.
 - Merge qua Pull Request, ít nhất 1 người khác review và chơi thử.
