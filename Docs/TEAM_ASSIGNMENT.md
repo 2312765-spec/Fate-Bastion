@@ -44,6 +44,7 @@ Quy tắc vàng: **chỉ commit vào thư mục mình sở hữu.** Cần thay �
 | `Audio/` | `FateBastion.Audio` | C | `SoundData`, `AudioManager`, `MusicPlayer`, `FeedbackService` (rung camera; số sát thương và nháy trắng nằm ở `UI/World/`) |
 | `Editor/Import/` | `FateBastion.Editor` | B | Import Balance CSV, bộ đọc CSV |
 | `Editor/Heroes/` | `FateBastion.Editor` | C | Validate Hero Prefabs, Render Hero Icons |
+| `Editor/UI/` | `FateBastion.Editor` | C | Create HUD Layout (dựng bố cục prefab `Prefabs/UI/`, C-11) |
 | `Editor/Debug/` | `FateBastion.Editor` | B | Menu debug Editor (Bảng Debug runtime nằm ở `UI/Debug/`, chủ B) |
 | `Tests/EditMode/<Hệ thống>/` | — | Chủ hệ thống tương ứng | Mỗi người test trong thư mục con của mình |
 | `Tests/PlayMode/<Hệ thống>/` | — | Chủ hệ thống tương ứng | |

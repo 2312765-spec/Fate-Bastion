@@ -14,7 +14,9 @@
         "FateBastion.Game",
         "FateBastion.Meta",
         "FateBastion.UI",
-        "FateBastion.Audio"
+        "FateBastion.Audio",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [
         "Editor"
