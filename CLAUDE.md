@@ -48,6 +48,8 @@ CLAUDE.md = quy tắc chung rút gọn từ tất cả các file trên
 | Thêm/bớt/dời việc | `TRACEABILITY.md` (mục 2–6) → `ROADMAP.md` (ngày, bàn giao) |
 | Cắt tính năng (phao cứu sinh) | `ROADMAP.md` mục 4 → mục 1 file này → đánh dấu dòng R-xx trong `TRACEABILITY.md` là "cắt" |
 
+**Lưu ý về plan 22 ngày của A (`Docs/Tson/plan.md`):** đây là **lịch làm việc cá nhân của Thành viên A**, không phải lịch của nhóm — **không** dùng nó để sửa `ROADMAP.md` hay `TRACEABILITY.md`. Các thành viên khác cứ theo `ROADMAP.md` hiện tại; A có thể làm sớm hơn (hoặc trễ hơn) một số việc theo lịch riêng. Việc A phải chờ tính năng của người khác thì ghi vào `handoff.md` của A (`Docs/Tson/handoff.md` hoặc `daily/dayNN/handoff.md`), không đổi mốc/bàn giao chung.
+
 ---
 
 ## 2. Cách làm việc với Claude trong repo này
@@ -355,9 +357,9 @@ Khi làm hệ thống mà hệ thống phụ thuộc chưa xong: dùng **stub** 
 ## 12. Git
 
 - `main` luôn chạy được. **Tên nhánh tính năng lấy đúng mã trong `TRACEABILITY.md`** (đề xuất thống nhất thay quy ước `feature/s<số>-<tên>` và `feature_xxx` trước đây — chốt trong PR #14):
-  - Việc gắn một hệ: `feature/<Sxx>_<mã việcvd A-05 (S2) → `feature/S02_A05`, B-02 (S4) → `feature/S04_B02`.
-  - Việc thuộc hai hệ (vd A-07 = S01 + S06): hôm đó người chịu trách nhiệm phải có plan tách việc, mỗi phần một nhánh `feature/S01_A07`, `feature/S06_A07`.
-  - Một hệ có nhiều nhánh con (nhiều việc hoặc nhiều người): tạo nhánh cha `feature/<Sxx>`; nhánh con **chỉ merge vào nhánh cha**, chỉ nhánh cha merge vào `main` — không mỗi người PR thẳng vào `main`.
+  - Việc gắn một hệ: `feature/<Sxx>_<mã việc>`, vd A-05 (S2) → `feature/S02_A05`, B-02 (S4) → `feature/S04_B02`.
+  - Việc thuộc hai hệ (vd A-07 = S01 + S06): đặt theo hệ chính, vd A-07 → `feature/S06_A07`; chỉ tách thành 2 nhánh khi hai phần thật sự độc lập.
+  - **Không dùng nhánh cha/nhánh con:** mỗi việc PR thẳng vào `main` (không có tầng trung gian `feature/<Sxx>` để merge vào trước).
   - Việc phát sinh không gắn S nào: đặt tên khác được nhưng phải ngắn gọn, dễ tìm (vd `rebalance` cho A-17, `GDD03_C06` cho việc theo GDD mục 3). Nội dung để trong mô tả PR, **không tràn vào tên nhánh/tiêu đề PR**.
   - Nhánh tài liệu `docs/<tên>`, sửa lỗi `fix/<mô tả>`, prototype `prototype/<tên>`.
   - Nhánh cũ không đúng chuẩn (`feature_a05_a06_s9`, `docs_tson_setup`, `feature/s1-combat`…) giữ nguyên đến khi mở lại việc đó; **không đổi tên nhánh khi PR đang mở**.

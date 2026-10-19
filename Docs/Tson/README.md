@@ -1,6 +1,7 @@
 # Docs/Tson – Khu làm việc của Thành viên A (Gameplay)
 
 > Đây là **khu tài liệu riêng của A** (Gameplay): kế hoạch 22 ngày, hiện trạng, bàn giao và nhật ký từng ngày. Đọc file này trước mỗi phiên làm việc; mọi luật dưới đây **bắt buộc**.
+> **Plan 22 ngày là lịch làm việc cá nhân của A, không phải lịch của nhóm:** nó **không** thay thế và **không** làm thay đổi `Docs/ROADMAP.md`. Thành viên B và C vẫn theo `ROADMAP.md` hiện tại; A làm sớm hơn (hoặc trễ hơn) một số việc theo lịch riêng của mình. Việc A phải chờ tính năng từ người khác thì ghi vào `handoff.md` của A — không đổi mốc/bàn giao chung, không ảnh hưởng công việc của thành viên khác.
 > A phụ trách: **S1 Chiến đấu · S2 Quái và Wave · S6 Kỹ năng và Ultimate · S7 Hào quang & Thiên thạch · S9 Lưu trữ · nội dung file cân bằng** (xem `Docs/TEAM_ASSIGNMENT.md` mục 1–2).
 > Ngày 1 = 10/10/2026 · Ngày 7 = 16/10/2026 (bắt đầu ghi nhật ký) · **hết plan Ngày 22 = 31/10/2026**.
 
@@ -39,7 +40,7 @@ Docs/Tson/
 3. **Mỗi chức năng làm trên một nhánh riêng**, tên `feature/<Sxx>_<mã>` lấy mã trong `TRACEABILITY.md` (`Sxx` = hệ, mã = `A-xx`/`B-xx`/`C-xx`). Ví dụ: `feature/S02_A05`, `feature/S07_A11`. Việc phát sinh không gắn S đặt tên khác được nhưng phải ngắn gọn, dễ tìm (vd `rebalance`); nội dung để trong mô tả PR, không tràn vào tên nhánh/tiêu đề.
    - **Không commit trực tiếp lên `main`.** Muốn sửa (kể cả sửa nhỏ) thì tạo nhánh mới rồi mở PR.
    - Nhánh phụ trợ tài liệu đặt tên `docs/<tên>` (vd `docs_tson_setup` là nhánh cũ, giữ nguyên), nhánh sửa lỗi `fix/<mô tả>`.
-   - Việc thuộc 2 hệ (vd A-07 = S1 + S6): plan trong ngày phải tách việc, mỗi phần một nhánh. Khi một hệ có nhiều nhánh con, các con merge vào nhánh cha `feature/<Sxx>`, chỉ nhánh cha merge `main`.
+   - Việc thuộc 2 hệ (vd A-07 = S1 + S6): đặt theo hệ chính, vd A-07 → `feature/S06_A07`; plan trong ngày tách việc rõ để biết phần nào làm trước. Chỉ tách thành 2 nhánh khi hai phần thật sự độc lập. **Không dùng nhánh cha/nhánh con** — mỗi việc PR thẳng vào `main`.
    - Đây là **quy ước chung** ghi ở `CLAUDE.md` mục 12 (chốt trong PR #14); nhánh cũ sai chuẩn giữ nguyên đến khi mở lại việc đó.
 4. **Thứ tự ưu tiên khi chọn việc** (áp dụng trong ngày và trong cả plan):
    - **P1 – Không cần thao tác/tạo asset trên Unity:** class thuần, logic, test EditMode, đọc/ghi file, đọc dữ liệu. Làm trước.
@@ -57,7 +58,7 @@ Docs/Tson/
 
 1. Mở `plan.md` — xem việc dự kiến của ngày hôm nay (mã T-xx).
 2. Tạo `daily/dayNN/plan.md` — chốt việc thực tế sẽ làm hôm nay (có thể khác plan nếu dời), ghi ưu tiên P1/P2/P3.
-3. Tạo nhánh `feature/<Sxx>_<mã>` từ `main` mới nhất cho từng việc (hoặc từ nhánh cha `feature/<Sxx>` nếu hệ đó đang có nhánh cha); làm; commit nhỏ (message tiếng Anh, vd `S6: add SkillRunner for MeleeHit`).
+3. Tạo nhánh `feature/<Sxx>_<mã>` từ `main` mới nhất cho từng việc; làm; commit nhỏ (message tiếng Anh, vd `S6: add SkillRunner for MeleeHit`).
 4. Cuối ngày, cập nhật `daily/dayNN/status.md` (đã xong gì, còn gì, số test) và `daily/dayNN/handoff.md` (việc bị chặn, cần ai).
 5. Cập nhật `status.md` và `handoff.md` (tổng thể).
 6. Chạy lượt **rà soát** (mục 5) trước khi kết thúc ngày.

@@ -1,6 +1,7 @@
 # Plan 22 ngày – Thành viên A (Gameplay)
 
-> **Ngày 1 = 10/10/2026 · Ngày 22 = 31/10/2026.** Thay cho lịch 28 ngày của `Docs/ROADMAP.md` ở phạm vi việc của A.
+> **Ngày 1 = 10/10/2026 · Ngày 22 = 31/10/2026.** Đây là **lịch làm việc cá nhân của Thành viên A** cho phạm vi việc của A, **không** phải lịch của nhóm.
+> **Không dùng plan này để sửa `Docs/ROADMAP.md` hay `TRACEABILITY.md`.** Thành viên khác cứ theo `ROADMAP.md` hiện tại; A làm sớm hơn (hoặc trễ hơn) một số việc theo lịch riêng. Việc A phải chờ tính năng của người khác → ghi vào `handoff.md` của A, không đổi mốc/bàn giao chung và không ảnh hưởng tới công việc của thành viên khác.
 > Mã việc **T-xx** là mã mới (đánh lại theo ưu tiên và thứ tự làm); cột **TRACEABILITY** trỏ về mã gốc A-xx để đối chiếu tiêu chí kiểm tra.
 > Ưu tiên: **P1** không cần thao tác/tạo asset Unity · **P2** cần thao tác Unity · **P3** mâu thuẫn/bàn giao giữa thành viên. Luật đầy đủ ở `README.md`.
 > Ký hiệu trạng thái: ☐ chưa · ◐ đang · ☑ xong.
@@ -62,6 +63,8 @@ A bận, **C (nhóm trưởng)** làm hộ. Từ Ngày 7 A ghi nhật ký.
 ---
 
 ## 4. Đối chiếu mốc nhóm (`ROADMAP.md`)
+
+> Bảng này chỉ để **A đối chiếu** tiến độ của mình với mốc chung — **không sửa `ROADMAP.md`**. Mốc, ngày và bàn giao của nhóm vẫn theo `ROADMAP.md` hiện tại; ai cần biết khi nào A xong `Hero_Base`/`HeroController` thì xem cột "Ngày thực" của T-05/T-06 dưới đây hoặc `handoff.md` của A.
 
 | Mốc | Điều kiện | Liên quan đến A |
 |---|---|---|

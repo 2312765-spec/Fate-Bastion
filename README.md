@@ -138,7 +138,7 @@ Luật ngắn gọn:
 
 ### Tên nhánh (thống nhất trong PR #14)
 
-- Nhánh chức năng: `feature/<Sxx>_<mã>` lấy mã trong `TRACEABILITY.md`, vd `feature/S02_A05`. Chi tiết (việc 2 hệ, nhánh cha/con, việc phát sinh) ở `CLAUDE.md` mục 12.
+- Nhánh chức năng: `feature/<Sxx>_<mã>` lấy mã trong `TRACEABILITY.md`, vd `feature/S02_A05`. Chi tiết (việc 2 hệ, việc phát sinh) ở `CLAUDE.md` mục 12.
 - Nhánh tài liệu: `docs/<tên>`; nhánh sửa lỗi: `fix/<mô tả>`. Nhánh cũ sai chuẩn giữ nguyên đến khi mở lại việc đó.
 - Kế hoạch, hiện trạng, bàn giao và nhật ký từng ngày của A ở `Docs/Tson/` (luật đầy đủ tại `Docs/Tson/README.md`).
 

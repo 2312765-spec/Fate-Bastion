@@ -167,7 +167,7 @@ Một dòng "→ giao" trong `ROADMAP.md` chỉ được tính xong khi có **đ
 
 ## 6. Git và Pull Request
 
-- Nhánh: `feature/<Sxx>_<mã>` lấy mã trong `TRACEABILITY.md` (vd `feature/S04_B02`; cách đặt, nhánh cha/con và việc phát sinh ở `CLAUDE.md` mục 12), sửa lỗi `fix/<mô tả>`, tài liệu `docs/<tên>`, prototype `prototype/<tên>`.
+- Nhánh: `feature/<Sxx>_<mã>` lấy mã trong `TRACEABILITY.md` (vd `feature/S04_B02`; cách đặt và việc phát sinh ở `CLAUDE.md` mục 12), sửa lỗi `fix/<mô tả>`, tài liệu `docs/<tên>`, prototype `prototype/<tên>`.
 - **Một PR = một hệ thống hoặc một việc nhỏ**, chỉ chạm vùng của người mở PR. PR chạm vùng khác bị trả lại.
 - Người review theo bảng mục 1 (A → B → C → A). PR chạm vùng dùng chung: cả 3 duyệt.
 - Trước khi mở PR: pull `main`, chạy Test Runner, tick dòng tương ứng trong `TRACEABILITY.md`.
