@@ -236,5 +236,31 @@ namespace FateBastion.Tests.PlayMode.S2
             Assert.AreEqual(0, _rig.SpawnedCount);
             Assert.AreEqual(0, _finished.Count);
         }
+
+        [UnityTest]
+        public IEnumerator Endless_WavesBeyondLast_RepeatLoopBlockWithRealWaveNumbers()
+        {
+            EnemyData data = _rig.CreateEnemy("enemy_thuong", baseHP: 40f);
+            LevelData level = _rig.CreateLevel(
+                _rig.CreateWave(Group(data, 1)),
+                _rig.CreateWave(Group(data, 2)),
+                _rig.CreateWave(Group(data, 3)));
+            level.hpGrowth = 1.12f;
+            level.hpMultiplier = 1.3f;
+            _waves.Init(level, _rig.CreateEndlessSettings(2, 3));
+
+            _waves.StartWave(4); // offset 0 -> wave 2 (2 enemies)
+            yield return WaitUntil(() => _rig.SpawnedCount == 2);
+            Assert.AreEqual(2, _rig.Manager.ActiveEnemies.Count);
+            Assert.AreEqual(4, _rig.Manager.ActiveEnemies[0].Wave, "quái mang wave thật 4, không phải 2");
+            Assert.AreEqual(EnemyHealthFormula.Calculate(40f, 1.12f, 4, 1.3f), _rig.Manager.ActiveEnemies[0].MaxHP, 1e-1f);
+
+            _rig.KillAllActive();
+            yield return Frames(3);
+
+            _waves.StartWave(7); // offset 3 -> 3 % 2 = 1 -> wave 3 (3 enemies)
+            yield return WaitUntil(() => _rig.SpawnedCount == 2 + 3);
+            Assert.AreEqual(3, _rig.Manager.ActiveEnemies.Count);
+        }
     }
 }

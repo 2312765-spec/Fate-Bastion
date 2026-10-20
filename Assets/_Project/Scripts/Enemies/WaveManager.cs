@@ -127,9 +127,21 @@ namespace FateBastion.Enemies
                 return data;
             }
 
-            // STUB: Vô tận (wave > 15 lặp wave loopFromWave..loopToWave của màn 3) – thay bằng A-06.
-            string endlessNote = _endless != null ? " (Vô tận làm ở A-06)" : string.Empty;
-            Debug.LogError($"{name}: {_level.name} không có wave {wave}{endlessNote}.", _level);
+            // Vô tận (A-06): past the last wave, repeat waves loopFromWave..loopToWave of this level.
+            // The schedule still uses the real wave number, so hpGrowth keeps applying to the longer game.
+            if (_endless != null && WaveCount > 0 && wave > WaveCount)
+            {
+                int from = Mathf.Clamp(_endless.LoopFromWave, 1, WaveCount);
+                int to = Mathf.Clamp(_endless.LoopToWave, from, WaveCount);
+                int blockLength = to - from + 1;
+                int offset = wave - WaveCount - 1;            // 0-based position inside the repeated block
+                int resolved = from + (offset % blockLength); // offset >= 0, so the modulo is non-negative
+                WaveData looped = _level.waves[resolved - 1];
+                if (looped == null) Debug.LogError($"{name}: {_level.name} thiếu WaveData cho wave lặp {resolved}.", _level);
+                return looped;
+            }
+
+            Debug.LogError($"{name}: {_level.name} không có wave {wave}.", _level);
             return null;
         }
 
