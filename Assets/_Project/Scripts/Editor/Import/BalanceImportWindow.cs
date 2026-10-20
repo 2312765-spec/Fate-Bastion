@@ -36,7 +36,7 @@ namespace FateBastion.Editor.Import
         private void OnGUI()
         {
             EditorGUILayout.HelpBox(
-                "Edit the numbers in Docs/Can bang - Fate Bastion.xlsx, export to CSV UTF-8 into Data/Balance, " +
+                "Edit the numbers in Docs/root/Can bang - Fate Bastion.xlsx, export to CSV UTF-8 into Data/Balance, " +
                 "then import here. Never edit the generated assets by hand.",
                 MessageType.Info);
 

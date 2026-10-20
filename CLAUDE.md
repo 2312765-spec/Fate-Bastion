@@ -18,10 +18,12 @@ Tài liệu gốc:
 
 | File | Nội dung |
 |---|---|
-| `Docs/GDD - Tower Defense RNG.docx` | Thiết kế game v1.3 (luật, số liệu, HUD, lộ trình) |
-| `Docs/Dac ta ky thuat.docx` | Đặc tả kỹ thuật S0–S11 (bản gốc của `Docs/Specs/`) |
+| `Docs/root/GDD - Tower Defense RNG.docx` | Thiết kế game v1.3 (luật, số liệu, HUD, lộ trình) |
+| `Docs/root/Dac ta ky thuat.docx` | Đặc tả kỹ thuật S0–S11 (bản gốc của `Docs/Specs/`) |
 | `Docs/Specs/S0.md`, `S0b.md` … `S11.md` | Đặc tả từng hệ thống – **đọc file tương ứng trước khi code** |
-| `Docs/Can bang - Fate Bastion.xlsx` | File cân bằng; xuất ra CSV |
+| `Docs/root/Can bang - Fate Bastion.xlsx` | File cân bằng; xuất ra CSV |
+| `Docs/SRS.md` | Yêu cầu phần mềm (FR/NFR) toàn game, IEEE 830; ánh xạ R01–R31 |
+| `Docs/Tson/README.md` | Khu làm việc của A (Gameplay): luật, plan 22 ngày, hiện trạng, bàn giao, nhật ký ngày |
 | `Docs/TEAM_ASSIGNMENT.md` | Ai sở hữu thư mục, asset, scene nào; hợp đồng event giữa các người |
 | `Docs/ROADMAP.md` | Lịch 28 ngày, mốc, bàn giao |
 | `Docs/TRACEABILITY.md` | Yêu cầu R01–R31 → việc A-xx / B-xx / C-xx, checklist PR |
@@ -45,6 +47,8 @@ CLAUDE.md = quy tắc chung rút gọn từ tất cả các file trên
 | Đổi chủ sở hữu thư mục/asset | `TEAM_ASSIGNMENT.md` mục 2 → mục 4 file này → cột Vùng file trong `TRACEABILITY.md` |
 | Thêm/bớt/dời việc | `TRACEABILITY.md` (mục 2–6) → `ROADMAP.md` (ngày, bàn giao) |
 | Cắt tính năng (phao cứu sinh) | `ROADMAP.md` mục 4 → mục 1 file này → đánh dấu dòng R-xx trong `TRACEABILITY.md` là "cắt" |
+
+**Lưu ý về plan 22 ngày của A (`Docs/Tson/plan.md`):** đây là **lịch làm việc cá nhân của Thành viên A**, không phải lịch của nhóm — **không** dùng nó để sửa `ROADMAP.md` hay `TRACEABILITY.md`. Các thành viên khác cứ theo `ROADMAP.md` hiện tại; A có thể làm sớm hơn (hoặc trễ hơn) một số việc theo lịch riêng. Việc A phải chờ tính năng của người khác thì ghi vào `handoff.md` của A (`Docs/Tson/handoff.md` hoặc `daily/dayNN/handoff.md`), không đổi mốc/bàn giao chung.
 
 ---
 
@@ -352,7 +356,15 @@ Khi làm hệ thống mà hệ thống phụ thuộc chưa xong: dùng **stub** 
 
 ## 12. Git
 
-- `main` luôn chạy được. Mỗi hệ thống một nhánh `feature/s<số>-<tên>` (vd `feature/s1-combat`); sửa lỗi `fix/<mô tả>`.
+- `main` luôn chạy được. **Tên nhánh tính năng lấy đúng mã trong `TRACEABILITY.md`** (đề xuất thống nhất thay quy ước `feature/s<số>-<tên>` và `feature_xxx` trước đây — chốt trong PR #14):
+  - Việc gắn một hệ: `feature/<Sxx>_<mã việc>`, vd A-05 (S2) → `feature/S02_A05`, B-02 (S4) → `feature/S04_B02`.
+  - Việc thuộc hai hệ (vd A-07 = S01 + S06): đặt theo hệ chính, vd A-07 → `feature/S06_A07`; chỉ tách thành 2 nhánh khi hai phần thật sự độc lập.
+  - **Không dùng nhánh cha/nhánh con:** mỗi việc PR thẳng vào `main` (không có tầng trung gian `feature/<Sxx>` để merge vào trước).
+  - Việc phát sinh không gắn S nào: đặt tên khác được nhưng phải ngắn gọn, dễ tìm (vd `rebalance` cho A-17, `GDD03_C06` cho việc theo GDD mục 3). Nội dung để trong mô tả PR, **không tràn vào tên nhánh/tiêu đề PR**.
+  - Nhánh tài liệu `docs/<tên>`, sửa lỗi `fix/<mô tả>`, prototype `prototype/<tên>`.
+  - Nhánh cũ không đúng chuẩn (`feature_a05_a06_s9`, `docs_tson_setup`, `feature/s1-combat`…) giữ nguyên đến khi mở lại việc đó; **không đổi tên nhánh khi PR đang mở**.
+  - Kế hoạch/nhật ký của A ở `Docs/Tson/`.
+- Không commit trực tiếp lên `main` (kể cả sửa nhỏ) — luôn tạo nhánh rồi mở PR.
 - Commit nhỏ, message tiếng Anh dạng `S1: add DamageCalculator with armor clamp`.
 - Merge qua Pull Request, ít nhất 1 người khác review và chơi thử.
 - Asset Serialization = Force Text; Git LFS cho `.fbx .png .psd .wav .mp3 .tga`; luôn commit file `.meta` đi kèm.
@@ -377,6 +389,6 @@ Khi làm hệ thống mà hệ thống phụ thuộc chưa xong: dùng **stub** 
 
 ## 14. Khi gặp tình huống không có trong Spec
 
-1. Tìm trong GDD (`Docs/GDD…docx`) hoặc các Spec liên quan.
+1. Tìm trong GDD (`Docs/root/GDD…docx`) hoặc các Spec liên quan.
 2. Nếu vẫn không có: đề xuất 1–2 phương án đơn giản nhất phù hợp phạm vi 1 tháng, hỏi người dùng chọn.
 3. Không thêm tính năng ngoài phạm vi (mục 1). Không "chuẩn bị sẵn" cho Nhập Hồn, mạng, Mythic…
