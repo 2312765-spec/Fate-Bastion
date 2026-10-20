@@ -131,6 +131,15 @@ namespace FateBastion.Tests.PlayMode.S2
             return level;
         }
 
+        /// <summary>Boss summon config for the manager under test (A-05).</summary>
+        public BossSummonSettings CreateBossSummonSettings(EnemyData summonEnemy, int count = 3, float intervalSeconds = 12f)
+        {
+            var settings = ScriptableObject.CreateInstance<BossSummonSettings>();
+            settings.Configure(summonEnemy, count, intervalSeconds);
+            _owned.Add(settings);
+            return settings;
+        }
+
         public WaveManager AddWaveManager()
         {
             var go = new GameObject("WaveManager");
