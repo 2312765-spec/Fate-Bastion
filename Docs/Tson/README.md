@@ -42,6 +42,8 @@ Docs/Tson/
    - Nhánh phụ trợ tài liệu đặt tên `docs/<tên>` (vd `docs_tson_setup` là nhánh cũ, giữ nguyên), nhánh sửa lỗi `fix/<mô tả>`.
    - Việc thuộc 2 hệ (vd A-07 = S1 + S6): đặt theo hệ chính, vd A-07 → `feature/S06_A07`; plan trong ngày tách việc rõ để biết phần nào làm trước. Chỉ tách thành 2 nhánh khi hai phần thật sự độc lập. **Không dùng nhánh cha/nhánh con** — mỗi việc PR thẳng vào `main`.
    - Đây là **quy ước chung** ghi ở `CLAUDE.md` mục 12 (chốt trong PR #14); nhánh cũ sai chuẩn giữ nguyên đến khi mở lại việc đó.
+   - **Trần nhánh mỗi ngày: 3 nhánh.** Nếu một ngày cần nhiều việc rời hơn (việc phát sinh, tài liệu, công cụ) mà không gộp được vào 3 nhánh đó, **tách thêm một folder ngày riêng** (`daily/dayNN`) để giữ mỗi ngày gọn — không nhồi quá nhiều nhánh vào một ngày.
+   - **Cập nhật tài liệu theo nhánh:** sửa `daily/dayNN`/tổng thể **trên chính nhánh đang làm**, rồi **làm tươi (refresh) lúc mở PR**. Tài liệu **tổng thể** (`Docs/Tson/status.md`, `handoff.md`) chỉ chốt khi nhánh đó **merge vào `main`** (không còn tầng nhánh cha nên mỗi PR là một lần chốt).
 4. **Thứ tự ưu tiên khi chọn việc** (áp dụng trong ngày và trong cả plan):
    - **P1 – Không cần thao tác/tạo asset trên Unity:** class thuần, logic, test EditMode, đọc/ghi file, đọc dữ liệu. Làm trước.
    - **P2 – Cần thao tác Unity:** gắn component, prefab, dựng/thử scene Sandbox, test PlayMode, import asset, chỉnh Inspector.
