@@ -84,6 +84,27 @@ CLAUDE.md = quy tắc chung rút gọn từ tất cả các file trên
 
 **Cinemachine 3 dùng namespace `Unity.Cinemachine`** (không phải `Cinemachine` của bản 2.x). Component: `CinemachineCamera`, `CinemachineThirdPersonFollow`, `CinemachineDeoccluder`, `CinemachineImpulseSource`.
 
+### 3.1 Công cụ agent – unityMCP + unitySkills (không phải package gameplay)
+
+Hai package tải qua git trong `Packages/manifest.json`:
+
+| Package | Vai trò | Cổng |
+|---|---|---|
+| `com.coplaydev.unity-mcp` (unityMCP) | Cầu MCP cho agent điều khiển Editor | **7080** |
+| `com.besty.unity-skills` (unitySkills) | REST server (hàng trăm skill Editor) | **8099** |
+
+**Lý do cài:** để **agent KHÔNG chạy cạnh Unity** (không phải co-worker / không nằm trong tiến trình Unity) vẫn giao tiếp được với Unity Editor — tạo/sửa GameObject, scene, asset, chạy test… Agent nào vốn đã chạy cùng Unity (Claude, Codex, Antigravity… đã có co-worker với Unity) thì **không cần** hai package này.
+
+**Cổng (quyết định):** unityMCP = 7080, unitySkills = 8099 — để không trùng MCP có sẵn trong Unity và né các cổng hay bị chiếm (thường là **8080**).
+
+**Đổi cổng unitySkills:** cổng thật lấy từ EditorPref machine-level `UnitySkills_PreferredPort` (`0` = Auto, dải hardcode `8090–8100`). Đặt `8099` thì `Start()` bind đúng 8099 trước, chỉ khi bận mới fallback quét dải. Cách đặt: `Window > UnitySkills > Settings > Port` = `8099`, hoặc ghi thẳng registry (dword):
+`HKCU\Software\Unity Technologies\Unity Editor 5.x\UnitySkills_PreferredPort_h2978164411 = 8099`.
+Pref này **không nằm trong repo** → mỗi máy tự set (package hardcode vẫn là 8090–8100, chỉ fallback). unityMCP: cổng cấu hình trong package, mặc định 7080.
+
+**Optional (khuyến nghị):**
+- **Nếu dùng:** đổi cổng né các cổng phổ biến (8080…) để không đụng service khác.
+- **Nếu không dùng:** **tắt mở cổng** của 2 package (unitySkills: `Window > UnitySkills > Stop Server` + bỏ Auto Start/Start on Editor Launch; unityMCP: tắt MCP bridge trong settings) hoặc gỡ 2 dòng khỏi `Packages/manifest.json`, để tránh mở cổng thừa.
+
 ---
 
 ## 4. Cấu trúc thư mục
