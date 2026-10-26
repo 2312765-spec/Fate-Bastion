@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: enemy_boss
   m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.EnemyData
   id: enemy_boss
-  displayName: Boss
+  displayName: E-Boss
   baseHP: 600
   moveSpeed: 1.5
   armor: 0.2
