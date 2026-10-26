@@ -1,6 +1,7 @@
 # Hiện trạng Ngày 7 – 16/10/2026 (cuối ngày)
 
 > **Nhánh (tách theo quy ước `feature/<Sxx>_<mã>`, bỏ nhánh cha/con):** `feature/S09_A14` (S9 + tài liệu ngày 7), `feature/S02_A05` (A-05), `feature/S02_A06` (A-06, xếp chồng trên A-05), `docs/agent-tools` (công cụ ngoài gameplay). Nhánh cũ `feature_a05_a06_s9` đã merge `main` (PR #14) làm backup, không PR.
+> **Tài liệu ngày 7 có mặt trên cả 4 nhánh** (nội dung giống nhau) để mỗi PR tự mô tả đủ ngày 7; nhánh nào chứa việc gì ghi ở cột `Nhánh` của `plan.md`.
 
 ## Đã xong
 - **T-01 (☑):** tạo khu `Docs/Tson`:
@@ -42,17 +43,20 @@ Test: `Tests/EditMode/S2/LevelBalanceDataTests.cs` (**4 EM** qua `AssetDatabase`
 
 ## Tổng test mới: 30 (25 EM + 5 PM)
 
+## Kết quả kiểm chứng trong Unity
+- Editor đang mở chính project này (Unity `6000.3.25f1`), `Library` có sẵn → **compile 0 lỗi**, Console 0 error.
+- `feature/S09_A14`: **EditMode 286/286 pass** (gồm 13 EM của S9) → **Newtonsoft của `FateBastion.Meta` chạy được**, không cần sửa `asmdef`.
+- `feature/S02_A06` (chứa cả A-05 + A-06): **EditMode 297/298 pass**, **PlayMode 50/50 pass** (gồm 5 PM mới của A-05/A-06).
+  - 1 fail `LevelBalanceDataTests.Level3_Wave15_NormalEnemyHp_MatchesSheetGrowthAndMultiplier`: test đọc `enemy_thuong.asset`, nhưng trên máy đang có **thay đổi chưa commit** đổi tên asset (`enemy_thuong` → `enemy_normal`, `enemy_bay` → `enemy_fly`, `enemy_nhanh` → `enemy_fast`, `enemy_giap` → `enemy_armor` + prefab tương ứng). Việc đổi tên **không thuộc phạm vi ngày 7**; khi hoàn tất thì cập nhật đường dẫn trong test là xanh.
+- `feature/S02_A05`: `BossSummonSettings.asset` **đã có sẵn** (`enemy_nhanh`, 3 con, 12 s) và đã gắn `_bossSummonSettings` trong `A_Enemies.unity` → **không cần tạo tay**.
+
 ## Chưa xong / cần người dùng
-1. **Compile + chạy test trong Unity.** Unity Editor đang mở giữ project (không chạy `-batchmode` cùng project được) → chạy bằng Test Runner trong Editor. Lệnh batchmode (khi đã đóng Editor):
-   ```
-   "<UnityEditorPath>/Unity.exe" -batchmode -projectPath . -runTests -testPlatform EditMode -testResults TestResults/editmode.xml -logFile -
-   ```
-   Editor: `D:\Unity\Editor\6000.3.25f1\Editor\Unity.exe` (theo `ProjectVersion.txt`).
-2. **Xác nhận Newtonsoft** của `FateBastion.Meta` compile được (xem handoff).
-3. **A-07 KHÔNG làm hôm nay** – để nguyên T-05/T-06 (day 9/10), đúng quyết định.
-4. T-04 (bàn giao API S9 cho B) – ◐, chờ B xem PR.
+1. **Chạy lại test S2** sau khi hoàn tất đổi tên asset (mục trên) để xanh 100%.
+2. **A-07 KHÔNG làm hôm nay** – để nguyên T-05/T-06 (day 9/10), đúng quyết định.
+3. T-04 (bàn giao API S9 cho B) – ◐, chờ B xem PR.
+4. Mở PR cho 4 nhánh; tick `TRACEABILITY.md` ở PR 3 người.
 
 ## Điểm lệch / gỡ stub còn lại
-- `BossSummonSettings` asset chưa được tạo trong Inspector → boss **chưa** gọi quái cho tới khi người dùng tạo asset + kéo vào `EnemyManager`.
 - Prefab quái Bay/boss (A-05/A-06 phần prefab) vẫn chờ C (`Enemy_Base` + Variant) – giữ trong handoff tổng thể.
 - `TRACEABILITY.md` chưa tick A-05/A-06/A-14/A-15 (vùng dùng chung, cần PR 3 người).
+- `IStarterSaveFactory` vẫn là stub chờ B-11 (`StarterSettings`).

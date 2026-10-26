@@ -22,4 +22,6 @@
   - Nhánh cũ `feature_a05_a06_s9` **đã merge `main`** rồi giữ làm backup, không PR.
 - **A-07 (`HeroController`/`AttackModule`) KHÔNG làm hôm nay** – để nguyên T-05/T-06 (day 9/10) theo quyết định.
 - **Số liệu A-06 đã đúng từ trước:** `level_1 hpMultiplier=1`, `level_2=1.15`, `level_3=1.3`; `EndlessSettings` loop 6–15. Việc còn lại là code Vô tận + test xác minh.
-- Newtonsoft: `FateBastion.Meta.asmdef` có `overrideReferences:false` nên DLL của `com.unity.nuget.newtonsoft-json` được auto-referenced – **chưa sửa asmdef chung**; cần compile thử để xác nhận (xem `handoff.md`).
+- Newtonsoft: `FateBastion.Meta.asmdef` có `overrideReferences:false` nên DLL của `com.unity.nuget.newtonsoft-json` được auto-referenced – **không sửa asmdef chung**; đã compile thử: **OK** (S9 286/286 EM pass, xem `status.md`).
+- **Tài liệu ngày 7 nằm trên cả 4 nhánh** (cùng nội dung) để mỗi PR tự mô tả đủ ngày 7; nhánh chứa việc gì xem cột `Nhánh` ở bảng trên.
+- **A-05 đã lắp sẵn trong Unity:** `Data/Settings/BossSummonSettings.asset` (Fast, 3 con, 12 s) + `_bossSummonSettings` trong `A_Enemies.unity` – không cần tạo tay. Chỉ còn prefab Bay/boss của C.
