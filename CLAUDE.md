@@ -102,7 +102,7 @@ Assets/
 │   │   ├── Meta/        FateBastion.Meta      Gacha/, Collection/ (B) · Save/ (A)
 │   │   ├── UI/          FateBastion.UI        view, UIManager, HUD tĩnh, Debug/, Tutorial/ (B) · World/ (C: thanh máu, cảnh báo, số sát thương, nháy trắng)
 │   │   ├── Audio/       FateBastion.Audio
-│   │   └── Editor/      FateBastion.Editor    Import/, Debug/ (B) · Heroes/ (C) – asmdef chỉ Editor
+│   │   └── Editor/      FateBastion.Editor    Import/, Debug/ (B) · Heroes/, UI/ (C) – asmdef chỉ Editor
 │   ├── Data/            ScriptableObject asset (Heroes/, Enemies/, Waves/, Levels/, Skills/, Settings/)
 │   ├── Input/           FateBastion.inputactions (chủ: C)
 │   ├── Prefabs/         Heroes/, Enemies/, Player/, Map/, Systems/, UI/, FX/
@@ -127,7 +127,7 @@ Audio → Core (+ package Cinemachine cho rung camera)
 Editor → được tham chiếu mọi asmdef, chỉ build cho Editor
 ```
 
-Tham chiếu package: `Enemies` → `Unity.Splines`, `Unity.Mathematics` · `Player` → `Unity.InputSystem`, `Unity.Cinemachine`, `UnityEngine.UI` (EventSystem: click UI không xuyên, S3) · `Audio` → `Unity.Cinemachine` · `UI` → `UnityEngine.UI`, `Unity.TextMeshPro`, `PrimeTween.Runtime` · Newtonsoft là DLL tự tham chiếu (asmdef test khai báo trong `precompiledReferences`).
+Tham chiếu package: `Enemies` → `Unity.Splines`, `Unity.Mathematics` · `Player` → `Unity.InputSystem`, `Unity.Cinemachine`, `UnityEngine.UI` (EventSystem: click UI không xuyên, S3) · `Audio` → `Unity.Cinemachine` · `Editor` → `Unity.TextMeshPro`, `UnityEngine.UI` (Create HUD Layout, C-11) · `UI` → `UnityEngine.UI`, `Unity.TextMeshPro`, `PrimeTween.Runtime` · Newtonsoft là DLL tự tham chiếu (asmdef test khai báo trong `precompiledReferences`).
 
 Không tạo phụ thuộc vòng. Nếu cần gọi ngược chiều (vd Enemies báo cho Heroes), dùng event trong `FateBastion.Core` hoặc interface khai báo ở Core.
 

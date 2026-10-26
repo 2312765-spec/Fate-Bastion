@@ -79,7 +79,7 @@
 | R28 | S0-04, S0-05, A-06, A-17 | ☑ công cụ · ☐ số liệu |
 | R29 | C-01, C-02, C-08 | ☐ |
 | R30 | C-16 | ☐ |
-| R31 | C-10 | ☐ |
+| R31 | C-10 | ☑ |
 
 ---
 
@@ -173,11 +173,11 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | C-04 | 4 | `CameraRig` Cinemachine 3 (Third Person Follow, Deoccluder, Impulse), Brain Ignore Time Scale | S3 | `Player/Movement/`, `Prefabs/Player/` | Tay: không xuyên vật cản | ☑ | `CameraRig` + `CameraOrbit` (class thuần), `CameraSettings`, `CursorController`; prefab `Prefabs/Player/Player`; 12 EM; tay trong Sandbox `C_Main` |
 | C-05 | 4 | `InputRouter` + Input Actions: Hold/Tap chuột phải, thứ tự Esc, 1 Action Map bật tại một thời điểm, click UI không xuyên · `SummonerInputRouter` điều phối `CancelStack`, phát `PauseRequested` (3.1 #6) | S3 | `Player/Movement/`, `Input/` | EM/PM: chuyển Action Map; Esc 3 tình huống | ☑ | `SummonerInputRouter`, `CancelPressRouter`, `TapMovementGuard`, `FateBastion.inputactions`; `Cancel` thô phát trước `PauseRequested`; Alt-Tab → `PauseRequested` (ASSUMPTION, tắt trong Editor); Player asmdef + `UnityEngine.UI`; 13 EM + 7 PM |
 | C-06 | 5 | Map graybox thành prefab `Map_Level1`: mặt đất, Spline đường chính (~90 m) + đường bay gắn vào `LevelPaths`, Cổng, Thành, layer Placeable/Path/Obstacle | GDD 3, S2 | `Prefabs/Map/`, `Scenes/Game.unity` | Tay | ☑ | `Map_Level1` (Paths / Gameplay / Landmarks / Visuals – C-17 chỉ thêm vào `Visuals/`); đường chính ≈ 90,5 m, đường bay ≈ 69,6 m cắt góc, cao 2 m; mặt đường `SplineExtrude` rộng 3 m; tường viền vô hình (ASSUMPTION); 13 EM `Tests/EditMode/Map`; Sandbox `C_Main` và `Game.unity` |
-| C-07 | 6 | Chọn asset pack, ghi `ThirdParty/CREDITS.md` | — | `Assets/ThirdParty/` | Tay | ☐ | |
+| C-07 | 6 | Chọn asset pack, ghi `ThirdParty/CREDITS.md` | — | `Assets/ThirdParty/` | Tay | ☑ | Quaternius + Kenney (CC0), luật import FBX + test `Tests/EditMode/ThirdParty`; merge PR #15 |
 | C-08 | 8–10, 12 | Model + animation 9 tướng, 5 loại quái, Triệu Hồi Sư; Prefab Variant + `HeroVisual`; gắn prefab + icon vào `HeroData` | GDD 12 | `Art/`, `Prefabs/Heroes/`, `Prefabs/Enemies/` | Tay: Validate Hero Prefabs không báo lỗi | ◐ | Long Vương: `Art/Models/Heroes/LongVuong/CH_LongVuong.fbx` (low-poly 8k tam giác, rig Humanoid, 4 clip Idle/Attack/Spawn/Ultimate); chờ `Hero_Base` (A-07) để làm Variant · **→ A (A-07): Animator dùng `Art/Animations/Heroes/AC_Hero_Base.controller` (+ một Override Controller mỗi tướng); `HeroController` gọi qua `HeroVisual.Animator`: Trigger `Attack` (mỗi đòn, sát thương vẫn theo timer), `Ultimate` (khi `TryActivateUltimate()` thành công), `Spawn` (trong `Init`); Float `AttackSpeed` = tốc đánh hiện tại / `attacksPerSecond` gốc, chỉ đặt khi chỉ số đổi; `ResetState()` gọi `Animator.Rebind()`. Đề xuất ghi vào TEAM_ASSIGNMENT 3.1 #11 (chờ A duyệt)** |
 | C-09 | 11, 13 | VFX: đạn, nổ, Bỏng, Băng, Sét, Hào quang độ hiếm, Thiên thạch, Ultimate | GDD 6, 12 | `Prefabs/FX/` | Tay | ☐ | |
-| C-10 | 9 | Font TextMeshPro Dynamic có đủ dấu tiếng Việt | S10 | `Art/Fonts/` | Tay: mọi màn hình | ☐ | |
-| C-11 | 9–10 | Bố cục prefab HUD trận (theo hình HUD trong GDD mục 9) | S10 | `Prefabs/UI/` | Tay: 1920×1080 và 1366×768 | ☐ | |
+| C-10 | 9 | Font TextMeshPro Dynamic có đủ dấu tiếng Việt | S10 | `Art/Fonts/` | EM: đủ 146 ký tự có dấu; Tay: mọi màn hình | ☑ | Be Vietnam Pro Regular/SemiBold (OFL), `FA_*` Dynamic + Multi Atlas, mặc định trong TMP Settings (fallback LiberationSans); `Tools → Create Vietnamese Font Assets`; 6 EM `Tests/EditMode/UI` |
+| C-11 | 9–10 | Bố cục prefab HUD trận (theo hình HUD trong GDD mục 9) | S10 | `Prefabs/UI/`, `Editor/UI/` | EM: cấu trúc prefab; Tay: 1920×1080 và 1366×768 | ☑ | `Tools → Create HUD Layout` (`Editor/UI/`, chỉ tạo một lần) → `HUD_Match`, `DeckSlot`, `CooldownSlot`; 43 EM `Tests/EditMode/UI`; Sandbox `C_UI`; đã xem tay 1920×1080 và 1366×768 · **→ giao B**: bảng node → event trong mô tả PR |
 | C-12 | 17 | Bố cục prefab màn hình sảnh | S10 | `Prefabs/UI/` | Tay | ☐ | |
 | C-13 | 18–19 | `AudioManager` (Mixer Master/Music/SFX, pool 24, tối đa 4 bản cùng lúc), `MusicPlayer` | S11 | `Audio/` | PM: 100 quái chết không quá 4 âm thanh | ☐ | |
 | C-14 | 14, 19 | **UI thế giới** (`UI/World/`, Canvas động): `WorldHealthBar` (pool, gắn/gỡ theo `OnEnemySpawned/Despawned`, ẩn khi đầy máu, thanh to cho boss), `OffscreenWarning` (quái `Progress` ≥ 0.8, mũi tên rìa màn hình), `DamageNumberSpawner` (pool, ≤ 60 số cùng lúc), `HitFlash` (nháy trắng, MaterialPropertyBlock). Ngày 14: thanh máu + cảnh báo; ngày 19: số sát thương + nháy trắng. API 3.1 #9 | S10, S11 | `UI/World/` | PM: 100 quái, GC Alloc 0 B/frame khi thanh máu cập nhật; Tay: Profiler | ☐ | Chuyển từ B-14 (phiên bản 1.1) |
