@@ -135,7 +135,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | A-13 | 12 | `MeteorAimIndicator`, tầm 20 m, sát thương theo wave × k_màn, trúng quái Bay | S7 | `Player/Abilities/` | EM: sát thương wave 1/5/15 | ☐ | |
 | A-14 | 15 | `SaveData`, `SaveService` ghi an toàn | S9 | `Meta/Save/` | EM: lưu/đọc giống hệt; lần lưu đầu | ☐ | |
 | A-15 | 16 | Đọc lỗi → bak → tạo mới từ `StarterSettings` | S9 | `Meta/Save/` | EM: file hỏng, cả hai hỏng | ☐ | |
-| A-17 | 18–19, 23 | Cân bằng lần 1 và 2 (Excel → CSV → import), ghi lý do vào cột ghi chú | — | `Docs/Can bang…xlsx`, `Data/Balance/` | Tay: chơi 3 màn | ☐ | |
+| A-17 | 18–19, 23 | Cân bằng lần 1 và 2 (Excel → CSV → import), ghi lý do vào cột ghi chú | — | `Docs/root/Can bang…xlsx`, `Data/Balance/` | Tay: chơi 3 màn | ☐ | |
 
 ---
 
