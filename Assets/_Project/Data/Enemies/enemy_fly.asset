@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 107af02864df41040bc77f948b8fef03, type: 3}
-  m_Name: enemy_nhanh
+  m_Name: enemy_fly
   m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.EnemyData
-  id: enemy_nhanh
-  displayName: Nhanh
-  baseHP: 20
-  moveSpeed: 4.5
+  id: enemy_fly
+  displayName: E-Fly
+  baseHP: 32
+  moveSpeed: 3
   armor: 0
   magicResist: 0
-  flying: 0
+  flying: 1
   boss: 0
   goldReward: 10
   castleDamage: 2
-  prefab: {fileID: 2350700362298434101, guid: 0f79b4178f28fb548a16c146016b3dee, type: 3}
+  prefab: {fileID: 8090377211977855051, guid: 16e25f12d352f7640959923d2b970580, type: 3}
   icon: {fileID: 0}
