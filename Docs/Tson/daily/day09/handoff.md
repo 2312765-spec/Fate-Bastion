@@ -4,8 +4,8 @@
 
 ## 1. Việc đang chờ
 
-- Không còn chặn kỹ thuật cho T-05. Nhánh `feature/S06_A07` đã được tạo từ `origin/main` trong worktree riêng; chỉ commit các file A-07 đã rà soát, không đưa thay đổi khác trên `feature/S09_A14`.
-- Sau khi mở PR và merge/review, cập nhật trạng thái A-07 và tick TRACEABILITY theo quy trình nhóm.
+- Không còn chặn kỹ thuật cho T-05. PR #25 từ `feature/S06_A07` đã mở và đang chờ review/merge.
+- Sau khi merge, cập nhật trạng thái A-07 và tick TRACEABILITY theo quy trình nhóm.
 
 ## 2. Unity timeout
 

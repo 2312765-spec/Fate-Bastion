@@ -20,9 +20,8 @@
 - EditMode: **8/8 pass**. Lượt đầu 7/8 do fixture chưa expect log validation `OnValidate`; đã bổ sung `LogAssert.Expect` và chạy lại thành công.
 - PlayMode: **8/8 pass**; prewarm test enemies để lượt xác minh cuối không phát cảnh báo pool-growth.
 - Không có test timeout. Unity Console chỉ ghi cảnh báo WebSocket của MCP (`WebSocket is not initialised`), không có lỗi biên dịch.
-- Tạo nhánh `feature/S06_A07` từ `origin/main` trong worktree riêng; các file A-07 đã được cô lập, chưa commit/push/mở PR.
+- Đã commit `aedc080` và push nhánh `feature/S06_A07` từ `origin/main`; PR [#25](https://github.com/2312765-spec/Fate-Bastion/pull/25) đã mở, đang chờ review.
 
 ## Còn lại
 
-1. Rà soát diff cuối, commit/push nhánh `feature/S06_A07` và mở PR; không đưa thay đổi đang dirty khác của `feature/S09_A14` vào PR.
-2. Sau khi PR được merge/review, cập nhật trạng thái A-07 và tick TRACEABILITY theo quy trình nhóm.
+1. Chờ review/merge PR #25; sau merge, cập nhật trạng thái A-07 và tick TRACEABILITY theo quy trình nhóm.
