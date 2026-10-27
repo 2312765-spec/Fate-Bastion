@@ -59,7 +59,7 @@ namespace FateBastion.Tests.PlayMode.S2
         private IEnumerator ReachCastleOnce(float timeScale)
         {
             Time.timeScale = timeScale;
-            EnemyData data = _rig.CreateEnemy("enemy_nhanh", moveSpeed: 10f, castleDamage: 2);
+            EnemyData data = _rig.CreateEnemy("enemy_fast", moveSpeed: 10f, castleDamage: 2);
 
             _rig.Manager.RequestSpawn(data, 0, 1);
             float startTime = Time.time;
@@ -80,7 +80,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator KilledAndReachedSameFrame_CountsAsKilledOnly()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong", castleDamage: 1);
+            EnemyData data = _rig.CreateEnemy("enemy_normal", castleDamage: 1);
 
             // Spawned already at the end of the path; killed in the same frame, before EnemyManager updates.
             _rig.Manager.RequestSpawn(data, 0, 1, startDistance: PathLength);
@@ -95,7 +95,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Kill_ThreeLethalHitsSameFrame_RaisesEnemyKilledOnceWithGoldReward()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_giap", baseHP: 60f, goldReward: 10);
+            EnemyData data = _rig.CreateEnemy("enemy_armor", baseHP: 60f, goldReward: 10);
             _rig.Manager.RequestSpawn(data, 0, 1);
             EnemyController enemy = _rig.Manager.ActiveEnemies[0];
 
@@ -105,7 +105,7 @@ namespace FateBastion.Tests.PlayMode.S2
             yield return null;
 
             Assert.AreEqual(1, _rig.KilledCount);
-            Assert.AreEqual("enemy_giap", _rig.LastKilled.EnemyId);
+            Assert.AreEqual("enemy_armor", _rig.LastKilled.EnemyId);
             Assert.AreEqual(10, _rig.LastKilled.GoldReward);
             Assert.IsFalse(_rig.LastKilled.IsBoss);
             Assert.AreEqual(0, _rig.Manager.ActiveEnemies.Count, "returned to the pool immediately");
@@ -115,7 +115,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator TakeDamage_RaisesHealthChangedWithCurrentAndMax()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong", baseHP: 40f);
+            EnemyData data = _rig.CreateEnemy("enemy_normal", baseHP: 40f);
             _rig.Manager.RequestSpawn(data, 0, 1);
             EnemyController enemy = _rig.Manager.ActiveEnemies[0];
             float current = -1f, max = -1f;
@@ -133,7 +133,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator TakeDamage_MeleeHitOnFlyingEnemy_Ignored()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_bay", baseHP: 32f, flying: true);
+            EnemyData data = _rig.CreateEnemy("enemy_fly", baseHP: 32f, flying: true);
             _rig.Manager.RequestSpawn(data, 1, 1);
             EnemyController enemy = _rig.Manager.ActiveEnemies[0];
 
@@ -167,7 +167,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Move_EnemyFollowsPathAndProgressIncreases()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong", moveSpeed: 1f);
+            EnemyData data = _rig.CreateEnemy("enemy_normal", moveSpeed: 1f);
             _rig.Manager.RequestSpawn(data, 0, 1);
             EnemyController enemy = _rig.Manager.ActiveEnemies[0];
 
@@ -181,7 +181,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Pool_AfterPrewarm_NoNewInstances()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _rig.Manager.Prewarm(data, 5);
             int instancesAfterPrewarm = _rig.Root.transform.childCount;
             Assert.AreEqual(5, instancesAfterPrewarm);
@@ -200,10 +200,10 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Pool_BeyondPrewarm_GrowsAndWarnsOnce()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _rig.Manager.Prewarm(data, 1);
 
-            LogAssert.Expect(LogType.Warning, new Regex("enemy_thuong"));
+            LogAssert.Expect(LogType.Warning, new Regex("enemy_normal"));
             _rig.Manager.RequestSpawn(data, 0, 0);
             _rig.Manager.RequestSpawn(data, 0, 0);
             _rig.Manager.RequestSpawn(data, 0, 0);
@@ -230,7 +230,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator OverCap_ExtraRequestsQueuedThenReleasedAsSlotsFree()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             int cap = _rig.Settings.MaxActiveEnemies;
 
             for (int i = 0; i < cap + 10; i++) _rig.Manager.RequestSpawn(data, 0, 1);
@@ -251,7 +251,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator ClearAll_ReturnsEverythingAndEmptiesQueue_NoKillOrCastleEvents()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             int cap = _rig.Settings.MaxActiveEnemies;
             for (int i = 0; i < cap + 5; i++) _rig.Manager.RequestSpawn(data, 0, 1);
 

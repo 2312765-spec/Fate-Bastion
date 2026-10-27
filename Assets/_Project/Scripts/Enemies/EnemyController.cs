@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using FateBastion.Core;
 using FateBastion.Combat;
@@ -21,9 +22,12 @@ namespace FateBastion.Enemies
 
         private readonly Health _health = new Health();
         private readonly PathFollower _follower = new PathFollower();
+        private readonly BossSummonAbility _summon = new BossSummonAbility();
         private StatusEffectController _status;
         private EnemyManager _owner;
         private Transform _transform;
+        private BossSummonSettings _summonSettings;
+        private int _pathIndex;
 
         public EnemyData Data { get; private set; }
 
@@ -54,20 +58,27 @@ namespace FateBastion.Enemies
         }
 
         /// <summary>Called once by EnemyManager right after the instance is created for the pool.</summary>
-        internal void Initialize(EnemyManager owner, CombatSettings combatSettings)
+        internal void Initialize(EnemyManager owner, CombatSettings combatSettings, BossSummonSettings bossSummonSettings)
         {
             _owner = owner;
             _transform = transform;
+            _summonSettings = bossSummonSettings;
             _status = new StatusEffectController(combatSettings);
         }
 
         /// <summary>Called by EnemyManager when taken from the pool.</summary>
-        internal void Spawn(EnemyData data, IEnemyPath path, float maxHP, int wave, float startDistance)
+        internal void Spawn(EnemyData data, IEnemyPath path, int pathIndex, float maxHP, int wave, float startDistance)
         {
             Data = data;
             Wave = wave;
+            _pathIndex = pathIndex;
             _follower.Reset(path, startDistance);
             _health.Reset(maxHP);
+
+            // Bosses summon while alive; other enemies never hold a summon timer.
+            if (data.boss) _summon.Begin(_summonSettings);
+            else _summon.Clear();
+
             ResetState();
             UpdateTransform();
         }
@@ -82,12 +93,16 @@ namespace FateBastion.Enemies
         internal void OnDespawn()
         {
             OnHealthChanged = null;
+            _summon.Clear();
             _status?.ResetState(IsBoss);
             _health.TryMarkDead();
         }
 
-        /// <summary>One scaled-time step: burn, then movement. Returns true when the enemy reached the Castle this step.</summary>
-        internal bool Tick(float deltaTime)
+        /// <summary>
+        /// One scaled-time step: burn, then movement, then any boss summons. Returns true when the enemy reached
+        /// the Castle this step. Summon requests are appended to summonSink and spawned by EnemyManager.
+        /// </summary>
+        internal bool Tick(float deltaTime, List<SpawnRequest> summonSink)
         {
             if (!IsAlive) return false;
 
@@ -101,8 +116,21 @@ namespace FateBastion.Enemies
             bool reachedEnd = _follower.Step(Data.moveSpeed, _status.SpeedMultiplier, deltaTime);
             UpdateTransform();
 
+            // A boss that reaches the Castle stops summoning that same step.
+            if (!reachedEnd && summonSink != null) CollectSummons(deltaTime, summonSink);
+
             // TryMarkDead fails if the enemy was killed first, so "killed and reached" counts as killed (S2).
             return reachedEnd && _health.TryMarkDead();
+        }
+
+        /// <summary>Appends Count summon requests (same path and wave, starting at the boss's distance) when due.</summary>
+        private void CollectSummons(float deltaTime, List<SpawnRequest> sink)
+        {
+            if (!_summon.IsActive) return;
+
+            int count = _summon.Tick(deltaTime);
+            for (int i = 0; i < count; i++)
+                sink.Add(new SpawnRequest(_summon.SummonEnemy, _pathIndex, Wave, _follower.Distance));
         }
 
         public void TakeDamage(in DamageInfo info)

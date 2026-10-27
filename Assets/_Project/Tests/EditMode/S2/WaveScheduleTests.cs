@@ -20,9 +20,9 @@ namespace FateBastion.Tests.EditMode.S2
         public void SetUp()
         {
             _normal = ScriptableObject.CreateInstance<EnemyData>();
-            _normal.id = "enemy_thuong";
+            _normal.id = "enemy_normal";
             _fast = ScriptableObject.CreateInstance<EnemyData>();
-            _fast.id = "enemy_nhanh";
+            _fast.id = "enemy_fast";
             _wave = ScriptableObject.CreateInstance<WaveData>();
             _schedule = new WaveSchedule();
             _output = new List<SpawnRequest>();

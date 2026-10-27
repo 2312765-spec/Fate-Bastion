@@ -29,7 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8abceb5eaeb0f7b4baf569c36cf48c91, type: 2}
   - {fileID: 11400000, guid: 08b0c47ff6ccd9d41827c63f79642be7, type: 2}
   - {fileID: 11400000, guid: 6f6c384c85acd494f840c69c93bcf28b, type: 2}
-  displayName: "M\xE0n 1"
+  displayName: Level 1
   enemyTypesPreview:
   - {fileID: 11400000, guid: c52dcfc465dd50045be7f6b62f4a49b7, type: 2}
   - {fileID: 11400000, guid: 0f69a40db9ee77e44a58e00d208ba225, type: 2}
