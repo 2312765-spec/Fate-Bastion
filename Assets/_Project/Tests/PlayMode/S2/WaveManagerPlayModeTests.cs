@@ -57,7 +57,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Wave_AllSpawnedAndKilled_FinishesOnce()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(data, 3, interval: 0.1f))), null);
 
             _waves.StartWave(1);
@@ -73,7 +73,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Wave_KilledBeforeScheduleEnds_NotFinishedEarly()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(data, 2, interval: 0.5f))), null);
 
             _waves.StartWave(1);
@@ -91,7 +91,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Wave_150EnemiesOverCap_NeverExceeds100AndFinishes()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(data, 150))), null);
 
             _waves.StartWave(1);
@@ -119,7 +119,7 @@ namespace FateBastion.Tests.PlayMode.S2
         {
             // Stands in for BossSummonAbility (A-05): summons are requested with the boss's wave number.
             EnemyData boss = _rig.CreateEnemy("enemy_boss", boss: true);
-            EnemyData fast = _rig.CreateEnemy("enemy_nhanh");
+            EnemyData fast = _rig.CreateEnemy("enemy_fast");
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(boss, 1))), null);
 
             _waves.StartWave(1);
@@ -140,7 +140,7 @@ namespace FateBastion.Tests.PlayMode.S2
         public IEnumerator Wave_TimeScale2_SpawnsInHalfTheRealTime()
         {
             Time.timeScale = 2f;
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(data, 1, startDelay: 1f))), null);
 
             _waves.StartWave(1);
@@ -153,7 +153,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator TwoWavesOverlap_EachFinishesSeparately()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _waves.Init(_rig.CreateLevel(
                 _rig.CreateWave(Group(data, 1)),
                 _rig.CreateWave(Group(data, 1))), null);
@@ -178,7 +178,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator StopAndClear_MidWave_RemovesEnemiesAndNeverFinishes()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(data, 5, interval: 0.2f))), null);
 
             _waves.StartWave(1);
@@ -197,8 +197,8 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Init_PrewarmsPoolFromLevelWaves()
         {
-            EnemyData normal = _rig.CreateEnemy("enemy_thuong");
-            EnemyData fast = _rig.CreateEnemy("enemy_nhanh");
+            EnemyData normal = _rig.CreateEnemy("enemy_normal");
+            EnemyData fast = _rig.CreateEnemy("enemy_fast");
             _waves.Init(_rig.CreateLevel(
                 _rig.CreateWave(Group(normal, 4)),
                 _rig.CreateWave(Group(normal, 7), Group(fast, 3))), null);
@@ -211,7 +211,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Init_SetsHealthScalingFromLevel()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong", baseHP: 40f);
+            EnemyData data = _rig.CreateEnemy("enemy_normal", baseHP: 40f);
             LevelData level = _rig.CreateLevel(_rig.CreateWave(Group(data, 1)), _rig.CreateWave(Group(data, 1)));
             level.hpGrowth = 1.12f;
             level.hpMultiplier = 1.3f;
@@ -226,7 +226,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator StartWave_OutOfRange_LogsErrorAndDoesNothing()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong");
+            EnemyData data = _rig.CreateEnemy("enemy_normal");
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(data, 1))), null);
 
             LogAssert.Expect(LogType.Error, new Regex("wave 2"));
