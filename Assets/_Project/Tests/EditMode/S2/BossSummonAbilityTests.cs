@@ -15,7 +15,7 @@ namespace FateBastion.Tests.EditMode.S2
         public void SetUp()
         {
             _enemy = ScriptableObject.CreateInstance<EnemyData>();
-            _enemy.id = "enemy_nhanh";
+            _enemy.id = "enemy_fast";
             _settings = ScriptableObject.CreateInstance<BossSummonSettings>();
             _settings.Configure(_enemy, 3, 1f);
             _ability = new BossSummonAbility();

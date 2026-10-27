@@ -52,7 +52,7 @@ namespace FateBastion.Tests.PlayMode.S2
         public IEnumerator Boss_Alive_SummonsBatchEveryInterval()
         {
             EnemyData boss = _rig.CreateEnemy("enemy_boss", boss: true);
-            EnemyData fast = _rig.CreateEnemy("enemy_nhanh");
+            EnemyData fast = _rig.CreateEnemy("enemy_fast");
             _rig.Manager.SetBossSummonSettings(_rig.CreateBossSummonSettings(fast, count: 3, intervalSeconds: 0.2f));
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(boss, 1))), null);
 
@@ -69,7 +69,7 @@ namespace FateBastion.Tests.PlayMode.S2
         public IEnumerator Boss_SummonsKeepTheWaveOpen()
         {
             EnemyData boss = _rig.CreateEnemy("enemy_boss", boss: true);
-            EnemyData fast = _rig.CreateEnemy("enemy_nhanh");
+            EnemyData fast = _rig.CreateEnemy("enemy_fast");
             _rig.Manager.SetBossSummonSettings(_rig.CreateBossSummonSettings(fast, count: 3, intervalSeconds: 0.2f));
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(boss, 1))), null);
             var finished = new System.Collections.Generic.List<int>();
@@ -88,7 +88,7 @@ namespace FateBastion.Tests.PlayMode.S2
         public IEnumerator Boss_Killed_StopsSummoning()
         {
             EnemyData boss = _rig.CreateEnemy("enemy_boss", boss: true);
-            EnemyData fast = _rig.CreateEnemy("enemy_nhanh");
+            EnemyData fast = _rig.CreateEnemy("enemy_fast");
             _rig.Manager.SetBossSummonSettings(_rig.CreateBossSummonSettings(fast, count: 3, intervalSeconds: 0.25f));
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(boss, 1))), null);
 
@@ -104,7 +104,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Flying_MeleeIgnored_ProjectileDamageApplies()
         {
-            EnemyData flying = _rig.CreateEnemy("enemy_bay", baseHP: 100f, flying: true);
+            EnemyData flying = _rig.CreateEnemy("enemy_fly", baseHP: 100f, flying: true);
             _waves.Init(_rig.CreateLevel(_rig.CreateWave(Group(flying, 1, pathIndex: 1))), null);
 
             _waves.StartWave(1);
