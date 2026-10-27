@@ -96,9 +96,8 @@ namespace FateBastion.Tests.EditMode.S6
                 ": set a positive damage multiplier for every rarity in HeroStatsSettings.");
             serialized.ApplyModifiedPropertiesWithoutUndo();
             _hero.rarity = Rarity.Rare;
-            _stats.Initialize(_hero);
 
-            Assert.Throws<InvalidOperationException>(() => _ = _stats.Damage);
+            Assert.Throws<InvalidOperationException>(() => _stats.Initialize(_hero));
         }
 
         [Test]

@@ -9,5 +9,5 @@
 
 ## 2. Unity timeout
 
-- Không có timeout testing trong phiên này; EditMode và PlayMode đều hoàn tất.
+- Có một lần EditMode không khởi chạy trong init timeout mặc định 15 giây (0 test bắt đầu); lần chạy lại với init timeout 120 giây hoàn tất 8/8. PlayMode hoàn tất 8/8. Tổng thời gian/số lần không đạt ngưỡng handoff khoảng 3 lần và >180 giây, nên không còn job cần tiếp tục.
 - Nếu testing cuối ngày gặp khoảng 3 timeout cùng job với tổng chờ >180 giây: dừng poll/retry, ghi job id, từng thời lượng/tổng chờ, tiến độ cuối, lệnh tiếp tục và tiêu chí pass ở đây và `Docs/Tson/handoff.md`; sau đó chuyển sang việc không cần Unity.

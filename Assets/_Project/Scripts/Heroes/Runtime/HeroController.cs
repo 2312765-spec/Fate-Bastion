@@ -75,6 +75,8 @@ namespace FateBastion.Heroes
             catch (InvalidOperationException exception)
             {
                 Data = null;
+                _stats.Clear();
+                _targeting.Clear();
                 Debug.LogError(exception.Message, this);
                 return;
             }

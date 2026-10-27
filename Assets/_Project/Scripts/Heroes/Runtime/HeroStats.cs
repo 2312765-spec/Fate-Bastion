@@ -23,6 +23,7 @@ namespace FateBastion.Heroes
             if (data == null) throw new ArgumentNullException(nameof(data));
             if (_settings == null) throw new InvalidOperationException($"{name}: HeroStatsSettings is not assigned.");
 
+            _settings.GetDamageMultiplier(data.rarity);
             _data = data;
             ResetLevelMultipliers();
         }

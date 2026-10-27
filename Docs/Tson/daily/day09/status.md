@@ -17,10 +17,10 @@
 - P1: đã tạo `HeroStatsSettings`, `HeroStats`, `TargetingModule`, `HeroController` và ba test fixture cho EditMode/PlayMode.
 - `dotnet build Fate-Bastion.slnx --no-restore`: thành công, 0 warning, 0 error.
 - P2 qua Unity MCP: đã tạo/gán `HeroStatsSettings.asset`, tạo `Hero_Base` với `HeroStats`, `HeroController`, `CapsuleCollider`, `ModelRoot`, và tạo scene `A_Heroes`.
-- EditMode: **8/8 pass**. Lượt đầu 7/8 do fixture chưa expect log validation `OnValidate`; đã bổ sung `LogAssert.Expect` và chạy lại thành công.
+- EditMode: **8/8 pass**. Lượt đầu 7/8 do fixture chưa expect log validation `OnValidate`; đã bổ sung `LogAssert.Expect`. Một lần chạy tiếp theo không khởi chạy trong init timeout mặc định 15 giây (0 test bắt đầu); tăng lên 120 giây thì chạy thành công.
 - PlayMode: **8/8 pass**; prewarm test enemies để lượt xác minh cuối không phát cảnh báo pool-growth.
-- Không có test timeout. Unity Console chỉ ghi cảnh báo WebSocket của MCP (`WebSocket is not initialised`), không có lỗi biên dịch.
-- Đã commit `aedc080` và push nhánh `feature/S06_A07` từ `origin/main`; PR [#25](https://github.com/2312765-spec/Fate-Bastion/pull/25) đã mở, đang chờ review.
+- Một lần init timeout 15 giây, chưa đủ ngưỡng handoff khoảng 3 lần và tổng chờ >180 giây; không có job bị bỏ dở. Unity Console chỉ ghi cảnh báo WebSocket của MCP (`WebSocket is not initialised`), không có lỗi biên dịch.
+- Nhánh `feature/S06_A07` tạo từ `origin/main`; PR [#25](https://github.com/2312765-spec/Fate-Bastion/pull/25) đang mở và chờ review.
 
 ## Còn lại
 
