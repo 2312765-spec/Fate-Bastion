@@ -25,3 +25,4 @@
 - Newtonsoft: `FateBastion.Meta.asmdef` có `overrideReferences:false` nên DLL của `com.unity.nuget.newtonsoft-json` được auto-referenced – **không sửa asmdef chung**; đã compile thử: **OK** (S9 286/286 EM pass, xem `status.md`).
 - **Tài liệu ngày 7 nằm trên cả 4 nhánh** (cùng nội dung) để mỗi PR tự mô tả đủ ngày 7; nhánh chứa việc gì xem cột `Nhánh` ở bảng trên.
 - **A-05 đã lắp sẵn trong Unity:** `Data/Settings/BossSummonSettings.asset` (Fast, 3 con, 12 s) + `_bossSummonSettings` trong `A_Enemies.unity` – không cần tạo tay. Chỉ còn prefab Bay/boss của C.
+- **Việc phát sinh ngoài phạm vi ngày 7:** đổi tên asset/prefab quái sang id tiếng Anh ở nhánh riêng `refactor/enemy-asset-names` (từ `main`), đã merge vào 3 nhánh gameplay trước khi mở PR; `LevelBalanceDataTests` đã dùng `enemy_normal.asset`. Chi tiết + danh sách file ở `status.md` mục "Việc phát sinh".
