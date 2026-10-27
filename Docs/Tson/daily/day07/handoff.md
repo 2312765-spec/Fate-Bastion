@@ -27,12 +27,12 @@
 ### A-05 / A-06 → đã lắp sẵn, còn 1 việc cho **C**
 
 Đã xong (không cần ai làm lại):
-1. **Asset `BossSummonSettings`:** có ở `Assets/_Project/Data/Settings/BossSummonSettings.asset` — `Summon Enemy` = `enemy_nhanh`, `Count` = `3`, `Interval Seconds` = `12`.
+1. **Asset `BossSummonSettings`:** có ở `Assets/_Project/Data/Settings/BossSummonSettings.asset` — `Summon Enemy` = `enemy_fast`, `Count` = `3`, `Interval Seconds` = `12`.
 2. **Đã gắn vào `EnemyManager`** trong `A_Enemies.unity` qua `_bossSummonSettings` (cách khác lúc runtime: `_enemyManager.SetBossSummonSettings(asset)`).
-3. **Quái Bay:** `enemy_bay.asset` có `flying = 1`; Melee (`CanHitFlying=false`) bỏ qua có test. Đường bay chọn bằng `pathIndex = 1` của `LevelPaths`.
+3. **Quái Bay:** `enemy_fly.asset` có `flying = 1`; Melee (`CanHitFlying=false`) bỏ qua có test. Đường bay chọn bằng `pathIndex = 1` của `LevelPaths`.
 
 Còn lại:
-4. **C — prefab quái Bay/boss:** prefab cần gắn `EnemyController`, rồi A trỏ `EnemyData.prefab` của `enemy_bay` / `enemy_boss` vào prefab đó.
+4. **C — prefab quái Bay/boss:** prefab cần gắn `EnemyController`, rồi A trỏ `EnemyData.prefab` của `enemy_fly` / `enemy_boss` vào prefab đó.
 5. `.meta` cho file mới: Unity tự sinh khi mở Editor — nhớ commit kèm.
 
 ### `IStarterSaveFactory` là STUB
@@ -40,7 +40,7 @@ Còn lại:
 
 ## 3. Việc cần người dùng (chủ repo) làm
 
-1. **Chạy lại test S2** sau khi hoàn tất việc đổi tên asset đang dở (`enemy_thuong` → `enemy_normal`, …) — hiện chỉ còn 1 test đỏ vì lý do này, không phải lỗi code ngày 7. Editor: `D:\Unity\Editor\6000.3.25f1\Editor\Unity.exe` (theo `ProjectVersion.txt`).
+1. **Chạy lại EditMode + PlayMode** trên 3 nhánh gameplay sau khi tích hợp `refactor/enemy-asset-names` (test đã sửa theo id mới). Lượt chạy lại bị rớt cầu nối agent ↔ Editor nên chưa có số liệu mới; trước tích hợp: S9 286/286 EM, S2 297/298 EM + 50/50 PM. Editor: `D:\Unity\Editor\6000.3.25f1\Editor\Unity.exe` (theo `ProjectVersion.txt`).
 2. **Newtonsoft: đã ổn** — S9 compile và 286 EM pass; **không cần sửa `FateBastion.Meta.asmdef`**.
 3. **Mở PR** cho 4 nhánh (`docs/agent-tools`, `feature/S02_A05`, `feature/S02_A06`, `feature/S09_A14`). A-05/A-06 chạm `TRACEABILITY.md`/vùng dùng chung → cần PR 3 người.
 4. **Bảng Debug F1 (B-16)** sẽ gọi `SaveService.Delete()` / `Save()` – A đã để sẵn API.
@@ -50,6 +50,6 @@ Còn lại:
 |---|---|---|
 | ~~NewtonSoft chưa được reference trong `FateBastion.Meta`~~ | — | **Đã hết:** S9 compile + 286 EM pass |
 | ~~Chưa mở Unity nên chưa biết code có compile/test xanh~~ | — | **Đã kiểm:** compile 0 lỗi; S9 286/286 EM; S2 297/298 EM + 50/50 PM |
-| Có thay đổi đổi tên asset chưa commit (`enemy_thuong` → `enemy_normal`, …) làm 1 test S2 đỏ | Trung bình | Hoàn tất đổi tên rồi cập nhật đường dẫn trong `LevelBalanceDataTests`; không trộn vào PR ngày 7 |
+| ~~Có thay đổi đổi tên asset chưa commit (`enemy_thuong` → `enemy_normal`, …) làm 1 test S2 đỏ~~ | — | **Đã hết:** nhánh `refactor/enemy-asset-names` (2 commit, GUID giữ nguyên) merge vào 3 nhánh gameplay; `LevelBalanceDataTests` đã dùng `enemy_normal.asset`; còn phải chạy lại test để xác nhận |
 | `IStarterSaveFactory` là stub → save mới chưa có tướng/ngọc | Trung bình | Gỡ khi B-11 (StarterSettings) xong |
 | Boss cần prefab Bay (C) mới hiện hình | Thấp | Asset + code đã xong; chờ C |
