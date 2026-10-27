@@ -46,10 +46,10 @@ namespace FateBastion.Tests.EditMode.S2
         public void Level3_Wave15_NormalEnemyHp_MatchesSheetGrowthAndMultiplier()
         {
             LevelData data = LoadLevel(3);
-            var normal = AssetDatabase.LoadAssetAtPath<EnemyData>($"{EnemiesPath}enemy_thuong.asset");
-            Assert.IsNotNull(normal, "thiếu enemy_thuong.asset");
+            var normal = AssetDatabase.LoadAssetAtPath<EnemyData>($"{EnemiesPath}enemy_normal.asset");
+            Assert.IsNotNull(normal, "thiếu enemy_normal.asset");
 
-            Assert.AreEqual(40f, normal.baseHP, 1e-4f, "enemy_thuong.baseHP theo enemies.csv");
+            Assert.AreEqual(40f, normal.baseHP, 1e-4f, "enemy_normal.baseHP theo enemies.csv");
             float expected = 40f * Mathf.Pow(1.12f, WaveCount - 1) * 1.3f;
             Assert.AreEqual(expected, EnemyHealthFormula.Calculate(normal.baseHP, data.hpGrowth, WaveCount, data.hpMultiplier), 1e-1f);
         }

@@ -240,7 +240,7 @@ namespace FateBastion.Tests.PlayMode.S2
         [UnityTest]
         public IEnumerator Endless_WavesBeyondLast_RepeatLoopBlockWithRealWaveNumbers()
         {
-            EnemyData data = _rig.CreateEnemy("enemy_thuong", baseHP: 40f);
+            EnemyData data = _rig.CreateEnemy("enemy_normal", baseHP: 40f);
             LevelData level = _rig.CreateLevel(
                 _rig.CreateWave(Group(data, 1)),
                 _rig.CreateWave(Group(data, 2)),
