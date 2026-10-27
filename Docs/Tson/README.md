@@ -53,9 +53,10 @@ Docs/Tson/
 6. **Handoff chỉ tính xong khi đủ 5 điều** ở `TEAM_ASSIGNMENT.md` mục 4.1 (merge main + test xanh, mục "Cách dùng", "Hướng dẫn lắp trong Unity", scene Sandbox chạy được, người nhận xác nhận). Việc chờ người khác phải nằm trong `handoff.md`.
 7. **Không sửa vùng của B/C** (`TEAM_ASSIGNMENT.md` mục 2). Cần thì mở issue `[Cần <A/B/C>]`, đồng thời dùng stub đúng tên API ở `TEAM_ASSIGNMENT.md` mục 3.1, đánh dấu `// STUB:`.
 8. **Cập nhật đủ 3 chỗ khi có thay đổi:** file trong ngày (`daily/dayNN`), file tổng thể (`status.md`/`handoff.md`), và tick `TRACEABILITY.md` mục 4 (dòng của A).
-9. **MCP timeout – không chờ Unity liên tục:** gọi tool MCP (unityMCP/UnitySkills) mà **timeout từ 3 lần trở lên** thì hiểu là Unity đang xử lý việc gì đó rất lâu (import, domain reload, chạy test, build) — **bỏ lượt đó và chuyển sang việc khác không cần Unity** (P1); quay lại sau, không ngồi chờ.
-   - Trước khi bỏ, ghi lại **job id** + **trạng thái cuối** nhận được (số test đã xong/tổng, tên test đang chạy) để lát nữa hỏi lại đúng job, không chạy lại từ đầu.
-   - Nếu **việc còn lại trong ngày chỉ là chạy test** mà vẫn timeout nhiều lần → ghi vào **`daily/dayNN/handoff.md`** và **`handoff.md`** (mục việc cần chạy tiếp): job id, trạng thái cuối, lệnh cần chạy lại, điều kiện coi là xong. Khi Unity hết bận thì làm tiếp theo ghi chú đó rồi cập nhật `status.md` của ngày — **không** coi timeout là test đỏ, cũng **không** ghi "đã chạy xong".
+9. **MCP timeout – ngưỡng chờ và handoff:** thao tác Unity thông thường (ví dụ thêm component hoặc vào Play Mode) có thể thực hiện trực tiếp; riêng tác vụ lâu như chạy test/build/import phải theo dõi thời gian chờ cho cùng một job.
+   - Nếu cùng một job timeout khoảng **3 lần** và tổng thời gian chờ đã vượt **180 giây** (ví dụ các lượt chờ 60 s + 90 s + lượt timeout tiếp theo), dừng poll/retry job đó; không khởi chạy lại test từ đầu. Chuyển sang việc P1 không cần Unity.
+   - Trước khi dừng, ghi lại **job id**, thời lượng từng lượt và tổng thời gian chờ, trạng thái/kết quả cuối nhận được (số test xong/tổng, test đang chạy nếu có), lệnh hoặc cách tiếp tục chính xác, và điều kiện xác nhận hoàn tất. Nếu chưa có job id hoặc tiến độ thì ghi rõ "chưa nhận được", không tự suy đoán.
+   - Nếu phần còn lại trong ngày chỉ là test hoặc tác vụ Unity đang timeout, ghi handoff vào **`daily/dayNN/handoff.md`** và **`Docs/Tson/handoff.md`**, rồi làm việc không cần Unity khác. Khi Unity/job sẵn sàng mới tiếp tục đúng job đã ghi; cập nhật `daily/dayNN/status.md` sau đó. Timeout không phải test fail và không được ghi là đã chạy xong.
 
 ---
 
