@@ -1,6 +1,6 @@
 # Bàn giao – Ngày 9 – 18/10/2026
 
-> Được cập nhật bổ sung ngày 27/10/2026. Chỉ ghi việc thực sự bị chặn; timeout chưa xảy ra trong phiên này.
+> Được cập nhật bổ sung ngày 27/10/2026. Có một lần init timeout ngắn đã khắc phục; không còn job bị bỏ dở.
 
 ## 1. Việc đang chờ
 
