@@ -11,7 +11,8 @@
   - `Assets/_Project/Scenes/Sandbox/A_Save.unity` (+ `.meta`): Camera + Directional Light + `Save Sandbox` (gắn `SaveSandboxDemo`).
   - **Đã mở trong Editor:** scene load OK, hierarchy đúng 3 root (`Main Camera`, `Directional Light`, `Save Sandbox` với component `SaveSandboxDemo`); compile sạch (`last_compile_finished`, domain reload xong), Console không có error.
   - **Đã Play thử:** chạy ~4 s không exception; demo tạo thư mục `C:\Users\admin\AppData\LocalLow\DefaultCompany\My project\SandboxSave` (tức `Load()` → `CreatedNew` chạy đúng, ghi vào `persistentDataPath/SandboxSave`, không đụng save thật).
-- Cập nhật `Docs/Tson/{plan,status,handoff}.md` cho T-04 (trạng thái bàn giao + checklist 4.1).
+- **T-04e (☑) – chạy lại test sau tích hợp rename:** `feature/S09_A14` **299/299 EM + 45/45 PM**; `feature/S02_A06` **298/298 EM + 50/50 PM** (chi tiết ở mục Test).
+- Cập nhật `Docs/Tson/{plan,status,handoff}.md` cho T-04 (trạng thái bàn giao + checklist 4.1) và thêm **luật 9 – MCP timeout** vào `README.md`.
 
 ## Test
 
@@ -19,16 +20,16 @@
 - **PlayMode `FateBastion.Tests.PlayMode` trên `feature/S09_A14`: 45/45 pass**, 0 fail, 0 skip (9,2 s) — job `d0b86b63452c4ae684406d3279ad40a9`.
 - **EditMode toàn Editor (gồm cả test của package):** `1912` test, **1840 pass**, `3` fail, `69` skip (751 s).
   - **Cả 3 test fail đều thuộc package `com.besty.unity-skills`** (`UnitySkills.Tests.Core.*`: `DryRunPolicyBatchTests`, `EditorUndoRedoTests`, `SkillValidationTests`) — không có test `FateBastion.*` nào đỏ; 3 fail kia là của công cụ, không sửa trong repo.
+- **EditMode + PlayMode `FateBastion.Tests` trên `feature/S02_A06` (sau tích hợp `refactor/enemy-asset-names`): EditMode 298/298 pass** (96,4 s, job `7e3ee7cea45e4cb3a9b6f4d290ed8cdb`) **+ PlayMode 50/50 pass** (10,4 s, job `f9c0653071824babab00f5e38cba3321`) — 0 fail, 0 skip.
 - Số liệu cũ (đo trước tích hợp, ghi ở `daily/day07/status.md`): S9 286/286 EM, S2 297/298 EM + 50/50 PM. Số hôm nay khác vì đã gộp nhánh đổi tên + test phát sinh; PM 45 là của riêng nhánh S9 (5 PM mới của A-05/A-06 nằm trên nhánh S02).
-- **Chưa chạy:** EditMode + PlayMode của `feature/S02_A06` sau tích hợp rename.
+- **Không còn lượt test nào bị treo:** cả 4 lượt EM/PM của 2 nhánh đều có kết quả thật.
 
 ## Chưa xong / dời sang bước sau
 
-1. **T-04e (◐):** `feature/S09_A14` đã xanh **299/299 EM + 45/45 PM**; còn **EditMode + PlayMode trên `feature/S02_A06`** sau tích hợp rename. Xem mục 5 `handoff.md`.
-2. **T-04c (☑):** `A_Save.unity` đã mở + Play thử trong Editor; nếu sau này sửa scene thì nhớ commit lại `.meta`.
-3. **T-04d:** B xác nhận "Đã thử, dùng được" (4.1 #5) — hiện là điều kiện duy nhất còn thiếu ngoài PR.
-4. **Mở PR** `feature/S09_A14`; dán mục 2.1 + 2.2 của `handoff.md` vào mô tả.
-5. **Tick `TRACEABILITY.md`** A-14/A-15 (vùng khóa, PR 3 người).
+1. **T-04d:** B xác nhận "Đã thử, dùng được" (4.1 #5) — vẫn đang chờ B.
+2. **Đã mở PR #23** cho `feature/S09_A14`; mục 2.1 + 2.2 của `handoff.md` nằm trong mô tả PR. PR chưa merge.
+3. **Đã mở PR #21, #22 và #24** cho `docs/agent-tools`, `feature/S02_A06` và `feature/S02_A05`. PR #22 chứa lịch sử A-05; thứ tự merge đề xuất để tránh lặp diff là #21 → #24 → #22 → #23.
+4. **Tick `TRACEABILITY.md`** A-14/A-15 và A-05/A-06 sau khi PR tương ứng merge; vùng dùng chung cần đủ 3 người duyệt.
 
 ## Điểm lệch / ghi chú
 
