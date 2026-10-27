@@ -14,7 +14,7 @@
 | S2 – Quái và Wave | A-04, A-05, A-06 | ☑ | A-04 xong; **A-05 (Bay + boss gọi con)** và **A-06 (hpMultiplier + Vô tận)** xong ngày 7 — compile OK, 297/298 EM + 50/50 PM (đo trước khi tích hợp nhánh đổi tên asset; test đã sửa theo id mới, chờ chạy lại) |
 | S6 – Kỹ năng & Ultimate | A-08, A-09, A-10 | ☐ | Chỉ có `SkillData` + `PassiveTrigger`; `Heroes/Runtime` trống; `Skills/` chưa có `SkillRunner` |
 | S7 – Hào quang & Thiên thạch | A-11, A-12, A-13 | ☐ | `Player/Abilities/` trống; `CancelStack` (C, Core) đã có sẵn để dùng |
-| S9 – Lưu trữ | A-14, A-15 | ☑ | Xong ngày 7 (compile OK, 286/286 EM): `SaveData`, `SaveService`, `SaveSanitizer`; `IStarterSaveFactory` là stub chờ B-11 |
+| S9 – Lưu trữ | A-14, A-15 | ☑ | Xong ngày 7 (compile OK; **299/299 EM** toàn nhánh, đo lại sau tích hợp rename): `SaveData`, `SaveService`, `SaveSanitizer`; `IStarterSaveFactory` là stub chờ B-11 |
 | Cân bằng | A-17 | ☐ | Chưa bắt đầu (cần game chơi được) |
 
 **Tổng:** A còn nợ **A-07, A-08…A-13, A-17** (8 việc). S1/S2/S9 xong (đã compile + test xanh); S6/S7 chưa bắt đầu.
@@ -58,8 +58,8 @@
 ### S9 – Lưu trữ (A)
 - ☑ **A-14/A-15:** `Meta/Save/` có `SaveData`, `SaveSettings`, `SaveService`, `SaveSanitizer`, `IStarterSaveFactory` (STUB chờ B-11).
 - Ghi an toàn `save.tmp` → `File.Replace`(json,bak) / `File.Move` (lần đầu); đọc `save.json` → `save.bak` → tạo mới; `Load()` trả `SaveLoadResult{Data,Kind,Error}` (không throw).
-  - **Bằng chứng:** `13` EM (`SaveServiceTests`, `SaveSanitizerTests`) — **đã chạy, pass**; toàn bộ EditMode của nhánh `feature/S09_A14` 286/286.
-- ◐ **T-04 (bàn giao S9 cho B):** hồ sơ "Cách dùng" + "Hướng dẫn lắp trong Unity" ở `daily/day08/handoff.md`; Sandbox `Scripts/Meta/Sandbox/SaveSandboxDemo.cs` + `Scenes/Sandbox/A_Save.unity` (soạn tay, **chưa mở trong Unity**). Chờ B xác nhận (4.1 #5) và PR.
+  - **Bằng chứng:** `13` EM (`SaveServiceTests`, `SaveSanitizerTests`) — **đã chạy, pass**; toàn bộ EditMode của nhánh `feature/S09_A14` **299/299** (chạy lại sau tích hợp rename).
+- ◐ **T-04 (bàn giao S9 cho B):** hồ sơ "Cách dùng" + "Hướng dẫn lắp trong Unity" ở `daily/day08/handoff.md`; Sandbox `Scripts/Meta/Sandbox/SaveSandboxDemo.cs` + `Scenes/Sandbox/A_Save.unity` đã mở trong Editor, Play ~4 s không exception, tạo `persistentDataPath/SandboxSave` → **4.1 #4 ☑**. Chờ B xác nhận (4.1 #5) và PR.
 
 ### A-17 – Cân bằng
 - ☐ Chưa bắt đầu. File nguồn: `Docs/root/Can bang - Fate Bastion.xlsx` → `Data/Balance/{heroes,enemies,waves}.csv`.
@@ -76,11 +76,12 @@
 | 4 | S6/S7 chưa bắt đầu, trong khi M2 (23/10) yêu cầu trận hoàn chỉnh | Nguy cơ trễ M2 ~3 ngày | Dồn T-07…T-13, bù ở T-16 |
 | 5 | ~~`EndlessSettings` là STUB~~ | Đã xử lý ngày 7 (T-15) | ☑ `ResolveWave` lặp wave + `Configure` |
 | 6 | Đường dẫn tài liệu cũ (`Docs/GDD…docx`) đã chuyển sang `Docs/root/` | `CLAUDE.md`/`README.md` còn trỏ đường cũ | Cập nhật ở T-01 |
-| 7 | ~~Chưa compile/test trong Unity~~ | — | **Đã hết:** Editor mở đúng project, compile 0 lỗi; S9 286/286 EM, S2 297/298 EM + 50/50 PM (đo trước khi tích hợp nhánh đổi tên) |
+| 7 | ~~Chưa compile/test trong Unity~~ | — | **Đã hết:** Editor mở đúng project, compile 0 lỗi; S9 **299/299 EM** (chạy lại sau tích hợp rename), S2 297/298 EM + 50/50 PM (đo trước tích hợp) |
 | 8 | ~~`FateBastion.Meta` có thể chưa reference Newtonsoft~~ | — | **Đã hết:** S9 compile OK, không sửa asmdef |
 | 9 | `IStarterSaveFactory` là STUB chờ B-11 (`StarterSettings`) | Save mới chưa có 5 tướng/1000 Ngọc | Gỡ khi S8/B-11 xong |
 | 10 | ~~Đổi tên asset đang dở, chưa commit (`enemy_thuong` → `enemy_normal`, …)~~ | — | **Đã xong:** nhánh `refactor/enemy-asset-names` (2 commit, GUID giữ nguyên) merge vào 3 nhánh gameplay; test dùng id mới; còn **chạy lại test** để xác nhận |
-| 11 | Scene `Sandbox/A_Save` (T-04) soạn tay, chưa mở trong Unity | 4.1 #4 chưa được xác nhận | Mở Editor + Play thử trước khi mở PR; sửa YAML/`.meta` nếu lỗi |
+| 11 | ~~Scene `Sandbox/A_Save` (T-04) soạn tay, chưa mở trong Unity~~ | — | **Đã hết:** mở trong Editor, hierarchy đúng 3 root, Play ~4 s không exception, tạo `persistentDataPath/SandboxSave` (4.1 #4 ☑) |
+| 12 | ~~Lượt test sau tích hợp rename chưa có số liệu~~ | — | **Đã xanh trên `feature/S09_A14`:** EditMode **299/299**, PlayMode **45/45** (0 fail); lượt toàn Editor 1912 test có 3 fail đều của package `com.besty.unity-skills`. Còn EditMode/PlayMode `S02_A06` |
 
 ---
 
@@ -89,4 +90,4 @@
 | Ngày | Nội dung |
 |---|---|
 | 7 – 16/10 | Tạo file; ghi nhận S0 ◐, S1 ☑, S2 ◐, S6/S7/S9 ☐; liệt kê 6 điểm lệch |
-| 7 – 16/10 | Ngày 7: S9 (A-14/A-15) xong; A-05 (Bay + boss gọi con) xong; A-06 (hpMultiplier + Vô tận) xong. 30 test mới (25 EM + 5 PM). S2/S9 → ☑. Lệch 2/3/5 gỡ. Sau PR #14: tách 4 nhánh `feature/S09_A14`, `feature/S02_A05`, `feature/S02_A06`, `docs/agent-tools` (bỏ nhánh gộp cũ). Kiểm chứng trong Unity: compile 0 lỗi, S9 286/286 EM, S2 297/298 EM + 50/50 PM; lệch 7/8 gỡ, thêm lệch 10 (đổi tên asset dở). Sau đó: nhánh riêng `refactor/enemy-asset-names` (đổi id quái sang tiếng Anh, GUID giữ nguyên) merge vào 3 nhánh gameplay, sửa test theo id mới → gỡ lệch 10; **chưa chạy lại** test sau tích hợp. Ngày 8: T-04 ◐ — hồ sơ bàn giao S9 (Cách dùng + Hướng dẫn lắp) + Sandbox `A_Save`; chờ B xác nhận, thêm lệch 11 (scene soạn tay chưa mở Unity) |
+| 7 – 16/10 | Ngày 7: S9 (A-14/A-15) xong; A-05 (Bay + boss gọi con) xong; A-06 (hpMultiplier + Vô tận) xong. 30 test mới (25 EM + 5 PM). S2/S9 → ☑. Lệch 2/3/5 gỡ. Sau PR #14: tách 4 nhánh `feature/S09_A14`, `feature/S02_A05`, `feature/S02_A06`, `docs/agent-tools` (bỏ nhánh gộp cũ). Kiểm chứng trong Unity: compile 0 lỗi, S9 286/286 EM, S2 297/298 EM + 50/50 PM; lệch 7/8 gỡ, thêm lệch 10 (đổi tên asset dở). Sau đó: nhánh riêng `refactor/enemy-asset-names` (đổi id quái sang tiếng Anh, GUID giữ nguyên) merge vào 3 nhánh gameplay, sửa test theo id mới → gỡ lệch 10; **chưa chạy lại** test sau tích hợp. Ngày 8: T-04 ◐ — hồ sơ bàn giao S9 (Cách dùng + Hướng dẫn lắp) + Sandbox `A_Save` (đã mở Editor + Play thử) → gỡ lệch 11; EditMode toàn Editor 1912 test: 1840 pass, 3 fail đều của package `com.besty.unity-skills`, 69 skip; **EditMode `FateBastion.Tests.EditMode` 299/299 pass** (lấy được job sau 2 lần MCP timeout — luật 9); còn PlayMode + `S02_A06`, chờ B xác nhận |

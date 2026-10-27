@@ -110,18 +110,17 @@ public sealed class StarterSaveFactory : IStarterSaveFactory
 
 | # | Điều kiện | Trạng thái |
 |---|---|---|
-| 1 | PR merge `main` + test xanh | ☐ nhánh chưa mở PR; test S9 gần nhất **13/13 EM pass** (toàn bộ EditMode nhánh: 286/286, đo trước tích hợp rename) |
+| 1 | PR merge `main` + test xanh | ◐ **`feature/S09_A14`: EditMode 299/299 + PlayMode 45/45 pass** (0 fail). Lượt toàn Editor 1912 test có 3 fail đều là test package `com.besty.unity-skills`, không có test `FateBastion.*` đỏ. Còn test nhánh `feature/S02_A06` (mục 5); nhánh **chưa mở PR** |
 | 2 | Mục "Cách dùng" | ☑ mục 2.1 (dán vào PR) |
 | 3 | "Hướng dẫn lắp trong Unity" | ☑ mục 2.2 (dán vào PR) |
-| 4 | Scene `Sandbox/A_*` chạy được | ◐ có `A_Save.unity` + `SaveSandboxDemo.cs` (soạn tay, **chưa mở trong Editor**) |
+| 4 | Scene `Sandbox/A_*` chạy được | ☑ `A_Save.unity` + `SaveSandboxDemo.cs`: đã mở trong Editor (3 root đúng), Play ~4 s không exception, tạo `persistentDataPath/SandboxSave` |
 | 5 | B xác nhận "Đã thử, dùng được" | ☐ chờ B |
 
 ## 3. Việc cần người dùng (chủ repo) làm
 
-1. **Mở Unity** kiểm scene `Assets/_Project/Scenes/Sandbox/A_Save.unity` (Play, bấm thử các nút) — nếu Unity báo lỗi YAML/thiếu script thì sửa bằng Editor rồi commit lại `.meta`.
-2. **Chạy lại EditMode + PlayMode** trên `feature/S02_A06` và EditMode trên `feature/S09_A14` sau tích hợp `refactor/enemy-asset-names` (xem `daily/day07/status.md`).
-3. **Mở PR** cho `feature/S09_A14` (và 3 nhánh ngày 7 còn lại) khi cho phép; dán mục 2.1 + 2.2 vào mô tả PR.
-4. **B xác nhận** trong PR (4.1 #5) — thiếu bước này dòng S9 chưa được tính "đã bàn giao".
+1. **Chạy tiếp job EditMode lọc** `114c9205c6cb4f7bb1c8026d079ce1b6` (`FateBastion.Tests.EditMode`) và EditMode + PlayMode trên `feature/S02_A06` sau tích hợp `refactor/enemy-asset-names` — xem mục 5.
+2. **Mở PR** cho `feature/S09_A14` (và 3 nhánh ngày 7 còn lại) khi cho phép; dán mục 2.1 + 2.2 vào mô tả PR.
+3. **B xác nhận** trong PR (4.1 #5) — thiếu bước này dòng S9 chưa được tính "đã bàn giao".
 
 ## 4. Rủi ro của ngày
 
@@ -131,3 +130,14 @@ public sealed class StarterSaveFactory : IStarterSaveFactory
 | Test chưa chạy lại sau tích hợp rename | Trung bình | Chạy lại trước khi merge PR; test đã dùng id mới |
 | B chưa xác nhận / chưa nối S8 | Cao (chặn 4.1 #5) | API + Sandbox sẵn; B comment "Đã thử, dùng được" là xong |
 | `IStarterSaveFactory` còn stub | Trung bình | Thay bằng `StarterSettings` khi B-11 xong; Sandbox có demo 1000 Ngọc + 5 tướng |
+
+## 5. Chạy tiếp khi Unity rảnh (MCP timeout – luật 9 `README.md`)
+
+> Ghi theo luật **MCP timeout**: bỏ lượt chờ, làm việc khác, để đây chạy tiếp. **Không** coi các mục dưới là đã xong.
+
+| Việc | Trạng thái cuối | Cách chạy tiếp | Xong khi |
+|---|---|---|---|
+| EditMode lọc `FateBastion.Tests.EditMode` trên `feature/S09_A14` – job `114c9205c6cb4f7bb1c8026d079ce1b6` | **Xong:** 299/299 pass, 0 fail, 0 skip (93,5 s) — lấy được kết quả ở lần hỏi thứ 3 | Không cần chạy lại (chỉ chạy lại nếu sửa code) | ✅ |
+| PlayMode lọc `FateBastion.Tests.PlayMode` trên `feature/S09_A14` – job `d0b86b63452c4ae684406d3279ad40a9` | **Xong:** 45/45 pass, 0 fail, 0 skip (9,2 s) | Không cần chạy lại (chỉ chạy lại nếu sửa code) | ✅ |
+| EditMode + PlayMode `feature/S02_A06` sau tích hợp `refactor/enemy-asset-names` | Chưa chạy lượt nào sau tích hợp | Chuyển nhánh `feature/S02_A06`, chạy EditMode rồi PlayMode (PlayMode cần `init_timeout` ≥ 120000) | EditMode `failed = 0`, PlayMode `failed = 0` |
+| EditMode toàn Editor (đã xong) | `1912` test: **1840 pass**, `3` fail (đều `UnitySkills.Tests.Core.*` của package `com.besty.unity-skills`), `69` skip, 751 s | Không cần chạy lại; 3 fail thuộc tool, ngoài repo | — |

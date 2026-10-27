@@ -7,9 +7,9 @@
 |---|---|---|---|---|---|---|
 | T-04a | Viết **"Cách dùng"** API S9 (chữ ký public + ví dụ code) để dán vào mô tả PR | A-14, A-15 | P1 | `feature/S09_A14` | Tay | ☑ |
 | T-04b | Viết **"Hướng dẫn lắp trong Unity"** (file, asmdef, đường dẫn save, thứ tự khởi động, không cần prefab/layer) | A-14, A-15 | P1 | `feature/S09_A14` | Tay | ☑ |
-| T-04c | Scene Sandbox `Assets/_Project/Scenes/Sandbox/A_Save.unity` + `Scripts/Meta/Sandbox/SaveSandboxDemo.cs` minh hoạ Load/Save/Sanitize/Delete | A-14, A-15 | P2 | `feature/S09_A14` | Tay | ◐ (file đã tạo, **chưa mở trong Unity**) |
+| T-04c | Scene Sandbox `Assets/_Project/Scenes/Sandbox/A_Save.unity` + `Scripts/Meta/Sandbox/SaveSandboxDemo.cs` minh hoạ Load/Save/Sanitize/Delete | A-14, A-15 | P2 | `feature/S09_A14` | Tay | ☑ (mở Editor + Play thử OK) |
 | T-04d | B xác nhận **"Đã thử, dùng được"** (TEAM_ASSIGNMENT 4.1 #5) | A-14, A-15 | P3 | — | PR | ☐ (chờ B) |
-| T-04e | Chạy lại EditMode/PlayMode sau khi tích hợp `refactor/enemy-asset-names` (mang từ Ngày 7) | A-14, A-15, A-05, A-06 | P2 | `feature/S09_A14`, `feature/S02_A06` | EM/PM | ☐ (cần Unity) |
+| T-04e | Chạy lại EditMode/PlayMode sau khi tích hợp `refactor/enemy-asset-names` (mang từ Ngày 7) | A-14, A-15, A-05, A-06 | P2 | `feature/S09_A14`, `feature/S02_A06` | EM/PM | ◐ (`S09_A14`: **299/299 EM + 45/45 PM**; còn EM/PM `S02_A06`) |
 
 ## Ghi chú đầu ngày
 - **T-04 là bàn giao, không viết thêm code S9:** code đã xong Ngày 7 trên `feature/S09_A14`. Hôm nay chỉ hoàn thiện 5 điều kiện của `TEAM_ASSIGNMENT.md` mục 4.1: (1) test xanh, (2) "Cách dùng", (3) "Hướng dẫn lắp trong Unity", (4) scene `Sandbox/A_*`, (5) B xác nhận.
