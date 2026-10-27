@@ -59,6 +59,7 @@
 - ☑ **A-14/A-15:** `Meta/Save/` có `SaveData`, `SaveSettings`, `SaveService`, `SaveSanitizer`, `IStarterSaveFactory` (STUB chờ B-11).
 - Ghi an toàn `save.tmp` → `File.Replace`(json,bak) / `File.Move` (lần đầu); đọc `save.json` → `save.bak` → tạo mới; `Load()` trả `SaveLoadResult{Data,Kind,Error}` (không throw).
   - **Bằng chứng:** `13` EM (`SaveServiceTests`, `SaveSanitizerTests`) — **đã chạy, pass**; toàn bộ EditMode của nhánh `feature/S09_A14` 286/286.
+- ◐ **T-04 (bàn giao S9 cho B):** hồ sơ "Cách dùng" + "Hướng dẫn lắp trong Unity" ở `daily/day08/handoff.md`; Sandbox `Scripts/Meta/Sandbox/SaveSandboxDemo.cs` + `Scenes/Sandbox/A_Save.unity` (soạn tay, **chưa mở trong Unity**). Chờ B xác nhận (4.1 #5) và PR.
 
 ### A-17 – Cân bằng
 - ☐ Chưa bắt đầu. File nguồn: `Docs/root/Can bang - Fate Bastion.xlsx` → `Data/Balance/{heroes,enemies,waves}.csv`.
@@ -79,6 +80,7 @@
 | 8 | ~~`FateBastion.Meta` có thể chưa reference Newtonsoft~~ | — | **Đã hết:** S9 compile OK, không sửa asmdef |
 | 9 | `IStarterSaveFactory` là STUB chờ B-11 (`StarterSettings`) | Save mới chưa có 5 tướng/1000 Ngọc | Gỡ khi S8/B-11 xong |
 | 10 | ~~Đổi tên asset đang dở, chưa commit (`enemy_thuong` → `enemy_normal`, …)~~ | — | **Đã xong:** nhánh `refactor/enemy-asset-names` (2 commit, GUID giữ nguyên) merge vào 3 nhánh gameplay; test dùng id mới; còn **chạy lại test** để xác nhận |
+| 11 | Scene `Sandbox/A_Save` (T-04) soạn tay, chưa mở trong Unity | 4.1 #4 chưa được xác nhận | Mở Editor + Play thử trước khi mở PR; sửa YAML/`.meta` nếu lỗi |
 
 ---
 
@@ -87,4 +89,4 @@
 | Ngày | Nội dung |
 |---|---|
 | 7 – 16/10 | Tạo file; ghi nhận S0 ◐, S1 ☑, S2 ◐, S6/S7/S9 ☐; liệt kê 6 điểm lệch |
-| 7 – 16/10 | Ngày 7: S9 (A-14/A-15) xong; A-05 (Bay + boss gọi con) xong; A-06 (hpMultiplier + Vô tận) xong. 30 test mới (25 EM + 5 PM). S2/S9 → ☑. Lệch 2/3/5 gỡ. Sau PR #14: tách 4 nhánh `feature/S09_A14`, `feature/S02_A05`, `feature/S02_A06`, `docs/agent-tools` (bỏ nhánh gộp cũ). Kiểm chứng trong Unity: compile 0 lỗi, S9 286/286 EM, S2 297/298 EM + 50/50 PM; lệch 7/8 gỡ, thêm lệch 10 (đổi tên asset dở). Sau đó: nhánh riêng `refactor/enemy-asset-names` (đổi id quái sang tiếng Anh, GUID giữ nguyên) merge vào 3 nhánh gameplay, sửa test theo id mới → gỡ lệch 10; **chưa chạy lại** test sau tích hợp |
+| 7 – 16/10 | Ngày 7: S9 (A-14/A-15) xong; A-05 (Bay + boss gọi con) xong; A-06 (hpMultiplier + Vô tận) xong. 30 test mới (25 EM + 5 PM). S2/S9 → ☑. Lệch 2/3/5 gỡ. Sau PR #14: tách 4 nhánh `feature/S09_A14`, `feature/S02_A05`, `feature/S02_A06`, `docs/agent-tools` (bỏ nhánh gộp cũ). Kiểm chứng trong Unity: compile 0 lỗi, S9 286/286 EM, S2 297/298 EM + 50/50 PM; lệch 7/8 gỡ, thêm lệch 10 (đổi tên asset dở). Sau đó: nhánh riêng `refactor/enemy-asset-names` (đổi id quái sang tiếng Anh, GUID giữ nguyên) merge vào 3 nhánh gameplay, sửa test theo id mới → gỡ lệch 10; **chưa chạy lại** test sau tích hợp. Ngày 8: T-04 ◐ — hồ sơ bàn giao S9 (Cách dùng + Hướng dẫn lắp) + Sandbox `A_Save`; chờ B xác nhận, thêm lệch 11 (scene soạn tay chưa mở Unity) |
