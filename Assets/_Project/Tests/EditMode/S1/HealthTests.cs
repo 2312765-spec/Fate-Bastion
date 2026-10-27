@@ -52,7 +52,7 @@ namespace FateBastion.Tests.EditMode.S1
             for (int i = 0; i < 3; i++)
             {
                 if (_health.ApplyDamage(100f))
-                    CombatEvents.RaiseEnemyKilled(new EnemyKilledInfo("enemy_thuong", Vector3.zero, 5, false));
+                    CombatEvents.RaiseEnemyKilled(new EnemyKilledInfo("enemy_normal", Vector3.zero, 5, false));
             }
 
             Assert.AreEqual(1, killedEvents);
