@@ -17,5 +17,12 @@ namespace FateBastion.Enemies
 
         public int LoopFromWave => _loopFromWave;
         public int LoopToWave => _loopToWave;
+
+        /// <summary>For tests and tools; in the game the values are set in the Inspector.</summary>
+        public void Configure(int loopFromWave, int loopToWave)
+        {
+            _loopFromWave = Mathf.Max(1, loopFromWave);
+            _loopToWave = Mathf.Max(_loopFromWave, loopToWave);
+        }
     }
 }

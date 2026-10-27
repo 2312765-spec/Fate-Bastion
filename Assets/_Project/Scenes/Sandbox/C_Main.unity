@@ -119,11 +119,206 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &144251921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 144251925}
+  - component: {fileID: 144251922}
+  - component: {fileID: 144251924}
+  - component: {fileID: 144251923}
+  m_Layer: 0
+  m_Name: _EnemySystems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &144251922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144251921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92e5b5b939dc9b41922382ea397f5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.EnemyManager
+  _settings: {fileID: 11400000, guid: 056c44c4e0a1d954f9b8b64d4e6ed5c2, type: 2}
+  _combatSettings: {fileID: 11400000, guid: 99ac3ee879d80414bb4f7876d8ca0fa1, type: 2}
+  _levelPaths: {fileID: 803462563}
+--- !u!114 &144251923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144251921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5201da999b9454082a4bac63ac64de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.Sandbox.WaveSandboxDemo
+  _waveManager: {fileID: 144251924}
+  _enemyManager: {fileID: 144251922}
+  _level: {fileID: 11400000, guid: 9bfdcb9bfd2f61a45a9dda17bf0fb784, type: 2}
+  _autoNextWave: 1
+  _restSeconds: 3
+--- !u!114 &144251924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144251921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8734e5abe762cf44ae0420326704bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.WaveManager
+  _enemyManager: {fileID: 144251922}
+--- !u!4 &144251925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144251921}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.30023, y: -0, z: -5.55521}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &688462106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3380320980451130347, guid: 8c49ab6903cb9e649acfcb913c1a50f0, type: 3}
   m_PrefabInstance: {fileID: 793911310226830046}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &720136465
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1751509670430178661, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1314953190}
+    - target: {fileID: 1751509670430178661, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: _enemyManager
+      value: 
+      objectReference: {fileID: 144251922}
+    - target: {fileID: 5858942995722727466, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_Name
+      value: WorldUI_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557197498407597705, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd8717c3acb0f704f9e2b31bc7edc00c, type: 3}
+--- !u!114 &803462563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2926312323747102653, guid: 8c49ab6903cb9e649acfcb913c1a50f0, type: 3}
+  m_PrefabInstance: {fileID: 793911310226830046}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa18216da6716614b89b6a3fd40635ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.LevelPaths
 --- !u!1 &1044682657
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,11 +498,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: CH_LongVuong
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: bcc1d2b47fc84c94cb897d1956edfff4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 81602c7ce18f1e3439bf50309415ee41, type: 2}
+    - target: {fileID: 5866666021909216657, guid: bcc1d2b47fc84c94cb897d1956edfff4, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcc1d2b47fc84c94cb897d1956edfff4, type: 3}
+--- !u!20 &1314953190 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4349966661154286245, guid: a3a61b53630d07146a85087f04e1c5ee, type: 3}
+  m_PrefabInstance: {fileID: 3920722892040192869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1675602117
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,3 +862,5 @@ SceneRoots:
   - {fileID: 793911310226830046}
   - {fileID: 1072493389}
   - {fileID: 1675602119}
+  - {fileID: 144251925}
+  - {fileID: 720136465}

@@ -140,6 +140,15 @@ namespace FateBastion.Tests.PlayMode.S2
             return settings;
         }
 
+        /// <summary>Endless mode config for WaveManager tests (A-06).</summary>
+        public EndlessSettings CreateEndlessSettings(int loopFromWave, int loopToWave)
+        {
+            var settings = ScriptableObject.CreateInstance<EndlessSettings>();
+            settings.Configure(loopFromWave, loopToWave);
+            _owned.Add(settings);
+            return settings;
+        }
+
         public WaveManager AddWaveManager()
         {
             var go = new GameObject("WaveManager");
