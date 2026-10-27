@@ -15,6 +15,7 @@ Docs/Tson/
 ├── plan.md          ← plan 22 ngày, mã việc T-xx (ánh xạ A-xx của TRACEABILITY)
 ├── status.md        ← HIỆN TRẠNG TỔNG THỂ (khác file hiện trạng trong ngày)
 ├── handoff.md       ← BÀN GIAO TỔNG THỂ (khác file handoff trong ngày)
+├── contact.md       ← HỒ SƠ API/cách dùng A cung cấp cho B/C
 └── daily/
     ├── day07/       ← mỗi ngày một folder: day07, day08, … day22
     │   ├── plan.md      kế hoạch của đúng ngày đó
@@ -28,7 +29,10 @@ Docs/Tson/
 | Cấp | File | Trả lời câu hỏi |
 |---|---|---|
 | Tổng thể (`Docs/Tson/*.md`) | `status.md`, `handoff.md` | A đang ở đâu so với cả plan? Còn chặn ai / ai chặn A? |
+| Dùng chung | `contact.md` | B/C cần gọi API nào A cung cấp, dùng ra sao, trạng thái merge và phụ thuộc hiện tại? |
 | Trong ngày (`daily/dayNN/*.md`) | `plan.md`, `status.md`, `handoff.md` | Ngày đó làm gì, xong đến đâu, vướng gì? |
+
+`contact.md` là mục lục bàn giao **A → thành viên khác**: tóm tắt cách dùng và trạng thái thực tế, trỏ tới Spec/handoff đầy đủ. Nó không thay `TEAM_ASSIGNMENT.md` (hợp đồng), không thay `daily/dayNN/handoff.md`, và không phải nơi ghi việc A đang bị chặn; các việc chờ người khác vẫn ghi trong `handoff.md`.
 
 ---
 

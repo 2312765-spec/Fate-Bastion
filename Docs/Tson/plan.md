@@ -34,7 +34,7 @@ A bận, **C (nhóm trưởng)** làm hộ. Từ Ngày 7 A ghi nhật ký.
 | **T-03** | 7 | 16/10 | Đọc lỗi → `save.bak` → tạo mới từ `IStarterSaveFactory`; test lần lưu đầu | A-15 | **P1** | — | `feature/S09_A14` | EM | ☑ |
 | **T-04** | 8 | 17/10 | Bàn giao API S9 cho B (`SaveService.Load/Save/Delete`, `SaveData`, `SaveSanitizer`) theo TEAM 4.1 | A-14, A-15 | P3 | **B chờ** (S8 lưu) | — | PR | ◐ |
 | **T-05** | 9 | 18/10 | `HeroController` + `HeroStats` + `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay) | A-07 | P2 | S0b `HeroVisual` ☑ (C) | `feature_a07_hero_ctrl` | EM/PM | ☐ |
-| **T-06** | 10 | 19/10 | `AttackModule` (timer, bắn từ `Muzzle`); PM Sandbox; **bàn giao API #3, #4 cho B** | A-07 | P2/P3 | **B chờ** (S4) | `feature_a07_attack` | PM | ☐ |
+| **T-06** | 10 | 19/10 | `AttackModule` (timer, bắn từ `Muzzle`); PM Sandbox; **bàn giao API #3, #4 cho B** | A-07 | P2/P3 | **B chờ** (S4), **C chờ prefab Projectile** | `feature/S06_A07` | PM | ◐ |
 | **T-07** | 11 | 20/10 | `SkillRunner` + kind MeleeHit, Projectile, AreaAtPoint | A-08 | P1 | T-05 | `feature_a08_skills_core` | EM/PM | ☐ |
 | **T-08** | 12 | 21/10 | kind Cone, Line, Zone, Buff + kỹ năng mẫu; **bàn giao S6** | A-08 | P2/P3 | A-10/A-11 chờ | `feature_a08_skills_kinds` | PM | ☐ |
 | **T-09** | 13 | 22/10 | Cộng buff: cùng loại lấy mạnh nhất, khác nguồn cộng, trần **+60%** (2 Thánh Nữ = +30%; Thánh Nữ + Hào quang = +55%) | A-09 | **P1** | T-05 (`HeroStats`) | `feature_a09_buff_stack` | EM | ☐ |
