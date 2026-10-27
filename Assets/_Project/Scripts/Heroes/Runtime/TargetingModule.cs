@@ -23,9 +23,14 @@ namespace FateBastion.Heroes
 
         public EnemyController FindTarget(Vector3 heroPosition, IReadOnlyList<EnemyController> enemies)
         {
+            return FindTarget(heroPosition, enemies, _data != null ? _data.range : 0f);
+        }
+
+        public EnemyController FindTarget(Vector3 heroPosition, IReadOnlyList<EnemyController> enemies, float effectiveRange)
+        {
             if (_data == null || enemies == null) return null;
 
-            float range = Mathf.Max(0f, _data.range);
+            float range = Mathf.Max(0f, effectiveRange);
             float rangeSquared = range * range;
             EnemyController firstInLine = null;
             EnemyController bossInRange = null;

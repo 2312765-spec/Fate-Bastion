@@ -100,6 +100,16 @@ namespace FateBastion.Tests.PlayMode.S6
             Assert.AreSame(target, _targeting.FindTarget(new Vector3(0f, 100f, 0f), _rig.Manager.ActiveEnemies));
         }
 
+        [Test]
+        public void FindTarget_UsesEffectiveRangeAfterUpgrade()
+        {
+            _hero.range = 5f;
+            EnemyController target = Spawn(_normal, 8f);
+
+            Assert.IsNull(_targeting.FindTarget(Vector3.zero, _rig.Manager.ActiveEnemies));
+            Assert.AreSame(target, _targeting.FindTarget(Vector3.zero, _rig.Manager.ActiveEnemies, 10f));
+        }
+
         private EnemyController Spawn(EnemyData data, float distance)
         {
             _rig.Manager.Prewarm(data, 1);

@@ -14,6 +14,7 @@ namespace FateBastion.Heroes
         [SerializeField] private EnemyManager _enemyManager;
 
         private HeroStats _stats;
+        private AttackModule _attackModule;
         private readonly TargetingModule _targeting = new TargetingModule();
         private HeroVisual _visual;
         private Transform _anchorFallback;
@@ -29,6 +30,7 @@ namespace FateBastion.Heroes
             _stats = GetComponent<HeroStats>();
             if (_stats == null)
                 Debug.LogError($"{name}: HeroStats component is missing from this hero.", this);
+            _attackModule = GetComponent<AttackModule>();
 
             _visual = GetComponentInChildren<HeroVisual>();
             _anchorFallback = transform;
@@ -90,6 +92,7 @@ namespace FateBastion.Heroes
             CurrentTarget = null;
             _targetSearchTimer = 0f;
             _stats?.ResetLevelMultipliers();
+            _attackModule?.ResetState();
         }
 
         /// <summary>Clears references and calculated stats before this hero is returned to its pool.</summary>
@@ -120,7 +123,7 @@ namespace FateBastion.Heroes
                 return;
             }
 
-            CurrentTarget = _targeting.FindTarget(transform.position, _enemyManager.ActiveEnemies);
+            CurrentTarget = _targeting.FindTarget(transform.position, _enemyManager.ActiveEnemies, _stats.Range);
         }
     }
 }
