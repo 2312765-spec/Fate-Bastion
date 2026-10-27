@@ -210,7 +210,7 @@ namespace FateBastion.Tests.EditMode.S0
 
             var boss = Load<EnemyData>(request.EnemiesFolder, "enemy_boss");
             Assert.IsNotNull(boss);
-            Assert.AreEqual("Boss", boss.displayName);
+            Assert.AreEqual("E-Boss", boss.displayName);
             Assert.AreEqual(600f, boss.baseHP, 0.001f);
             Assert.AreEqual(1.5f, boss.moveSpeed, 0.001f);
             Assert.AreEqual(0.2f, boss.armor, 0.001f);
@@ -227,7 +227,7 @@ namespace FateBastion.Tests.EditMode.S0
             BalanceImportRequest request = RealCsvRequest();
             BalanceImporter.Import(request);
 
-            var flyer = Load<EnemyData>(request.EnemiesFolder, "enemy_bay");
+            var flyer = Load<EnemyData>(request.EnemiesFolder, "enemy_fly");
             Assert.IsNotNull(flyer);
             Assert.IsTrue(flyer.flying);
             Assert.IsFalse(flyer.boss);
@@ -247,13 +247,13 @@ namespace FateBastion.Tests.EditMode.S0
             Assert.AreEqual(5, wave.wave);
             Assert.AreEqual(3, wave.groups.Length, "only columns above zero become groups");
 
-            Assert.AreEqual("enemy_thuong", wave.groups[0].enemy.id);
+            Assert.AreEqual("enemy_normal", wave.groups[0].enemy.id);
             Assert.AreEqual(6, wave.groups[0].count);
             Assert.AreEqual(0f, wave.groups[0].startDelay, 0.001f);
             Assert.AreEqual(1.2f, wave.groups[0].interval, 0.001f);
             Assert.AreEqual(0, wave.groups[0].pathIndex);
 
-            Assert.AreEqual("enemy_nhanh", wave.groups[1].enemy.id);
+            Assert.AreEqual("enemy_fast", wave.groups[1].enemy.id);
             Assert.AreEqual(1, wave.groups[1].count);
             Assert.AreEqual(2f, wave.groups[1].startDelay, 0.001f);
 
@@ -408,7 +408,7 @@ namespace FateBastion.Tests.EditMode.S0
 
             Assert.AreEqual(0, report.WaveTotal);
             Assert.AreEqual(1, report.Errors.Count, report.ToSummary());
-            StringAssert.Contains("enemy_thuong", report.Errors[0]);
+            StringAssert.Contains("enemy_normal", report.Errors[0]);
         }
 
         [Test]

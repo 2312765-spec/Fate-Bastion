@@ -23,10 +23,10 @@ namespace FateBastion.Editor.Import
         /// </summary>
         private static readonly (string Column, string EnemyId, bool Flying)[] ColumnToEnemy =
         {
-            ("normal", "enemy_thuong", false),
-            ("fast", "enemy_nhanh", false),
-            ("armored", "enemy_giap", false),
-            ("flying", "enemy_bay", true),
+            ("normal", "enemy_normal", false),
+            ("fast", "enemy_fast", false),
+            ("armored", "enemy_armor", false),
+            ("flying", "enemy_fly", true),
             ("boss", "enemy_boss", false)
         };
 

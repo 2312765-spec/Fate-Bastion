@@ -871,6 +871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.EnemyManager
   _settings: {fileID: 11400000, guid: 056c44c4e0a1d954f9b8b64d4e6ed5c2, type: 2}
   _combatSettings: {fileID: 11400000, guid: 99ac3ee879d80414bb4f7876d8ca0fa1, type: 2}
+  _bossSummonSettings: {fileID: 11400000, guid: b01d5a677a3904149842340072477a18, type: 2}
   _levelPaths: {fileID: 1055504772}
 --- !u!4 &1956689495
 Transform:

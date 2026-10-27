@@ -16,6 +16,9 @@ namespace FateBastion.Enemies
         [SerializeField] private EnemySettings _settings;
         [SerializeField] private CombatSettings _combatSettings;
 
+        [Tooltip("Boss summoning config. Can also be set at runtime with SetBossSummonSettings.")]
+        [SerializeField] private BossSummonSettings _bossSummonSettings;
+
         [Tooltip("LevelPaths on the map prefab. Can also be set at runtime with SetPaths.")]
         [SerializeField] private LevelPaths _levelPaths;
 
@@ -40,6 +43,7 @@ namespace FateBastion.Enemies
         private List<EnemyController> _active;
         private List<EnemyController> _killedDuringUpdate;
         private List<EnemyController> _reachedDuringUpdate;
+        private List<SpawnRequest> _summonBuffer;
         private SpawnQueue _queue;
 
         private bool _initialized;
@@ -72,6 +76,12 @@ namespace FateBastion.Enemies
             _paths = paths;
         }
 
+        /// <summary>Sets the boss summon config (when it was not dragged in the Inspector).</summary>
+        public void SetBossSummonSettings(BossSummonSettings settings)
+        {
+            _bossSummonSettings = settings;
+        }
+
         /// <summary>HP scaling of the current level; WaveManager.Init sets it from LevelData.</summary>
         public void SetHealthScaling(float hpGrowth, float hpMultiplier)
         {
@@ -101,6 +111,7 @@ namespace FateBastion.Enemies
             _active = new List<EnemyController>(capacity);
             _killedDuringUpdate = new List<EnemyController>(capacity);
             _reachedDuringUpdate = new List<EnemyController>(capacity);
+            _summonBuffer = new List<SpawnRequest>(capacity);
             _initialized = true;
             return true;
         }
@@ -201,6 +212,7 @@ namespace FateBastion.Enemies
             _active.Clear();
             _killedDuringUpdate.Clear();
             _reachedDuringUpdate.Clear();
+            _summonBuffer.Clear();
             _counter.Clear();
         }
 
@@ -217,10 +229,11 @@ namespace FateBastion.Enemies
 
             float deltaTime = Time.deltaTime;
             _isUpdating = true;
+            _summonBuffer.Clear();
             for (int i = 0; i < _active.Count; i++)
             {
                 EnemyController enemy = _active[i];
-                if (enemy.Tick(deltaTime)) _reachedDuringUpdate.Add(enemy);
+                if (enemy.Tick(deltaTime, _summonBuffer)) _reachedDuringUpdate.Add(enemy);
             }
             _isUpdating = false;
 
@@ -236,6 +249,10 @@ namespace FateBastion.Enemies
                 Despawn(enemy);
             }
             _reachedDuringUpdate.Clear();
+
+            // Boss summons collected during Tick, spawned after the loop so the active list is not modified while walking it.
+            for (int i = 0; i < _summonBuffer.Count; i++) RequestSpawn(_summonBuffer[i]);
+            _summonBuffer.Clear();
 
             while (_queue.TryRelease(_active.Count, out SpawnRequest request)) SpawnNow(request);
         }
@@ -253,7 +270,7 @@ namespace FateBastion.Enemies
             EnemyData data = request.Enemy;
             EnemyController enemy = _pools[data].Get();
             float maxHP = EnemyHealthFormula.Calculate(data.baseHP, _hpGrowth, request.Wave, _hpMultiplier);
-            enemy.Spawn(data, path, maxHP, request.Wave, request.StartDistance);
+            enemy.Spawn(data, path, request.PathIndex, maxHP, request.Wave, request.StartDistance);
             enemy.gameObject.SetActive(true);
 
             enemy.ActiveIndex = _active.Count;
@@ -326,7 +343,7 @@ namespace FateBastion.Enemies
             go.name = data.prefab.name;
             go.SetActive(false);
             EnemyController enemy = go.GetComponent<EnemyController>();
-            enemy.Initialize(this, _combatSettings);
+            enemy.Initialize(this, _combatSettings, _bossSummonSettings);
             return enemy;
         }
 

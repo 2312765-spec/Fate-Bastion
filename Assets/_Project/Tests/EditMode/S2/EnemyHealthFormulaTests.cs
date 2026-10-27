@@ -6,7 +6,7 @@ namespace FateBastion.Tests.EditMode.S2
     /// <summary>Spawn HP = baseHP x hpGrowth^(wave-1) x hpMultiplier, for waves 1/5/15 of all three levels (S2).</summary>
     public class EnemyHealthFormulaTests
     {
-        private const float BaseHP = 40f;      // enemy_thuong
+        private const float BaseHP = 40f;      // enemy_normal
         private const float HpGrowth = 1.12f;
         private const float Tolerance = 1e-3f;
 

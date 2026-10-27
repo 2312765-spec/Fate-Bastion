@@ -131,6 +131,24 @@ namespace FateBastion.Tests.PlayMode.S2
             return level;
         }
 
+        /// <summary>Boss summon config for the manager under test (A-05).</summary>
+        public BossSummonSettings CreateBossSummonSettings(EnemyData summonEnemy, int count = 3, float intervalSeconds = 12f)
+        {
+            var settings = ScriptableObject.CreateInstance<BossSummonSettings>();
+            settings.Configure(summonEnemy, count, intervalSeconds);
+            _owned.Add(settings);
+            return settings;
+        }
+
+        /// <summary>Endless mode config for WaveManager tests (A-06).</summary>
+        public EndlessSettings CreateEndlessSettings(int loopFromWave, int loopToWave)
+        {
+            var settings = ScriptableObject.CreateInstance<EndlessSettings>();
+            settings.Configure(loopFromWave, loopToWave);
+            _owned.Add(settings);
+            return settings;
+        }
+
         public WaveManager AddWaveManager()
         {
             var go = new GameObject("WaveManager");
