@@ -10,7 +10,7 @@ namespace FateBastion.Enemies
     [CreateAssetMenu(menuName = "Fate Bastion/Settings/Boss Summon", fileName = "BossSummonSettings")]
     public class BossSummonSettings : ScriptableObject
     {
-        [Tooltip("Enemy type the boss calls (enemy_nhanh / Fast).")]
+        [Tooltip("Enemy type the boss calls (enemy_fast / Fast).")]
         [SerializeField] private EnemyData _summonEnemy;
 
         [Tooltip("How many enemies each wave of summons adds.")]
