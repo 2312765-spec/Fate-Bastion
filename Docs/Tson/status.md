@@ -11,7 +11,7 @@
 |---|---|---|---|
 | S0 – Dùng chung | S0-xx | ◐ | Tool import + test xong; **S0-15 (hợp đồng API) chưa có PR 3 người duyệt**; S0-09/11/14 dọn nhỏ còn lại |
 | S1 – Chiến đấu & sát thương | A-01, A-02, A-03 | ☑ | Xong (C làm hộ), 33 EM + 93 EM + 5 PM |
-| S2 – Quái và Wave | A-04, A-05, A-06 | ☑ | A-04 xong; **A-05 (Bay + boss gọi con)** và **A-06 (hpMultiplier + Vô tận)** xong ngày 7 — compile OK, 297/298 EM + 50/50 PM |
+| S2 – Quái và Wave | A-04, A-05, A-06 | ☑ | A-04 xong; **A-05 (Bay + boss gọi con)** và **A-06 (hpMultiplier + Vô tận)** xong ngày 7 — compile OK, 297/298 EM + 50/50 PM (đo trước khi tích hợp nhánh đổi tên asset; test đã sửa theo id mới, chờ chạy lại) |
 | S6 – Kỹ năng & Ultimate | A-08, A-09, A-10 | ☐ | Chỉ có `SkillData` + `PassiveTrigger`; `Heroes/Runtime` trống; `Skills/` chưa có `SkillRunner` |
 | S7 – Hào quang & Thiên thạch | A-11, A-12, A-13 | ☐ | `Player/Abilities/` trống; `CancelStack` (C, Core) đã có sẵn để dùng |
 | S9 – Lưu trữ | A-14, A-15 | ☑ | Xong ngày 7 (compile OK, 286/286 EM): `SaveData`, `SaveService`, `SaveSanitizer`; `IStarterSaveFactory` là stub chờ B-11 |
@@ -41,7 +41,7 @@
 - ☑ **A-05:** quái Bay (đường riêng `pathIndex=1`, cao 2 m; Melee bỏ qua có test) + boss gọi 3 quái Nhanh/12 s — `Enemies/BossSummonSettings.cs` (SO), `Enemies/BossSummonAbility.cs`; nối `EnemyController.Initialize/Spawn/Tick` + `EnemyManager` buffer sinh sau vòng di chuyển.
   - **Bằng chứng:** `8` EM (`BossSummonAbilityTests`) + `4` PM (`BossSummonPlayModeTests`) — **đã chạy, pass**. Asset `Data/Settings/BossSummonSettings.asset` đã tạo + gắn `_bossSummonSettings` trong `A_Enemies.unity`.
 - ☑ **A-06:** máu theo `hpMultiplier` (dữ liệu `level_1/2/3` = 1.0/1.15/1.3 đã đúng từ trước) + Vô tận lặp `loopFromWave..loopToWave` (màn 3 = 6…15) trong `WaveManager.ResolveWave`, giữ **wave thật** cho `hpGrowth`; `EndlessSettings.Configure`.
-  - **Bằng chứng:** `4` EM (`LevelBalanceDataTests` đọc asset thật) + `1` PM (`Endless_WavesBeyondLast_RepeatLoopBlockWithRealWaveNumbers`). **Đã chạy**: 3/4 EM pass, 1 EM đỏ vì việc đổi tên `enemy_thuong` → `enemy_normal` chưa commit (không phải lỗi code); PM pass.
+  - **Bằng chứng:** `4` EM (`LevelBalanceDataTests` đọc asset thật) + `1` PM (`Endless_WavesBeyondLast_RepeatLoopBlockWithRealWaveNumbers`). **Đã chạy trước tích hợp**: 3/4 EM pass (1 EM đỏ vì test còn đọc `enemy_thuong.asset`); sau khi sửa sang `enemy_normal.asset` **chưa chạy lại**; PM pass.
 - ⚠️ Đã lắp sẵn trong Unity: `Data/Settings/BossSummonSettings.asset` + `_bossSummonSettings` trong `A_Enemies.unity`. Chỉ còn **prefab quái Bay/boss** chờ C.
 
 ### S6 – Kỹ năng và Ultimate (A)
@@ -75,10 +75,10 @@
 | 4 | S6/S7 chưa bắt đầu, trong khi M2 (23/10) yêu cầu trận hoàn chỉnh | Nguy cơ trễ M2 ~3 ngày | Dồn T-07…T-13, bù ở T-16 |
 | 5 | ~~`EndlessSettings` là STUB~~ | Đã xử lý ngày 7 (T-15) | ☑ `ResolveWave` lặp wave + `Configure` |
 | 6 | Đường dẫn tài liệu cũ (`Docs/GDD…docx`) đã chuyển sang `Docs/root/` | `CLAUDE.md`/`README.md` còn trỏ đường cũ | Cập nhật ở T-01 |
-| 7 | ~~Chưa compile/test trong Unity~~ | — | **Đã hết:** Editor mở đúng project, compile 0 lỗi; S9 286/286 EM, S2 297/298 EM + 50/50 PM |
+| 7 | ~~Chưa compile/test trong Unity~~ | — | **Đã hết:** Editor mở đúng project, compile 0 lỗi; S9 286/286 EM, S2 297/298 EM + 50/50 PM (đo trước khi tích hợp nhánh đổi tên) |
 | 8 | ~~`FateBastion.Meta` có thể chưa reference Newtonsoft~~ | — | **Đã hết:** S9 compile OK, không sửa asmdef |
 | 9 | `IStarterSaveFactory` là STUB chờ B-11 (`StarterSettings`) | Save mới chưa có 5 tướng/1000 Ngọc | Gỡ khi S8/B-11 xong |
-| 10 | Đổi tên asset đang dở, chưa commit (`enemy_thuong` → `enemy_normal`, …) | 1 test `LevelBalanceDataTests` đỏ; dễ lẫn vào PR ngày 7 | Hoàn tất + cập nhật đường dẫn test; **không** trộn vào PR ngày 7 |
+| 10 | ~~Đổi tên asset đang dở, chưa commit (`enemy_thuong` → `enemy_normal`, …)~~ | — | **Đã xong:** nhánh `refactor/enemy-asset-names` (2 commit, GUID giữ nguyên) merge vào 3 nhánh gameplay; test dùng id mới; còn **chạy lại test** để xác nhận |
 
 ---
 
@@ -87,4 +87,4 @@
 | Ngày | Nội dung |
 |---|---|
 | 7 – 16/10 | Tạo file; ghi nhận S0 ◐, S1 ☑, S2 ◐, S6/S7/S9 ☐; liệt kê 6 điểm lệch |
-| 7 – 16/10 | Ngày 7: S9 (A-14/A-15) xong; A-05 (Bay + boss gọi con) xong; A-06 (hpMultiplier + Vô tận) xong. 30 test mới (25 EM + 5 PM). S2/S9 → ☑. Lệch 2/3/5 gỡ. Sau PR #14: tách 4 nhánh `feature/S09_A14`, `feature/S02_A05`, `feature/S02_A06`, `docs/agent-tools` (bỏ nhánh gộp cũ). Kiểm chứng trong Unity: compile 0 lỗi, S9 286/286 EM, S2 297/298 EM + 50/50 PM; lệch 7/8 gỡ, thêm lệch 10 (đổi tên asset dở) |
+| 7 – 16/10 | Ngày 7: S9 (A-14/A-15) xong; A-05 (Bay + boss gọi con) xong; A-06 (hpMultiplier + Vô tận) xong. 30 test mới (25 EM + 5 PM). S2/S9 → ☑. Lệch 2/3/5 gỡ. Sau PR #14: tách 4 nhánh `feature/S09_A14`, `feature/S02_A05`, `feature/S02_A06`, `docs/agent-tools` (bỏ nhánh gộp cũ). Kiểm chứng trong Unity: compile 0 lỗi, S9 286/286 EM, S2 297/298 EM + 50/50 PM; lệch 7/8 gỡ, thêm lệch 10 (đổi tên asset dở). Sau đó: nhánh riêng `refactor/enemy-asset-names` (đổi id quái sang tiếng Anh, GUID giữ nguyên) merge vào 3 nhánh gameplay, sửa test theo id mới → gỡ lệch 10; **chưa chạy lại** test sau tích hợp |
