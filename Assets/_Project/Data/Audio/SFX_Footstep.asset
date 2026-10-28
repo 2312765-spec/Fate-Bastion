@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b92ae0f6e01d9e419e2d2708c997379, type: 3}
+  m_Name: SFX_Footstep
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.SoundData
+  clips:
+  - {fileID: 8300000, guid: 6425529a5032d2f44917708911f43afb, type: 3}
+  - {fileID: 8300000, guid: ea1ed28b1879fb34ebd1f78f99bb56ac, type: 3}
+  - {fileID: 8300000, guid: d1ac7f73503c0d947a99ce3f00df04e7, type: 3}
+  - {fileID: 8300000, guid: b59700607b3bf5a44a605686fb5ed359, type: 3}
+  - {fileID: 8300000, guid: 50d2c77a9cb52944b974da5eb53c9c14, type: 3}
+  volume: 0.4
+  pitchVariance: 0.15
+  group: 2
+  maxConcurrent: 2
+  spatialBlend: 1
+  minDistance: 2
+  maxDistance: 45
