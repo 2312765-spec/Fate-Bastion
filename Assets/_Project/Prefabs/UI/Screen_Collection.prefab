@@ -1819,6 +1819,7 @@ GameObject:
   - component: {fileID: 5128200956487669424}
   - component: {fileID: 8630112773950035485}
   - component: {fileID: 7589287271128365724}
+  - component: {fileID: 6607203931513039161}
   m_Layer: 5
   m_Name: MergeButton
   m_TagString: Untagged
@@ -1911,7 +1912,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3667747797205682314}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6607203931513039161}
+        m_TargetAssemblyTypeName: FateBastion.Audio.UIButtonSound, FateBastion.Audio
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6607203931513039161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4185572127278016052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b0c34887f5ca14dae071aa6849980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.UIButtonSound
+  _override: {fileID: 0}
 --- !u!1 &4364883442069519189
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,6 +2731,7 @@ GameObject:
   - component: {fileID: 2371166108414690750}
   - component: {fileID: 4172946874917256368}
   - component: {fileID: 3644711687178945313}
+  - component: {fileID: 8911728296337389965}
   m_Layer: 5
   m_Name: MergeButton
   m_TagString: Untagged
@@ -2797,7 +2824,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 34478128586394135}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8911728296337389965}
+        m_TargetAssemblyTypeName: FateBastion.Audio.UIButtonSound, FateBastion.Audio
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8911728296337389965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5938559319903038507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b0c34887f5ca14dae071aa6849980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.UIButtonSound
+  _override: {fileID: 0}
 --- !u!1 &6145463099029601619
 GameObject:
   m_ObjectHideFlags: 0
@@ -3158,6 +3210,7 @@ GameObject:
   - component: {fileID: 7820465309488997869}
   - component: {fileID: 6613354106336668952}
   - component: {fileID: 1781976703828734121}
+  - component: {fileID: 1881737778017045265}
   m_Layer: 5
   m_Name: MergeButton
   m_TagString: Untagged
@@ -3250,7 +3303,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 950773323786522346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1881737778017045265}
+        m_TargetAssemblyTypeName: FateBastion.Audio.UIButtonSound, FateBastion.Audio
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1881737778017045265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202033572438023054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b0c34887f5ca14dae071aa6849980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.UIButtonSound
+  _override: {fileID: 0}
 --- !u!1 &7282501253955379429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3611,6 +3689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7829356924055777806}
   - component: {fileID: 6940153144027752859}
+  - component: {fileID: 628944238828618178}
   m_Layer: 5
   m_Name: Screen_Collection
   m_TagString: Untagged
@@ -3652,6 +3731,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &628944238828618178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679521141071729782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a1cc229a012234a9fb77706d823ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.UIPanelSound
+  _playOnOpen: 1
+  _playOnClose: 1
 --- !u!1 &8995511491398658140
 GameObject:
   m_ObjectHideFlags: 0

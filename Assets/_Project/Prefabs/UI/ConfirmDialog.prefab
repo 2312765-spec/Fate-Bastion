@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 741574240584229506}
   - component: {fileID: 7768243185590817033}
   - component: {fileID: 3145740426283717572}
+  - component: {fileID: 4749532178360909289}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -103,7 +104,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1487894984846226076}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4749532178360909289}
+        m_TargetAssemblyTypeName: FateBastion.Audio.UIButtonSound, FateBastion.Audio
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4749532178360909289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510487067564917213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b0c34887f5ca14dae071aa6849980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.UIButtonSound
+  _override: {fileID: 0}
 --- !u!1 &861308972957193791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +1812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8868282665321929149}
   - component: {fileID: 7252920666081691286}
+  - component: {fileID: 3890892946644016566}
   m_Layer: 5
   m_Name: ConfirmDialog
   m_TagString: Untagged
@@ -1826,6 +1853,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3890892946644016566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9043617952933559234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a1cc229a012234a9fb77706d823ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.UIPanelSound
+  _playOnOpen: 1
+  _playOnClose: 1
 --- !u!1 &9187150999957999836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,6 +1878,7 @@ GameObject:
   - component: {fileID: 4643244745019798598}
   - component: {fileID: 2731793251028859629}
   - component: {fileID: 4008495664973226919}
+  - component: {fileID: 7537337964125919225}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -1929,7 +1971,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6831985328843888992}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7537337964125919225}
+        m_TargetAssemblyTypeName: FateBastion.Audio.UIButtonSound, FateBastion.Audio
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7537337964125919225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9187150999957999836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b0c34887f5ca14dae071aa6849980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.UIButtonSound
+  _override: {fileID: 0}
 --- !u!1 &9206448567675796340
 GameObject:
   m_ObjectHideFlags: 0

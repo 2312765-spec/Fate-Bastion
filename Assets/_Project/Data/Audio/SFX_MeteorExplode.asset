@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b92ae0f6e01d9e419e2d2708c997379, type: 3}
+  m_Name: SFX_MeteorExplode
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.SoundData
+  clips:
+  - {fileID: 8300000, guid: 023e37e705169cf44bde137a63b2a7cf, type: 3}
+  - {fileID: 8300000, guid: 6763246f4b5fa5240858d91effbf9e14, type: 3}
+  volume: 1
+  pitchVariance: 0.1
+  group: 2
+  maxConcurrent: 2
+  spatialBlend: 1
+  minDistance: 5
+  maxDistance: 60

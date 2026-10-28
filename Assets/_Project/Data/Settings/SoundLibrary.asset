@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99830569b6d8fb4bbc34c3406a38ff6, type: 3}
+  m_Name: SoundLibrary
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.SoundLibrary
+  heroPlace: {fileID: 11400000, guid: c13c4ca394f29684ab331d35eb299a92, type: 2}
+  heroUpgrade: {fileID: 11400000, guid: f26d5b74eda3a8b4bb2408c337b6cde5, type: 2}
+  heroLevel3: {fileID: 11400000, guid: 65485e45d24ca354d84fbdec23143ad3, type: 2}
+  heroSell: {fileID: 11400000, guid: 59c6cf46e20049043b56b5584f901fb6, type: 2}
+  defaultAttack: {fileID: 11400000, guid: bf9429b04855a96439d0b2200b2bcfae, type: 2}
+  defaultUltimate: {fileID: 11400000, guid: afb09fd6b0bc36243bda5479cbd1d463, type: 2}
+  footstep: {fileID: 11400000, guid: 82519a17bf5024046a2a40c38f441d81, type: 2}
+  meteorFall: {fileID: 11400000, guid: c62ab35b27110a74f91335314820f74a, type: 2}
+  meteorExplode: {fileID: 11400000, guid: 4b23edfb1d89bc5458e1ccac7044dda6, type: 2}
+  meteorReady: {fileID: 11400000, guid: a5ef52d4c3e12b1409a139e6bc84836f, type: 2}
+  enemyHit: {fileID: 11400000, guid: f7c8401a2b96c5d4fa5a1ea6450e18d5, type: 2}
+  enemyDeath: {fileID: 11400000, guid: 58c9c0afd5d199844966d590fe5c6f24, type: 2}
+  bossDeath: {fileID: 11400000, guid: 0bd1e3562f94caf4086abf6ed15fa1e5, type: 2}
+  castleHit: {fileID: 11400000, guid: b1c34be55880a5b49adb5ea74f48eb34, type: 2}
+  bossAppear: {fileID: 11400000, guid: 8d23d4d7d91329849b8519fd16c90722, type: 2}
+  waveStart: {fileID: 11400000, guid: e11fd8491dbadd04caf613d7deb7705e, type: 2}
+  waveClear: {fileID: 11400000, guid: b27e27d30a487184ebd3e19e4caab180, type: 2}
+  victory: {fileID: 11400000, guid: bdc63d95c318e234b904a64422e74ac5, type: 2}
+  defeat: {fileID: 11400000, guid: 7a2ab6232aa31c646b87c9def4ebb6d9, type: 2}
+  gachaReveal:
+  - {fileID: 11400000, guid: 85e13e54d1577f14884dc7911716eec9, type: 2}
+  - {fileID: 11400000, guid: b50393351278820438e8e6ded46c8fe4, type: 2}
+  - {fileID: 11400000, guid: 7be1034d53b2299419dde86dda2cc38a, type: 2}
+  - {fileID: 11400000, guid: 05787721270f841439d2f7bb5500910b, type: 2}
+  uiClick: {fileID: 11400000, guid: b06dfdaa805325a4db4199ca506034cd, type: 2}
+  panelOpen: {fileID: 11400000, guid: 304cec884866b7d4180cdc531cf70932, type: 2}
+  panelClose: {fileID: 11400000, guid: 578cadfe363d98e4480a5c6d089adae7, type: 2}
+  error: {fileID: 11400000, guid: 575f11ece86e9d8479e3ad2d264ea1e5, type: 2}
+  merge: {fileID: 11400000, guid: a81eca5d1bc2d5243bde33d931cadc98, type: 2}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b92ae0f6e01d9e419e2d2708c997379, type: 3}
+  m_Name: SFX_Attack_Melee
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.SoundData
+  clips:
+  - {fileID: 8300000, guid: cfc49703439e39e43a7658106e8dd0e6, type: 3}
+  - {fileID: 8300000, guid: 76ec40c876618e9458ab73683e6af49a, type: 3}
+  - {fileID: 8300000, guid: 266198b34f50ecd4180773af3f8aee8c, type: 3}
+  volume: 0.5
+  pitchVariance: 0.1
+  group: 2
+  maxConcurrent: 4
+  spatialBlend: 1
+  minDistance: 5
+  maxDistance: 45

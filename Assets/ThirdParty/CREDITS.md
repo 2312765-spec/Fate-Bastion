@@ -7,6 +7,16 @@ Danh sach asset ben thu ba su dung trong du an (ten, nguon, giay phep).
 | Ultimate Monsters | Quaternius | https://quaternius.com/packs/ultimatemonsters.html | CC0 1.0 | 5 loai quai | `Quaternius/Creatures/UltimateMonsters/` |
 | Tower Defense Kit (v2.1) | Kenney | https://kenney.nl/assets/tower-defense-kit | CC0 1.0 | Map: Cong, Thanh, duong, vat can | `Kenney/TowerDefenseKit/` |
 | Be Vietnam Pro (Regular, SemiBold) | The Be Vietnam Pro Project Authors | https://github.com/google/fonts/tree/main/ofl/bevietnampro | SIL OFL 1.1 | Font TextMeshPro moi man hinh (C-10) | `Assets/_Project/Art/Fonts/BeVietnamPro/` (kem `OFL.txt`) |
+| Impact Sounds | Kenney | https://kenney.nl/assets/impact-sounds | CC0 1.0 | Dat tuong, quai trung don/chet, buoc chan, Thanh mat mau (C-13) | `Assets/_Project/Audio/SFX/` |
+| RPG Audio | Kenney | https://kenney.nl/assets/rpg-audio | CC0 1.0 | Don danh can chien/cung, ban tuong (C-13) | `Assets/_Project/Audio/SFX/Heroes/` |
+| Sci-fi Sounds | Kenney | https://kenney.nl/assets/sci-fi-sounds | CC0 1.0 | Phep, Ultimate, Thien thach, boss chet (C-13) | `Assets/_Project/Audio/SFX/` |
+| Digital Audio | Kenney | https://kenney.nl/assets/digital-audio | CC0 1.0 | Nang cap, len cap 3, gacha Rare (C-13) | `Assets/_Project/Audio/SFX/` |
+| Music Jingles | Kenney | https://kenney.nl/assets/music-jingles | CC0 1.0 | Wave, thang/thua, boss xuat hien, gacha Epic/Legendary, ghep (C-13) | `Assets/_Project/Audio/SFX/` |
+| Casino Audio | Kenney | https://kenney.nl/assets/casino-audio | CC0 1.0 | Gacha Common (C-13) | `Assets/_Project/Audio/SFX/Gacha/` |
+| Interface Sounds | Kenney | https://kenney.nl/assets/interface-sounds | CC0 1.0 | Bam nut, mo/dong bang, loi, Thien thach hoi xong (C-13) | `Assets/_Project/Audio/SFX/` |
+| Medieval: The Old Tower Inn | RandomMind | https://opengameart.org/content/medieval-the-old-tower-inn | CC0 1.0 | Nhac sanh `MUS_Lobby` (C-13) | `Assets/_Project/Audio/Music/` |
+| Heartfelt Battle (loop) | request (OpenGameArt; tac gia mong duoc ghi nguon) | https://opengameart.org/content/heartfelt-battle-loopable-fantasy-stringspianohorn | CC0 1.0 | Nhac tran `MUS_Match` (C-13) | `Assets/_Project/Audio/Music/` |
+| Determined Pursuit (loop) | Emma_MA | https://opengameart.org/content/determined-pursuit-epic-orchestra-loop | CC0 1.0 | Nhac boss `MUS_Boss` (C-13) | `Assets/_Project/Audio/Music/` |
 
 Ghi chu giay phep:
 - CC0 1.0: dung tu do ke ca thuong mai, khong bat buoc ghi nguon (van ghi o day va trong man hinh credit).
