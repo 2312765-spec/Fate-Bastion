@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9010506166181416216}
   - component: {fileID: 6462418317041042466}
   - component: {fileID: 8206181761873406204}
+  - component: {fileID: 8914139965334325043}
   m_Layer: 5
   m_Name: CooldownSlot
   m_TagString: Untagged
@@ -107,7 +108,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7616574432117024487}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8914139965334325043}
+        m_TargetAssemblyTypeName: FateBastion.Audio.UIButtonSound, FateBastion.Audio
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8914139965334325043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990979233151417021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b0c34887f5ca14dae071aa6849980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.UIButtonSound
+  _override: {fileID: 0}
 --- !u!1 &3402312029860459923
 GameObject:
   m_ObjectHideFlags: 0

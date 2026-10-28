@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169601292245953165}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11343537, y: 0, z: 0, w: 0.9935454}
-  m_LocalPosition: {x: 0, y: 0.301, z: -1.301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -288,7 +288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4663551965441040294}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11343537, y: 0, z: 0, w: 0.9935454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 3376632917930156665}
   - component: {fileID: 6426946843323932702}
   - component: {fileID: 980258838601822744}
+  - component: {fileID: 7441669958722222532}
   m_Layer: 0
   m_Name: Summoner
   m_TagString: Player
@@ -501,6 +502,20 @@ MonoBehaviour:
   _settings: {fileID: 11400000, guid: e6f92e1140dd0a74da2a9561cd7e9f14, type: 2}
   _cameraTransform: {fileID: 8134373367664437441}
   _spawnPoint: {fileID: 0}
+--- !u!114 &7441669958722222532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4942411768064788237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb250a98e17a22c4d847caf8d8144f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.FootstepSound
+  _stepDistance: 1.6
+  _teleportDistance: 3
 --- !u!1 &5448786938111666078
 GameObject:
   m_ObjectHideFlags: 0
