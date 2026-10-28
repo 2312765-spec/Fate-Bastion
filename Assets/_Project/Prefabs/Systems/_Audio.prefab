@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1978863459042599705}
   - component: {fileID: 8372694417135714849}
   - component: {fileID: 7760941618239022540}
+  - component: {fileID: 6780776894609247939}
   m_Layer: 0
   m_Name: _Audio
   m_TagString: Untagged
@@ -73,3 +74,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.MusicPlayer
   _config: {fileID: 11400000, guid: ffa29034dfa676b4b937af2a21a9a187, type: 2}
   _startTrack: 0
+--- !u!114 &6780776894609247939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5784826312523787208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500f101a3d74a9f45950564b4be17d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.FeedbackService
+  _settings: {fileID: 11400000, guid: 9c976944eb560e44f99958b51ccf775e, type: 2}
+  _audioConfig: {fileID: 11400000, guid: ffa29034dfa676b4b937af2a21a9a187, type: 2}
