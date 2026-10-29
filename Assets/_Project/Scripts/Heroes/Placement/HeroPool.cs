@@ -158,9 +158,8 @@ namespace FateBastion.Heroes
             // the placement CheckSphere and hero picking see it. Hero_Base ships on Default.
             if (_heroLayer >= 0) go.layer = _heroLayer;
 
-            // STUB: B thêm HeroLevel vào Hero_Base qua PR được A duyệt (TEAM_ASSIGNMENT 2.2); tới lúc đó pool tự gắn.
+            //HeroLevel có [DisallowMultipleComponent] nên không cần kiểm tra.
             HeroLevel level = go.GetComponent<HeroLevel>();
-            if (level == null) level = go.AddComponent<HeroLevel>();
             level.Setup(_levelTable, _topLevelAuraPrefab);
 
             go.SetActive(false);
