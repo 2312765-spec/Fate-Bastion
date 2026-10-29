@@ -16,3 +16,4 @@ MonoBehaviour:
   _rareDamageMultiplier: 1.6
   _epicDamageMultiplier: 2.5
   _legendaryDamageMultiplier: 4
+  _attackSpeedBuffCap: 0.6
