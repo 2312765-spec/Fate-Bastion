@@ -4,7 +4,7 @@
 
 - `HeroStats` gộp contribution mạnh nhất theo `(sourceType, BuffType)`, cộng các nhóm khác nhau và giới hạn riêng tổng AttackSpeed bằng setting.
 - `HeroStatsSettings` có cấu hình trần; asset `HeroStatsSettings.asset` đã được cập nhật bằng Unity Editor với giá trị `0.6`.
-- Đã viết năm EditMode tests: cùng loại nguồn, Support + aura, vượt trần, gỡ contribution mạnh nhất, và Damage không bị trần AttackSpeed.
+- Đã viết sáu EditMode tests: cùng loại nguồn, thay contribution trên cùng nguồn, Support + aura, vượt trần, gỡ contribution mạnh nhất, và Damage không bị trần AttackSpeed.
 - Unity MCP standard validation: không có diagnostic cho hai script runtime và test file.
 - Unity refresh hoàn tất ở trạng thái idle; Console không có lỗi biên dịch (các log còn lại thuộc môi trường MCP).
 - Commit `5c2e634` đã push lên `feature/S06_A09`; draft PR #39 đã mở nhắm vào `feature/S06_A08`.

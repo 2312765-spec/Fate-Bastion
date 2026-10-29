@@ -136,6 +136,17 @@ namespace FateBastion.Tests.EditMode.S6
         }
 
         [Test]
+        public void SetBuff_ReplaceExistingSource_RecalculatesAttackSpeedBonus()
+        {
+            _stats.Initialize(_hero);
+            _stats.SetBuff(_buffSourceA, _hero, BuffType.AttackSpeed, 0.3f);
+
+            _stats.SetBuff(_buffSourceA, _hero, BuffType.AttackSpeed, 0.2f);
+
+            Assert.AreEqual(1.5f, _stats.AttacksPerSecond, 1e-5f);
+        }
+
+        [Test]
         public void SetBuff_SupportAndAuraOfDifferentTypes_AddTheirAttackSpeedBonuses()
         {
             _stats.Initialize(_hero);
