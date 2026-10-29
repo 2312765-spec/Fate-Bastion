@@ -25,4 +25,4 @@ MonoBehaviour:
   icon: {fileID: 0}
   prefab: {fileID: 0}
   passiveSkill: {fileID: 11400000, guid: feeb1f4c433070e40950c6d77534c2df, type: 2}
-  ultimateSkill: {fileID: 0}
+  ultimateSkill: {fileID: 11400000, guid: 72fea18290cfc2045b12a1ff6f59f168, type: 2}
