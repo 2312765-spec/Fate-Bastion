@@ -60,7 +60,8 @@ namespace FateBastion.Heroes
             canAttack &= _skillRunner.CanExecuteBasicAttack();
 
             if (!_attackTimer.Tick(Time.deltaTime, _hero.Stats.AttacksPerSecond, canAttack)) return;
-            _skillRunner.ExecuteBasicAttack(target);
+            if (_skillRunner.ExecuteBasicAttack(target))
+                _hero.NotifyBasicAttackExecuted();
         }
 
         /// <summary>Clears the attack cadence when the hero enters its pool.</summary>
