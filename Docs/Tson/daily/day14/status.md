@@ -13,6 +13,7 @@
 - Theo lựa chọn của TVA, dời toàn bộ thao tác Unity và compile sang T-16. Lần refresh trước timeout sau 60 giây; Console lúc đó báo CS0246 trước khi Editor import xong các script mới, nên chưa có kết quả compile cuối.
 - T-16 phải tạo `HeroRageSettings.asset` (5/100), gán vào `Hero_Base.prefab` qua Editor, force import/compile và ghi kết quả. Không sửa YAML prefab/asset bằng tay.
 - Chưa xác nhận compile; EditMode/PlayMode tests hoãn theo kế hoạch.
+- Commit `5689996` đã push; draft PR #40 mở trên `feature/S06_A10`, base `feature/S06_A08`.
 
 ## Người nhận
 
