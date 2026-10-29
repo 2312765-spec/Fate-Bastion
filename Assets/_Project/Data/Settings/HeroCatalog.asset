@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b696d6a72f08734b9787d466a4ec237, type: 3}
+  m_Name: HeroCatalog
+  m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.HeroCatalog
+  _heroes:
+  - {fileID: 11400000, guid: 918323c70147ee048a370efcb46a6636, type: 2}
+  - {fileID: 11400000, guid: ebd86251a66cbdd41be879d5d1eb128d, type: 2}
+  - {fileID: 11400000, guid: f701fd6e80e051048bc29d7e65fcfec4, type: 2}
+  - {fileID: 11400000, guid: 2fbac075510b0694ca60c3eb9b6d98bf, type: 2}
+  - {fileID: 11400000, guid: b3a8dda99cfa720418c46e2439075441, type: 2}
+  - {fileID: 11400000, guid: f7403b6dd2eea25489643d93a8aec1b2, type: 2}
+  - {fileID: 11400000, guid: 161d1519238ab4e4e812180ee60e3d6b, type: 2}
+  - {fileID: 11400000, guid: 58da62cb2ec09004fb603845f05c4682, type: 2}
+  - {fileID: 11400000, guid: d4b614ef0d7e85f46a846e7c7097c2b7, type: 2}
