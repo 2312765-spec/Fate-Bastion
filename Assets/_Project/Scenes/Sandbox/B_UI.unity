@@ -119,13 +119,13 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &51459943
+--- !u!114 &13139436
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960902}
+  m_GameObject: {fileID: 2004110663}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -135,13 +135,13 @@ MonoBehaviour:
   _hoverScale: 1.05
   _pressScale: 0.93
   _duration: 0.12
---- !u!114 &90637670
+--- !u!114 &65655190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960901}
+  m_GameObject: {fileID: 2004110685}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -151,13 +151,13 @@ MonoBehaviour:
   _hoverScale: 1.05
   _pressScale: 0.93
   _duration: 0.12
---- !u!114 &129623805
+--- !u!114 &92629551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960888}
+  m_GameObject: {fileID: 2004110678}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -167,13 +167,13 @@ MonoBehaviour:
   _hoverScale: 1.05
   _pressScale: 0.93
   _duration: 0.12
---- !u!114 &153354235
+--- !u!114 &207651394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960896}
+  m_GameObject: {fileID: 2004110668}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -183,58 +183,7 @@ MonoBehaviour:
   _hoverScale: 1.05
   _pressScale: 0.93
   _duration: 0.12
---- !u!114 &161332140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &189242954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0dccf26f1e00e4ab0020962beee5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIScreen
-  _isOverlay: 0
-  _closeOnCancel: 1
-  _fadeDuration: 0.22
-  _transition: 1
-  _content: {fileID: 0}
-  _motionDuration: 0.34
-  _slideDistance: 90
---- !u!114 &193550079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!1 &256654559
+--- !u!1 &234531533
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,11 +191,342 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 256654560}
-  - component: {fileID: 256654564}
-  - component: {fileID: 256654563}
-  - component: {fileID: 256654562}
-  - component: {fileID: 256654561}
+  - component: {fileID: 234531534}
+  - component: {fileID: 234531538}
+  - component: {fileID: 234531537}
+  - component: {fileID: 234531536}
+  - component: {fileID: 234531535}
+  m_Layer: 0
+  m_Name: Glow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &234531534
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234531533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2004110631}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &234531535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234531533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6919e447bbaab1b40b10952428642910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiPulse
+  _minAlpha: 0.15
+  _maxAlpha: 0.55
+  _halfPeriod: 1.1
+--- !u!114 &234531536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234531533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d35e80fa6d5cf5448658ade2fffbd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiProceduralSpriteBinder
+--- !u!114 &234531537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234531533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9647059, g: 0.76862746, b: 0.3529412, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &234531538
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234531533}
+  m_CullTransparentMesh: 1
+--- !u!114 &343297509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &388646091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &437804415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &440448092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &452890311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!1 &472204653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472204655}
+  - component: {fileID: 472204654}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!20 &472204654
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472204653}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.101960786, g: 0.07058824, b: 0.050980393, a: 1}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &472204655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472204653}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &478986171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &533256327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &602705264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &628136216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff141d501aac1db44b0957a87f56b570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiStaggerIn
+  _initialDelay: 0.35
+  _step: 0.07
+  _duration: 0.38
+  _fromScale: 0.7
+--- !u!1 &645534593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645534594}
+  - component: {fileID: 645534598}
+  - component: {fileID: 645534597}
+  - component: {fileID: 645534596}
+  - component: {fileID: 645534595}
   m_Layer: 0
   m_Name: AlertBadge
   m_TagString: Untagged
@@ -254,32 +534,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &256654560
+--- !u!224 &645534594
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256654559}
+  m_GameObject: {fileID: 645534593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 534960878}
+  m_Father: {fileID: 2004110637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 6}
   m_SizeDelta: {x: 84, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &256654561
+--- !u!114 &645534595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256654559}
+  m_GameObject: {fileID: 645534593}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3eb8230b4b06af4fb6409acb13437c5, type: 3}
@@ -287,13 +567,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiWiggle
   _delay: 0.12
   _angle: 16
---- !u!114 &256654562
+--- !u!114 &645534596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256654559}
+  m_GameObject: {fileID: 645534593}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -317,21 +597,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &256654563
+--- !u!222 &645534597
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256654559}
+  m_GameObject: {fileID: 645534593}
   m_CullTransparentMesh: 1
---- !u!114 &256654564
+--- !u!114 &645534598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256654559}
+  m_GameObject: {fileID: 645534593}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
@@ -345,13 +625,13 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &295787363
+--- !u!114 &672263815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960915}
+  m_GameObject: {fileID: 2004110652}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -361,13 +641,13 @@ MonoBehaviour:
   _hoverScale: 1.05
   _pressScale: 0.93
   _duration: 0.12
---- !u!114 &355252370
+--- !u!114 &680304919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960890}
+  m_GameObject: {fileID: 2004110660}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -377,39 +657,7 @@ MonoBehaviour:
   _hoverScale: 1.05
   _pressScale: 0.93
   _duration: 0.12
---- !u!114 &411677867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &436958310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!1 &526211333
+--- !u!1 &740309775
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -417,36 +665,456 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 526211335}
-  - component: {fileID: 526211334}
+  - component: {fileID: 740309776}
+  - component: {fileID: 740309779}
+  - component: {fileID: 740309778}
+  - component: {fileID: 740309777}
   m_Layer: 0
-  m_Name: InputRouter
+  m_Name: Vignette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &526211334
+--- !u!224 &740309776
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740309775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2004110636}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &740309777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526211333}
+  m_GameObject: {fileID: 740309775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d68829abdac2b408b3d19e227d4452, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c314f12cc1621c4fab98bf1d53be506, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FateBastion.Player::FateBastion.Player.SummonerInputRouter
-  _actions: {fileID: -944628639613478452, guid: a4a16e1595a9d0048b073de6213170c8, type: 3}
-  _pauseOnFocusLostInEditor: 0
---- !u!4 &526211335
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiVignette
+  _strength: 0.85
+--- !u!114 &740309778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740309775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &740309779
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740309775}
+  m_CullTransparentMesh: 1
+--- !u!114 &758849599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &802010506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &878237477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &922686134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c56287f1445a3a4cafe5f8ce11046ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.GachaResultScreen
+  _isOverlay: 1
+  _closeOnCancel: 1
+  _fadeDuration: 0.22
+  _transition: 2
+  _content: {fileID: 2004110667}
+  _motionDuration: 0.36
+  _slideDistance: 90
+  _firstDelay: 0.2
+  _step: 0.09
+  _flipDuration: 0.35
+--- !u!225 &922686135
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110679}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &957000151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &981132585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5bd4b89a2a2d64fae280b1905b45d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.MainMenuScreen
+  _isOverlay: 0
+  _closeOnCancel: 1
+  _fadeDuration: 0.22
+  _transition: 1
+  _content: {fileID: 0}
+  _motionDuration: 0.34
+  _slideDistance: 90
+--- !u!1 &1004178475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004178476}
+  - component: {fileID: 1004178481}
+  - component: {fileID: 1004178480}
+  - component: {fileID: 1004178479}
+  - component: {fileID: 1004178478}
+  - component: {fileID: 1004178477}
+  m_Layer: 0
+  m_Name: FireGlow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1004178476
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004178475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2004110636}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.35}
+  m_AnchorMax: {x: 0.5, y: 0.35}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2200, y: 1500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1004178477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004178475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999bb66a13debbb458cf48e392a2a396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiAmbientDrift
+  _maxScale: 1.06
+  _halfPeriod: 14
+--- !u!114 &1004178478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004178475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6919e447bbaab1b40b10952428642910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiPulse
+  _minAlpha: 0.28
+  _maxAlpha: 0.48
+  _halfPeriod: 3.2
+--- !u!114 &1004178479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004178475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d35e80fa6d5cf5448658ade2fffbd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiProceduralSpriteBinder
+--- !u!114 &1004178480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004178475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6901961, g: 0.32156864, b: 0.101960786, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1004178481
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004178475}
+  m_CullTransparentMesh: 1
+--- !u!114 &1010753333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1019343128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1059017267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa793bceff4d2a4e969b526d57ed6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiTitleIntro
+  _dropDistance: 140
+  _dropDuration: 0.75
+  _delay: 0.05
+  _floatAmplitude: 7
+  _floatPeriod: 2.4
+--- !u!114 &1072206229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!1 &1079062077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1079062080}
+  - component: {fileID: 1079062079}
+  - component: {fileID: 1079062078}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1079062078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079062077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
+--- !u!114 &1079062079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079062077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1079062080
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526211333}
+  m_GameObject: {fileID: 1079062077}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -455,7 +1123,719 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &534960874
+--- !u!114 &1114366414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!1 &1140359980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140359982}
+  - component: {fileID: 1140359981}
+  m_Layer: 0
+  m_Name: DebugPanel (F1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1140359981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140359980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e02425d71c24498a87b6c8b3d0a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.DebugTools.DebugPanel
+  _heroCatalog: {fileID: 11400000, guid: 5773d97a39ca16b4e8c5a3956ea87cf7, type: 2}
+  _visible: 0
+--- !u!4 &1140359982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140359980}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1168849327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1170858076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1291968763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1298475977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1311026445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1325703507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e987373886820542bfdfdf5fc09eb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.CollectionScreen
+  _isOverlay: 0
+  _closeOnCancel: 1
+  _fadeDuration: 0.22
+  _transition: 1
+  _content: {fileID: 0}
+  _motionDuration: 0.34
+  _slideDistance: 90
+--- !u!114 &1382091390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447b87caa0bfde7448d6bfb236616daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.ConfirmDialog
+  _isOverlay: 1
+  _closeOnCancel: 1
+  _fadeDuration: 0.22
+  _transition: 2
+  _content: {fileID: 2004110637}
+  _motionDuration: 0.36
+  _slideDistance: 90
+  _manager: {fileID: 0}
+  _titleText: {fileID: 2004110644}
+  _messageText: {fileID: 2004110643}
+  _confirmButton: {fileID: 2004110639}
+  _cancelButton: {fileID: 2004110641}
+  _dontAskToggle: {fileID: 2004110642}
+--- !u!114 &1389783276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1392271187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1404502038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1497096099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!1 &1513145105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1513145106}
+  - component: {fileID: 1513145107}
+  m_Layer: 0
+  m_Name: Embers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1513145106
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513145105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2004110636}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1513145107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513145105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983363c589851fd44aedd05770943958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiEmbers
+  _count: 30
+  _colorA: {r: 1, g: 0.62, b: 0.2, a: 0.9}
+  _colorB: {r: 1, g: 0.85, b: 0.45, a: 0.75}
+  _sizeRange: {x: 6, y: 16}
+  _riseSeconds: {x: 7, y: 13}
+  _sway: 40
+--- !u!114 &1584386074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa793bceff4d2a4e969b526d57ed6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiTitleIntro
+  _dropDistance: 60
+  _dropDuration: 0.75
+  _delay: 0.3
+  _floatAmplitude: 0
+  _floatPeriod: 2.4
+--- !u!114 &1671427160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c4d671ca1f51043aead113c1947a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.GachaScreen
+  _isOverlay: 0
+  _closeOnCancel: 1
+  _fadeDuration: 0.22
+  _transition: 1
+  _content: {fileID: 0}
+  _motionDuration: 0.34
+  _slideDistance: 90
+  _result: {fileID: 0}
+--- !u!114 &1713740250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1731630554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1753960116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1795570073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1810057506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!1 &1837406401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1837406403}
+  - component: {fileID: 1837406402}
+  m_Layer: 0
+  m_Name: InputRouter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1837406402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837406401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d68829abdac2b408b3d19e227d4452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Player::FateBastion.Player.SummonerInputRouter
+  _actions: {fileID: -944628639613478452, guid: a4a16e1595a9d0048b073de6213170c8, type: 3}
+  _pauseOnFocusLostInEditor: 0
+--- !u!4 &1837406403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837406401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1915681569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!1 &1932674851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1932674852}
+  - component: {fileID: 1932674854}
+  - component: {fileID: 1932674853}
+  m_Layer: 0
+  m_Name: TitlePlate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1932674852
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932674851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2004110691}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 480, y: 92}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1932674853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932674851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4d6a99baee23b654f9e4bb672ae0b438, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1932674854
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932674851}
+  m_CullTransparentMesh: 1
+--- !u!114 &1936795926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51dee6cb7e3558a48a8eb54bc37751e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.LobbyController
+  _gachaTable: {fileID: 11400000, guid: 838103dfc8593d846930b3039ed10596, type: 2}
+  _starterSettings: {fileID: 11400000, guid: a2949290a0f198b4ead1b3a85ef86306, type: 2}
+  _heroCatalog: {fileID: 11400000, guid: 5773d97a39ca16b4e8c5a3956ea87cf7, type: 2}
+  _matchCatalog: {fileID: 11400000, guid: a2df65392a6cc004680d07726f9aa3b6, type: 2}
+  _confirm: {fileID: 0}
+--- !u!114 &1936795927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fa016b1b1bf0a40b22c5bf6ad71b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIManager
+  _rootScreen: {fileID: 981132585}
+  _enableUiActionMapOnStart: 1
+--- !u!114 &1939018909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &1939358507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!1 &1951681418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1951681419}
+  - component: {fileID: 1951681421}
+  - component: {fileID: 1951681420}
+  m_Layer: 0
+  m_Name: Divider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1951681419
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951681418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2004110691}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 14}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1951681420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951681418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b7d245916891cca47a0144e12a82e086, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1951681421
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951681418}
+  m_CullTransparentMesh: 1
+--- !u!114 &1999320546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004110673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!1001 &2004110624
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -6148,266 +7528,305 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 1267191104}
+      addedObject: {fileID: 1004178476}
     - targetCorrespondingSourceObject: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 633583517}
+      addedObject: {fileID: 1513145106}
     - targetCorrespondingSourceObject: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 1071284894}
+      addedObject: {fileID: 740309776}
     - targetCorrespondingSourceObject: {fileID: 6767936774185385727, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 664429886}
+      addedObject: {fileID: 1951681419}
     - targetCorrespondingSourceObject: {fileID: 6767936774185385727, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 1287637086}
+      addedObject: {fileID: 1932674852}
     - targetCorrespondingSourceObject: {fileID: 3003634400901212955, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: 0
-      addedObject: {fileID: 921058082}
+      addedObject: {fileID: 234531534}
     - targetCorrespondingSourceObject: {fileID: 8673503964889777339, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 256654560}
+      addedObject: {fileID: 645534594}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4787880303991623441, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 534960962}
+      addedObject: {fileID: 1936795927}
+    - targetCorrespondingSourceObject: {fileID: 4787880303991623441, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1936795926}
     - targetCorrespondingSourceObject: {fileID: 6782349526593249167, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 436958310}
+      addedObject: {fileID: 2004110696}
     - targetCorrespondingSourceObject: {fileID: 1838095540749700543, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1710521443}
+      addedObject: {fileID: 981132585}
     - targetCorrespondingSourceObject: {fileID: 6459851730488501177, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 857452057}
+      addedObject: {fileID: 1059017267}
     - targetCorrespondingSourceObject: {fileID: 2810677603462807479, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1266572270}
+      addedObject: {fileID: 1584386074}
     - targetCorrespondingSourceObject: {fileID: 4563217382985666751, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1952545855}
+      addedObject: {fileID: 628136216}
     - targetCorrespondingSourceObject: {fileID: 2691577720496308192, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 534960961}
+      addedObject: {fileID: 957000151}
     - targetCorrespondingSourceObject: {fileID: 484129285810918500, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 534960960}
+      addedObject: {fileID: 1389783276}
     - targetCorrespondingSourceObject: {fileID: 9117001391178184788, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 534960959}
+      addedObject: {fileID: 1072206229}
     - targetCorrespondingSourceObject: {fileID: 8400874062425970946, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 534960958}
+      addedObject: {fileID: 1168849327}
     - targetCorrespondingSourceObject: {fileID: 2064359031041452572, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1087556980}
+      addedObject: {fileID: 1939018909}
     - targetCorrespondingSourceObject: {fileID: 1625554570478062139, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1986947930}
+      addedObject: {fileID: 2004110695}
     - targetCorrespondingSourceObject: {fileID: 7490045122018303400, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1230383481}
+      addedObject: {fileID: 2004110694}
     - targetCorrespondingSourceObject: {fileID: 1961939877183011351, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1785375060}
+      addedObject: {fileID: 2004110693}
     - targetCorrespondingSourceObject: {fileID: 1623096437985351632, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 917526271}
+      addedObject: {fileID: 1795570073}
     - targetCorrespondingSourceObject: {fileID: 1120968103147284532, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2010105943}
+      addedObject: {fileID: 533256327}
     - targetCorrespondingSourceObject: {fileID: 5056484749547763016, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1200390770}
+      addedObject: {fileID: 65655190}
     - targetCorrespondingSourceObject: {fileID: 6175578304937325987, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 805203714}
+      addedObject: {fileID: 1731630554}
     - targetCorrespondingSourceObject: {fileID: 7652934049115040399, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 193550079}
+      addedObject: {fileID: 758849599}
     - targetCorrespondingSourceObject: {fileID: 5943866122108311046, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1252942592}
+      addedObject: {fileID: 1671427160}
     - targetCorrespondingSourceObject: {fileID: 1448245984413791391, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1891109237}
+      addedObject: {fileID: 1298475977}
     - targetCorrespondingSourceObject: {fileID: 1846797656839907273, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 608799341}
+      addedObject: {fileID: 1010753333}
     - targetCorrespondingSourceObject: {fileID: 3461767323510635734, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1648939879}
+      addedObject: {fileID: 922686135}
     - targetCorrespondingSourceObject: {fileID: 3461767323510635734, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1648939880}
-    - targetCorrespondingSourceObject: {fileID: 4976611303031191072, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1242966918}
+      addedObject: {fileID: 922686134}
     - targetCorrespondingSourceObject: {fileID: 1921691381161616006, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1366342323}
+      addedObject: {fileID: 92629551}
     - targetCorrespondingSourceObject: {fileID: 2148801277393154715, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1251052225}
+      addedObject: {fileID: 1810057506}
     - targetCorrespondingSourceObject: {fileID: 8945189902924735776, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1372534580}
+      addedObject: {fileID: 1170858076}
     - targetCorrespondingSourceObject: {fileID: 8763860227046243857, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1334484717}
+      addedObject: {fileID: 1019343128}
     - targetCorrespondingSourceObject: {fileID: 3418563674112312965, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 295787363}
+      addedObject: {fileID: 452890311}
     - targetCorrespondingSourceObject: {fileID: 6853361619834001715, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 995361342}
+      addedObject: {fileID: 1999320546}
     - targetCorrespondingSourceObject: {fileID: 4998248088459575621, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 893739987}
+      addedObject: {fileID: 478986171}
     - targetCorrespondingSourceObject: {fileID: 7812964874727399669, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1373758104}
+      addedObject: {fileID: 343297509}
     - targetCorrespondingSourceObject: {fileID: 5723684803885486243, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1070768550}
+      addedObject: {fileID: 2123527517}
     - targetCorrespondingSourceObject: {fileID: 3475334051580174384, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1578766525}
+      addedObject: {fileID: 1311026445}
     - targetCorrespondingSourceObject: {fileID: 161163844432502019, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 161332140}
+      addedObject: {fileID: 207651394}
     - targetCorrespondingSourceObject: {fileID: 3838039728894387847, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 189242954}
+      addedObject: {fileID: 1325703507}
     - targetCorrespondingSourceObject: {fileID: 6178890978420490270, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1968398797}
+      addedObject: {fileID: 1392271187}
     - targetCorrespondingSourceObject: {fileID: 4682063051488672601, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2138295115}
+      addedObject: {fileID: 1291968763}
     - targetCorrespondingSourceObject: {fileID: 1040904933343786115, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1107475032}
+      addedObject: {fileID: 13139436}
     - targetCorrespondingSourceObject: {fileID: 5659432011309683504, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1690508861}
+      addedObject: {fileID: 1114366414}
     - targetCorrespondingSourceObject: {fileID: 3783630839128231146, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 51459943}
+      addedObject: {fileID: 440448092}
     - targetCorrespondingSourceObject: {fileID: 4749653716361784923, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 90637670}
+      addedObject: {fileID: 680304919}
     - targetCorrespondingSourceObject: {fileID: 1011473003633717767, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1344196386}
+      addedObject: {fileID: 802010506}
     - targetCorrespondingSourceObject: {fileID: 3131436940508414379, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1188314148}
+      addedObject: {fileID: 437804415}
     - targetCorrespondingSourceObject: {fileID: 7798264161052296924, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1067924207}
+      addedObject: {fileID: 1753960116}
     - targetCorrespondingSourceObject: {fileID: 4694696170129915259, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 411677867}
+      addedObject: {fileID: 1497096099}
     - targetCorrespondingSourceObject: {fileID: 7287666280808324454, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 153354235}
+      addedObject: {fileID: 2121884477}
     - targetCorrespondingSourceObject: {fileID: 5837339723268020564, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1683204916}
+      addedObject: {fileID: 878237477}
     - targetCorrespondingSourceObject: {fileID: 5665738231644213214, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1601113297}
+      addedObject: {fileID: 1939358507}
     - targetCorrespondingSourceObject: {fileID: 4600526054383343202, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 796383621}
+      addedObject: {fileID: 672263815}
     - targetCorrespondingSourceObject: {fileID: 8585704899158365381, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1731286416}
+      addedObject: {fileID: 1713740250}
     - targetCorrespondingSourceObject: {fileID: 2259310084849082074, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1243493155}
+      addedObject: {fileID: 602705264}
     - targetCorrespondingSourceObject: {fileID: 3369376219284892031, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 355252370}
+      addedObject: {fileID: 2038713028}
     - targetCorrespondingSourceObject: {fileID: 6341709926603152656, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1301734655}
+      addedObject: {fileID: 2096517512}
     - targetCorrespondingSourceObject: {fileID: 5166194749061344664, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 129623805}
+      addedObject: {fileID: 388646091}
     - targetCorrespondingSourceObject: {fileID: 4697007216584632429, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 588512738}
+      addedObject: {fileID: 1382091390}
     - targetCorrespondingSourceObject: {fileID: 4304281229196874354, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1496221085}
+      addedObject: {fileID: 1915681569}
     - targetCorrespondingSourceObject: {fileID: 4886736106874536819, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 743339104}
+      addedObject: {fileID: 1404502038}
   m_SourcePrefab: {fileID: 100100000, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
---- !u!114 &534960875 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8648579163110917203, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+--- !u!1 &2004110625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4787880303991623441, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!224 &534960876 stripped
+--- !u!1 &2004110626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1838095540749700543, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2004110627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2064359031041452572, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2004110628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8400874062425970946, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2004110629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9117001391178184788, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2004110630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 484129285810918500, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2004110631 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6767936774185385727, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_CorrespondingSourceObject: {fileID: 3003634400901212955, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &534960877 stripped
+--- !u!1 &2004110632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2691577720496308192, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2004110633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4563217382985666751, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2004110634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2810677603462807479, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2004110635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6459851730488501177, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2004110636 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &534960878 stripped
+--- !u!224 &2004110637 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8673503964889777339, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960879 stripped
+--- !u!1 &2004110638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4886736106874536819, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &534960880 stripped
+--- !u!114 &2004110639 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 796983341087076360, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960879}
+  m_GameObject: {fileID: 2004110638}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!1 &534960881 stripped
+--- !u!1 &2004110640 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4304281229196874354, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &534960882 stripped
+--- !u!114 &2004110641 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1660025002011918443, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960881}
+  m_GameObject: {fileID: 2004110640}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960883 stripped
+--- !u!114 &2004110642 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7208962252164837790, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -6415,10 +7834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
---- !u!114 &534960884 stripped
+--- !u!114 &2004110643 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6310951466073646354, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -6426,10 +7845,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &534960885 stripped
+--- !u!114 &2004110644 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8826748681015149207, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -6437,451 +7856,253 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &534960886 stripped
+--- !u!1 &2004110645 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4697007216584632429, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &534960887 stripped
+--- !u!224 &2004110646 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7730214566473807712, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960888 stripped
+--- !u!1 &2004110647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5166194749061344664, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960889 stripped
+--- !u!1 &2004110648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6341709926603152656, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960890 stripped
+--- !u!1 &2004110649 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3369376219284892031, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960891 stripped
+--- !u!1 &2004110650 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2259310084849082074, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960892 stripped
+--- !u!1 &2004110651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8585704899158365381, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960893 stripped
+--- !u!1 &2004110652 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4600526054383343202, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960894 stripped
+--- !u!1 &2004110653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5665738231644213214, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960895 stripped
+--- !u!1 &2004110654 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5837339723268020564, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960896 stripped
+--- !u!1 &2004110655 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7287666280808324454, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960897 stripped
+--- !u!1 &2004110656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4694696170129915259, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960898 stripped
+--- !u!1 &2004110657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7798264161052296924, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960899 stripped
+--- !u!1 &2004110658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3131436940508414379, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960900 stripped
+--- !u!1 &2004110659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1011473003633717767, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960901 stripped
+--- !u!1 &2004110660 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4749653716361784923, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960902 stripped
+--- !u!1 &2004110661 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3783630839128231146, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960903 stripped
+--- !u!1 &2004110662 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5659432011309683504, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960904 stripped
+--- !u!1 &2004110663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1040904933343786115, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960905 stripped
+--- !u!1 &2004110664 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4682063051488672601, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960906 stripped
+--- !u!1 &2004110665 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6178890978420490270, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960907 stripped
+--- !u!1 &2004110666 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3838039728894387847, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &534960908 stripped
+--- !u!224 &2004110667 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8204003759681640900, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960909 stripped
+--- !u!1 &2004110668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 161163844432502019, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960910 stripped
+--- !u!1 &2004110669 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3475334051580174384, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960911 stripped
+--- !u!1 &2004110670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5723684803885486243, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960912 stripped
+--- !u!1 &2004110671 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7812964874727399669, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960913 stripped
+--- !u!1 &2004110672 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998248088459575621, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960914 stripped
+--- !u!1 &2004110673 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6853361619834001715, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960915 stripped
+--- !u!1 &2004110674 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3418563674112312965, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960916 stripped
+--- !u!1 &2004110675 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8763860227046243857, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960917 stripped
+--- !u!1 &2004110676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8945189902924735776, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960918 stripped
+--- !u!1 &2004110677 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2148801277393154715, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960919 stripped
+--- !u!1 &2004110678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1921691381161616006, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960920 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4976611303031191072, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960921 stripped
+--- !u!1 &2004110679 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3461767323510635734, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960922 stripped
+--- !u!1 &2004110680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1846797656839907273, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960923 stripped
+--- !u!1 &2004110681 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1448245984413791391, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960924 stripped
+--- !u!1 &2004110682 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5943866122108311046, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960925 stripped
+--- !u!1 &2004110683 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7652934049115040399, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960926 stripped
+--- !u!1 &2004110684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6175578304937325987, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960927 stripped
+--- !u!1 &2004110685 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5056484749547763016, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960928 stripped
+--- !u!1 &2004110686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1120968103147284532, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960929 stripped
+--- !u!1 &2004110687 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1623096437985351632, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960930 stripped
+--- !u!1 &2004110688 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1961939877183011351, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960931 stripped
+--- !u!1 &2004110689 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7490045122018303400, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960932 stripped
+--- !u!1 &2004110690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1625554570478062139, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960933 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2064359031041452572, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960934 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8400874062425970946, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960935 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9117001391178184788, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960936 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 484129285810918500, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &534960937 stripped
+--- !u!224 &2004110691 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3003634400901212955, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_CorrespondingSourceObject: {fileID: 6767936774185385727, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &534960938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2691577720496308192, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960939 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4563217382985666751, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960940 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2810677603462807479, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960941 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6459851730488501177, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960942 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1838095540749700543, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &534960943 stripped
+--- !u!1 &2004110692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6782349526593249167, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
+  m_PrefabInstance: {fileID: 2004110624}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &534960944 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6163867611957248600, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960945 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9197532730299052496, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960946 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2621726247314196589, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960947 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3728915683493558952, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960948 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 286217627698056986, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960949 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8810258516613034773, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960950 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7664751220721908501, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960951 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1174097259208098033, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960952 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6092307940496808370, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960953 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4527376418316423226, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960954 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834214529797050456, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960955 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6958193089605129892, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &534960956 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3488968686919137249, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!1 &534960957 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4787880303991623441, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
-  m_PrefabInstance: {fileID: 534960874}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &534960958
+--- !u!114 &2004110693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960934}
+  m_GameObject: {fileID: 2004110688}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -6891,644 +8112,13 @@ MonoBehaviour:
   _hoverScale: 1.05
   _pressScale: 0.93
   _duration: 0.12
---- !u!114 &534960959
+--- !u!114 &2004110694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &534960960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &534960961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &534960962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92fa016b1b1bf0a40b22c5bf6ad71b32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIManager
-  _rootScreen: {fileID: 1710521443}
-  _enableUiActionMapOnStart: 1
---- !u!114 &588512738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 447b87caa0bfde7448d6bfb236616daf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.ConfirmDialog
-  _isOverlay: 1
-  _closeOnCancel: 1
-  _fadeDuration: 0.22
-  _transition: 2
-  _content: {fileID: 534960878}
-  _motionDuration: 0.36
-  _slideDistance: 90
-  _manager: {fileID: 0}
-  _titleText: {fileID: 534960885}
-  _messageText: {fileID: 534960884}
-  _confirmButton: {fileID: 534960880}
-  _cancelButton: {fileID: 534960882}
-  _dontAskToggle: {fileID: 534960883}
---- !u!114 &608799341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!1 &633583516
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 633583517}
-  - component: {fileID: 633583518}
-  m_Layer: 0
-  m_Name: Embers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &633583517
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633583516}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 534960877}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &633583518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633583516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983363c589851fd44aedd05770943958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiEmbers
-  _count: 30
-  _colorA: {r: 1, g: 0.62, b: 0.2, a: 0.9}
-  _colorB: {r: 1, g: 0.85, b: 0.45, a: 0.75}
-  _sizeRange: {x: 6, y: 16}
-  _riseSeconds: {x: 7, y: 13}
-  _sway: 40
---- !u!1 &664429885
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 664429886}
-  - component: {fileID: 664429888}
-  - component: {fileID: 664429887}
-  m_Layer: 0
-  m_Name: Divider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &664429886
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664429885}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 534960876}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 14}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &664429887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664429885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7d245916891cca47a0144e12a82e086, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &664429888
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664429885}
-  m_CullTransparentMesh: 1
---- !u!114 &743339104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &796383621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &805203714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &857452057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa793bceff4d2a4e969b526d57ed6bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiTitleIntro
-  _dropDistance: 140
-  _dropDuration: 0.75
-  _delay: 0.05
-  _floatAmplitude: 7
-  _floatPeriod: 2.4
---- !u!114 &893739987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &917526271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!1 &921058081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 921058082}
-  - component: {fileID: 921058086}
-  - component: {fileID: 921058085}
-  - component: {fileID: 921058084}
-  - component: {fileID: 921058083}
-  m_Layer: 0
-  m_Name: Glow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &921058082
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921058081}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 534960937}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 120}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &921058083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921058081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6919e447bbaab1b40b10952428642910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiPulse
-  _minAlpha: 0.15
-  _maxAlpha: 0.55
-  _halfPeriod: 1.1
---- !u!114 &921058084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921058081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d35e80fa6d5cf5448658ade2fffbd1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiProceduralSpriteBinder
---- !u!114 &921058085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921058081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.9647059, g: 0.76862746, b: 0.3529412, a: 0}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &921058086
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921058081}
-  m_CullTransparentMesh: 1
---- !u!114 &995361342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1067924207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1070768550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!1 &1071284893
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1071284894}
-  - component: {fileID: 1071284897}
-  - component: {fileID: 1071284896}
-  - component: {fileID: 1071284895}
-  m_Layer: 0
-  m_Name: Vignette
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1071284894
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071284893}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 534960877}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1071284895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071284893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c314f12cc1621c4fab98bf1d53be506, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiVignette
-  _strength: 0.85
---- !u!114 &1071284896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071284893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1071284897
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071284893}
-  m_CullTransparentMesh: 1
---- !u!114 &1087556980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1107475032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1188314148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1200390770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1230383481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960931}
+  m_GameObject: {fileID: 2004110689}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff141d501aac1db44b0957a87f56b570, type: 3}
@@ -7538,66 +8128,18 @@ MonoBehaviour:
   _step: 0.08
   _duration: 0.38
   _fromScale: 0.8
---- !u!114 &1242966918
+--- !u!114 &2004110695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960920}
+  m_GameObject: {fileID: 2004110690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff141d501aac1db44b0957a87f56b570, type: 3}
+  m_Script: {fileID: 11500000, guid: 73f3bf2d041087343a621140d41c4056, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiStaggerIn
-  _initialDelay: 0.25
-  _step: 0.09
-  _duration: 0.5
-  _fromScale: 0.2
---- !u!114 &1243493155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1251052225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1252942592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0dccf26f1e00e4ab0020962beee5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIScreen
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.LevelSelectScreen
   _isOverlay: 0
   _closeOnCancel: 1
   _fadeDuration: 0.22
@@ -7605,243 +8147,64 @@ MonoBehaviour:
   _content: {fileID: 0}
   _motionDuration: 0.34
   _slideDistance: 90
---- !u!114 &1266572270
+--- !u!114 &2004110696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960940}
+  m_GameObject: {fileID: 2004110692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa793bceff4d2a4e969b526d57ed6bb, type: 3}
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiTitleIntro
-  _dropDistance: 60
-  _dropDuration: 0.75
-  _delay: 0.3
-  _floatAmplitude: 0
-  _floatPeriod: 2.4
---- !u!1 &1267191103
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1267191104}
-  - component: {fileID: 1267191109}
-  - component: {fileID: 1267191108}
-  - component: {fileID: 1267191107}
-  - component: {fileID: 1267191106}
-  - component: {fileID: 1267191105}
-  m_Layer: 0
-  m_Name: FireGlow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1267191104
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267191103}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 534960877}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.35}
-  m_AnchorMax: {x: 0.5, y: 0.35}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2200, y: 1500}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1267191105
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &2038713028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267191103}
+  m_GameObject: {fileID: 2004110649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 999bb66a13debbb458cf48e392a2a396, type: 3}
+  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiAmbientDrift
-  _maxScale: 1.06
-  _halfPeriod: 14
---- !u!114 &1267191106
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
+  _target: {fileID: 0}
+  _hoverScale: 1.05
+  _pressScale: 0.93
+  _duration: 0.12
+--- !u!114 &2096517512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267191103}
+  m_GameObject: {fileID: 2004110648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6919e447bbaab1b40b10952428642910, type: 3}
+  m_Script: {fileID: 11500000, guid: 17a7502f48e005b49b33b9caf7ad1b06, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiPulse
-  _minAlpha: 0.28
-  _maxAlpha: 0.48
-  _halfPeriod: 3.2
---- !u!114 &1267191107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267191103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d35e80fa6d5cf5448658ade2fffbd1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiProceduralSpriteBinder
---- !u!114 &1267191108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267191103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.6901961, g: 0.32156864, b: 0.101960786, a: 0}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1267191109
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267191103}
-  m_CullTransparentMesh: 1
---- !u!1 &1287637085
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1287637086}
-  - component: {fileID: 1287637088}
-  - component: {fileID: 1287637087}
-  m_Layer: 0
-  m_Name: TitlePlate
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1287637086
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287637085}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 534960876}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 480, y: 92}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1287637087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287637085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6a99baee23b654f9e4bb672ae0b438, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1287637088
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287637085}
-  m_CullTransparentMesh: 1
---- !u!114 &1301734655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0dccf26f1e00e4ab0020962beee5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIScreen
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.SettingsScreen
   _isOverlay: 1
   _closeOnCancel: 1
   _fadeDuration: 0.22
   _transition: 2
-  _content: {fileID: 534960887}
+  _content: {fileID: 2004110646}
   _motionDuration: 0.36
   _slideDistance: 90
---- !u!114 &1334484717
+--- !u!114 &2121884477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960916}
+  m_GameObject: {fileID: 2004110655}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -7851,551 +8214,13 @@ MonoBehaviour:
   _hoverScale: 1.05
   _pressScale: 0.93
   _duration: 0.12
---- !u!114 &1344196386
+--- !u!114 &2123527517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1366342323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1372534580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1373758104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!1 &1439295819
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1439295821}
-  - component: {fileID: 1439295820}
-  m_Layer: 0
-  m_Name: UiSandboxDemo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1439295820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439295819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ffd682dcf2c6d43988433ea4b727e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Sandbox.UiSandboxDemo
-  _manager: {fileID: 534960962}
-  _levelSelect: {fileID: 1986947930}
-  _gacha: {fileID: 1252942592}
-  _gachaResult: {fileID: 1648939880}
-  _collection: {fileID: 189242954}
-  _settings: {fileID: 1301734655}
-  _confirmDialog: {fileID: 588512738}
-  _playButton: {fileID: 534960956}
-  _gachaButton: {fileID: 534960955}
-  _collectionButton: {fileID: 534960954}
-  _settingsButton: {fileID: 534960953}
-  _backButton: {fileID: 534960952}
-  _settingsCloseButton: {fileID: 534960951}
-  _startButton: {fileID: 534960950}
-  _pull1Button: {fileID: 534960949}
-  _pull10Button: {fileID: 534960948}
-  _continueButton: {fileID: 534960947}
-  _mergeButtons:
-  - {fileID: 534960946}
-  - {fileID: 534960945}
-  - {fileID: 534960944}
-  _titleText: {fileID: 534960875}
-  _showPanel: 1
---- !u!4 &1439295821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439295819}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1485394369
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1485394371}
-  - component: {fileID: 1485394370}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!20 &1485394370
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485394369}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.101960786, g: 0.07058824, b: 0.050980393, a: 1}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1485394371
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485394369}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1496221085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1578766525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1601113297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!225 &1648939879
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960921}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &1648939880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0dccf26f1e00e4ab0020962beee5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIScreen
-  _isOverlay: 1
-  _closeOnCancel: 1
-  _fadeDuration: 0.22
-  _transition: 2
-  _content: {fileID: 534960908}
-  _motionDuration: 0.36
-  _slideDistance: 90
---- !u!114 &1683204916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1690508861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1710521443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0dccf26f1e00e4ab0020962beee5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIScreen
-  _isOverlay: 0
-  _closeOnCancel: 1
-  _fadeDuration: 0.22
-  _transition: 1
-  _content: {fileID: 0}
-  _motionDuration: 0.34
-  _slideDistance: 90
---- !u!114 &1731286416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1785375060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!1 &1791394276
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1791394279}
-  - component: {fileID: 1791394278}
-  - component: {fileID: 1791394277}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1791394277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791394276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
-  m_SendPointerHoverToParent: 1
-  m_MoveRepeatDelay: 0.5
-  m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
-  m_ScrollDeltaPerTick: 6
---- !u!114 &1791394278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791394276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &1791394279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791394276}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1891109237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1952545855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff141d501aac1db44b0957a87f56b570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiStaggerIn
-  _initialDelay: 0.35
-  _step: 0.07
-  _duration: 0.38
-  _fromScale: 0.7
---- !u!114 &1968398797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &1986947930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0dccf26f1e00e4ab0020962beee5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIScreen
-  _isOverlay: 0
-  _closeOnCancel: 1
-  _fadeDuration: 0.22
-  _transition: 1
-  _content: {fileID: 0}
-  _motionDuration: 0.34
-  _slideDistance: 90
---- !u!114 &2010105943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.Juice.UiButtonJuice
-  _target: {fileID: 0}
-  _hoverScale: 1.05
-  _pressScale: 0.93
-  _duration: 0.12
---- !u!114 &2138295115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534960905}
+  m_GameObject: {fileID: 2004110670}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd7b9168a4074042af9f72f4036f5f7, type: 3}
@@ -8409,8 +8234,8 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1485394371}
-  - {fileID: 1791394279}
-  - {fileID: 526211335}
-  - {fileID: 534960874}
-  - {fileID: 1439295821}
+  - {fileID: 472204655}
+  - {fileID: 1079062080}
+  - {fileID: 1837406403}
+  - {fileID: 2004110624}
+  - {fileID: 1140359982}

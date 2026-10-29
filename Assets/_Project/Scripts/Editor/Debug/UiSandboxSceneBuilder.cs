@@ -13,6 +13,7 @@ using FateBastion.Editor.Import;
 using FateBastion.Game;
 using FateBastion.Heroes;
 using FateBastion.Meta;
+using FateBastion.UI.DebugTools;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
@@ -20,7 +21,7 @@ namespace FateBastion.Editor.DebugTools
 {
     /// <summary>
     /// Tools > Sandbox > Build B_UI Scene: builds Scenes/Sandbox/B_UI.unity, the working lobby (B-15 screens over the
-    /// real save, UIManager and ConfirmDialog of B-13) with the "Fantasy Wooden GUI" skin and the B motion components. Uses an instance of C's
+    /// real save, UIManager and ConfirmDialog of B-13, F1 debug panel of B-16) with the "Fantasy Wooden GUI" skin and the B motion components. Uses an instance of C's
     /// Lobby_Canvas prefab: every skin change is an override on the scene instance only, the prefab asset and C's
     /// layout builder are never modified (C can port the look later).
     /// </summary>
@@ -633,6 +634,11 @@ namespace FateBastion.Editor.DebugTools
             Ref(data, "_heroCatalog", heroes);
             Ref(data, "_matchCatalog", AssetDatabase.LoadAssetAtPath<MatchCatalog>(MatchAssetsBuilder.MatchCatalogPath));
             data.ApplyModifiedPropertiesWithoutUndo();
+
+            var debug = new GameObject("DebugPanel (F1)").AddComponent<DebugPanel>();
+            var debugData = new SerializedObject(debug);
+            Ref(debugData, "_heroCatalog", heroes);
+            debugData.ApplyModifiedPropertiesWithoutUndo();
         }
 
         // ---------- Helpers ----------
