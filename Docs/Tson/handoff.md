@@ -68,7 +68,7 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 
 ### A-10 – đang triển khai
 
-- Nhánh `feature/S06_A10` tách từ A-08 PR #38 (`decda92`), không đưa A-09 vào.
+- Nhánh `feature/S06_A10` (commit `5689996`, draft PR #40) tách từ A-08 PR #38 (`decda92`), không đưa A-09 vào.
 - Đã thêm `RageMeter`, `HeroRageSettings`, event `OnRageChanged`/API `TryActivateUltimate()` và nối đòn hợp lệ từ `AttackModule`; tests đã viết nhưng hoãn đến sau T-16.
 - Unity MCP refresh timeout ở 60 giây rồi mất Editor session; Console trước đó có CS0246 cho hai script mới nên compile chưa được xác nhận. Chưa tạo/assign asset `HeroRageSettings` vào `Hero_Base.prefab`; theo quyết định TVA, hai việc này dời đến T-16.
 - Handoff/kiểm chứng tiếp tục ở `daily/day14/handoff.md`. Có thể đẩy draft PR theo lựa chọn code-only; chưa coi T-10 hoàn chỉnh hoặc merge trước khi T-16 compile/configuration được xác minh.
