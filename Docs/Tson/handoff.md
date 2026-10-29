@@ -92,6 +92,13 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - C còn phải gắn `CommandAura`, `IMeteorAimRaySource`, indicator và các reference vào Player prefab; B nối HUD Nộ/meteor và tutorial bước 3.
 - PR #42 vẫn còn fixture `MeteorTestInputRouter`; fix T-16 `10d804e` chưa được áp.
 
+### A-11 – đang triển khai
+
+- `feature/S07_A11` thêm `CommandAuraSettings`, `CommandAura` và active-hero accessors/version trong `HeroController`; đã viết PlayMode coverage, chưa chạy theo lựa chọn code-only.
+- Unity MCP standalone validation hiện không có error; heuristic cảnh báo `Update()` cần được rà trong compile cuối. Không có compile/test run.
+- Unity asset/prefab hookup và compile được dời sang T-16. C sở hữu Player prefab cần gắn component + settings; B nghe event `OnHeroEnteredAura(GameObject)` cho tutorial bước 3.
+- Chi tiết, issue draft và validation queue ở `daily/day15/handoff.md`.
+
 ---
 
 ## 4. Lịch sử cập nhật
@@ -106,6 +113,8 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | T-08 | Bổ sung Cone/Line/Zone/Buff, chốt hình học theo quyết định TVA, nối status Lửa/Băng vào SkillData; PR #38 draft trên `feature/S06_A08`; test S6 pass trong T-16 integrated suite (675 EM, 116 PM), scene A_Skills đã tạo nhưng chưa Playtest; Projectile draft do TVA tạo |
 | T-09 | A-09 commit đã push; PR #39 merge vào `feature/S06_A08` (`55feec2`); PR #46 mở để đưa A-08 + A-09 vào `main` |
 | 30/10/2026 | Đồng bộ lại bàn giao theo topology PR mới: #38 merged `main`, #39 merged A-08, #46 open; #40–#43 Ready/`CLEAN`; cập nhật #3–#7, #10, thiên thạch, thêm bảng trạng thái PR và 3 rủi ro mới |
+| T-10 | A-10 đang code trên `feature/S06_A10`; Unity refresh timeout và Editor session mất kết nối; thiếu asset/prefab assignment, compile chưa xác nhận, tests hoãn |
+| T-11 | A-11 code/test đang làm trên `feature/S07_A11`; asset, Player prefab của C, compile và tests dời sang T-16; cần B nghe event #10 |
 
 ---
 
