@@ -16,5 +16,5 @@
 
 ## Nhánh
 
-- `feature/S07_A12`, tạo từ `origin/main`, giữ độc lập với các PR task chưa review.
+- `feature/S07_A12`, tạo từ `origin/main`, giữ độc lập với các PR task chưa review; commit `3665024` đã push và draft PR #42 mở vào `main`.
 - T-11 PR #41 đã được push riêng; nhánh A-12 không chứa thay đổi A-10/A-11.
