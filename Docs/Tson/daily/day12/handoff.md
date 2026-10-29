@@ -20,12 +20,17 @@
 
 ## 3. Cần người khác
 
-**Issue draft:** `[Cần C] Bàn giao prefab Projectile cho SkillRunner A-08`
+### Quyết định TVA ngày 29/10/2026 – prefab projectile draft
 
-- File đề xuất: `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` (hoặc tên theo quy ước C).
-- Root prefab có component `FateBastion.Combat.Projectile`; trình bày/VFX có thể nằm ở child.
-- A cần gán prefab vào `_projectilePrefab` của `SkillRunner`, rồi kiểm tra bắn thật trong Sandbox.
-- Không sửa prefab/scene thuộc C trong nhánh A-08.
+- Vì C chưa phản hồi, TVA muốn tiếp tục bằng prefab draft tại `Assets/_Project/Prefabs/FX/Projectile_Base.prefab`; sau này C có thể thay nội dung prefab mà không đổi contract của `SkillRunner`.
+- Root cần giữ component `FateBastion.Combat.Projectile`; model/VFX có thể được C thay hoặc thêm dưới dạng child.
+- Khi draft được C bàn giao/đặt vào vùng làm việc được phép, A sẽ gán prefab vào `_projectilePrefab` trên `Hero_Base.prefab` và kiểm tra projectile trong Sandbox.
+- Nếu C không đồng ý với draft hoặc cần projectile khác, C chủ động liên hệ A để thống nhất thay thế/bàn giao, tránh để A-08 đứng chờ không có hướng tiếp tục.
+- `Assets/_Project/Prefabs/FX/` do C sở hữu. Prefab chưa được tạo trong PR A-08; cần C tạo hoặc cập nhật phân công qua PR được duyệt trước khi A thay đổi vùng này. Không coi yêu cầu draft là đã hoàn tất.
+
+**Issue draft để TVA gửi C nếu cần:** `[Cần C] Tạo projectile draft để A-08 tiếp tục`
+
+> Nhờ C tạo `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` với `FateBastion.Combat.Projectile` trên root. Đây là prefab draft để A-08 tiếp tục kiểm thử; C có thể thay model/VFX hoặc sửa prefab sau review, miễn component contract được giữ. Nếu C muốn dùng projectile khác, vui lòng liên hệ A để bàn giao và thống nhất cách gán vào `SkillRunner`.
 
 ## 4. Kiểm thử để chạy sau T-16
 

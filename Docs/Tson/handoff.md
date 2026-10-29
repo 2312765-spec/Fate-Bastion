@@ -104,3 +104,10 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Unity MCP standard validation báo 0 lỗi cho các script đã đổi; hai cảnh báo heuristic về string trong `Update()` xuất hiện ở `SkillRunner`/`HeroController`, nhưng hai thân `Update()` không nối chuỗi. Console chỉ có log môi trường Unity Assistant/MCP (AssistantPerf sharing violation, WebSocket chưa khởi tạo, account API timeout), không có lỗi biên dịch.
 - **Issue draft để gửi C:** `[Cần C] Bàn giao Projectile và skill FX cho A-08` — đề nghị tạo prefab tại `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` (hoặc theo quy ước C), root có component `FateBastion.Combat.Projectile`; đồng thời bàn giao FX cho Long Vương Line và Người Tuyết Zone để A gán các tham chiếu `SkillData.vfx`. Sau PR bàn giao, A gán Projectile vào `_projectilePrefab` của `SkillRunner` và xác minh trong Sandbox.
 - Khi kiểm thử sau T-16, ghi job id, thời lượng, số pass/fail/skip thực tế và kết quả kiểm thử scene; không dùng script validation làm bằng chứng runtime.
+
+## 7. A-08 – quyết định projectile draft (29/10/2026)
+
+- TVA muốn tiếp tục A-08 bằng `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` bản draft thay vì chờ C bàn giao prefab hoàn thiện; C có thể thay prefab sau này mà không đổi contract `FateBastion.Combat.Projectile`.
+- Nếu C không đồng ý hoặc muốn bổ sung projectile khác, C chủ động liên hệ A để thay thế/bàn giao, tránh block việc A-08.
+- `Prefabs/FX/` vẫn thuộc C theo `TEAM_ASSIGNMENT.md`; prefab draft chưa có trong nhánh PR #38. A không tạo/sửa file trong vùng C. Khi prefab được C tạo hoặc quyền sở hữu được cập nhật theo PR chung, A sẽ gán vào `_projectilePrefab` của `Hero_Base.prefab` và kiểm tra runtime.
+- Issue draft `[Cần C] Tạo projectile draft để A-08 tiếp tục` nằm ở `daily/day12/handoff.md`. `TRACEABILITY.md` không được sửa trong lượt này vì là tài liệu dùng chung chưa có PR đủ ba người review.
