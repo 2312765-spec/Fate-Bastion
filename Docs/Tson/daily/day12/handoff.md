@@ -8,7 +8,7 @@
 - Buff kiểm tra vùng ở 5 Hz, độc lập nhịp đánh; gỡ nguồn buff khi mục tiêu rời vùng hoặc source reset/despawn.
 - Gán `status_burn` cho passive Phù thủy Lửa; gán `status_slow` cho passive Lính Băng và Người Tuyết bằng Unity MCP.
 - Tạo `hero_long_vuong_ultimate` kiểu Line (`length=5`, `width=5`, `damageMultiplier=1`, `duration=5`) và gán vào `hero_long_vuong.ultimateSkill`. Tạo `hero_nguoi_tuyet_zone` (radius 3, multiplier 1, duration 5, status Slow). Các giá trị theo TVA là tạm; cooldown/castDelay còn mặc định 0 vì tài liệu chưa cho số. TVA cần kiểm tra/chỉnh tay trước khi chốt cân bằng.
-- Chưa có VFX gắn cho hai sample này; cần C bàn giao FX prefab. Projectile prefab thật của C cũng còn thiếu.
+- Chưa có VFX gắn cho hai sample này; cần C bàn giao FX prefab. Projectile hiện dùng prefab hình cầu đơn giản dạng draft do TVA (A) tạo để unblock A-08; C có thể thay model/VFX về sau.
 - Bổ sung PlayMode cases cho Cone, Line, Zone, Buff và cooldown. Chưa chạy test theo yêu cầu dời validation đến sau T-16.
 
 ## 2. Bằng chứng hiện có
@@ -20,23 +20,18 @@
 
 ## 3. Cần người khác
 
-### Quyết định TVA ngày 29/10/2026 – prefab projectile draft
+### Quyết định TVA ngày 29/10/2026 – tiếp quản projectile draft
 
-- Vì C chưa phản hồi, TVA muốn tiếp tục bằng prefab draft tại `Assets/_Project/Prefabs/FX/Projectile_Base.prefab`; sau này C có thể thay nội dung prefab mà không đổi contract của `SkillRunner`.
-- Root cần giữ component `FateBastion.Combat.Projectile`; model/VFX có thể được C thay hoặc thêm dưới dạng child.
-- Khi draft được C bàn giao/đặt vào vùng làm việc được phép, A sẽ gán prefab vào `_projectilePrefab` trên `Hero_Base.prefab` và kiểm tra projectile trong Sandbox.
-- Nếu C không đồng ý với draft hoặc cần projectile khác, C chủ động liên hệ A để thống nhất thay thế/bàn giao, tránh để A-08 đứng chờ không có hướng tiếp tục.
-- `Assets/_Project/Prefabs/FX/` do C sở hữu. Prefab chưa được tạo trong PR A-08; cần C tạo hoặc cập nhật phân công qua PR được duyệt trước khi A thay đổi vùng này. Không coi yêu cầu draft là đã hoàn tất.
-
-**Issue draft để TVA gửi C nếu cần:** `[Cần C] Tạo projectile draft để A-08 tiếp tục`
-
-> Nhờ C tạo `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` với `FateBastion.Combat.Projectile` trên root. Đây là prefab draft để A-08 tiếp tục kiểm thử; C có thể thay model/VFX hoặc sửa prefab sau review, miễn component contract được giữ. Nếu C muốn dùng projectile khác, vui lòng liên hệ A để bàn giao và thống nhất cách gán vào `SkillRunner`.
+- Theo yêu cầu của TVA, TVA (A) đã tạo `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` dạng draft để unblock A-08; root giữ component `FateBastion.Combat.Projectile`, child `ProjectileVisual` hiện là hình cầu đơn giản.
+- Đã gán prefab draft vào `_projectilePrefab` trên `Hero_Base.prefab`. C có thể review và thay model/VFX hoặc thay prefab sau này, giữ tương thích với component contract; phần draft được ghi nhận cho TVA, không ghi công cho C.
+- Chưa chạy test runtime hoặc kiểm tra trong Sandbox; các bước này vẫn nằm trong lượt validation sau T-16.
+- Việc điều chỉnh quy tắc tiếp quản ở `TEAM_ASSIGNMENT.md` đang chờ xác nhận duyệt PR chung theo quy định hiện tại.
 
 ## 4. Kiểm thử để chạy sau T-16
 
 - PlayMode `AttackModulePlayModeTests`: Melee + status/multiplier, projectile Muzzle, AreaAtPoint XZ/flying, Cone geometry, Line/Zone bounds and one-hit-per-field, Line cast-delay origin, Buff enter/exit và cooldown với scaled delta.
 - Kiểm tra ×1/×2 cooldown trong runtime; kiểm tra status tick/duration theo `StatusEffectData`.
-- Tạo/xác nhận `A_Skills` scene có cấu hình kiểm thử các kind; projectile runtime cần prefab của C.
+- Tạo/xác nhận `A_Skills` scene có cấu hình kiểm thử các kind; kiểm tra projectile draft, pool và hình ảnh trong runtime. C có thể thay prefab trước hoặc sau lượt validation.
 - Sau mỗi lượt ghi job id, thời lượng, số pass/fail/skip và các thao tác Unity Editor thực tế.
 
 ## 5. Nhánh và PR

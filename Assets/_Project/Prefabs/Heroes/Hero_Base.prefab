@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c4ebf9f80410046a866ebcc6639055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FateBastion.Skills::FateBastion.Skills.SkillRunner
-  _projectilePrefab: {fileID: 0}
+  _projectilePrefab: {fileID: 6371001190329634721, guid: 97080aa31921c624896df893be1c3a2e, type: 3}
   _projectilePrewarmCount: 8
 --- !u!114 &1787395939970458580
 MonoBehaviour:
