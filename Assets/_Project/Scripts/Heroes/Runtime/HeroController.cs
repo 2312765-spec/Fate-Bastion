@@ -28,11 +28,13 @@ namespace FateBastion.Heroes
         private float _targetSearchTimer;
 
         public HeroData Data { get; private set; }
+        public uint InitializationVersion { get; private set; }
         public HeroStats Stats => _stats;
         public EnemyManager EnemyManager => _enemyManager;
         public EnemyController CurrentTarget { get; private set; }
         public float CurrentRage => _rage != null ? _rage.Current : 0f;
         public float MaximumRage => _rage != null ? _rage.Maximum : 0f;
+        public static int ActiveHeroCount => ActiveHeroes.Count;
         /// <summary>Raised only when this hero's current rage changes.</summary>
         public event Action<float, float> OnRageChanged;
         public Transform Muzzle => _visual != null && _visual.Muzzle != null ? _visual.Muzzle : _anchorFallback;
@@ -84,6 +86,14 @@ namespace FateBastion.Heroes
             RefreshTarget();
         }
 
+        /// <summary>Returns an initialized hero in the active roster without searching the scene.</summary>
+        public static HeroController GetActiveHero(int index)
+        {
+            if (index < 0 || index >= ActiveHeroes.Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+            return ActiveHeroes[index];
+        }
+
         /// <summary>Initializes a pooled hero from its data asset.</summary>
         public void Init(HeroData data)
         {
@@ -113,6 +123,7 @@ namespace FateBastion.Heroes
                 return;
             }
             _targeting.Initialize(data);
+            InitializationVersion++;
             RegisterActiveHero();
             RefreshTarget();
         }

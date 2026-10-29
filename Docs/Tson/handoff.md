@@ -80,6 +80,13 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Unity MCP refresh timeout ở 60 giây rồi mất Editor session; Console trước đó có CS0246 cho hai script mới nên compile chưa được xác nhận. Chưa tạo/assign asset `HeroRageSettings` vào `Hero_Base.prefab`; theo quyết định TVA, hai việc này dời đến T-16.
 - Handoff/kiểm chứng tiếp tục ở `daily/day14/handoff.md`. Có thể đẩy draft PR theo lựa chọn code-only; chưa coi T-10 hoàn chỉnh hoặc merge trước khi T-16 compile/configuration được xác minh.
 
+### A-11 – đang triển khai
+
+- `feature/S07_A11` thêm `CommandAuraSettings`, `CommandAura` và active-hero accessors/version trong `HeroController`; đã viết PlayMode coverage, chưa chạy theo lựa chọn code-only.
+- Unity MCP standalone validation hiện không có error; heuristic cảnh báo `Update()` cần được rà trong compile cuối. Không có compile/test run.
+- Unity asset/prefab hookup và compile được dời sang T-16. C sở hữu Player prefab cần gắn component + settings; B nghe event `OnHeroEnteredAura(GameObject)` cho tutorial bước 3.
+- Chi tiết, issue draft và validation queue ở `daily/day15/handoff.md`.
+
 ---
 
 ## 4. Lịch sử cập nhật
@@ -94,6 +101,7 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | T-08 | Bổ sung Cone/Line/Zone/Buff, chốt hình học theo quyết định TVA, nối status Lửa/Băng vào SkillData; PR #38 draft trên `feature/S06_A08`, test còn chờ sau T-16, chưa có scene A_Skills hoặc asset Projectile/FX của C |
 | T-09 | A-09 commit `5c2e634` đã push; draft PR #39 nhắm vào A-08 PR #38; buff aggregation/cap đã code, asset cap 0.6, tests viết nhưng hoãn chạy đến sau T-16 |
 | T-10 | A-10 commit `5689996` đã push; draft PR #40 nhắm vào A-08 PR #38; Editor mất kết nối, asset/prefab assignment và compile dời sang T-16, tests hoãn |
+| T-11 | A-11 code/test đang làm trên `feature/S07_A11`; asset, Player prefab của C, compile và tests dời sang T-16; cần B nghe event #10 |
 
 ---
 
