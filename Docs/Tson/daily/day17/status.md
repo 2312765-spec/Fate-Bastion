@@ -16,4 +16,4 @@
 
 ## Nhánh
 
-- `feature/S07_A13` tạo từ `feature/S07_A12` theo lựa chọn tiếp tục của TVA trước khi PR #42 merge; nhánh có quan hệ phụ thuộc và PR A-13 sẽ nhắm A-12.
+- `feature/S07_A13` tạo từ `feature/S07_A12` theo lựa chọn tiếp tục của TVA trước khi PR #42 merge; commit `36ebbc4` đã push, draft PR #43 nhắm A-12.
