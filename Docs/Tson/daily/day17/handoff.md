@@ -22,4 +22,4 @@
 
 ## Nhánh
 
-- `feature/S07_A13` dựa trên `feature/S07_A12`; PR A-13 nhắm PR #42, do TVA chọn tiếp tục khi A-12 còn draft.
+- `feature/S07_A13` dựa trên `feature/S07_A12`; draft PR #43 nhắm PR #42, do TVA chọn tiếp tục khi A-12 còn draft.
