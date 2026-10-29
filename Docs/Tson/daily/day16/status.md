@@ -10,7 +10,7 @@
 
 ## Xác minh
 
-- `git diff --check`: chưa có whitespace error trong phần tracked; cần kiểm tra lại toàn bộ sau khi stage các file mới.
+- `git diff --cached --check`: pass sau khi stage toàn bộ file của T-12.
 - Không chạy Unity compile, Unity Editor, EditMode hoặc PlayMode tests. Không có Unity setup trong phạm vi slot này.
 - Kết quả chưa đủ để đánh dấu A-12 hoàn tất hoặc tick `TRACEABILITY.md`.
 
