@@ -19,4 +19,4 @@
 
 ## Nhánh
 
-- `feature/S07_A12` bắt đầu từ `origin/main`; PR sẽ ghi rõ trạng thái code-only và validation còn hoãn.
+- `feature/S07_A12` bắt đầu từ `origin/main`; draft PR #42 nhắm `main`, validation code-only còn hoãn đến T-16.
