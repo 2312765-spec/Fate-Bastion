@@ -33,3 +33,8 @@
 - Kiểm tra ×1/×2 cooldown trong runtime; kiểm tra status tick/duration theo `StatusEffectData`.
 - Tạo/xác nhận `A_Skills` scene có cấu hình kiểm thử các kind; projectile runtime cần prefab của C.
 - Sau mỗi lượt ghi job id, thời lượng, số pass/fail/skip và các thao tác Unity Editor thực tế.
+
+## 5. Nhánh và PR
+
+- Commit `e21358e` đã push lên `feature/S06_A08`.
+- Draft PR #38 đã mở; TVA yêu cầu dừng ở ranh giới task để chờ review/merge trước khi bắt đầu A-09.
