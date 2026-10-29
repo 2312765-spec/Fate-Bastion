@@ -128,3 +128,12 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Unity MCP standard validation báo 0 lỗi cho các script đã đổi; hai cảnh báo heuristic về string trong `Update()` xuất hiện ở `SkillRunner`/`HeroController`, nhưng hai thân `Update()` không nối chuỗi. Console chỉ có log môi trường Unity Assistant/MCP (AssistantPerf sharing violation, WebSocket chưa khởi tạo, account API timeout), không có lỗi biên dịch.
 - **Issue draft để gửi C:** `[Cần C] Bàn giao Projectile và skill FX cho A-08` — đề nghị tạo prefab tại `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` (hoặc theo quy ước C), root có component `FateBastion.Combat.Projectile`; đồng thời bàn giao FX cho Long Vương Line và Người Tuyết Zone để A gán các tham chiếu `SkillData.vfx`. Sau PR bàn giao, A gán Projectile vào `_projectilePrefab` của `SkillRunner` và xác minh trong Sandbox.
 - Khi kiểm thử sau T-16, ghi job id, thời lượng, số pass/fail/skip thực tế và kết quả kiểm thử scene; không dùng script validation làm bằng chứng runtime.
+
+## 7. T-16 – tích hợp và validation trên nhánh riêng
+
+- Nhánh `feature/A_T16_integration` được tạo từ `origin/main`; đã tích hợp tạm A #38–#43, B #31/#33 và #32/#35, C #30 theo dependency. Các PR nguồn vẫn open; không merge vào `main`.
+- Xung đột duy nhất là handoff văn bản A-09/A-10 khi nhập #40; đã giữ nguyên cả hai phần.
+- Unity MCP tạo `HeroRageSettings.asset` (+5/100), `CommandAuraSettings.asset` (6 m, +25%, 0.2 s), `meteor.asset` (AreaAtPoint, GroundPoint, True ×3, radius 4 m, cooldown 45 s, castDelay 0.8 s) và `meteor_settings.asset` (enemy_normal, range 20 m, padding 2 m).
+- EditMode job `a96bbb6b6d5e4aa5bfb06a9722575be7` đã bắt đầu nhưng Unity MCP ngắt kết nối khi lấy kết quả; không có summary/XML nên không đánh dấu pass. Chưa chạy PlayMode hoặc playtest ba màn.
+- `HeroRageSettings.asset` chưa được gán vào `_rageSettings` của `Hero_Base.prefab`. Player prefab thuộc C, cần C wire các ability/settings và cung cấp provider `IMeteorAimRaySource`; issue draft nằm ở `daily/day20/handoff.md`.
+- `Docs/TRACEABILITY.md` chưa đổi vì validation còn dở và đây là vùng dùng chung.
