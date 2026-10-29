@@ -13,7 +13,12 @@ namespace FateBastion.Tests.EditMode.S6
     {
         private HeroStatsSettings _settings;
         private HeroData _hero;
+        private HeroData _auraType;
+        private HeroData _otherBuffType;
         private GameObject _heroObject;
+        private GameObject _buffSourceA;
+        private GameObject _buffSourceB;
+        private GameObject _buffSourceC;
         private HeroStats _stats;
 
         [SetUp]
@@ -25,25 +30,37 @@ namespace FateBastion.Tests.EditMode.S6
             serialized.FindProperty("_rareDamageMultiplier").floatValue = 1.6f;
             serialized.FindProperty("_epicDamageMultiplier").floatValue = 2.5f;
             serialized.FindProperty("_legendaryDamageMultiplier").floatValue = 4f;
+            serialized.FindProperty("_attackSpeedBuffCap").floatValue = 0.6f;
             serialized.ApplyModifiedPropertiesWithoutUndo();
 
             _hero = ScriptableObject.CreateInstance<HeroData>();
             _hero.damage = 12f;
             _hero.attacksPerSecond = 1.25f;
             _hero.range = 9f;
+            _auraType = ScriptableObject.CreateInstance<HeroData>();
+            _otherBuffType = ScriptableObject.CreateInstance<HeroData>();
 
             _heroObject = new GameObject("HeroStatsTest");
             _stats = _heroObject.AddComponent<HeroStats>();
             var statsSerialized = new SerializedObject(_stats);
             statsSerialized.FindProperty("_settings").objectReferenceValue = _settings;
             statsSerialized.ApplyModifiedPropertiesWithoutUndo();
+
+            _buffSourceA = new GameObject("BuffSourceA");
+            _buffSourceB = new GameObject("BuffSourceB");
+            _buffSourceC = new GameObject("BuffSourceC");
         }
 
         [TearDown]
         public void TearDown()
         {
             UnityEngine.Object.DestroyImmediate(_hero);
+            UnityEngine.Object.DestroyImmediate(_auraType);
+            UnityEngine.Object.DestroyImmediate(_otherBuffType);
             UnityEngine.Object.DestroyImmediate(_settings);
+            UnityEngine.Object.DestroyImmediate(_buffSourceA);
+            UnityEngine.Object.DestroyImmediate(_buffSourceB);
+            UnityEngine.Object.DestroyImmediate(_buffSourceC);
             UnityEngine.Object.DestroyImmediate(_heroObject);
         }
 
@@ -106,6 +123,59 @@ namespace FateBastion.Tests.EditMode.S6
             _stats.Initialize(_hero);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => _stats.SetLevelMultipliers(0f, 1f, 1f));
+        }
+
+        [Test]
+        public void SetBuff_TwoSourcesOfSameType_UsesStrongestAttackSpeedBonus()
+        {
+            _stats.Initialize(_hero);
+            _stats.SetBuff(_buffSourceA, _hero, BuffType.AttackSpeed, 0.3f);
+            _stats.SetBuff(_buffSourceB, _hero, BuffType.AttackSpeed, 0.2f);
+
+            Assert.AreEqual(1.625f, _stats.AttacksPerSecond, 1e-5f);
+        }
+
+        [Test]
+        public void SetBuff_SupportAndAuraOfDifferentTypes_AddTheirAttackSpeedBonuses()
+        {
+            _stats.Initialize(_hero);
+            _stats.SetBuff(_buffSourceA, _hero, BuffType.AttackSpeed, 0.3f);
+            _stats.SetBuff(_buffSourceB, _auraType, BuffType.AttackSpeed, 0.25f);
+
+            Assert.AreEqual(1.9375f, _stats.AttacksPerSecond, 1e-5f);
+        }
+
+        [Test]
+        public void SetBuff_AttackSpeedSourcesExceedingCap_AreLimitedToConfiguredCap()
+        {
+            _stats.Initialize(_hero);
+            _stats.SetBuff(_buffSourceA, _hero, BuffType.AttackSpeed, 0.3f);
+            _stats.SetBuff(_buffSourceB, _auraType, BuffType.AttackSpeed, 0.25f);
+            _stats.SetBuff(_buffSourceC, _otherBuffType, BuffType.AttackSpeed, 0.2f);
+
+            Assert.AreEqual(2f, _stats.AttacksPerSecond, 1e-5f);
+        }
+
+        [Test]
+        public void RemoveBuff_StrongestSameTypeSource_RemainingContributionIsRecalculated()
+        {
+            _stats.Initialize(_hero);
+            _stats.SetBuff(_buffSourceA, _hero, BuffType.AttackSpeed, 0.3f);
+            _stats.SetBuff(_buffSourceB, _hero, BuffType.AttackSpeed, 0.2f);
+
+            _stats.RemoveBuff(_buffSourceA);
+
+            Assert.AreEqual(1.5f, _stats.AttacksPerSecond, 1e-5f);
+        }
+
+        [Test]
+        public void SetBuff_DamageSourcesExceedingAttackSpeedCap_AreNotCapped()
+        {
+            _stats.Initialize(_hero);
+            _stats.SetBuff(_buffSourceA, _hero, BuffType.Damage, 0.8f);
+            _stats.SetBuff(_buffSourceB, _auraType, BuffType.Damage, 0.8f);
+
+            Assert.AreEqual(31.2f, _stats.Damage, 1e-5f);
         }
     }
 }
