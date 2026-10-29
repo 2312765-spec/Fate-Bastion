@@ -19,7 +19,7 @@ MonoBehaviour:
   aimMode: 0
   damageMultiplier: 1
   damageType: 1
-  status: {fileID: 0}
+  status: {fileID: 11400000, guid: b6a37906cbe9d8048bf7465bbb67e0d3, type: 2}
   radius: 2
   length: 0
   width: 0

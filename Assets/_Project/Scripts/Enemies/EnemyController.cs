@@ -33,6 +33,7 @@ namespace FateBastion.Enemies
 
         /// <summary>Wave this enemy counts toward; boss summons carry the boss's wave.</summary>
         public int Wave { get; private set; }
+        public uint SpawnVersion { get; private set; }
 
         public bool IsAlive => _health.IsAlive;
         public float CurrentHP => _health.Current;
@@ -69,6 +70,7 @@ namespace FateBastion.Enemies
         /// <summary>Called by EnemyManager when taken from the pool.</summary>
         internal void Spawn(EnemyData data, IEnemyPath path, int pathIndex, float maxHP, int wave, float startDistance)
         {
+            SpawnVersion++;
             Data = data;
             Wave = wave;
             _pathIndex = pathIndex;

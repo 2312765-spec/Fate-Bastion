@@ -1,20 +1,25 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using FateBastion.Core;
 using FateBastion.Enemies;
+using FateBastion.Skills;
 
 namespace FateBastion.Heroes
 {
     /// <summary>Owns one pooled hero's initialized data, stats and target selection (S6, API 3.1 #3/#4).</summary>
     [DisallowMultipleComponent]
-    public sealed class HeroController : MonoBehaviour
+    public sealed class HeroController : MonoBehaviour, ISkillContext
     {
         // 0.2 scaled seconds gives five target scans per second without querying every frame.
         private const float TargetSearchInterval = 0.2f;
+        private static readonly List<HeroController> ActiveHeroes = new List<HeroController>(15);
 
         [SerializeField] private EnemyManager _enemyManager;
 
         private HeroStats _stats;
         private AttackModule _attackModule;
+        private SkillRunner _skillRunner;
         private readonly TargetingModule _targeting = new TargetingModule();
         private HeroVisual _visual;
         private Transform _anchorFallback;
@@ -22,8 +27,22 @@ namespace FateBastion.Heroes
 
         public HeroData Data { get; private set; }
         public HeroStats Stats => _stats;
+        public EnemyManager EnemyManager => _enemyManager;
         public EnemyController CurrentTarget { get; private set; }
         public Transform Muzzle => _visual != null && _visual.Muzzle != null ? _visual.Muzzle : _anchorFallback;
+        float ISkillContext.Damage => _stats != null ? _stats.Damage : 0f;
+        float ISkillContext.Range => _stats != null ? _stats.Range : 0f;
+        AttackType ISkillContext.AttackType => Data != null ? Data.attackType : default;
+        DamageType ISkillContext.DamageType => Data != null ? Data.damageType : default;
+        Element ISkillContext.Element => Data != null ? Data.element : default;
+        SkillData ISkillContext.PassiveSkill => Data != null ? Data.passiveSkill : null;
+        EnemyController ISkillContext.CurrentTarget => CurrentTarget;
+        Transform ISkillContext.Muzzle => Muzzle;
+        EnemyManager ISkillContext.EnemyManager => _enemyManager;
+        Vector3 ISkillContext.Position => transform.position;
+        bool ISkillContext.IsActive => isActiveAndEnabled && Data != null;
+        int ISkillContext.ActiveHeroCount => ActiveHeroes.Count;
+        ISkillContext ISkillContext.GetActiveHero(int index) => ActiveHeroes[index];
 
         private void Awake()
         {
@@ -31,6 +50,7 @@ namespace FateBastion.Heroes
             if (_stats == null)
                 Debug.LogError($"{name}: HeroStats component is missing from this hero.", this);
             _attackModule = GetComponent<AttackModule>();
+            _skillRunner = GetComponent<SkillRunner>();
 
             _visual = GetComponentInChildren<HeroVisual>();
             _anchorFallback = transform;
@@ -83,6 +103,7 @@ namespace FateBastion.Heroes
                 return;
             }
             _targeting.Initialize(data);
+            RegisterActiveHero();
             RefreshTarget();
         }
 
@@ -93,15 +114,61 @@ namespace FateBastion.Heroes
             _targetSearchTimer = 0f;
             _stats?.ResetLevelMultipliers();
             _attackModule?.ResetState();
+            _skillRunner?.ResetState();
         }
 
         /// <summary>Clears references and calculated stats before this hero is returned to its pool.</summary>
         public void OnDespawn()
         {
             ResetState();
+            UnregisterActiveHero();
             Data = null;
             _stats?.Clear();
             _targeting.Clear();
+        }
+
+        void ISkillContext.SetBuff(UnityEngine.Object source, UnityEngine.Object sourceType, BuffType type, float value)
+        {
+            if (_stats == null || Data == null) return;
+            _stats.SetBuff(source, sourceType, type, value);
+        }
+
+        void ISkillContext.RemoveBuff(UnityEngine.Object source)
+        {
+            _stats?.RemoveBuff(source);
+        }
+
+        private void OnEnable()
+        {
+            if (Data != null) RegisterActiveHero();
+        }
+
+        private void OnDisable()
+        {
+            _skillRunner?.ResetState();
+            UnregisterActiveHero();
+        }
+
+        private void OnDestroy()
+        {
+            UnregisterActiveHero();
+        }
+
+        private void RegisterActiveHero()
+        {
+            for (int i = 0; i < ActiveHeroes.Count; i++)
+                if (ActiveHeroes[i] == this) return;
+            ActiveHeroes.Add(this);
+        }
+
+        private void UnregisterActiveHero()
+        {
+            for (int i = ActiveHeroes.Count - 1; i >= 0; i--)
+            {
+                if (ActiveHeroes[i] != this) continue;
+                ActiveHeroes.RemoveAt(i);
+                break;
+            }
         }
 
         private void Update()
