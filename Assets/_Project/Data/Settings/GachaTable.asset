@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a277d88e3f0f6c74bac1065cf2a430ec, type: 3}
+  m_Name: GachaTable
+  m_EditorClassIdentifier: FateBastion.Meta::FateBastion.Meta.GachaTable
+  _commonWeight: 65
+  _rareWeight: 25
+  _epicWeight: 8.5
+  _legendaryWeight: 1.5
+  _singleCost: 100
+  _tenCost: 900
+  _pityThreshold: 25
+  _firstOwnGems: 50
+  _mergeCost: 3
+  _heroes:
+  - heroId: hero_cung_thu
+    rarity: 0
+  - heroId: hero_linh_bang
+    rarity: 0
+  - heroId: hero_phu_thuy_lua
+    rarity: 0
+  - heroId: hero_tu_si
+    rarity: 0
+  - heroId: hero_nguoi_tuyet
+    rarity: 1
+  - heroId: hero_phap_su_sam
+    rarity: 1
+  - heroId: hero_chien_binh_sam
+    rarity: 2
+  - heroId: hero_thanh_nu
+    rarity: 2
+  - heroId: hero_long_vuong
+    rarity: 3

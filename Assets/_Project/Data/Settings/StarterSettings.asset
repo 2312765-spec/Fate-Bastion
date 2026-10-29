@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05fe0049c2185ba4bb97934a7bc323d9, type: 3}
+  m_Name: StarterSettings
+  m_EditorClassIdentifier: FateBastion.Meta::FateBastion.Meta.StarterSettings
+  _starterHeroes:
+  - hero_cung_thu
+  - hero_phu_thuy_lua
+  - hero_linh_bang
+  - hero_tu_si
+  - hero_nguoi_tuyet
+  _startingGems: 1000
+  _defaultDeck:
+  - hero_cung_thu
+  - hero_phu_thuy_lua
+  - hero_linh_bang
+  - hero_tu_si
+  - hero_nguoi_tuyet
