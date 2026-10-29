@@ -1,3 +1,4 @@
+using System.Reflection;
 using FateBastion.Core;
 using FateBastion.Player;
 using NUnit.Framework;
@@ -9,7 +10,7 @@ namespace FateBastion.Tests.EditMode.S7
     public class MeteorAbilityTests
     {
         private GameObject _routerObject;
-        private MeteorTestInputRouter _router;
+        private InputRouter _router;
         private MeteorAbility _ability;
 
         [SetUp]
@@ -17,8 +18,12 @@ namespace FateBastion.Tests.EditMode.S7
         {
             CancelStack.ResetAll();
             AbilityEvents.ResetAll();
-            _routerObject = new GameObject("TestInputRouter");
-            _router = _routerObject.AddComponent<MeteorTestInputRouter>();
+            _router = InputRouter.Instance;
+            if (_router == null)
+            {
+                _routerObject = new GameObject("TestInputRouter");
+                _router = _routerObject.AddComponent<InputRouter>();
+            }
             _ability = new MeteorAbility(_router, 45f, 0.8f);
         }
 
@@ -26,7 +31,8 @@ namespace FateBastion.Tests.EditMode.S7
         public void TearDown()
         {
             _ability?.Dispose();
-            Object.DestroyImmediate(_routerObject);
+            if (_routerObject != null)
+                Object.DestroyImmediate(_routerObject);
             CancelStack.ResetAll();
             AbilityEvents.ResetAll();
         }
@@ -34,11 +40,11 @@ namespace FateBastion.Tests.EditMode.S7
         [Test]
         public void MeteorInput_ReadyThenPressedAgain_EntersAndCancelsAimWithoutCooldown()
         {
-            _router.PressMeteor();
+            InvokeRouterAction("RaiseMeteor");
             Assert.AreEqual(MeteorAbility.State.Aiming, _ability.CurrentState);
             Assert.IsTrue(CancelStack.Contains(_ability));
 
-            _router.PressMeteor();
+            InvokeRouterAction("RaiseMeteor");
 
             Assert.AreEqual(MeteorAbility.State.Ready, _ability.CurrentState);
             Assert.IsFalse(CancelStack.Contains(_ability));
@@ -49,7 +55,7 @@ namespace FateBastion.Tests.EditMode.S7
         public void DeckSlotSelectedWhileAiming_CancelsWithoutCooldown()
         {
             _ability.BeginAiming();
-            _router.SelectDeckSlot(2);
+            InvokeRouterAction("RaiseDeckSlot", 2);
 
             Assert.AreEqual(MeteorAbility.State.Ready, _ability.CurrentState);
             Assert.AreEqual(0f, _ability.CooldownRemaining);
@@ -108,6 +114,14 @@ namespace FateBastion.Tests.EditMode.S7
 
             Assert.AreEqual(MeteorAbility.State.Ready, _ability.CurrentState);
             Assert.AreEqual(0f, _ability.CooldownRemaining);
+        }
+
+        private void InvokeRouterAction(string methodName, params object[] arguments)
+        {
+            MethodInfo method = typeof(InputRouter).GetMethod(
+                methodName, BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.IsNotNull(method, $"InputRouter.{methodName} should exist.");
+            method.Invoke(_router, arguments);
         }
     }
 }
