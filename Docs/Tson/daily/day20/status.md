@@ -15,15 +15,17 @@
 
 ## Validation
 
-- Đã yêu cầu Unity refresh toàn bộ Assets và compile sau khi merge.
-- Console không trả lỗi C# mới tại lần đọc; Editor log còn các lỗi biên dịch cũ trước đó về file S6 chưa được tích hợp. Không có xác nhận compile cuối cùng độc lập.
-- Đã khởi chạy EditMode assembly `FateBastion.Tests.EditMode`, job `a96bbb6b6d5e4aa5bfb06a9722575be7`. Unity Test Runner bắt đầu; Unity MCP mất kết nối khi lấy trạng thái, không có summary/ XML. Không đánh dấu pass.
-- Chưa chạy PlayMode hoặc kiểm tra tay trong Game scene.
+- Sau khi buộc refresh toàn bộ, Unity biên dịch được các assembly test; EditMode và PlayMode hoàn tất.
+- EditMode `FateBastion.Tests.EditMode`: **675/675 pass**, 0 fail, 0 skip; job `cb4aede713514d83b261bbeff260396a`, 329.7 giây.
+- PlayMode `FateBastion.Tests.PlayMode`: **116/116 pass**, 0 fail, 0 skip; job `87b378136e49444aa9d5c386d4ebc169`, 41.1 giây.
+- Các lượt đầu lộ ra 5 test Meteor dùng MonoBehaviour helper trong Editor assembly và 3 lỗi PlayMode. Đã sửa helper EditMode, cập nhật `HeroController` để không báo thiếu rage settings với hero không Legendary, đăng ký test listener trước khi bật CommandAura, rồi chạy lại hai suite đầy đủ.
+- Gán `HeroRageSettings.asset` vào `_rageSettings` của `Hero_Base.prefab` qua Unity MCP.
+- Chưa kiểm tra tay ba màn trong `Game.unity`; scene thuộc C và cần C thao tác.
 
 ## Blocker và bàn giao
 
-- Unity MCP mất kết nối với Editor đang chạy sau khi khởi tạo Test Runner. Chưa thể lấy kết quả job, kiểm tra prefab hoặc gắn field.
-- `HeroRageSettings.asset` chưa được gán vào `_rageSettings` trên `Hero_Base.prefab` (prefab do A sở hữu).
 - `Player.prefab` thuộc C: chưa được gắn/wire `CommandAura`, `MeteorAbility`, `MeteorAimIndicator`, `CommandAuraSettings`, `MeteorSettings` và provider cho `IMeteorAimRaySource`.
 - Cần C cung cấp aim-ray provider, gắn các component/asset vào Player và nối FX. Cần B nối HUD/event nếu còn thiếu. Không sửa vùng của C/B trong nhánh này.
-- Kết quả EditMode/PlayMode và thao tác tay ba màn vẫn chờ Editor kết nối lại.
+- PlayMode test log có warning dự kiến về HeroVisual giả trong fixture; không test nào fail.
+- Các lỗi compile về file S6 thiếu xuất hiện trong log cũ trước khi nhánh tích hợp được refresh; lượt suite cuối pass đầy đủ.
+- Issue draft cho C nằm trong `handoff.md`; test tay ba màn vẫn cần C/TVA phối hợp trên Editor.

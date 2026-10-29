@@ -57,9 +57,7 @@ namespace FateBastion.Heroes
             _stats = GetComponent<HeroStats>();
             if (_stats == null)
                 Debug.LogError($"{name}: HeroStats component is missing from this hero.", this);
-            if (_rageSettings == null)
-                Debug.LogError($"{name}: HeroRageSettings is not assigned.", this);
-            else
+            if (_rageSettings != null)
                 _rage = new RageMeter(_rageSettings.MaximumRage);
             _attackModule = GetComponent<AttackModule>();
             _skillRunner = GetComponent<SkillRunner>();
@@ -110,6 +108,8 @@ namespace FateBastion.Heroes
 
             ResetState();
             Data = data;
+            if (Data.rarity == Rarity.Legendary && _rage == null)
+                Debug.LogError($"{name}: HeroRageSettings is required for a Legendary hero.", this);
             try
             {
                 _stats.Initialize(data);

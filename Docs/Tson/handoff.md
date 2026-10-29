@@ -134,6 +134,8 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Nhánh `feature/A_T16_integration` được tạo từ `origin/main`; đã tích hợp tạm A #38–#43, B #31/#33 và #32/#35, C #30 theo dependency. Các PR nguồn vẫn open; không merge vào `main`.
 - Xung đột duy nhất là handoff văn bản A-09/A-10 khi nhập #40; đã giữ nguyên cả hai phần.
 - Unity MCP tạo `HeroRageSettings.asset` (+5/100), `CommandAuraSettings.asset` (6 m, +25%, 0.2 s), `meteor.asset` (AreaAtPoint, GroundPoint, True ×3, radius 4 m, cooldown 45 s, castDelay 0.8 s) và `meteor_settings.asset` (enemy_normal, range 20 m, padding 2 m).
-- EditMode job `a96bbb6b6d5e4aa5bfb06a9722575be7` đã bắt đầu nhưng Unity MCP ngắt kết nối khi lấy kết quả; không có summary/XML nên không đánh dấu pass. Chưa chạy PlayMode hoặc playtest ba màn.
-- `HeroRageSettings.asset` chưa được gán vào `_rageSettings` của `Hero_Base.prefab`. Player prefab thuộc C, cần C wire các ability/settings và cung cấp provider `IMeteorAimRaySource`; issue draft nằm ở `daily/day20/handoff.md`.
+- Đã gán `HeroRageSettings.asset` vào `_rageSettings` trên `Hero_Base.prefab`.
+- Kết quả cuối: EditMode **675/675 pass** (job `cb4aede713514d83b261bbeff260396a`, 329.7 giây); PlayMode **116/116 pass** (job `87b378136e49444aa9d5c386d4ebc169`, 41.1 giây), không fail/skip.
+- Đã sửa fixture EditMode cho Meteor và test PlayMode của S4/S7 phát hiện trong lượt đầu. Bản sửa `HeroController` không còn báo lỗi khi hero không Legendary thiếu `HeroRageSettings`; hero Legendary thiếu settings vẫn phát lỗi rõ trong `Init`.
+- Chưa playtest ba màn. Player prefab thuộc C, cần C wire các ability/settings và cung cấp provider `IMeteorAimRaySource`; issue draft nằm ở `daily/day20/handoff.md`.
 - `Docs/TRACEABILITY.md` chưa đổi vì validation còn dở và đây là vùng dùng chung.

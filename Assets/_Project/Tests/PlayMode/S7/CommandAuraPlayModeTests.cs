@@ -20,6 +20,7 @@ namespace FateBastion.Tests.PlayMode.S7
         private HeroController _hero;
         private GameObject _auraObject;
         private CommandAura _aura;
+        private int _entryEvents;
 
         [SetUp]
         public void SetUp()
@@ -57,6 +58,7 @@ namespace FateBastion.Tests.PlayMode.S7
             _auraObject.SetActive(false);
             _aura = _auraObject.AddComponent<CommandAura>();
             SetField(_aura, "_settings", _auraSettings);
+            _aura.OnHeroEnteredAura += HandleHeroEnteredAura;
             _auraObject.SetActive(true);
         }
 
@@ -74,35 +76,34 @@ namespace FateBastion.Tests.PlayMode.S7
         [UnityTest]
         public IEnumerator Aura_EnterExitAndDisable_UpdatesBuffAndPublishesOnlyEntryTransitions()
         {
-            int entryEvents = 0;
-            _aura.OnHeroEnteredAura += hero =>
-            {
-                Assert.AreSame(_heroObject, hero);
-                entryEvents++;
-            };
-
             yield return new WaitForSeconds(0.25f);
             Assert.AreEqual(1.25f, _hero.Stats.AttacksPerSecond, 1e-5f);
-            Assert.AreEqual(1, entryEvents);
+            Assert.AreEqual(1, _entryEvents);
 
             _heroObject.transform.position = Vector3.right * 7f;
             yield return new WaitForSeconds(0.25f);
             Assert.AreEqual(1f, _hero.Stats.AttacksPerSecond, 1e-5f);
-            Assert.AreEqual(1, entryEvents);
+            Assert.AreEqual(1, _entryEvents);
 
             _heroObject.transform.position = Vector3.right * 2f;
             yield return new WaitForSeconds(0.25f);
             Assert.AreEqual(1.25f, _hero.Stats.AttacksPerSecond, 1e-5f);
-            Assert.AreEqual(2, entryEvents);
+            Assert.AreEqual(2, _entryEvents);
 
             _hero.OnDespawn();
             _hero.Init(_heroData);
             yield return new WaitForSeconds(0.25f);
             Assert.AreEqual(1.25f, _hero.Stats.AttacksPerSecond, 1e-5f);
-            Assert.AreEqual(3, entryEvents);
+            Assert.AreEqual(3, _entryEvents);
 
             _aura.enabled = false;
             Assert.AreEqual(1f, _hero.Stats.AttacksPerSecond, 1e-5f);
+        }
+
+        private void HandleHeroEnteredAura(GameObject hero)
+        {
+            Assert.AreSame(_heroObject, hero);
+            _entryEvents++;
         }
 
         private static void SetField<T>(object instance, string name, T value)

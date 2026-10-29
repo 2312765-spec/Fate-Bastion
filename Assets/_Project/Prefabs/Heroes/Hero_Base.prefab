@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.HeroController
   _enemyManager: {fileID: 0}
+  _rageSettings: {fileID: 11400000, guid: b5672347b48a2c843b1ea721a555743c, type: 2}
 --- !u!136 &136264488443292816
 CapsuleCollider:
   m_ObjectHideFlags: 0
