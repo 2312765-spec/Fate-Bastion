@@ -73,6 +73,13 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Nhánh được tạo từ A-08 `decda92` theo ngoại lệ TVA đã duyệt. PR #38 vẫn draft/open; #39 nhắm vào `feature/S06_A08` và phải chờ #38 trước khi retarget/merge vào `main`.
 - Handoff chi tiết và queue kiểm thử nằm ở `daily/day13/handoff.md`; `TRACEABILITY.md` chưa sửa do là tài liệu dùng chung cần duyệt.
 
+### A-10 – đang triển khai
+
+- Nhánh `feature/S06_A10` (commit `5689996`, draft PR #40) tách từ A-08 PR #38 (`decda92`), không đưa A-09 vào.
+- Đã thêm `RageMeter`, `HeroRageSettings`, event `OnRageChanged`/API `TryActivateUltimate()` và nối đòn hợp lệ từ `AttackModule`; tests đã viết nhưng hoãn đến sau T-16.
+- Unity MCP refresh timeout ở 60 giây rồi mất Editor session; Console trước đó có CS0246 cho hai script mới nên compile chưa được xác nhận. Chưa tạo/assign asset `HeroRageSettings` vào `Hero_Base.prefab`; theo quyết định TVA, hai việc này dời đến T-16.
+- Handoff/kiểm chứng tiếp tục ở `daily/day14/handoff.md`. Có thể đẩy draft PR theo lựa chọn code-only; chưa coi T-10 hoàn chỉnh hoặc merge trước khi T-16 compile/configuration được xác minh.
+
 ---
 
 ## 4. Lịch sử cập nhật
@@ -86,6 +93,7 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | T-07 | Ghi nhận đề xuất tương lai hỗ trợ nhiều passive độc lập; giữ nguyên schema hiện tại cho T-07, chờ chốt S6/importer trước khi mở rộng |
 | T-08 | Bổ sung Cone/Line/Zone/Buff, chốt hình học theo quyết định TVA, nối status Lửa/Băng vào SkillData; PR #38 draft trên `feature/S06_A08`, test còn chờ sau T-16, chưa có scene A_Skills hoặc asset Projectile/FX của C |
 | T-09 | A-09 commit `5c2e634` đã push; draft PR #39 nhắm vào A-08 PR #38; buff aggregation/cap đã code, asset cap 0.6, tests viết nhưng hoãn chạy đến sau T-16 |
+| T-10 | A-10 commit `5689996` đã push; draft PR #40 nhắm vào A-08 PR #38; Editor mất kết nối, asset/prefab assignment và compile dời sang T-16, tests hoãn |
 
 ---
 

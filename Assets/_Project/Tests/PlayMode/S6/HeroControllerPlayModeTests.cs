@@ -11,6 +11,7 @@ namespace FateBastion.Tests.PlayMode.S6
     public class HeroControllerPlayModeTests
     {
         private HeroStatsSettings _settings;
+        private HeroRageSettings _rageSettings;
         private HeroData _hero;
         private GameObject _root;
         private HeroController _controller;
@@ -24,6 +25,7 @@ namespace FateBastion.Tests.PlayMode.S6
             SetField(_settings, "_rareDamageMultiplier", 1.6f);
             SetField(_settings, "_epicDamageMultiplier", 2.5f);
             SetField(_settings, "_legendaryDamageMultiplier", 4f);
+            _rageSettings = ScriptableObject.CreateInstance<HeroRageSettings>();
 
             _hero = ScriptableObject.CreateInstance<HeroData>();
             _hero.id = "hero_test";
@@ -37,6 +39,7 @@ namespace FateBastion.Tests.PlayMode.S6
             HeroStats stats = _root.AddComponent<HeroStats>();
             SetField(stats, "_settings", _settings);
             _controller = _root.AddComponent<HeroController>();
+            SetField(_controller, "_rageSettings", _rageSettings);
             LogAssert.Expect(LogType.Error,
                 "HeroControllerTest: no HeroVisual found under this hero; using the hero root as the visual anchor.");
             _root.SetActive(true);
@@ -49,6 +52,7 @@ namespace FateBastion.Tests.PlayMode.S6
             Object.Destroy(_root);
             Object.Destroy(_hero);
             Object.Destroy(_settings);
+            Object.Destroy(_rageSettings);
         }
 
         [Test]
@@ -83,6 +87,16 @@ namespace FateBastion.Tests.PlayMode.S6
 
             Assert.IsNull(_controller.Data);
             Assert.Throws<System.InvalidOperationException>(() => _ = _controller.Stats.Damage);
+        }
+
+        [Test]
+        public void TryActivateUltimate_BeforeRageIsFull_ReturnsFalse()
+        {
+            _hero.rarity = Rarity.Legendary;
+            _controller.Init(_hero);
+
+            Assert.IsFalse(_controller.TryActivateUltimate());
+            Assert.AreEqual(0f, _controller.CurrentRage);
         }
 
         private static void SetField<T>(object instance, string name, T value)

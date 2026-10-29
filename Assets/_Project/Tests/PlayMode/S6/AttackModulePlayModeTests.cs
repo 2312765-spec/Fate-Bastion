@@ -19,7 +19,9 @@ namespace FateBastion.Tests.PlayMode.S6
         private EnemyData _enemyData;
         private HeroData _heroData;
         private HeroStatsSettings _statsSettings;
+        private HeroRageSettings _rageSettings;
         private SkillData _passive;
+        private SkillData _ultimate;
         private StatusEffectData _status;
         private GameObject _heroObject;
         private HeroController _hero;
@@ -40,6 +42,7 @@ namespace FateBastion.Tests.PlayMode.S6
             SetField(_statsSettings, "_rareDamageMultiplier", 1.6f);
             SetField(_statsSettings, "_epicDamageMultiplier", 2.5f);
             SetField(_statsSettings, "_legendaryDamageMultiplier", 4f);
+            _rageSettings = ScriptableObject.CreateInstance<HeroRageSettings>();
 
             _heroData = ScriptableObject.CreateInstance<HeroData>();
             _heroData.id = "hero_attack_test";
@@ -70,6 +73,7 @@ namespace FateBastion.Tests.PlayMode.S6
             HeroStats stats = _heroObject.AddComponent<HeroStats>();
             SetField(stats, "_settings", _statsSettings);
             _hero = _heroObject.AddComponent<HeroController>();
+            SetField(_hero, "_rageSettings", _rageSettings);
             _heroObject.AddComponent<AttackModule>();
             SkillRunner runner = _heroObject.GetComponent<SkillRunner>();
             Assert.IsNotNull(runner, "AttackModule should require SkillRunner.");
@@ -90,8 +94,10 @@ namespace FateBastion.Tests.PlayMode.S6
             Object.Destroy(_heroObject);
             Object.Destroy(_heroData);
             Object.Destroy(_passive);
+            if (_ultimate != null) Object.Destroy(_ultimate);
             Object.Destroy(_status);
             Object.Destroy(_statsSettings);
+            Object.Destroy(_rageSettings);
             if (_projectileTemplate != null) Object.Destroy(_projectileTemplate);
             if (_buffRecipientObject != null) Object.Destroy(_buffRecipientObject);
             if (_buffRecipientData != null) Object.Destroy(_buffRecipientData);
@@ -105,6 +111,39 @@ namespace FateBastion.Tests.PlayMode.S6
             yield return null;
 
             Assert.AreEqual(85f, _rig.Manager.ActiveEnemies[0].CurrentHP, 1e-5f);
+        }
+
+        [UnityTest]
+        public IEnumerator Attack_LegendaryRageFull_UltimateRequiresTargetAndConsumesRageOnSuccess()
+        {
+            _heroData.rarity = Rarity.Legendary;
+            _heroData.attacksPerSecond = 1000f;
+            _enemyData.baseHP = 100000f;
+            _ultimate = ScriptableObject.CreateInstance<SkillData>();
+            _ultimate.kind = SkillKind.AreaAtPoint;
+            _ultimate.radius = 2f;
+            _ultimate.damageMultiplier = 1f;
+            _heroData.ultimateSkill = _ultimate;
+            _hero.Init(_heroData);
+            SpawnEnemy();
+
+            int rageEvents = 0;
+            _hero.OnRageChanged += (current, maximum) => rageEvents++;
+            EnemyController enemy = _rig.Manager.ActiveEnemies[0];
+            for (int i = 0; i < 24 && _hero.CurrentRage < _hero.MaximumRage; i++)
+                yield return null;
+
+            Assert.AreEqual(100f, _hero.CurrentRage, 1e-5f);
+            Assert.AreEqual(20, rageEvents, "Each successful attack should add rage exactly once.");
+
+            enemy.transform.position = _heroObject.transform.position + Vector3.right * 20f;
+            Assert.IsFalse(_hero.TryActivateUltimate());
+            Assert.AreEqual(100f, _hero.CurrentRage, 1e-5f);
+
+            enemy.transform.position = _heroObject.transform.position + Vector3.right * 4f;
+            Assert.IsTrue(_hero.TryActivateUltimate());
+            Assert.AreEqual(0f, _hero.CurrentRage, 1e-5f);
+            Assert.AreEqual(21, rageEvents, "Successful activation should publish the consumed rage value.");
         }
 
         [UnityTest]
@@ -341,6 +380,7 @@ namespace FateBastion.Tests.PlayMode.S6
             HeroStats recipientStats = _buffRecipientObject.AddComponent<HeroStats>();
             SetField(recipientStats, "_settings", _statsSettings);
             _buffRecipient = _buffRecipientObject.AddComponent<HeroController>();
+            SetField(_buffRecipient, "_rageSettings", _rageSettings);
             LogAssert.Expect(LogType.Error,
                 "BuffRecipient: no HeroVisual found under this hero; using the hero root as the visual anchor.");
             _buffRecipientObject.SetActive(true);
