@@ -12,6 +12,8 @@
 - Sau force refresh, compile hoàn tất đủ để chạy cả hai assemblies.
 - EditMode `FateBastion.Tests.EditMode`: **675/675 pass, 0 fail, 0 skip**, job `cb4aede713514d83b261bbeff260396a`, 329.7 giây.
 - PlayMode `FateBastion.Tests.PlayMode`: **116/116 pass, 0 fail, 0 skip**, job `87b378136e49444aa9d5c386d4ebc169`, 41.1 giây.
+- Nhánh tích hợp có các test S6/A-08: `AttackModulePlayModeTests`, `HeroControllerPlayModeTests`, `HeroTargetingPlayModeTests` và ba bộ EditMode. Do cả hai suite tích hợp đều pass nên ghi nhận test code A-08 đã pass trên snapshot T-16; đây không phải lượt A-08 riêng.
+- Sau lượt T-16, TVA tạo scene `A_Skills.unity` trên `feature/S06_A08`; scene chưa có trong snapshot T-16 và chưa được Playtest.
 - Lượt EditMode đầu tiên có 5 lỗi cùng nguyên nhân: `MeteorTestInputRouter` nằm trong assembly Editor nên không thể `AddComponent`. Đã thay bằng router runtime và gọi các protected Raise methods qua reflection. Toàn bộ 5 test Meteor chạy lại pass; full EditMode sau đó pass.
 - Lượt PlayMode đầu tiên có 2 lỗi do `HeroController.Awake` báo thiếu rage settings cả với Epic và 1 lỗi do CommandAura phát event trước khi test đăng ký listener. Đã sửa để chỉ yêu cầu RageSettings cho Legendary và đăng ký listener trước khi bật aura. Ba test lỗi chạy lại pass; full PlayMode sau đó pass.
 - `HeroRageSettings.asset` đã được gán vào `_rageSettings` trên `Hero_Base.prefab` qua Unity MCP.
