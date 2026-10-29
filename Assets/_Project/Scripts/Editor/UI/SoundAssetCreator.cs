@@ -17,6 +17,7 @@ namespace FateBastion.Editor.UI
         public const string SoundFolder = "Assets/_Project/Data/Audio";
         public const string LibraryPath = "Assets/_Project/Data/Settings/SoundLibrary.asset";
         public const string ConfigPath = "Assets/_Project/Data/Settings/AudioConfig.asset";
+        public const string FeedbackSettingsPath = "Assets/_Project/Data/Settings/FeedbackSettings.asset";
         public const string MixerPath = "Assets/_Project/Audio/Mixer/FB_Mixer.mixer";
         public const string SfxClipFolder = "Assets/_Project/Audio/SFX";
         public const string MusicClipFolder = "Assets/_Project/Audio/Music";
@@ -132,6 +133,7 @@ namespace FateBastion.Editor.UI
 
             SoundLibrary library = CreateLibrary(sounds);
             CreateConfig(library);
+            CreateFeedbackSettings();
             AssetDatabase.SaveAssets();
 
             Debug.Log($"[Create Sound Assets] {created} SoundData created, {filled} got clips, in {SoundFolder}. " +
@@ -226,6 +228,13 @@ namespace FateBastion.Editor.UI
             config.bossMusic = Keep(config.bossMusic, FirstMatch(music, MusicPrefix + "Boss"));
 
             EditorUtility.SetDirty(config);
+        }
+
+        /// <summary>Camera shake profiles (C-18) with their default values; an existing asset is left as tuned.</summary>
+        private static void CreateFeedbackSettings()
+        {
+            if (AssetDatabase.LoadAssetAtPath<FeedbackSettings>(FeedbackSettingsPath) != null) return;
+            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<FeedbackSettings>(), FeedbackSettingsPath);
         }
 
         /// <summary>Keeps what C already assigned; fills only an empty slot.</summary>
