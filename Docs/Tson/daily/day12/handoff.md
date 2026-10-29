@@ -25,7 +25,7 @@
 - Theo yêu cầu của TVA, TVA (A) đã tạo `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` dạng draft để unblock A-08; root giữ component `FateBastion.Combat.Projectile`, child `ProjectileVisual` hiện là hình cầu đơn giản.
 - Đã gán prefab draft vào `_projectilePrefab` trên `Hero_Base.prefab`. C có thể review và thay model/VFX hoặc thay prefab sau này, giữ tương thích với component contract; phần draft được ghi nhận cho TVA, không ghi công cho C.
 - Chưa chạy test runtime hoặc kiểm tra trong Sandbox; các bước này vẫn nằm trong lượt validation sau T-16.
-- Việc điều chỉnh quy tắc tiếp quản ở `TEAM_ASSIGNMENT.md` đang chờ xác nhận duyệt PR chung theo quy định hiện tại.
+- TVA xác nhận PR cập nhật quy tắc dùng chung đã đủ 3 người duyệt; ngoại lệ tiếp quản khi owner không phản hồi/block đã được ghi vào `TEAM_ASSIGNMENT.md` mục 5 và đồng bộ trong `CLAUDE.md`.
 
 ## 4. Kiểm thử để chạy sau T-16
 

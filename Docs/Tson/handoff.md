@@ -110,4 +110,4 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Theo yêu cầu của TVA, TVA (A) đã tạo `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` bản draft và gán vào `_projectilePrefab` của `Hero_Base.prefab`, không chờ C bàn giao prefab hoàn thiện. Root giữ contract `FateBastion.Combat.Projectile`; child hiện là hình cầu đơn giản, có thể thay.
 - Nếu C không đồng ý hoặc muốn bổ sung projectile khác, C chủ động liên hệ A để thay thế/bàn giao, tránh block việc A-08.
 - C có thể review, sửa/thay prefab và phối hợp với A nếu cần; phần draft được ghi nhận cho TVA, không ghi công cho C. Runtime/Sandbox chưa được kiểm tra; validation vẫn chờ sau T-16.
-- `TRACEABILITY.md` ghi chú A-08 và C-09 về người tạo draft và quyền C chỉnh sửa/thay thế. Quy tắc takeover cho `TEAM_ASSIGNMENT.md` chưa được sửa; cần xác nhận đủ duyệt PR chung trước khi thay đổi file đó.
+- `TRACEABILITY.md` ghi chú A-08 và C-09 về người tạo draft và quyền C chỉnh sửa/thay thế. Sau khi TVA xác nhận PR chung đủ 3 người duyệt, quy tắc takeover đã được bổ sung ở `TEAM_ASSIGNMENT.md` mục 5 và đồng bộ trong `CLAUDE.md`.

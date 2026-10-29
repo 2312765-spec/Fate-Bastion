@@ -270,7 +270,7 @@ public enum GameState  { Loading, Preparing, InWave, Resting, Won, Lost }
 ### Vùng sở hữu (bắt buộc)
 - Đầu mỗi phiên, người dùng sẽ nói mình là **A, B hay C**. Nếu chưa nói, hỏi trước khi sửa file.
 - **Chỉ tạo/sửa file trong vùng của người đó** theo `Docs/TEAM_ASSIGNMENT.md` mục 2. Vùng **Dùng chung** (danh sách đầy đủ ở `TEAM_ASSIGNMENT.md` mục 2.3: `Core/`, các SO dữ liệu do importer ghi, `DamageInfo`/`IDamageable`, mọi `*.asmdef`, `ProjectSettings/`, `Packages/`, `CLAUDE.md`, `Docs/Specs/`, `TEAM_ASSIGNMENT.md`, `ROADMAP.md`, `.gitignore`/`.gitattributes`) chỉ sửa khi người dùng xác nhận đã có PR 3 người duyệt.
-- Cần thay đổi ở vùng người khác: **dừng lại**, soạn sẵn nội dung GitHub issue `[Cần <A/B/C>] …` (file nào, vì sao, đề xuất) để người dùng gửi; trong lúc chờ dùng stub `// STUB:` trong vùng của mình.
+- Cần thay đổi ở vùng người khác: theo luồng thông thường, soạn issue `[Cần <A/B/C>] …` (file nào, vì sao, đề xuất) và dùng stub `// STUB:` trong lúc chờ. Nếu owner không phản hồi và việc đang block, áp dụng ngoại lệ tiếp quản tại `Docs/TEAM_ASSIGNMENT.md` mục 5; ghi đúng người thực hiện và đánh dấu draft nếu chưa review.
 - Không mở/sửa scene của người khác (`Game.unity` của C, `Lobby.unity`/`Boot.unity` của B, `Sandbox/<người khác>_*`).
 - Khi xong việc, nhắc người dùng tick dòng tương ứng trong `Docs/TRACEABILITY.md`.
 
