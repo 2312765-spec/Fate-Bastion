@@ -19,4 +19,5 @@
 
 ## Nhánh
 
-- `feature/S07_A12` bắt đầu từ `origin/main`; draft PR #42 nhắm `main`, validation code-only còn hoãn đến T-16.
+- `feature/S07_A12` bắt đầu từ `origin/main`; PR #42 đang **Ready**, base `main`, `MERGEABLE/CLEAN`, validation code-only vẫn hoãn đến T-16.
+- **Còn nợ trước khi merge #42:** fixture `Assets/_Project/Tests/EditMode/S7/MeteorTestInputRouter.cs` vẫn tồn tại. Fix T-16 `10d804e` xóa fixture và chuyển test sang `InputRouter.Instance` + reflection `RaiseMeteor`/`RaiseDeckSlot`; **chưa được áp** vào nhánh này.

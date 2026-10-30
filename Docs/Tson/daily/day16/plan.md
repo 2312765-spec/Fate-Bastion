@@ -16,4 +16,4 @@ Triển khai state machine thuần cho Thiên thạch, quản lý trạng thái 
 
 - T-13 chịu trách nhiệm kiểm tra tầm, vùng nổ, sát thương, aim indicator và kết nối `MeteorSettings`.
 - Không sửa Core/InputRouter, asset/prefab/scene hoặc file của B/C. Không dùng Unity Editor/MCP trong slot code-only.
-- Nhánh riêng `feature/S07_A12` bắt đầu từ `origin/main`; PR sẽ ghi rõ chưa compile/test trong Unity.
+- Nhánh riêng `feature/S07_A12` bắt đầu từ `origin/main`; PR #42 ghi rõ chưa compile/test trong Unity. **Cập nhật 30/10/2026:** PR #42 đang **Ready**, base `main`, `CLEAN`; còn nợ việc áp fix `10d804e` cho fixture EditMode trước khi merge.
