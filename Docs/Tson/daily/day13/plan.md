@@ -13,6 +13,7 @@ Triển khai cộng dồn buff theo loại nguồn: cùng `(sourceType, BuffType
 
 ## Phụ thuộc và quy trình
 
-- Theo quyết định của TVA, nhánh `feature/S06_A09` được tạo từ A-08 PR #38 dù PR đó vẫn draft/open; A-09 phải giữ riêng và phụ thuộc vào #38.
+- Theo quyết định của TVA, nhánh `feature/S06_A09` được tạo từ A-08 PR #38 theo dạng stack; PR #39 nhắm vào `feature/S06_A08` thay vì `main`.
+- **Cập nhật 30/10/2026:** #38 đã merge `main`, #39 đã merge vào `feature/S06_A08`; PR #46 (base `main`) đang mở để đưa A-08 + A-09 vào `main`.
 - Không sửa `TRACEABILITY.md` hoặc Spec dùng chung khi chưa có duyệt theo quy định.
 - Kiểm thử sẽ được đưa vào lượt validation tổng hợp sau T-16.

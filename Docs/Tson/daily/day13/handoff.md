@@ -18,8 +18,9 @@
 ## 3. Phụ thuộc PR
 
 - Nhánh `feature/S06_A09` được tạo theo ngoại lệ TVA đã duyệt, từ head `decda92` của A-08.
-- A-08 PR #38 hiện vẫn OPEN và draft. Draft PR #39 mở riêng, nhắm vào `feature/S06_A08` để không lặp code A-08 trong diff; A-09 phụ thuộc API/source-type plumbing của A-08 và không nên merge riêng vào `main` trước #38. Sau khi #38 merge, retarget #39 sang `main`.
-- Nếu A-08 bị thay đổi/review yêu cầu chỉnh sửa, cần tích hợp các thay đổi cần thiết và xác nhận lại API trước khi merge A-09.
+- **Trạng thái 30/10/2026:** A-08 PR #38 đã merge `main` (`623c820`); PR #39 đã merge vào `feature/S06_A08` (`55feec2`). PR #46 (base `main`) đang mở để đưa A-08 + A-09 vào `main`; **#46 phải merge trước #40** và trước các PR S7.
+- A-09 vẫn phụ thuộc API/source-type plumbing của A-08 nên không tách riêng vào `main`; nội dung đi kèm A-08 trong #46.
+- Nếu A-08 bị thay đổi/review yêu cầu chỉnh sửa, cần tích hợp các thay đổi cần thiết và xác nhận lại API trước khi merge #46.
 
 ## 4. Kiểm thử để chạy sau T-16
 
@@ -29,5 +30,6 @@
 
 ## 5. Nhánh và PR
 
-- Commit `5c2e634` đã push trên `feature/S06_A09`.
-- Draft PR #39: buff stacking/cap, base `feature/S06_A08`; phụ thuộc PR #38.
+- Commit `5c2e634` (+ `2ac03d2`) đã push trên `feature/S06_A09`.
+- PR #39: buff stacking/cap, base `feature/S06_A08` — **đã merge** (`55feec2`, 30/10/2026).
+- PR #46 (base `main`, head `feature/S06_A08`) đang mở để đưa A-08 + A-09 vào `main`; merge trước #40.
