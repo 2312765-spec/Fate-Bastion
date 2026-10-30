@@ -16,7 +16,7 @@ Thêm Nộ cho tướng Legendary: mỗi đòn tấn công hợp lệ cộng 5, 
 
 ## Phụ thuộc / nhánh
 
-- T-10 cần `HeroController` và `SkillRunner` từ A-08 PR #38. Để không đưa A-09 vào diff T-10, nhánh riêng sẽ dựa trên `feature/S06_A08`; draft PR T-10 sẽ nhắm vào nhánh đó và phụ thuộc PR #38.
+- T-10 cần `HeroController` và `SkillRunner` từ A-08. Ban đầu nhánh dựa trên `feature/S06_A08`; **cập nhật 30/10/2026:** #38 đã merge `main`, nhánh `feature/S06_A10` đã rebase lên `main` và PR #40 retarget về `main` (Ready).
 - A-09 PR #39 độc lập với Nộ/Ultimate; không gộp vào nhánh này.
 - Không sửa `Core/`, Specs, `TEAM_ASSIGNMENT.md`, prefab/scene của người khác hoặc `TRACEABILITY.md`.
 

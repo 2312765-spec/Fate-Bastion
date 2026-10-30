@@ -18,7 +18,7 @@
 
 ## 3. Nhánh / phụ thuộc
 
-- Nhánh hiện tại: `feature/S06_A10`, từ `feature/S06_A08` tại `decda92`.
-- PR #38 còn OPEN/draft; A-10 cần phụ thuộc API S6 trong nhánh đó. A-09 PR #39 không được gộp vào nhánh A-10.
-- Commit `5689996` đã push; draft PR #40 nhắm vào `feature/S06_A08`. PR #38 còn OPEN/draft; A-09 PR #39 không được gộp vào nhánh A-10.
+- Nhánh hiện tại: `feature/S06_A10`; ban đầu từ `feature/S06_A08` tại `decda92`, sau đó rebase lên `main`.
+- **Trạng thái 30/10/2026:** #38 đã merge `main`; PR #40 đang **Ready**, base `main`, `MERGEABLE/CLEAN`. A-09 PR #39 đã merge vào `feature/S06_A08` và đi vào `main` qua #46 — **#46 phải merge trước #40**.
+- Commit `b1a5da5` (code) + `c7d0f42` (docs) đã push.
 - Chưa coi T-10 hoàn chỉnh hoặc merge trước khi T-16 hoàn thành compile, cấu hình asset/prefab và validation.
