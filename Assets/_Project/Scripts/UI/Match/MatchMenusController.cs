@@ -11,7 +11,7 @@ namespace FateBastion.UI
     /// <summary>
     /// Match menus on MatchMenus_Canvas (S5, S10, B-15): opens Pause from GameManager.PausedChanged, Result from
     /// GameEvents.OnMatchEnded, and the shared ConfirmDialog for skip-wave (with "Không hỏi lại") and for selling a
-    /// level-3 hero. Runs after GameManager.Start, which resets the GameEvents hub.
+    /// level-3 hero. Runs after GameManager.Start so GameManager.Instance and its match objects are ready.
     /// </summary>
     [DefaultExecutionOrder(100)]
     [DisallowMultipleComponent]
@@ -134,12 +134,13 @@ namespace FateBastion.UI
         // registers itself there to be cancelled like the other modes (TEAM_ASSIGNMENT 3.1 #6).
         private void ShowInMatch(string title, string message, Action<bool> onConfirm, bool dontAsk)
         {
-            CancelStack.Push(_dialogEntry);
+            // Push after Show: replacing a pending question runs its cancel callback, which removes the entry.
             _confirm.Show(title, message, answer =>
             {
                 CancelStack.Remove(_dialogEntry);
                 onConfirm(answer);
             }, () => CancelStack.Remove(_dialogEntry), dontAsk);
+            if (_confirm.IsPending) CancelStack.Push(_dialogEntry);
         }
 
         private sealed class DialogCancelEntry : ICancelable
