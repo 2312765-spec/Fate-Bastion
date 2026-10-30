@@ -15,5 +15,6 @@ Triển khai Hào quang Chỉ huy: kiểm tra tướng trong bán kính cấu h�
 
 ## Phụ thuộc / nhánh
 
-- `feature/S07_A11` dựa trên `feature/S06_A10` vì cần HeroController runtime và registry; draft PR nhắm vào nhánh đó, phụ thuộc #40 rồi #38.
+- `feature/S07_A11` dựa trên `feature/S06_A10` vì cần HeroController runtime và registry; PR #41 (Ready) nhắm vào nhánh đó, phụ thuộc #40 rồi #46.
+- **Cập nhật 30/10/2026:** #38 đã merge `main`, #40 đã rebase về `main`; thứ tự merge là **#46 → #40 → #41**.
 - Không sửa prefab/scene của C, UI/tutorial của B, Core, Spec hoặc `TRACEABILITY.md`.

@@ -23,5 +23,6 @@
 
 ## 4. Nhánh và phụ thuộc
 
-- Nhánh `feature/S07_A11` được tạo từ `feature/S06_A10`; phụ thuộc PR #40 và #38. PR #39/A-09 không được cherry-pick vào nhánh này.
+- Nhánh `feature/S07_A11` được tạo từ `feature/S06_A10`; PR #41 đang **Ready**, base `feature/S06_A10`, `MERGEABLE/CLEAN`.
+- **Trạng thái 30/10/2026:** #38 đã merge `main`; #40 đã rebase về `main`; A-09 đi vào `main` qua #46. Thứ tự merge: **#46 → #40 → #41**.
 - Tests hoãn; không tick `TRACEABILITY.md` khi chưa compile/test và chưa có C/B handoff.
