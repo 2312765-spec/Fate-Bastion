@@ -841,7 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.Sandbox.WaveSandboxDemo
   _waveManager: {fileID: 1956689493}
   _enemyManager: {fileID: 1956689494}
-  _level: {fileID: 11400000, guid: 9bfdcb9bfd2f61a45a9dda17bf0fb784, type: 2}
+  _level: {fileID: 11400000, guid: f415430ac5f57604e863a477300c43f3, type: 2}
   _autoNextWave: 1
   _restSeconds: 3
 --- !u!114 &1956689493
