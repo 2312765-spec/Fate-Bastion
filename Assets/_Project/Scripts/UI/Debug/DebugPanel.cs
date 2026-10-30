@@ -75,7 +75,10 @@ namespace FateBastion.UI.DebugTools
         {
             if (!_visible)
             {
-                if (_showCornerButton && GUI.Button(new Rect(4f, Screen.height - 28f, 64f, 24f), "Debug")) _visible = true;
+                // F1 already works in the Summoner map (in a match), so the corner button only shows in the UI map;
+                // in play the hidden panel draws nothing and adds no IMGUI controls to the frame being profiled.
+                bool needsButton = _showCornerButton && (_router == null || _router.ActiveMap == ActionMapId.UI);
+                if (needsButton && GUI.Button(new Rect(4f, Screen.height - 28f, 64f, 24f), "Debug")) _visible = true;
                 return;
             }
 
@@ -175,7 +178,8 @@ namespace FateBastion.UI.DebugTools
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button($"+{GoldStep} Vàng") && game.Wallet != null) game.Wallet.Add(GoldStep);
-            if (GUILayout.Button("Thắng ngay")) game.DebugEnd(true);
+            // Goes through the real FinishMatch: gems, stars and unlocks are written to the save.
+            if (GUILayout.Button("Thắng ngay (ghi thưởng)")) game.DebugEnd(true);
             if (GUILayout.Button("Thua ngay")) game.DebugEnd(false);
             GUILayout.EndHorizontal();
         }
