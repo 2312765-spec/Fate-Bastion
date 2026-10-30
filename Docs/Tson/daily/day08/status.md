@@ -27,7 +27,7 @@
 ## Chưa xong / dời sang bước sau
 
 1. **T-04d:** B xác nhận "Đã thử, dùng được" (4.1 #5) — vẫn đang chờ B.
-2. **Đã mở PR #23** cho `feature/S09_A14`; mục 2.1 + 2.2 của `handoff.md` nằm trong mô tả PR. PR chưa merge.
+2. **Đã mở PR #23** cho `feature/S09_A14`; mục 2.1 + 2.2 của `handoff.md` nằm trong mô tả PR. PR chưa merge. _(Cập nhật 30/10/2026: PR #23 đã merge `main` ngày 27/10/2026 qua `7f02219`; chỉ còn chờ B xác nhận 4.1 #5.)_
 3. **Đã mở PR #21, #22 và #24** cho `docs/agent-tools`, `feature/S02_A06` và `feature/S02_A05`. PR #22 chứa lịch sử A-05; thứ tự merge đề xuất để tránh lặp diff là #21 → #24 → #22 → #23.
 4. **Tick `TRACEABILITY.md`** A-14/A-15 và A-05/A-06 sau khi PR tương ứng merge; vùng dùng chung cần đủ 3 người duyệt.
 

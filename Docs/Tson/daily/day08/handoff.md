@@ -110,7 +110,7 @@ public sealed class StarterSaveFactory : IStarterSaveFactory
 
 | # | Điều kiện | Trạng thái |
 |---|---|---|
-| 1 | PR merge `main` + test xanh | ◐ test **xanh hết**: `feature/S09_A14` 299/299 EM + 45/45 PM; `feature/S02_A06` 298/298 EM + 50/50 PM. Lượt toàn Editor 1912 test có 3 fail đều là test package `com.besty.unity-skills`, không có test `FateBastion.*` đỏ. **PR #23 đã mở, chưa merge** |
+| 1 | PR merge `main` + test xanh | ◐ test **xanh hết**: `feature/S09_A14` 299/299 EM + 45/45 PM; `feature/S02_A06` 298/298 EM + 50/50 PM. Lượt toàn Editor 1912 test có 3 fail đều là test package `com.besty.unity-skills`, không có test `FateBastion.*` đỏ. **PR #23 đã mở, chưa merge** _(cập nhật 30/10/2026: đã merge `main` qua `7f02219`)_ |
 | 2 | Mục "Cách dùng" | ☑ mục 2.1 (dán vào PR) |
 | 3 | "Hướng dẫn lắp trong Unity" | ☑ mục 2.2 (dán vào PR) |
 | 4 | Scene `Sandbox/A_*` chạy được | ☑ `A_Save.unity` + `SaveSandboxDemo.cs`: đã mở trong Editor (3 root đúng), Play ~4 s không exception, tạo `persistentDataPath/SandboxSave` |

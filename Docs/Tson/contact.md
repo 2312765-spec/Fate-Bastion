@@ -87,7 +87,7 @@ Nguồn chi tiết: [S1](../Specs/S1.md), [S6](../Specs/S6.md), [S0b](../Specs/S
 
 - EditMode S6: **13/13 pass**, job `a45cc5d6fe8b47d3abac31924e989baf`.
 - PlayMode A-07 (`AttackModule`, targeting, `HeroController`): **12/12 pass**, job `b3c15e3aa26441b0818aa5effdcb9f5d`.
-- Prefab Projectile thực vẫn chưa được gán hoặc xác minh trong Sandbox; xem [handoff Ngày 10](./daily/day10/handoff.md).
+- Prefab Projectile đã được gán (`Assets/_Project/Prefabs/FX/Projectile_Base.prefab`) nhưng chưa xác minh runtime/Sandbox; xem [handoff Ngày 10](./daily/day10/handoff.md).
 
 ## 4. S6/S7 – Kỹ năng, Nộ, Hào quang, Thiên thạch
 
