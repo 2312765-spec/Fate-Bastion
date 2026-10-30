@@ -64,8 +64,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5701229548004653980, guid: 498186837fc9b854d9412352f6275a66, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1eaeff05978f5e64287e89b8647c5496, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8605291420274930025, guid: 498186837fc9b854d9412352f6275a66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3003793348461224044}
   m_SourcePrefab: {fileID: 100100000, guid: 498186837fc9b854d9412352f6275a66, type: 3}
+--- !u!1 &5758252354232106288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8605291420274930025, guid: 498186837fc9b854d9412352f6275a66, type: 3}
+  m_PrefabInstance: {fileID: 4072748255475895385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3003793348461224044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758252354232106288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa77ed44127341439d0300e4718cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.World.HitFlash
