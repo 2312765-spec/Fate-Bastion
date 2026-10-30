@@ -160,10 +160,10 @@ Một dòng "→ giao" trong `ROADMAP.md` chỉ được tính xong khi có **đ
 
 ## 5. Khi cần sửa vùng của người khác
 
-1. Mở GitHub issue, tiêu đề `[Cần <A/B/C>] <mô tả>`, gắn label `cross-owner`.
-2. Ghi rõ: file/asset nào, vì sao, đề xuất thay đổi.
-3. Chủ vùng làm, hoặc đồng ý bằng comment để người hỏi tự làm trong **một PR riêng** chỉ chứa thay đổi đó, chủ vùng duyệt.
-4. Gấp (đang chặn việc) → nhắn trong nhóm, nhưng vẫn mở issue để lưu vết.
+1. Theo luồng thông thường, mở GitHub issue tiêu đề `[Cần <A/B/C>] <mô tả>`, gắn label `cross-owner`; ghi rõ file/asset, lý do và đề xuất.
+2. Chủ vùng thực hiện, hoặc đồng ý để người yêu cầu làm trong PR riêng chỉ chứa thay đổi đó; chủ vùng duyệt PR.
+3. **Ngoại lệ tiếp quản việc bị block:** nếu người yêu cầu hoặc trưởng nhóm xác nhận chủ vùng không phản hồi và việc đó đang chặn tiến độ, người đang bị block được chủ động tiếp quản phần tối thiểu cần thiết mà không phải chờ chủ vùng đồng ý hay mở PR riêng. Có thể làm trên nhánh/PR của việc đang bị block.
+4. Ghi rõ người thực hiện thật trong `TRACEABILITY.md`, handoff và mô tả PR; không ghi công phần tiếp quản cho chủ vùng ban đầu. Đánh dấu asset/code là draft nếu chưa qua review; giữ hợp đồng hiện có để chủ vùng có thể review, thay thế hoặc hoàn thiện sau. Việc tiếp quản không tự đổi quyền sở hữu lâu dài của vùng.
 
 ---
 
