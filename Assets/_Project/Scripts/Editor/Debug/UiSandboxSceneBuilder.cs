@@ -9,15 +9,18 @@ using UnityEngine.UI;
 using FateBastion.Player;
 using FateBastion.UI;
 using FateBastion.UI.Juice;
-using FateBastion.UI.Sandbox;
+using FateBastion.Editor.Import;
+using FateBastion.Game;
+using FateBastion.Heroes;
+using FateBastion.Meta;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
 namespace FateBastion.Editor.DebugTools
 {
     /// <summary>
-    /// Tools > Sandbox > Build B_UI Scene: builds Scenes/Sandbox/B_UI.unity to click through UIManager and
-    /// ConfirmDialog (B-13) with the "Fantasy Wooden GUI" skin and the B motion components. Uses an instance of C's
+    /// Tools > Sandbox > Build B_UI Scene: builds Scenes/Sandbox/B_UI.unity, the working lobby (B-15 screens over the
+    /// real save, UIManager and ConfirmDialog of B-13) with the "Fantasy Wooden GUI" skin and the B motion components. Uses an instance of C's
     /// Lobby_Canvas prefab: every skin change is an override on the scene instance only, the prefab asset and C's
     /// layout builder are never modified (C can port the look later).
     /// </summary>
@@ -72,7 +75,7 @@ namespace FateBastion.Editor.DebugTools
             public Sprite Plate, Divider, Exclamation;
         }
 
-        [MenuItem("Tools/Sandbox/Build B_UI Scene (UIManager demo)")]
+        [MenuItem("Tools/Sandbox/Build B_UI Scene (Lobby B-15)")]
         public static void Build()
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
@@ -102,7 +105,7 @@ namespace FateBastion.Editor.DebugTools
 
             ApplySkin(root, skin);
             UIManager manager = WireNavigation(root, skin);
-            AddDemo(root, manager);
+            AddLobby(root);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, ScenePath);
@@ -433,14 +436,7 @@ namespace FateBastion.Editor.DebugTools
             {
                 SetFields(levels.gameObject.AddComponent<UiStaggerIn>(), ("_initialDelay", 0.12f), ("_step", 0.08f), ("_fromScale", 0.8f));
             }
-
-            Transform grid = root.Find("Screen_Gacha/ResultPanel/Panel/Grid");
-            if (grid != null)
-            {
-                // Card reveal: one after another, from small, a little slower than menus.
-                SetFields(grid.gameObject.AddComponent<UiStaggerIn>(), ("_initialDelay", 0.25f), ("_step", 0.09f),
-                    ("_duration", 0.5f), ("_fromScale", 0.2f));
-            }
+            // The gacha result grid is animated by GachaResultScreen (card flip), not by UiStaggerIn.
         }
 
         private static void SkinTextButton(Button button, Skin skin)
@@ -572,17 +568,12 @@ namespace FateBastion.Editor.DebugTools
 
         private static UIManager WireNavigation(Transform root, Skin skin)
         {
-            UIScreen main = AddScreen(root, "Screen_Main", false, ScreenTransition.Slide, null);
-            foreach (string page in Pages)
-            {
-                if (page != "Screen_Main")
-                {
-                    AddScreen(root, page, false, ScreenTransition.Slide, null);
-                }
-            }
-
-            AddScreen(root, "Screen_Settings", true, ScreenTransition.Pop, "Screen_Settings/Panel");
-            AddScreen(root, "Screen_Gacha/ResultPanel", true, ScreenTransition.Pop, "Screen_Gacha/ResultPanel/Panel");
+            UIScreen main = AddScreen<MainMenuScreen>(root, "Screen_Main", false, ScreenTransition.Slide, null);
+            AddScreen<LevelSelectScreen>(root, "Screen_LevelSelect", false, ScreenTransition.Slide, null);
+            AddScreen<GachaScreen>(root, "Screen_Gacha", false, ScreenTransition.Slide, null);
+            AddScreen<CollectionScreen>(root, "Screen_Collection", false, ScreenTransition.Slide, null);
+            AddScreen<SettingsScreen>(root, "Screen_Settings", true, ScreenTransition.Pop, "Screen_Settings/Panel");
+            AddScreen<GachaResultScreen>(root, "Screen_Gacha/ResultPanel", true, ScreenTransition.Pop, "Screen_Gacha/ResultPanel/Panel");
 
             ConfirmDialog confirm = Get<Transform>(root, "ConfirmDialog").gameObject.AddComponent<ConfirmDialog>();
             confirm.Configure(true, true, FadeSeconds);
@@ -615,7 +606,8 @@ namespace FateBastion.Editor.DebugTools
             return manager;
         }
 
-        private static UIScreen AddScreen(Transform root, string path, bool isOverlay, ScreenTransition transition, string contentPath)
+        private static T AddScreen<T>(Transform root, string path, bool isOverlay, ScreenTransition transition, string contentPath)
+            where T : UIScreen
         {
             Transform node = Get<Transform>(root, path);
             if (node == null)
@@ -623,44 +615,23 @@ namespace FateBastion.Editor.DebugTools
                 return null;
             }
 
-            var screen = node.gameObject.AddComponent<UIScreen>();
+            var screen = node.gameObject.AddComponent<T>();
             screen.Configure(isOverlay, true, FadeSeconds);
             RectTransform content = contentPath != null ? Get<RectTransform>(root, contentPath) : null;
             screen.ConfigureTransition(transition, content, transition == ScreenTransition.Pop ? 0.36f : 0.34f);
             return screen;
         }
 
-        private static void AddDemo(Transform root, UIManager manager)
+        // Real lobby views (B-15): LobbyController binds every screen by C-12 node names and opens the save session.
+        private static void AddLobby(Transform root)
         {
-            var demo = new GameObject("UiSandboxDemo").AddComponent<UiSandboxDemo>();
-            var data = new SerializedObject(demo);
-            Ref(data, "_manager", manager);
-            Ref(data, "_levelSelect", Get<UIScreen>(root, "Screen_LevelSelect"));
-            Ref(data, "_gacha", Get<UIScreen>(root, "Screen_Gacha"));
-            Ref(data, "_gachaResult", Get<UIScreen>(root, "Screen_Gacha/ResultPanel"));
-            Ref(data, "_collection", Get<UIScreen>(root, "Screen_Collection"));
-            Ref(data, "_settings", Get<UIScreen>(root, "Screen_Settings"));
-            Ref(data, "_confirmDialog", Get<ConfirmDialog>(root, "ConfirmDialog"));
-            Ref(data, "_playButton", Get<Button>(root, "Screen_Main/Menu/PlayButton"));
-            Ref(data, "_gachaButton", Get<Button>(root, "Screen_Main/Menu/GachaButton"));
-            Ref(data, "_collectionButton", Get<Button>(root, "Screen_Main/Menu/CollectionButton"));
-            Ref(data, "_settingsButton", Get<Button>(root, "Screen_Main/Menu/SettingsButton"));
-            Ref(data, "_backButton", Get<Button>(root, "TopBar/BackButton"));
-            Ref(data, "_settingsCloseButton", Get<Button>(root, "Screen_Settings/Panel/Buttons/CloseButton"));
-            Ref(data, "_startButton", Get<Button>(root, "Screen_LevelSelect/Footer/StartButton"));
-            Ref(data, "_pull1Button", Get<Button>(root, "Screen_Gacha/BannerPanel/PullButtons/Pull1Button"));
-            Ref(data, "_pull10Button", Get<Button>(root, "Screen_Gacha/BannerPanel/PullButtons/Pull10Button"));
-            Ref(data, "_continueButton", Get<Button>(root, "Screen_Gacha/ResultPanel/Panel/Buttons/ContinueButton"));
-            Ref(data, "_titleText", Get<TMP_Text>(root, "TopBar/TitleText"));
-
-            SerializedProperty merges = data.FindProperty("_mergeButtons");
-            merges.arraySize = MergeRows.Length;
-            for (int i = 0; i < MergeRows.Length; i++)
-            {
-                merges.GetArrayElementAtIndex(i).objectReferenceValue =
-                    Get<Button>(root, "Screen_Collection/MergePanel/" + MergeRows[i] + "/MergeButton");
-            }
-
+            var lobby = root.gameObject.AddComponent<LobbyController>();
+            var data = new SerializedObject(lobby);
+            Ref(data, "_gachaTable", AssetDatabase.LoadAssetAtPath<GachaTable>(MetaAssetsBuilder.GachaTablePath));
+            Ref(data, "_starterSettings", AssetDatabase.LoadAssetAtPath<StarterSettings>(MetaAssetsBuilder.StarterSettingsPath));
+            var heroes = AssetDatabase.LoadAssetAtPath<HeroCatalog>(MatchAssetsBuilder.HeroCatalogPath);
+            Ref(data, "_heroCatalog", heroes);
+            Ref(data, "_matchCatalog", AssetDatabase.LoadAssetAtPath<MatchCatalog>(MatchAssetsBuilder.MatchCatalogPath));
             data.ApplyModifiedPropertiesWithoutUndo();
         }
 
@@ -722,7 +693,7 @@ namespace FateBastion.Editor.DebugTools
             SerializedProperty property = data.FindProperty(field);
             if (property == null)
             {
-                Debug.LogError($"[B_UI] UiSandboxDemo has no field '{field}'.");
+                Debug.LogError($"[B_UI] {data.targetObject.GetType().Name} has no field '{field}'.");
                 return;
             }
 

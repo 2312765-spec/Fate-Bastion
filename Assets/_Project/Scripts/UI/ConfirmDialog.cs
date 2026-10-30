@@ -87,9 +87,27 @@ namespace FateBastion.UI
                 _dontAskToggle.gameObject.SetActive(showDontAskAgain);
             }
 
+            if (_cancelButton != null && !_cancelButton.gameObject.activeSelf)
+            {
+                _cancelButton.gameObject.SetActive(true); // A previous ShowMessage hid it.
+            }
+
             Action replaced = _prompt.Begin(onConfirm, onCancel);
             manager.Push(this);
             replaced?.Invoke();
+        }
+
+        /// <summary>
+        /// Information only (gacha "not enough gems", merge result, save warnings): the Cancel button is hidden and
+        /// Confirm, Esc or closing all call <paramref name="onClose"/>.
+        /// </summary>
+        public void ShowMessage(string title, string message, Action onClose = null)
+        {
+            Show(title, message, _ => onClose?.Invoke(), onClose);
+            if (_cancelButton != null && IsPending)
+            {
+                _cancelButton.gameObject.SetActive(false);
+            }
         }
 
         /// <summary>Answers "confirm" (Confirm button). Does nothing when no question is pending.</summary>
@@ -159,6 +177,7 @@ namespace FateBastion.UI
             }
 
             _setUp = true;
+            BindByHierarchy();
             LogMissingReferences();
 
             if (_confirmButton != null)
@@ -170,6 +189,23 @@ namespace FateBastion.UI
             {
                 _cancelButton.onClick.AddListener(Cancel);
             }
+        }
+
+        // Empty fields are found by the node names of C's ConfirmDialog prefab (C-12), so the component can simply be
+        // added to the prefab without dragging every reference.
+        private void BindByHierarchy()
+        {
+            if (_titleText == null) _titleText = FindChild<TMP_Text>("Panel/TitleText");
+            if (_messageText == null) _messageText = FindChild<TMP_Text>("Panel/MessageText");
+            if (_confirmButton == null) _confirmButton = FindChild<Button>("Panel/Buttons/ConfirmButton");
+            if (_cancelButton == null) _cancelButton = FindChild<Button>("Panel/Buttons/CancelButton");
+            if (_dontAskToggle == null) _dontAskToggle = FindChild<Toggle>("Panel/DontAskToggle");
+        }
+
+        private T FindChild<T>(string path) where T : Component
+        {
+            Transform node = transform.Find(path);
+            return node != null ? node.GetComponent<T>() : null;
         }
 
         private void LogMissingReferences()
