@@ -184,7 +184,7 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | C-15 | 7, 20, 23 | **Tối ưu hiệu năng** (không chỉ đo): ngày 7 đo mốc ban đầu; ngày 20 GPU Instancing, SRP Batcher, LOD quái, giảm draw call, gộp Canvas, kiểm GC Alloc; ngày 23 đo lại. Số liệu trước/sau: FPS 2 cấu hình, draw call, GC Alloc, Memory sau 50 wave Vô tận ×2 · đổi `ProjectSettings/` (Quality, Graphics) → PR 3 người; LOD đặt trên Variant quái của C, không sửa `Enemy_Base` của A | GDD 13 | `Art/`, `Prefabs/`, `Data/Settings/` | Tay: bảng trước/sau + ảnh Profiler vào báo cáo | ☐ | |
 | C-16 | 22, 24 | Build Release IL2CPP + Development | GDD 9 | `Builds/` (không commit) | Tay: chạy trên máy sạch | ☐ | |
 | C-17 | 15–16 | Dựng map thật, ánh sáng, LOD | GDD 3 | `Scenes/Game.unity`, `Art/` | Tay: FPS vẫn đạt mục tiêu | ☐ | |
-| C-18 | 19 | `FeedbackService`: rung camera (Impulse) khi Thiên thạch nổ, boss xuất hiện, Thành mất máu; tắt được trong Cài đặt | S11 | `Audio/` | Tay | ☐ | Tách từ C-14 cũ |
+| C-18 | 19 | `FeedbackService`: rung camera (Impulse) khi Thiên thạch nổ, boss xuất hiện, Thành mất máu; tắt được trong Cài đặt | S11 | `Audio/` | Tay | ☑ | Tách từ C-14 cũ · `FeedbackService` (nguồn rung duy nhất, Impulse thời gian thật, `SetShakeEnabled` dừng ngay rung đang chạy), `FeedbackSettings` (shape/lực/giãn cách mỗi loại; Thành 0.5 s), `ShakeGate`, Ultimate qua `AnimatorShakeBehaviour` (chờ 3.1 #11); 6 EM + 7 PM `S11`; tay: `Test Shake/…` trong Sandbox `C_Main` · **→ B**: toggle Cài đặt + lưu `settings.cameraShake` · **→ A**: không tự tạo Impulse, `SkillData.cameraShake` = 0 |
 
 ---
 
