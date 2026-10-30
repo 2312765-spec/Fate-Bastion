@@ -66,13 +66,6 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - T-07 giữ nguyên schema hiện tại; `damageMultiplier` điều chỉnh sát thương đòn, còn `status` là hiệu ứng gắn thêm khi đòn trúng. Không thêm nhiều passive hoặc hiệu ứng Độc trong lượt này.
 - Nếu nhóm muốn phát triển tiếp, cần chốt cách biểu diễn nhiều skill trong `HeroData`, định dạng/import CSV, trigger/cooldown và phạm vi hiệu ứng trong S6 trước khi sửa schema dùng chung hoặc importer.
 
-### A-10 – đã có PR (Ready)
-
-- `feature/S06_A10` (commit `b1a5da5` code + `c7d0f42`/`0166cfc` docs) không đưa A-09 vào; PR #40 đang **Ready**, base `main`, `MERGEABLE/CLEAN` sau khi rebase lên `main` ngày 30/10/2026.
-- Đã thêm `RageMeter`, `HeroRageSettings`, event `OnRageChanged`/API `TryActivateUltimate()` và nối đòn hợp lệ từ `AttackModule`; tests đã viết nhưng chưa chạy riêng.
-- T-16 vẫn phải tạo/assign `HeroRageSettings.asset` (5/100) vào `Hero_Base.prefab`, compile và chạy tests; bằng chứng hiện có là snapshot T-16 (thiếu `010c558`/`4e42dc0`).
-- Merge order: **#46 → #40 → #41**. Chi tiết và validation queue ở `daily/day14/handoff.md`.
-
 ---
 
 ## 4. Lịch sử cập nhật
@@ -85,7 +78,6 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | 16/10 | Sau khi PR #14 merge: tách day07 thành 4 nhánh theo quy ước `feature/<Sxx>_<mã>` (bỏ nhánh cha/con) — `feature/S09_A14` (A-14/A-15), `feature/S02_A05` (A-05), `feature/S02_A06` (A-06), `docs/agent-tools`; nhánh cũ `feature_a05_a06_s9` merge `main` làm backup. Sau đó: nhánh `refactor/enemy-asset-names` (đổi id quái sang tiếng Anh, GUID giữ nguyên) merge vào 3 nhánh gameplay; API S9 giữ nguyên tên, không đổi bàn giao. Ngày 8: thêm hồ sơ bàn giao S9 ("Cách dùng", "Hướng dẫn lắp") + Sandbox `A_Save` (mở Editor + Play thử OK); dòng S9 chuyển ◐ bàn giao, chờ B xác nhận. Chạy lại test sau tích hợp rename: **`S09_A14` 299/299 EM + 45/45 PM, `S02_A06` 298/298 EM + 50/50 PM** (0 fail); thêm luật 9 MCP timeout vào `README.md` |
 | T-07 | Ghi nhận đề xuất tương lai hỗ trợ nhiều passive độc lập; giữ nguyên schema hiện tại cho T-07, chờ chốt S6/importer trước khi mở rộng |
 | T-08 | Bổ sung Cone/Line/Zone/Buff, chốt hình học theo quyết định TVA, nối status Lửa/Băng vào SkillData; PR #38 draft trên `feature/S06_A08`; test S6 pass trong T-16 integrated suite (675 EM, 116 PM), scene A_Skills đã tạo nhưng chưa Playtest; Projectile draft do TVA tạo |
-| T-10 | A-10 code xong trên `feature/S06_A10`; PR #40 rebase lên `main`, Ready/`CLEAN`; asset/prefab assignment, compile và tests vẫn nợ T-16 |
 
 ---
 
