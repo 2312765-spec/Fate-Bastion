@@ -7,7 +7,8 @@ namespace FateBastion.UI.World
 {
     /// <summary>
     /// Gives each enemy on the field a pooled health bar: Attach on OnEnemySpawned, Detach on OnEnemyDespawned
-    /// (TEAM_ASSIGNMENT 3.1 #9). HP comes from OnHealthChanged; the only per-frame work is positioning damaged bars.
+    /// (TEAM_ASSIGNMENT 3.1 #9). HP comes from OnHealthChanged; the only per-frame work is positioning damaged bars
+    /// and ticking hit flashes (S11).
     /// </summary>
     public sealed class WorldHealthBarPresenter
     {
@@ -21,6 +22,7 @@ namespace FateBastion.UI.World
         private readonly Stack<EnemyUiBinding> _freeBindings;
         private readonly Dictionary<EnemyController, EnemyUiBinding> _byEnemy;
         private readonly List<EnemyUiBinding> _bound;
+        private readonly HitFlashTracker _flashes;
 
         public WorldHealthBarPresenter(WorldHealthBar prefab, RectTransform parent, WorldUiSettings settings)
         {
@@ -34,6 +36,7 @@ namespace FateBastion.UI.World
             _freeBindings = new Stack<EnemyUiBinding>(capacity);
             _byEnemy = new Dictionary<EnemyController, EnemyUiBinding>(capacity);
             _bound = new List<EnemyUiBinding>(capacity);
+            _flashes = new HitFlashTracker(capacity);
 
             Prewarm(settings.HealthBarPrewarm);
         }
@@ -56,6 +59,9 @@ namespace FateBastion.UI.World
             }
         }
 
+        /// <summary>Enemies flashing white right now.</summary>
+        public int FlashingCount => _flashes.ActiveCount;
+
         public bool TryGetBar(EnemyController enemy, out WorldHealthBar bar)
         {
             if (enemy != null && _byEnemy.TryGetValue(enemy, out EnemyUiBinding binding))
@@ -77,7 +83,9 @@ namespace FateBastion.UI.World
             bar.SetHealth(enemy.CurrentHP, enemy.MaxHP);
 
             EnemyUiBinding binding = _freeBindings.Count > 0 ? _freeBindings.Pop() : new EnemyUiBinding();
-            binding.Bind(enemy, bar);
+            // Spawn time, not per frame: one lookup per spawn for the variant's HitFlash (may be absent).
+            HitFlash flash = enemy.GetComponentInChildren<HitFlash>(true);
+            binding.Bind(enemy, bar, flash, _flashes, _settings);
             binding.Index = _bound.Count;
             _bound.Add(binding);
             _byEnemy.Add(enemy, binding);
@@ -106,6 +114,9 @@ namespace FateBastion.UI.World
         {
             for (int i = _bound.Count - 1; i >= 0; i--) Detach(_bound[i].Enemy);
         }
+
+        /// <summary>Fades the hit flashes; called once per frame by WorldUiRoot.</summary>
+        public void TickFlashes(float deltaTime) => _flashes.Tick(deltaTime);
 
         /// <summary>Moves every damaged bar over its enemy; bars of enemies behind the camera are hidden.</summary>
         public void UpdatePositions(Camera camera)
