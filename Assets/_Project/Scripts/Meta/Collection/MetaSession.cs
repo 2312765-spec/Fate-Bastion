@@ -30,6 +30,8 @@ namespace FateBastion.Meta
         /// <summary>The loaded save; SaveService.Load() must have been called.</summary>
         public SaveData Data => _save.Data ?? throw new InvalidOperationException("SaveService chưa có dữ liệu; gọi Load() trước.");
 
+        public SaveService SaveService => _save;
+
         public GachaService Gacha => _gacha;
         public CollectionService Collection => _collection;
         public DeckService Deck => _deck;
@@ -48,6 +50,16 @@ namespace FateBastion.Meta
 
         public DeckError SetDeckSlot(int slot, string heroId) =>
             Commit(_deck.TrySetSlot(Data, slot, heroId), e => e == DeckError.None);
+
+        /// <summary>
+        /// Saves changes made directly on <see cref="Data"/> (settings, match rewards, debug panel) and raises
+        /// <see cref="Changed"/>. S9: called when the result screen shows and when settings change.
+        /// </summary>
+        public void SaveNow()
+        {
+            _save.Save();
+            Changed?.Invoke(_save.Data);
+        }
 
         private T Commit<T>(T result, Func<T, bool> succeeded)
         {
