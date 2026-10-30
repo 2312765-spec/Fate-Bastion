@@ -115,7 +115,6 @@ namespace FateBastion.Tests.EditMode.S7
             Assert.AreEqual(MeteorAbility.State.Ready, _ability.CurrentState);
             Assert.AreEqual(0f, _ability.CooldownRemaining);
         }
-
         private void InvokeRouterAction(string methodName, params object[] arguments)
         {
             MethodInfo method = typeof(InputRouter).GetMethod(

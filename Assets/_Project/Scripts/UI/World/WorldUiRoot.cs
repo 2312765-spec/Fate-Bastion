@@ -7,7 +7,7 @@ namespace FateBastion.UI.World
 {
     /// <summary>
     /// Root of the dynamic world UI canvas (C-14, S10): listens to EnemyManager.OnEnemySpawned/Despawned
-    /// (TEAM_ASSIGNMENT 3.1 #9) and runs the health bars and the off-screen warning from one LateUpdate.
+    /// (TEAM_ASSIGNMENT 3.1 #9) and runs the health bars, hit flashes and the off-screen warning from one LateUpdate.
     /// Reads enemy data only; never changes enemy HP or state.
     /// </summary>
     [DisallowMultipleComponent]
@@ -90,6 +90,7 @@ namespace FateBastion.UI.World
             if (_healthBars == null) return;
 
             _healthBars.UpdatePositions(_camera);
+            _healthBars.TickFlashes(unscaledDeltaTime);
             if (_warning != null) _warning.Tick(_camera, _enemyManager.ActiveEnemies, _settings, unscaledDeltaTime);
         }
 

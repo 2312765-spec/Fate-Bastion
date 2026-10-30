@@ -16,4 +16,6 @@
 
 ## Nhánh
 
-- `feature/S07_A13` tạo từ `feature/S07_A12` theo lựa chọn tiếp tục của TVA trước khi PR #42 merge; commit `36ebbc4` đã push, draft PR #43 nhắm A-12.
+- `feature/S07_A13` tạo từ `feature/S07_A12` theo lựa chọn tiếp tục của TVA; commit `b0cddcd` (code), `731c0b5` và `91f87fd` (docs) đã push; PR #43 đang mở ở trạng thái **Ready**, base `feature/S07_A12`, `MERGEABLE/CLEAN`.
+- **30/10/2026:** #38 đã merge `main`; nhánh A-13 đã merge doc mới nhất của A-12. Thứ tự merge: **#42 → #43**.
+- Kế thừa nợ của A-12: fixture `MeteorTestInputRouter` + fix `10d804e` chưa áp; phải xử lý ở #42 trước khi #43 vào `main`.

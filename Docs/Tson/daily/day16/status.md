@@ -16,5 +16,6 @@
 
 ## Nhánh
 
-- `feature/S07_A12`, tạo từ `origin/main`, giữ độc lập với các PR task chưa review; commit `3665024` đã push và draft PR #42 mở vào `main`.
+- `feature/S07_A12`, tạo từ `origin/main`, giữ độc lập với các PR task khác; commit `4cf4cdb` (code), `2dbfcaa` và `825dc8c` (docs) đã push; PR #42 đang mở ở trạng thái **Ready**, base `main`, `MERGEABLE/CLEAN`.
 - T-11 PR #41 đã được push riêng; nhánh A-12 không chứa thay đổi A-10/A-11.
+- **Còn nợ:** fixture test `MeteorTestInputRouter` vẫn nằm trong nhánh; fix T-16 `10d804e` (xóa fixture, dùng `InputRouter.Instance` + reflection) **chưa được áp**. Cần áp trước khi merge #42, nếu không EditMode meteor có thể fail khi chạy riêng.

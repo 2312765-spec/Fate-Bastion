@@ -16,4 +16,6 @@
 
 ## Nhánh
 
-- `feature/S07_A11` được tạo từ `feature/S06_A10`; draft PR sẽ phụ thuộc PR #40 và gián tiếp phụ thuộc #38. Không đưa PR #39 vào nhánh.
+- `feature/S07_A11` được tạo từ `feature/S06_A10`; PR #41 đang mở ở trạng thái **Ready**, base `feature/S06_A10`, `MERGEABLE/CLEAN`; phụ thuộc #40 rồi #46 (A-08 + A-09).
+- **30/10/2026:** #38 đã merge `main`; #40 đã rebase về `main` (Ready); nhánh A-11 đã merge lại doc mới nhất của A-10. Thứ tự merge: **#46 → #40 → #41**.
+- Không đưa nội dung PR #39 trực tiếp vào nhánh (đi kèm #46).

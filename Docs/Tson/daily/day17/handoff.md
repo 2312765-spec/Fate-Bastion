@@ -12,14 +12,25 @@
 
 - **Issue draft `[Cần C] Triển khai IMeteorAimRaySource cho Thiên thạch`:** implement provider trong vùng `Player/Movement` sở hữu bởi C, cung cấp world ray từ camera theo pointer, không sửa `Core/InputRouter` trong PR này; gắn provider cùng `MeteorAimIndicator` vào Player prefab của C.
 - **B cần nối HUD** với `OnMeteorCooldownChanged`; **C cần nối FX/rung/âm thanh** với `OnMeteorExploded`. Không sửa file B/C trong nhánh A.
-- Hướng dẫn lắp trong Unity tại T-16: tạo `MeteorSettings.asset` trong `Assets/_Project/Data/Settings`; gắn `MeteorAimIndicator` vào Player prefab; assign đúng các references/layer ở trên; ring meshes cần hình tròn đơn vị đường kính 1 để scale theo mét.
+- Hướng dẫn lắp trong Unity: T-16 đã tạo `meteor.asset` và `meteor_settings.asset` trên nhánh tích hợp (mục "T-16"); vẫn cần gắn `MeteorAimIndicator` vào Player prefab, assign đúng các references/layer ở trên. Ring meshes cần hình tròn đơn vị đường kính 1 để scale theo mét.
 
-## Kiểm thử hoãn đến T-16
+## Kiểm thử
 
 - EditMode: công thức meteor tại wave 1/5/15 và kiểm tra tầm XZ, kể cả chênh cao.
 - PlayMode: quái Bay cao 2 m trong AoE bị True damage; nhiều collider không gây hit lặp; kiểm tra click ngoài tầm không commit, trong tầm commit đúng một lần, impact sau castDelay, match end trước impact không gây sát thương.
-- Chưa có kết quả compile/test. Fire trong `DamageInfo.Element` là nhãn event theo giả định đã ghi trong code; damage vẫn `True`, status null.
+- Kết quả trên `feature/A_T16_integration` ở mục "T-16"; kết quả này không thay thế lượt chạy trên `main`.
+- Fire trong `DamageInfo.Element` là nhãn event theo giả định đã ghi trong code; damage vẫn `True`, status null.
 
 ## Nhánh
 
-- `feature/S07_A13` dựa trên `feature/S07_A12`; draft PR #43 nhắm PR #42, do TVA chọn tiếp tục khi A-12 còn draft.
+- `feature/S07_A13` dựa trên `feature/S07_A12`; PR #43 đã **merge `main`** (`d374a6c`) ngày 30/10/2026.
+- Kế thừa nợ của A-12: fixture `MeteorTestInputRouter` vẫn còn trên `main` sau #42; fix `10d804e` chỉ có trên `feature/A_T16_integration` và cần được port.
+
+## T-16 – kết quả tích hợp (30/10/2026)
+
+- Unity MCP trên `feature/A_T16_integration` đã tạo:
+  - `Assets/_Project/Data/Skills/meteor.asset`: `AreaAtPoint`, `GroundPoint`, True damage ×3, bán kính 4 m, hồi chiêu 45 s, castDelay 0.8 s.
+  - `Assets/_Project/Data/Settings/meteor_settings.asset`: tham chiếu `meteor` + `enemy_normal`, tầm 20 m, vertical query padding 2 m.
+- `MeteorAimMathTests` và `MeteorDamageCalculatorTests` (EditMode) cùng `MeteorDamageApplierPlayModeTests` có mặt trong suite tổng hợp T-16 sau merge `main`: EditMode **717/717 pass**; PlayMode **154 pass / 157 total, 0 fail, 3 skip** (job `b64e5b6d634f417f842260fc9959be1a` và `d6a119afa40a46c48588c34e6e9354ce`). Đây là aggregate, không phải lượt riêng của A-13.
+- **Chưa có trên `main`:** hai asset trên, wiring `CommandAura`/`MeteorAbility`/`MeteorAimIndicator`/`IMeteorAimRaySource` trong Player prefab (C sở hữu), và fixture fix trên nhánh tích hợp. Cần PR #47 được merge để port các thay đổi của nhánh validation.
+- Chưa kiểm tra tay/playtest ba màn; `Game.unity` thuộc C. Kết quả MCP không bao gồm kiểm tra/chỉnh tay lại prefab, asset hoặc scene. Issue draft cho C nằm ở `daily/day20/handoff.md`.

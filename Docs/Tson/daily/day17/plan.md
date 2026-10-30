@@ -20,5 +20,5 @@ Hoàn thiện phần A của Thiên thạch: dữ liệu MeteorSettings, aim ind
 
 ## Nhánh và phụ thuộc
 
-- Tiếp tục sau lựa chọn của TVA: `feature/S07_A13` tạo từ `feature/S07_A12`; PR A-13 sẽ nhắm A-12 để dùng API `MeteorAbility` mà chưa merge PR #42.
+- Tiếp tục sau lựa chọn của TVA: `feature/S07_A13` tạo từ `feature/S07_A12`; PR #43 nhắm A-12 để dùng API `MeteorAbility`. **Cập nhật 30/10/2026:** PR #43 đang **Ready**, base `feature/S07_A12`, `CLEAN`; thứ tự merge **#42 → #43**.
 - Không tick `TRACEABILITY.md` trước compile/test tích hợp.

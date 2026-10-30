@@ -3,8 +3,9 @@
 ## Nhánh validation
 
 - Nhánh hiện tại: `feature/A_T16_integration`, tạo từ `origin/main`.
+- Đã đồng bộ nhánh PR với `origin/feature/A_T16_integration` và merge `origin/main` mới nhất (`944a525`) để chạy lại suite trên snapshot đã cập nhật.
 - Đã tích hợp tạm các PR đang mở theo dependency: A #38–#43, B #31/#33 và #32/#35, C #30.
-- Chỉ resolve xung đột văn bản trong `Docs/Tson/handoff.md` khi nhập PR #40; giữ cả nội dung A-09 và A-10. Không merge PR nguồn vào `main`.
+- Resolve xung đột tích hợp, giữ các cập nhật handoff mới hơn từ `main` và giữ bản sửa test S7 trên nhánh tích hợp. Không merge PR nguồn vào `main`.
 
 ## Unity assets đã tạo qua Unity MCP
 
@@ -15,12 +16,14 @@
 
 ## Validation
 
-- Sau khi buộc refresh toàn bộ, Unity biên dịch được các assembly test; EditMode và PlayMode hoàn tất.
-- EditMode `FateBastion.Tests.EditMode`: **675/675 pass**, 0 fail, 0 skip; job `cb4aede713514d83b261bbeff260396a`, 329.7 giây.
-- PlayMode `FateBastion.Tests.PlayMode`: **116/116 pass**, 0 fail, 0 skip; job `87b378136e49444aa9d5c386d4ebc169`, 41.1 giây.
+- Unity MCP refresh/compile hoàn tất; chạy lại toàn bộ hai assembly sau khi merge `main`.
+- EditMode `FateBastion.Tests.EditMode`: **717/717 pass**, 0 fail, 0 skip; job `b64e5b6d634f417f842260fc9959be1a`, 171.3 giây.
+- PlayMode `FateBastion.Tests.PlayMode`: **154 pass / 157 total**, 0 fail, 3 skip; job `d6a119afa40a46c48588c34e6e9354ce`, 19.3 giây. Ba test GC Alloc bị skip vì không hỗ trợ trên WindowsEditor.
+- Tổng hợp: **871 pass, 0 fail, 3 skip / 874 test cases**; đây là số liệu của cả suite tích hợp, không phải số test riêng của từng A-xx.
 - Các lượt đầu lộ ra 5 test Meteor dùng MonoBehaviour helper trong Editor assembly và 3 lỗi PlayMode. Đã sửa helper EditMode, cập nhật `HeroController` để không báo thiếu rage settings với hero không Legendary, đăng ký test listener trước khi bật CommandAura, rồi chạy lại hai suite đầy đủ.
+- Lượt chạy toàn bộ ngay sau merge có một lỗi tạm thời khi AssetDatabase ghi `.meta`; test riêng sau đó pass và lượt EditMode toàn bộ cuối cùng pass. Test CommandAura cũng được chạy lại riêng sau khi sửa thứ tự đăng ký listener rồi toàn bộ PlayMode pass.
 - Gán `HeroRageSettings.asset` vào `_rageSettings` của `Hero_Base.prefab` qua Unity MCP.
-- Chưa kiểm tra tay ba màn trong `Game.unity`; scene thuộc C và cần C thao tác.
+- Chưa kiểm tra tay hoặc chơi thử ba màn trong `Game.unity`; scene thuộc C và cần C thao tác. PlayMode ở trên là test tự động qua Unity MCP trong Unity Editor, không bao gồm kiểm tra/chỉnh tay lại prefab, asset hoặc scene.
 
 ## Blocker và bàn giao
 

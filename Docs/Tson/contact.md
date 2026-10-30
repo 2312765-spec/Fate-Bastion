@@ -1,15 +1,17 @@
 # Contact – API và cách dùng dành cho B/C
 
-> Cập nhật bổ sung ngày **27/10/2026**. Đây là chỉ mục bàn giao từ A; trạng thái PR dưới đây được kiểm tra cùng ngày. Tài liệu này không thay hợp đồng tại `Docs/TEAM_ASSIGNMENT.md` mục 3.1 hoặc checklist bàn giao 4.1.
+> Cập nhật bổ sung ngày **30/10/2026**. Đây là chỉ mục bàn giao từ A; trạng thái PR dưới đây được kiểm tra cùng ngày (sau khi #38 merge `main`). Tài liệu này không thay hợp đồng tại `Docs/TEAM_ASSIGNMENT.md` mục 3.1 hoặc checklist bàn giao 4.1.
 > “Có API” không đồng nghĩa “đã bàn giao xong”: theo 4.1, cần PR merge vào `main`, test xanh, cách dùng, hướng dẫn Unity, Sandbox chạy được và người nhận xác nhận.
 
 ## Trạng thái nhanh
 
 | Hệ thống / người nhận | API A cung cấp | Trạng thái |
 |---|---|---|
-| S2 → B (S5), C (S10) | `EnemyManager` / `WaveManager`, quái tới Thành, vòng đời quái và tiến độ wave | Đã có; xem mục 1 |
-| S9 → B (S8, S10) | `SaveService`, `SaveData`, `SaveSanitizer` | PR [#23](https://github.com/2312765-spec/Fate-Bastion/pull/23) đang mở, chưa merge; B còn cần xác nhận 4.1 #5 |
-| A-07 / S6 → B (S4), C (model/animation) | `HeroController`, `HeroStats`, `Hero_Base` | PR [#25](https://github.com/2312765-spec/Fate-Bastion/pull/25) đang mở, chưa merge; API chỉ sẵn trên nhánh PR, chưa có trên `main` |
+| S2 → B (S5), C (S10) | `EnemyManager` / `WaveManager`, quái tới Thành, vòng đời quái và tiến độ wave | Đã có trên `main`; xem mục 1 |
+| S9 → B (S8, S10) | `SaveService`, `SaveData`, `SaveSanitizer` | PR [#23](https://github.com/2312765-spec/Fate-Bastion/pull/23) đã merge `main` (27/10/2026); B còn cần xác nhận 4.1 #5 |
+| A-07 / S6 → B (S4), C (model/animation) | `HeroController`, `HeroStats`, `Hero_Base` | PR [#25](https://github.com/2312765-spec/Fate-Bastion/pull/25) đã merge `main` (27/10/2026) |
+| A-08/A-09 → B, C | `SkillRunner`, 7 `SkillKind`, buff stacking + trần AttackSpeed | A-08 đã merge `main` (#38); A-09 đã merge vào nhánh A-08 (#39) và đang chờ PR [#46](https://github.com/2312765-spec/Fate-Bastion/pull/46) vào `main` |
+| A-10…A-13 → B (HUD), C (prefab/FX) | `OnRageChanged`/`TryActivateUltimate`, `OnHeroEnteredAura`, `MeteorAbility`, `MeteorAimIndicator` | PR [#40](https://github.com/2312765-spec/Fate-Bastion/pull/40)–[#43](https://github.com/2312765-spec/Fate-Bastion/pull/43) đang mở, Ready, chưa merge `main` |
 
 ## 1. S2 – Quái và Wave
 
@@ -49,11 +51,11 @@ if (warnings.Count > 0) save.Save();
 - Dùng chung một instance trong suốt phiên; không tạo một `SaveService` mới ở từng scene.
 - Gọi `Save.Save()` sau gacha, ghép, đổi deck, kết quả trận, cài đặt và khi thoát ứng dụng. `Delete()` xóa save/backup/temp, dành cho debug.
 - `starterFactory` phải nối `StarterSettings` thật của B khi có; `null` hiện tạo `SaveData` rỗng, không phải dữ liệu khởi đầu chính thức.
-- Bàn giao chưa hoàn tất: PR #23 chưa merge và B chưa xác nhận đã thử dùng. Sandbox `A_Save` cùng cách dùng đầy đủ ở [handoff Ngày 8](./daily/day08/handoff.md).
+- Bàn giao vẫn chờ bước 4.1 #5: B xác nhận đã thử dùng. Sandbox `A_Save` cùng cách dùng đầy đủ ở [handoff Ngày 8](./daily/day08/handoff.md).
 
 ## 3. A-07 / S6 – Vòng đời và chỉ số tướng
 
-**Dành cho:** B trong S4. Code dưới đây nằm trong PR [#25](https://github.com/2312765-spec/Fate-Bastion/pull/25), chưa có trên `main` tại lần cập nhật này. B cần chờ merge hoặc làm việc trên đúng nhánh PR; không chép API thành một implementation khác.
+**Dành cho:** B trong S4. Code dưới đây đã có trên `main` sau khi PR [#25](https://github.com/2312765-spec/Fate-Bastion/pull/25) merge (27/10/2026). Không chép API thành một implementation khác.
 
 ```csharp
 hero.SetEnemyManager(enemyManager);
@@ -70,12 +72,12 @@ hero.OnDespawn(); // gọi trước khi trả instance về pool
 - `HeroController` cần `EnemyManager` được gán bằng `SetEnemyManager(...)` khi acquire; quét mục tiêu 5 lần/giây. B vẫn sở hữu pool tướng.
 - PR #25 có `Hero_Base`, `HeroStatsSettings`, Sandbox `A_Heroes`, EditMode 8/8 và PlayMode 8/8 theo kết quả ngày 9. Đây là harness kiểm tra của A, chưa phải trận hoàn chỉnh của B.
 - T-06 bổ sung `AttackModule`/`AttackTimer` cho PR #25: đòn Melee gọi `IDamageable` và tốc độ đánh dùng scaled-time; Projectile lấy tốc độ từ `HeroData.passiveSkill.projectileSpeed`, bắt đầu tại `HeroController.Muzzle`, dùng pool prewarm. `HeroController.ResetState()` reset timer và trả đạn đang bay về pool.
-- `Hero_Base` hiện có `AttackModule`, `_projectilePrewarmCount = 8`, nhưng field `_projectilePrefab` còn trống do asset thuộc C chưa được bàn giao. Test dùng fixture Projectile tạo trong test; chưa xác nhận prefab thực trong trận. Chi tiết ở [handoff Ngày 10](./daily/day10/handoff.md).
+- `Hero_Base` hiện có `AttackModule`, `_projectilePrewarmCount = 8`, và `_projectilePrefab` đã trỏ tới `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` (draft do TVA tạo; root giữ contract `FateBastion.Combat.Projectile`). C có thể review/thay model hoặc prefab. Chi tiết ở [handoff Ngày 10](./daily/day10/handoff.md) và mục 7 `handoff.md`.
 - Kết quả kiểm thử T-06 trong Unity Editor: timer EditMode **5/5 pass**; AttackModule + targeting PlayMode **9/9 pass**. Chi tiết run/job nằm trong [status Ngày 10](./daily/day10/status.md).
 - Target scan dùng `HeroStats.Range` sau nâng cấp; overload cũ `TargetingModule.FindTarget(position, enemies)` vẫn còn.
 - Phạm vi T-06 đã chốt là Melee/Projectile. Area/Cone và passive được để T-07/T-08; module hiện cảnh báo rõ nếu nhận `AttackType.Area`/`Cone` cho tới khi SkillRunner nối xong.
 
-**Dành cho C:** prefab Variant/model gắn `HeroVisual` ở gốc model; gameplay chỉ đọc `Muzzle`, `Overhead`, `AuraAnchor`, `Animator` từ `HeroVisual`, không tìm xương theo tên. `Hero_Base` và code A-07 hiện ở PR #25, vì vậy hãy phối hợp/đợi merge trước khi dựa vào asset trên `main`.
+**Dành cho C:** prefab Variant/model gắn `HeroVisual` ở gốc model; gameplay chỉ đọc `Muzzle`, `Overhead`, `AuraAnchor`, `Animator` từ `HeroVisual`, không tìm xương theo tên. `Hero_Base` và code A-07 đã có trên `main` sau PR #25.
 
 **Chưa chốt:** `TEAM_ASSIGNMENT.md` 3.1 #11 (Animator Trigger `Attack`/`Ultimate`/`Spawn`, Float `AttackSpeed`, `Animator.Rebind`) vẫn là đề xuất chờ A duyệt. Không coi các parameter này là hợp đồng đã duyệt. Dù animation được nối thế nào, sát thương đòn đánh vẫn phải chạy bằng timer logic, không dựa Animation Event.
 
@@ -85,11 +87,30 @@ Nguồn chi tiết: [S1](../Specs/S1.md), [S6](../Specs/S6.md), [S0b](../Specs/S
 
 - EditMode S6: **13/13 pass**, job `a45cc5d6fe8b47d3abac31924e989baf`.
 - PlayMode A-07 (`AttackModule`, targeting, `HeroController`): **12/12 pass**, job `b3c15e3aa26441b0818aa5effdcb9f5d`.
-- Prefab Projectile thực vẫn chưa được gán hoặc xác minh trong Sandbox; xem [handoff Ngày 10](./daily/day10/handoff.md).
+- Prefab Projectile đã được gán (`Assets/_Project/Prefabs/FX/Projectile_Base.prefab`) nhưng chưa xác minh runtime/Sandbox; xem [handoff Ngày 10](./daily/day10/handoff.md).
 
-## 4. Việc cần xác nhận khi nhận bàn giao
+## 4. S6/S7 – Kỹ năng, Nộ, Hào quang, Thiên thạch
+
+**Trạng thái:** A-08…A-13 đã merge vào `main` (#38, #46, #40–#43). Các settings assets và fixture fix của T-16 nằm trong PR #47; Player prefab wiring và kiểm tra tay vẫn chờ C/B.
+
+**Dành cho B:**
+
+- **Nộ / Ultimate (A-10, #40):** đăng ký `HeroController.OnRageChanged(float current, float max)` để vẽ thanh Nộ; gọi `TryActivateUltimate()` từ nút R. `HeroRageSettings` cấu hình Nộ mỗi đòn và ngưỡng Ultimate; asset đã được tạo/gán qua Unity MCP trong nhánh T-16, nhưng chưa kiểm tra tay hoặc chỉnh lại prefab.
+- **Hào quang (A-11, #41):** đăng ký `CommandAura.OnHeroEnteredAura(GameObject)` cho tutorial bước 3, đúng điểm nối 3.1 #10.
+- **Thiên thạch (A-12/A-13, #42/#43):** nghe `AbilityEvents.OnMeteorCooldownChanged` và `OnMeteorExploded(Vector3 position, float radius)` để vẽ ô hồi chiêu/HUD.
+- Không tự phát lại các event trên; A phát từ hub `AbilityEvents`/`HeroEvents`.
+
+**Dành cho C:**
+
+- Gắn `CommandAura` + `CommandAuraSettings.asset` vào prefab Player/Summoner của C (bán kính 6 m, +25% AttackSpeed, chu kỳ 0.2 s).
+- Cung cấp implementation `IMeteorAimRaySource` (ray camera → mặt đất) và gắn `MeteorAimIndicator` + `MeteorSettings.asset` theo hướng dẫn ở [handoff Ngày 17](./daily/day17/handoff.md).
+- `SkillData.vfx` cho Long Vương Line và Người Tuyết Zone vẫn chờ FX prefab từ C.
+- `main` vẫn có fixture test `MeteorTestInputRouter`; nhánh T-16/PR #47 đã bỏ fixture và dùng router runtime. Chưa port vào `main` cho đến khi PR #47 merge.
+
+## 5. Việc cần xác nhận khi nhận bàn giao
 
 - **B / S9:** thử Bootstrap/Save flow và xác nhận “Đã thử, dùng được” theo `TEAM_ASSIGNMENT.md` 4.1 #5; nối starter data thật và gọi Save sau các thay đổi S8.
-- **B / S4:** sau khi PR #25 merge, nối `HeroPool` với lifecycle/chỉ số nêu trên; không tự thay chữ ký #3/#4.
-- **C:** đợi `Hero_Base` trên `main` hoặc phối hợp trực tiếp trên PR #25; duyệt riêng Animator contract #11 với A trước khi tạo animation controller theo các parameter đó.
+- **B / S4:** nối `HeroPool` với lifecycle/chỉ số nêu trên (đã có trên `main`); không tự thay chữ ký #3/#4.
+- **B / S6–S7:** nối HUD Nộ, tutorial bước 3 và ô Thiên thạch; xác nhận đã chạy thử sau khi C wire prefab.
+- **C:** duyệt riêng Animator contract #11 với A trước khi tạo animation controller theo các parameter đó; gắn `CommandAura`/`MeteorAimIndicator`/`IMeteorAimRaySource` vào prefab và bàn giao FX.
 - Nếu cần đổi tên/chữ ký hoặc event tại điểm nối, tạo issue `[Cần A]` theo quy trình nhóm trước khi sửa hợp đồng.

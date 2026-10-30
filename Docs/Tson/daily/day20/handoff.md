@@ -4,32 +4,32 @@
 
 - Tạo `feature/A_T16_integration` từ `origin/main`, dùng làm nhánh validation riêng; không merge vào `main` và không thay đổi trạng thái PR nguồn.
 - Tích hợp theo thứ tự dependency: A #38 → #39 → #40 → #41 → #42 → #43; B #31 → #33 và #32 → #35; C #30.
-- Xung đột duy nhất ở `Docs/Tson/handoff.md` khi nhập #40; đã giữ cả phần A-09 lẫn A-10.
+- Đồng bộ nhánh với PR head và merge `origin/main` (`944a525`) trước lượt kiểm thử mới; resolve xung đột code/test và handoff, giữ bản sửa fixture Meteor trên nhánh tích hợp.
 - Tạo settings asset A theo số liệu đã có trong S7, bao gồm SkillData riêng cho Thiên thạch. GUID tham chiếu đã được Unity MCP gán cho `meteor_settings`.
 
-## Kết quả kiểm thử hiện tại
+## Kết quả kiểm thử tổng hợp sau merge `main`
 
-- Sau force refresh, compile hoàn tất đủ để chạy cả hai assemblies.
-- EditMode `FateBastion.Tests.EditMode`: **675/675 pass, 0 fail, 0 skip**, job `cb4aede713514d83b261bbeff260396a`, 329.7 giây.
-- PlayMode `FateBastion.Tests.PlayMode`: **116/116 pass, 0 fail, 0 skip**, job `87b378136e49444aa9d5c386d4ebc169`, 41.1 giây.
-- Nhánh tích hợp có các test S6/A-08: `AttackModulePlayModeTests`, `HeroControllerPlayModeTests`, `HeroTargetingPlayModeTests` và ba bộ EditMode. Do cả hai suite tích hợp đều pass nên ghi nhận test code A-08 đã pass trên snapshot T-16; đây không phải lượt A-08 riêng.
+- Unity MCP refresh/compile hoàn tất; hai assembly được chạy toàn bộ trên nhánh tích hợp đã merge `main`.
+- EditMode `FateBastion.Tests.EditMode`: **717/717 pass, 0 fail, 0 skip**; job `b64e5b6d634f417f842260fc9959be1a` (171.3 giây).
+- PlayMode `FateBastion.Tests.PlayMode`: **154 pass / 157 total, 0 fail, 3 skip**; job `d6a119afa40a46c48588c34e6e9354ce` (19.3 giây). Ba test GC Alloc bị skip vì không hỗ trợ trên WindowsEditor.
+- Tổng cộng **871 pass, 0 fail, 3 skip / 874 test cases**. Suite gồm các test của những A-xx đã tích hợp (bao gồm A-06/A-08/A-09/A-10/A-11/A-12/A-13); các con số là aggregate, không phải lượt chạy riêng hay số đếm riêng cho từng A-xx.
 - Sau lượt T-16, TVA tạo scene `A_Skills.unity` trên `feature/S06_A08`; scene chưa có trong snapshot T-16 và chưa được Playtest.
-- Lượt EditMode đầu tiên có 5 lỗi cùng nguyên nhân: `MeteorTestInputRouter` nằm trong assembly Editor nên không thể `AddComponent`. Đã thay bằng router runtime và gọi các protected Raise methods qua reflection. Toàn bộ 5 test Meteor chạy lại pass; full EditMode sau đó pass.
-- Lượt PlayMode đầu tiên có 2 lỗi do `HeroController.Awake` báo thiếu rage settings cả với Epic và 1 lỗi do CommandAura phát event trước khi test đăng ký listener. Đã sửa để chỉ yêu cầu RageSettings cho Legendary và đăng ký listener trước khi bật aura. Ba test lỗi chạy lại pass; full PlayMode sau đó pass.
+- Lượt EditMode đầu tiên sau merge có lỗi AssetDatabase ghi `.meta`; test đó chạy riêng pass, sau đó full suite cuối cùng pass. Bản sửa `MeteorAbilityTests` không còn dùng fixture `MeteorTestInputRouter`.
+- Lượt PlayMode đầu tiên sau merge phát hiện listener của `CommandAuraPlayModeTests` được đăng ký muộn; đã đăng ký trước khi bật aura, test riêng và full PlayMode cuối cùng đều pass.
 - `HeroRageSettings.asset` đã được gán vào `_rageSettings` trên `Hero_Base.prefab` qua Unity MCP.
-- Chưa chạy playtest thủ công ba màn vì `Game.unity` thuộc C.
+- **Chưa kiểm tra tay/playtest ba màn.** Validation tại đây chỉ gồm test tự động qua Unity MCP trong Unity Editor (EditMode và PlayMode); không bao gồm kiểm tra hoặc chỉnh tay lại prefab, asset, scene hay cân bằng.
 
 ## Cách tiếp tục
 
-1. Kết nối lại Unity Editor đang mở đúng project, yêu cầu refresh/compile và đọc Console để xác nhận không còn lỗi.
+1. Sau khi PR được cập nhật, C mở đúng project và tiếp tục kiểm tra/chỉnh prefab Player theo ownership.
 2. Gửi issue cho C để wire `CommandAura`, `MeteorAbility`, `MeteorAimIndicator`, ray provider `IMeteorAimRaySource` và các settings vào `Player.prefab`; C sở hữu prefab Player và phần input/camera. Không tự sửa prefab của C.
-3. Hoàn tất các bước test tay của ba màn trong Game scene cùng C; không mở hoặc lưu `Game.unity` khi chưa được C thực hiện.
+3. Hoàn tất kiểm tra tay/playtest ba màn cùng C; không mở hoặc lưu `Game.unity` khi chưa được C thực hiện.
 
 ## Issue draft cho C
 
 **Tiêu đề:** `[Cần C] Wire S7 abilities và aim-ray provider vào Player`
 
-**Nội dung:** Nhánh validation T-16 đã tích hợp các PR A #38–#43 và test EditMode/PlayMode đều pass. Nhờ C triển khai `IMeteorAimRaySource` theo contract của A-13; bảo đảm không phát ray khi con trỏ ở trên UI hoặc Action Map không phải `Summoner`. Gắn/wire `CommandAura`, `MeteorAbility`, `MeteorAimIndicator`, `CommandAuraSettings.asset` và `meteor_settings.asset` lên Player; nối VFX/feedback phù hợp. Không thay đổi contract hay input actions nếu chưa trao đổi. Sau khi hoàn tất, cho A biết để thực hiện playtest thủ công.
+**Nội dung:** Nhánh validation T-16 đã merge `main`; suite tự động qua Unity MCP có 717/717 EditMode pass và 154 PlayMode pass, 0 fail, 3 skip do WindowsEditor. Chưa có kiểm tra tay/playtest ba màn. Nhờ C triển khai `IMeteorAimRaySource` theo contract của A-13; bảo đảm không phát ray khi con trỏ ở trên UI hoặc Action Map không phải `Summoner`. Gắn/wire `CommandAura`, `MeteorAbility`, `MeteorAimIndicator`, `CommandAuraSettings.asset` và `meteor_settings.asset` lên Player; nối VFX/feedback phù hợp. Không thay đổi contract hay input actions nếu chưa trao đổi. Sau khi hoàn tất, phối hợp kiểm tra tay/playtest.
 
 ## Ranh giới tích hợp
 
