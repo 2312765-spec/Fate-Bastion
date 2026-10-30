@@ -22,4 +22,5 @@
 
 ## Nhánh
 
-- `feature/S07_A13` dựa trên `feature/S07_A12`; draft PR #43 nhắm PR #42, do TVA chọn tiếp tục khi A-12 còn draft.
+- `feature/S07_A13` dựa trên `feature/S07_A12`; PR #43 đang **Ready**, base `feature/S07_A12`, `MERGEABLE/CLEAN`.
+- Kế thừa nợ của A-12: fixture `MeteorTestInputRouter` và fix `10d804e` chưa áp — phải xử lý ở #42 trước khi #43 vào `main`.
