@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.EnemyManager
   _settings: {fileID: 11400000, guid: 056c44c4e0a1d954f9b8b64d4e6ed5c2, type: 2}
   _combatSettings: {fileID: 11400000, guid: 99ac3ee879d80414bb4f7876d8ca0fa1, type: 2}
+  _bossSummonSettings: {fileID: 0}
   _levelPaths: {fileID: 803462563}
 --- !u!114 &144251923
 MonoBehaviour:
@@ -766,6 +767,14 @@ PrefabInstance:
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 688462106}
+    - target: {fileID: 3445997211829519595, guid: a3a61b53630d07146a85087f04e1c5ee, type: 3}
+      propertyPath: _waveManager
+      value: 
+      objectReference: {fileID: 144251924}
+    - target: {fileID: 3445997211829519595, guid: a3a61b53630d07146a85087f04e1c5ee, type: 3}
+      propertyPath: _enemyManager
+      value: 
+      objectReference: {fileID: 144251922}
     - target: {fileID: 3449219672760106702, guid: a3a61b53630d07146a85087f04e1c5ee, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9935454
