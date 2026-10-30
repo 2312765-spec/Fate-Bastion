@@ -32,12 +32,13 @@ namespace FateBastion.Tests.EditMode.UI.World
         public void Style_TrueDamage_UsesMeteorSizeAndColor()
         {
             Assert.AreEqual(_settings.MeteorColor, DamageNumberStyle.GetColor(DamageType.True, Element.Fire, _settings));
-            Assert.AreEqual(_settings.MeteorFontSize, DamageNumberStyle.GetFontSize(DamageType.True, _settings));
+            Assert.AreEqual(_settings.MeteorFontSize / _settings.DamageNumberFontSize,
+                DamageNumberStyle.GetScale(DamageType.True, _settings), 1e-4f);
         }
 
         [Test]
-        public void GetFontSize_Physical_UsesNormalSize() =>
-            Assert.AreEqual(_settings.DamageNumberFontSize, DamageNumberStyle.GetFontSize(DamageType.Physical, _settings));
+        public void GetScale_Physical_IsOne() =>
+            Assert.AreEqual(1f, DamageNumberStyle.GetScale(DamageType.Physical, _settings));
 
         [Test]
         public void Defaults_MeteorBiggerThanNormal() =>

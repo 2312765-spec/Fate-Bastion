@@ -98,7 +98,7 @@ namespace FateBastion.UI.World
             for (int i = 0; i < max; i++)
             {
                 DamageNumber number = Instantiate(_numberPrefab, _numberParent, false);
-                number.InitializeHidden();
+                number.InitializeHidden(_settings.DamageNumberFontSize);
                 _numbers[i] = number;
             }
 
@@ -115,7 +115,7 @@ namespace FateBastion.UI.World
             Vector3 point = info.HitPoint + Vector3.up * _settings.DamageNumberHeight;
             _numbers[slot].Show(info.Amount,
                 DamageNumberStyle.GetColor(info.Type, info.Element, _settings),
-                DamageNumberStyle.GetFontSize(info.Type, _settings),
+                DamageNumberStyle.GetScale(info.Type, _settings),
                 point);
         }
 

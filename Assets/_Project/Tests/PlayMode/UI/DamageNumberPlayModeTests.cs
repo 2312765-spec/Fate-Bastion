@@ -18,6 +18,7 @@ namespace FateBastion.Tests.PlayMode.UI
         private GameObject _canvasObject;
         private WorldUiSettings _settings;
         private DamageNumberSpawner _spawner;
+        private DamageNumber _template;
 
         [UnitySetUp]
         public IEnumerator SetUp()
@@ -35,14 +36,14 @@ namespace FateBastion.Tests.PlayMode.UI
             _canvasObject.AddComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             var canvasRect = (RectTransform)_canvasObject.transform;
 
-            DamageNumber template = CreateNumberTemplate(canvasRect);
+            _template = CreateNumberTemplate(canvasRect);
 
             // Inactive while wiring, so Start runs after Configure.
             var spawnerObject = new GameObject("DamageNumbers", typeof(RectTransform));
             spawnerObject.SetActive(false);
             spawnerObject.transform.SetParent(canvasRect, false);
             _spawner = spawnerObject.AddComponent<DamageNumberSpawner>();
-            _spawner.Configure(_settings, template, (RectTransform)spawnerObject.transform, camera);
+            _spawner.Configure(_settings, _template, (RectTransform)spawnerObject.transform, camera);
             spawnerObject.SetActive(true);
 
             yield return null; // Start: prewarm and subscribe.
@@ -75,15 +76,70 @@ namespace FateBastion.Tests.PlayMode.UI
             Assert.AreEqual(_settings.DamageNumberMax, _spawner.CreatedCount, "Không được Instantiate số sát thương trong trận.");
         }
 
-        [Test]
-        public void DamageDealt_100SameFrame_NoGCAlloc()
+        // TMP_Text.SetText builds an Inspector string under #if UNITY_EDITOR (TMP_Text.cs), so it allocates in the
+        // Editor only. Players (Development/Release) do not: run these via Test Runner > Run on Player (Standalone).
+        [UnityPlatform(exclude = new[] { RuntimePlatform.WindowsEditor, RuntimePlatform.OSXEditor, RuntimePlatform.LinuxEditor })]
+        [UnityTest]
+        public IEnumerator DamageDealt_100SameFrame_NoGCAlloc()
         {
-            CombatEvents.RaiseDamageDealt(Hit(1)); // Warm-up: first call JITs the handler.
+            // Warm-up: two full cycles (every number shown, then back to the pool), like after the first waves.
+            // Frames must pass so the canvas processes its rebuild queues and returns their pooled objects,
+            // as it does every frame in the game.
+            for (int cycle = 0; cycle < 2; cycle++)
+            {
+                for (int i = 0; i < Hits; i++) CombatEvents.RaiseDamageDealt(Hit(i + 1, DamageType.True));
+                yield return null;
+                _spawner.Refresh(_settings.DamageNumberLifetime + 0.01f);
+                yield return null;
+            }
+            Assert.AreEqual(0, _spawner.ActiveCount);
 
             Assert.That(() =>
             {
                 for (int i = 0; i < Hits; i++) CombatEvents.RaiseDamageDealt(Hit(i + 2, DamageType.True));
             }, Is.Not.AllocatingGCMemory());
+        }
+
+        // The two tests below split one Show into its parts, so a GC failure above points at the culprit.
+        // Each first repeats the exact call being measured, then lets frames pass, like a match after a few hits.
+        // TMP_Text.SetText builds an Inspector string under #if UNITY_EDITOR (TMP_Text.cs), so it allocates in the
+        // Editor only. Players (Development/Release) do not: run these via Test Runner > Run on Player (Standalone).
+        [UnityPlatform(exclude = new[] { RuntimePlatform.WindowsEditor, RuntimePlatform.OSXEditor, RuntimePlatform.LinuxEditor })]
+        [UnityTest]
+        public IEnumerator Show_HiddenNumber_NoGCAlloc()
+        {
+            DamageNumber number = CreateStandaloneNumber();
+            for (int i = 0; i < 2; i++)
+            {
+                number.Show(12345, _settings.MeteorColor, 1.5f, Vector3.zero);
+                yield return null;
+                number.Hide();
+                yield return null;
+            }
+
+            Assert.That(() => number.Show(54321, _settings.MeteorColor, 1.5f, Vector3.zero), Is.Not.AllocatingGCMemory());
+        }
+
+        // TMP_Text.SetText builds an Inspector string under #if UNITY_EDITOR (TMP_Text.cs), so it allocates in the
+        // Editor only. Players (Development/Release) do not: run these via Test Runner > Run on Player (Standalone).
+        [UnityPlatform(exclude = new[] { RuntimePlatform.WindowsEditor, RuntimePlatform.OSXEditor, RuntimePlatform.LinuxEditor })]
+        [UnityTest]
+        public IEnumerator Show_VisibleNumber_NoGCAlloc()
+        {
+            DamageNumber number = CreateStandaloneNumber();
+            number.Show(1, Color.white, 1f, Vector3.zero);
+            yield return null;
+            number.Show(12345, _settings.MeteorColor, 1.5f, Vector3.zero);
+            yield return null;
+
+            Assert.That(() => number.Show(54321, Color.white, 1f, Vector3.zero), Is.Not.AllocatingGCMemory());
+        }
+
+        private DamageNumber CreateStandaloneNumber()
+        {
+            DamageNumber number = Object.Instantiate(_template, _canvasObject.transform, false);
+            number.InitializeHidden(_settings.DamageNumberFontSize);
+            return number;
         }
 
         [Test]

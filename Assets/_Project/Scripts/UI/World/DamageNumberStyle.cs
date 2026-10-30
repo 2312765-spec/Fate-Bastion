@@ -13,7 +13,14 @@ namespace FateBastion.UI.World
         public static Color GetColor(DamageType type, Element element, WorldUiSettings settings) =>
             IsMeteor(type) ? settings.MeteorColor : settings.GetElementColor(element);
 
-        public static float GetFontSize(DamageType type, WorldUiSettings settings) =>
-            IsMeteor(type) ? settings.MeteorFontSize : settings.DamageNumberFontSize;
+        /// <summary>
+        /// Transform scale of a number: 1 for a normal hit, meteor size / normal size for the meteor. Numbers keep one
+        /// font size (changing it makes TMP rebuild the layout and allocate), so "bigger" is a scale.
+        /// </summary>
+        public static float GetScale(DamageType type, WorldUiSettings settings)
+        {
+            if (!IsMeteor(type) || settings.DamageNumberFontSize <= 0f) return 1f;
+            return settings.MeteorFontSize / settings.DamageNumberFontSize;
+        }
     }
 }
