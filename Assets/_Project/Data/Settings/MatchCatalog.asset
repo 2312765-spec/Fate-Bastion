@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbc76367fe11ee4b981324713f468cd, type: 3}
+  m_Name: MatchCatalog
+  m_EditorClassIdentifier: FateBastion.Game::FateBastion.Game.MatchCatalog
+  _levels:
+  - {fileID: 11400000, guid: 9bfdcb9bfd2f61a45a9dda17bf0fb784, type: 2}
+  - {fileID: 11400000, guid: 9ae0ec53d3315cc45928983c9c534d83, type: 2}
+  - {fileID: 11400000, guid: f415430ac5f57604e863a477300c43f3, type: 2}
+  _endlessLevel: {fileID: 0}
+  _endlessSettings: {fileID: 11400000, guid: 5c8f4b850b24bf743872e5feb1ed377f, type: 2}
+  _levelsToUnlockEndless: 1
