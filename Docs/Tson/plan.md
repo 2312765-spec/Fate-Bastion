@@ -5,6 +5,7 @@
 > Mã việc **T-xx** là mã mới (đánh lại theo ưu tiên và thứ tự làm); cột **TRACEABILITY** trỏ về mã gốc A-xx để đối chiếu tiêu chí kiểm tra.
 > Ưu tiên: **P1** không cần thao tác/tạo asset Unity · **P2** cần thao tác Unity · **P3** mâu thuẫn/bàn giao giữa thành viên. Luật đầy đủ ở `README.md`.
 > Ký hiệu trạng thái: ☐ chưa · ◐ đang · ☑ xong.
+> Cập nhật trạng thái gần nhất: **30/10/2026** (sau khi PR #38 merge `main`).
 
 ---
 
@@ -33,24 +34,26 @@ A bận, **C (nhóm trưởng)** làm hộ. Từ Ngày 7 A ghi nhật ký.
 | **T-02** | 7 | 16/10 | `SaveData`, `SaveService` ghi an toàn (tmp → Replace/Move → bak) | A-14 | **P1** | — | `feature/S09_A14` | EM | ☑ |
 | **T-03** | 7 | 16/10 | Đọc lỗi → `save.bak` → tạo mới từ `IStarterSaveFactory`; test lần lưu đầu | A-15 | **P1** | — | `feature/S09_A14` | EM | ☑ |
 | **T-04** | 8 | 17/10 | Bàn giao API S9 cho B (`SaveService.Load/Save/Delete`, `SaveData`, `SaveSanitizer`) theo TEAM 4.1 | A-14, A-15 | P3 | **B chờ** (S8 lưu) | — | PR | ◐ |
-| **T-05** | 9 | 18/10 | `HeroController` + `HeroStats` + `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay) | A-07 | P2 | S0b `HeroVisual` ☑ (C) | `feature_a07_hero_ctrl` | EM/PM | ☐ |
-| **T-06** | 10 | 19/10 | `AttackModule` (timer, bắn từ `Muzzle`); PM Sandbox; **bàn giao API #3, #4 cho B** | A-07 | P2/P3 | **B chờ** (S4), **C chờ prefab Projectile** | `feature/S06_A07` | PM | ◐ |
-| **T-07** | 11 | 20/10 | `SkillRunner` + kind MeleeHit, Projectile, AreaAtPoint | A-08 | P1 | T-05 | `feature_a08_skills_core` | EM/PM | ☐ |
-| **T-08** | 12 | 21/10 | kind Cone, Line, Zone, Buff + kỹ năng mẫu; **bàn giao S6** | A-08 | P2/P3 | A-10/A-11 chờ | `feature_a08_skills_kinds` | PM | ☐ |
-| **T-09** | 13 | 22/10 | Cộng buff: cùng loại lấy mạnh nhất, khác nguồn cộng, trần **+60%** (2 Thánh Nữ = +30%; Thánh Nữ + Hào quang = +55%) | A-09 | **P1** | T-05 (`HeroStats`) | `feature_a09_buff_stack` | EM | ☐ |
-| **T-10** | 14 | 23/10 | Nộ +5/đòn, Ultimate Long Vương kích hoạt tay; **bàn giao API #5** | A-10 | P2/P3 | **B chờ** (thanh Nộ) | `feature_a10_rage_ultimate` | EM | ☐ |
-| **T-11** | 15 | 24/10 | `CommandAura` (6 m, +25%, 5 lần/s, chỉ tính lại khi vào/ra) + event #10 | A-11 | P2 | **B chờ** (Tutorial bước 3) | `feature_a11_command_aura` | PM | ☐ |
-| **T-12** | 16 | 25/10 | `MeteorAbility` state machine (hủy không tốn hồi chiêu, hồi 45 s) + `CancelStack` + nghe `DeckSlot` | A-12 | **P1** | `CancelStack` ☑ (C) | `feature_a12_meteor` | EM | ☐ |
-| **T-13** | 17 | 26/10 | `MeteorAimIndicator` + sát thương theo wave × `k_màn`, trúng quái Bay; **bàn giao S7** | A-13 | P2/P3 | **B chờ** (ô Thiên thạch) | `feature_a13_meteor_aim` | EM/PM | ☐ |
+| **T-05** | 9 | 18/10 | `HeroController` + `HeroStats` + `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay) | A-07 | P2 | S0b `HeroVisual` ☑ (C) | `feature/S06_A07` | EM/PM | ☑ |
+| **T-06** | 10 | 19/10 | `AttackModule` (timer, bắn từ `Muzzle`); PM Sandbox; **bàn giao API #3, #4 cho B** | A-07 | P2/P3 | **B chờ** (S4), **C chờ prefab Projectile** | `feature/S06_A07` | PM | ☑ |
+| **T-07** | 11 | 20/10 | `SkillRunner` + kind MeleeHit, Projectile, AreaAtPoint | A-08 | P1 | T-05 | `feature/S06_A08` | EM/PM | ☑ |
+| **T-08** | 12 | 21/10 | kind Cone, Line, Zone, Buff + kỹ năng mẫu; **bàn giao S6** | A-08 | P2/P3 | A-10/A-11 chờ | `feature/S06_A08` | PM | ☑ |
+| **T-09** | 13 | 22/10 | Cộng buff: cùng loại lấy mạnh nhất, khác nguồn cộng, trần **+60%** (2 Thánh Nữ = +30%; Thánh Nữ + Hào quang = +55%) | A-09 | **P1** | T-05 (`HeroStats`) | `feature/S06_A09` | EM | ☑ |
+| **T-10** | 14 | 23/10 | Nộ +5/đòn, Ultimate Long Vương kích hoạt tay; **bàn giao API #5** | A-10 | P2/P3 | **B chờ** (thanh Nộ) | `feature/S06_A10` | EM | ◐ |
+| **T-11** | 15 | 24/10 | `CommandAura` (6 m, +25%, 5 lần/s, chỉ tính lại khi vào/ra) + event #10 | A-11 | P2 | **B chờ** (Tutorial bước 3) | `feature/S07_A11` | PM | ◐ |
+| **T-12** | 16 | 25/10 | `MeteorAbility` state machine (hủy không tốn hồi chiêu, hồi 45 s) + `CancelStack` + nghe `DeckSlot` | A-12 | **P1** | `CancelStack` ☑ (C) | `feature/S07_A12` | EM | ◐ |
+| **T-13** | 17 | 26/10 | `MeteorAimIndicator` + sát thương theo wave × `k_màn`, trúng quái Bay; **bàn giao S7** | A-13 | P2/P3 | **B chờ** (ô Thiên thạch) | `feature/S07_A13` | EM/PM | ◐ |
 | **T-14** | 18 | 27/10 | Quái Bay (đường riêng, cao 2 m) + boss gọi 3 quái Nhanh mỗi 12 s | A-05 | P2 | — | `feature/S02_A05` | PM | ☑ |
 | **T-15** | 19 | 28/10 | Máu theo `hpMultiplier`; dữ liệu 3 màn + Vô tận; kiểm tra sau import khớp sheet Wave | A-06 | P2 | Import CSV ☑ (B) | `feature/S02_A06` | EM | ☑ |
-| **T-16** | 20 | 29/10 | Ghép gameplay A với S4/S5 (B) + FX (C); sửa lỗi tích hợp; playtest 3 màn | A-04…A-13 | P2/P3 | **B, C** | `feature_a_integration` | Tay | ☐ |
+| **T-16** | 20 | 29/10 | Ghép gameplay A với S4/S5 (B) + FX (C); sửa lỗi tích hợp; playtest 3 màn | A-04…A-13 | P2/P3 | **B, C** | `feature/A_T16_integration` | Tay | ◐ |
 | **T-17** | 21 | 30/10 | Cân bằng lần 1 (Excel → CSV → import), chơi 3 màn — **M3 khóa tính năng** | A-17 | P3 | cần game chơi được (B, C) | `feature_a17_balance_1` | Tay | ☐ |
 | **T-18** | 22 | 31/10 | Cân bằng lần 2 + rà soát tổng thể (skill `tson-project-audit`) + tick `TRACEABILITY.md`, đóng plan | A-17 | P3 | — | `feature_a17_balance_2` | Tay | ☐ |
 
 > **Ghi chú Ngày 7:** làm sớm T-02, T-03, T-14, T-15 trong ngày 7 (đều P1/P2, độc lập, B đang review PR tài liệu). **Sau khi PR #14 merge:** tách thành các nhánh đúng quy ước `feature/<Sxx>_<mã>` — `feature/S09_A14` (T-02+T-03), `feature/S02_A05` (T-14), `feature/S02_A06` (T-15, xếp chồng trên A-05), thêm `docs/agent-tools` (công cụ agent, phát sinh T-19); nhánh gộp cũ `feature_a05_a06_s9` đã merge `main` và giữ làm backup (không PR). **T-04 ◐** (API S9 đã có, chờ B nối S8). **A-07/T-05 vẫn để nguyên Ngày 9** — không làm sớm. 30 test mới (25 EM + 5 PM); **compile OK**, đã chạy trong Editor: S9 286/286 EM, S2 297/298 EM + 50/50 PM (1 test đỏ do việc đổi tên asset chưa commit, không phải code ngày 7 — xem `daily/day07/status.md`). **Sau đó:** nhánh riêng `refactor/enemy-asset-names` (đổi id quái sang `enemy_normal/fast/armor/fly/boss`, GUID giữ nguyên) merge vào 3 nhánh gameplay, `LevelBalanceDataTests` dùng `enemy_normal.asset`; **cần chạy lại EditMode/PlayMode** sau tích hợp (lượt chạy lại bị rớt cầu nối agent ↔ Editor). **A-07 (T-05/T-06) nhớ 4 parameter Animator** để `HeroController` gọi qua `HeroVisual.Animator`: Trigger `Attack`, `Ultimate`, `Spawn` + Float `AttackSpeed` (đề xuất 3.1 #11 của C, `AC_Hero_Base.controller` — xem `handoff.md` mục 2).
 
 > **Ghi chú Ngày 8:** T-04 (bàn giao S9 cho B) — hồ sơ **"Cách dùng"** + **"Hướng dẫn lắp trong Unity"** viết sẵn ở `daily/day08/handoff.md` (mục 2.1/2.2), thêm Sandbox `A_Save` (`Scripts/Meta/Sandbox/SaveSandboxDemo.cs` + `Scenes/Sandbox/A_Save.unity`) **đã mở trong Editor + Play thử, chạy được** (4.1 #4 ☑). EditMode toàn Editor: 1912 test — 1840 pass, 3 fail đều của package `com.besty.unity-skills`, 69 skip; **`S09_A14`: 299/299 EM + 45/45 PM; `S02_A06`: 298/298 EM + 50/50 PM** (xác nhận sau tích hợp rename). **Chưa mở PR** (chờ người dùng cho phép) và **chưa có B xác nhận** (4.1 #5) → T-04 vẫn ◐. Test đã xanh hết, ghi ở `daily/day08/handoff.md` mục 5.
+
+> **Ghi chú 30/10/2026:** PR #38 (T-07/T-08, A-08) đã merge `main`; PR #39 (T-09, A-09) đã merge vào `feature/S06_A08` và đang được đưa vào `main` qua PR #46. T-10…T-13 đã rebase và mở PR #40–#43 (Ready, `CLEAN`). T-16 mới hoàn thành một phần: snapshot tích hợp chạy 675 EM + 116 PM nhưng thiếu `010c558` (#33) và `4e42dc0` (#35), nên vẫn phải chạy lại trên `main` và playtest 3 màn. T-17/T-18 giữ nguyên.
 
 ---
 

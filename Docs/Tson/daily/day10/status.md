@@ -21,4 +21,4 @@
 
 - Chưa có prefab Projectile để gán vào `Hero_Base`; `Prefabs/FX/` thuộc C. Xem [handoff Ngày 10](./handoff.md).
 - Chưa xác minh hình ảnh/projectile prefab thật trong Sandbox; phần này chờ C cung cấp asset và gán Inspector.
-- PR #25 là PR hiện hữu của A-07; chưa merge. Việc T-06 cần được thêm vào nhánh PR đó sau khi xác minh trên Unity.
+- PR #25 là PR hiện hữu của A-07; chưa merge. _(Cập nhật 30/10/2026: đã merge `main` qua `7dd1585`.)_ Việc T-06 cần được thêm vào nhánh PR đó sau khi xác minh trên Unity.

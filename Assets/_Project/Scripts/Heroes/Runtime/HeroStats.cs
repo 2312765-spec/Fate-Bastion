@@ -58,7 +58,7 @@ namespace FateBastion.Heroes
             _rangeMultiplier = 1f;
         }
 
-        /// <summary>Sets or replaces one source's buff contribution.</summary>
+        /// <summary>Sets or replaces one source's contribution for a buff type.</summary>
         public void SetBuff(UnityEngine.Object source, UnityEngine.Object sourceType, BuffType type, float value)
         {
             if (_data == null || _settings == null)
@@ -152,11 +152,38 @@ namespace FateBastion.Heroes
 
             for (int i = 0; i < _buffCount; i++)
             {
-                if (_buffKinds[i] == BuffType.Damage)
-                    _damageBuff += _buffValues[i];
-                else if (_buffKinds[i] == BuffType.AttackSpeed)
-                    _attackSpeedBuff += _buffValues[i];
+                BuffType kind = _buffKinds[i];
+                if (kind != BuffType.Damage && kind != BuffType.AttackSpeed) continue;
+
+                bool alreadyAggregated = false;
+                for (int previous = 0; previous < i; previous++)
+                {
+                    if (_buffKinds[previous] == kind
+                        && ReferenceEquals(_buffTypes[previous], _buffTypes[i]))
+                    {
+                        alreadyAggregated = true;
+                        break;
+                    }
+                }
+                if (alreadyAggregated) continue;
+
+                float strongest = _buffValues[i];
+                for (int candidate = i + 1; candidate < _buffCount; candidate++)
+                {
+                    if (_buffKinds[candidate] == kind
+                        && ReferenceEquals(_buffTypes[candidate], _buffTypes[i]))
+                        strongest = Mathf.Max(strongest, _buffValues[candidate]);
+                }
+
+                if (kind == BuffType.Damage)
+                    _damageBuff += strongest;
+                else
+                    _attackSpeedBuff += strongest;
             }
+
+            if (_settings == null)
+                throw new InvalidOperationException($"{name}: HeroStatsSettings is not assigned.");
+            _attackSpeedBuff = Mathf.Min(_attackSpeedBuff, _settings.AttackSpeedBuffCap);
         }
 
         private void RemoveBuffAt(int index)

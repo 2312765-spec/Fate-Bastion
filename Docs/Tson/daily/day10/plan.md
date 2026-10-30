@@ -1,7 +1,7 @@
 # Kế hoạch Ngày 10 – 19/10/2026
 
 > Lập bổ sung ngày **27/10/2026** theo lịch cá nhân trong `Docs/Tson/plan.md`; không phải xác nhận các việc đã hoàn thành ngày 10. T-06/A-07 chưa có trạng thái hoàn tất được xác nhận.
-> T-05 đã được triển khai trên PR #25 nhưng PR vẫn mở, chưa merge. Kế hoạch này tiếp tục đúng A-07, không tạo nhánh cha/con.
+> T-05 đã được triển khai trên PR #25 nhưng PR vẫn mở, chưa merge. _(Cập nhật 30/10/2026: PR #25 đã merge `main` ngày 27/10/2026 qua `7dd1585`.)_ Kế hoạch này tiếp tục đúng A-07, không tạo nhánh cha/con.
 > Ưu tiên: P1 không cần thao tác Unity · P2 thao tác Unity/Sandbox · kiểm thử dài đặt cuối · P3 bàn giao sau khi có kết quả kiểm thử.
 > **Phạm vi đã chốt:** T-06 làm timer và đòn Melee/Projectile. Area/Cone cùng passive được để cho T-07/T-08 (SkillRunner); không thay thế chúng bằng Melee/Projectile.
 

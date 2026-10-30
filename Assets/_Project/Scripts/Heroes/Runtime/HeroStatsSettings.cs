@@ -12,6 +12,20 @@ namespace FateBastion.Heroes
         [SerializeField, Min(0.01f)] private float _rareDamageMultiplier;
         [SerializeField, Min(0.01f)] private float _epicDamageMultiplier;
         [SerializeField, Min(0.01f)] private float _legendaryDamageMultiplier;
+        [Tooltip("Maximum combined AttackSpeed buff as a fraction (0.6 = +60%).")]
+        [SerializeField, Range(0f, 1f)] private float _attackSpeedBuffCap = 0.6f;
+
+        /// <summary>Maximum combined AttackSpeed buff as a fraction.</summary>
+        public float AttackSpeedBuffCap
+        {
+            get
+            {
+                if (float.IsNaN(_attackSpeedBuffCap) || float.IsInfinity(_attackSpeedBuffCap)
+                    || _attackSpeedBuffCap < 0f || _attackSpeedBuffCap > 1f)
+                    throw new InvalidOperationException("HeroStatsSettings attack-speed buff cap must be between 0 and 1.");
+                return _attackSpeedBuffCap;
+            }
+        }
 
         public float GetDamageMultiplier(Rarity rarity)
         {
@@ -47,6 +61,11 @@ namespace FateBastion.Heroes
                 !IsValid(_epicDamageMultiplier) || !IsValid(_legendaryDamageMultiplier))
             {
                 Debug.LogError($"{name}: set a positive damage multiplier for every rarity in HeroStatsSettings.", this);
+            }
+            if (float.IsNaN(_attackSpeedBuffCap) || float.IsInfinity(_attackSpeedBuffCap)
+                || _attackSpeedBuffCap < 0f || _attackSpeedBuffCap > 1f)
+            {
+                Debug.LogError($"{name}: attack-speed buff cap must be between 0 and 1.", this);
             }
         }
 #endif
