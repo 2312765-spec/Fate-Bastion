@@ -158,9 +158,15 @@ namespace FateBastion.Heroes
             // the placement CheckSphere and hero picking see it. Hero_Base ships on Default.
             if (_heroLayer >= 0) go.layer = _heroLayer;
 
-            // STUB: B thêm HeroLevel vào Hero_Base qua PR được A duyệt (TEAM_ASSIGNMENT 2.2); tới lúc đó pool tự gắn.
+            // Hero_Base carries HeroLevel; a hero prefab that is not a Variant of it would crash Setup, so fail loudly instead.
             HeroLevel level = go.GetComponent<HeroLevel>();
-            if (level == null) level = go.AddComponent<HeroLevel>();
+            if (level == null)
+            {
+                Debug.LogError($"{name}: prefab of '{data.id}' has no HeroLevel; make it a Variant of Hero_Base.", prefab);
+                Destroy(go);
+                return null;
+            }
+
             level.Setup(_levelTable, _topLevelAuraPrefab);
 
             go.SetActive(false);
