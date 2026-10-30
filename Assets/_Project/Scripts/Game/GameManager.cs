@@ -14,6 +14,8 @@ namespace FateBastion.Game
     /// overlay from InputRouter.PauseRequested (#6, Alt-Tab included), wave-end and skip gold through Wallet (#8),
     /// stars and gems at the end (S5, S9). Only GameManager raises GameEvents.
     /// </summary>
+    // Runs first so the hub reset in Awake happens before any other Awake/OnEnable/Start of the scene subscribes.
+    [DefaultExecutionOrder(-1000)]
     public sealed class GameManager : MonoBehaviour
     {
         // Esc entries that may be open when the match ends (placement preview, meteor aim, hero panel).
@@ -96,6 +98,15 @@ namespace FateBastion.Game
             }
 
             Instance = this;
+
+            // Static hubs survive scene loads (Retry, back from the lobby): drop listeners of destroyed objects before
+            // anyone in this scene subscribes. Listeners may then use Awake, OnEnable or Start freely.
+            GameEvents.ResetAll();
+            CombatEvents.ResetAll();
+            HeroEvents.ResetAll();
+            AbilityEvents.ResetAll();
+            CancelStack.ResetAll();
+
             _onPauseRequested = Pause;
             _onSkipWave = RequestSkip;
             _onWaveFinished = HandleWaveFinished;
@@ -104,11 +115,6 @@ namespace FateBastion.Game
 
         private void Start()
         {
-            // Static hubs survive scene loads. Listeners that need match events subscribe in Start with a later
-            // execution order (Audio uses 100), so they are not wiped here.
-            GameEvents.ResetAll();
-            CancelStack.ResetAll();
-
             SubscribeInput();
             BeginLoading();
         }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9053079202901677469}
   - component: {fileID: 136264488443292816}
   - component: {fileID: 8684114541753935732}
+  - component: {fileID: 1787395939970458580}
   - component: {fileID: 1893532577389658150}
   m_Layer: 0
   m_Name: Hero_Base
@@ -111,8 +112,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c4ebf9f80410046a866ebcc6639055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FateBastion.Skills::FateBastion.Skills.SkillRunner
-  _projectilePrefab: {fileID: 0}
+  _projectilePrefab: {fileID: 6371001190329634721, guid: 97080aa31921c624896df893be1c3a2e, type: 3}
   _projectilePrewarmCount: 8
+--- !u!114 &1787395939970458580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6687687578624269886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6270b36fb101dca4ba53e3161af52162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.HeroLevel
+  _topLevelAuraPrefab: {fileID: 0}
 --- !u!1 &7466287394597234432
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,7 +98,7 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | 16/10 | PR #14 review (C): đánh lại bảng mục 2 theo đúng số `TEAM_ASSIGNMENT` 3.1 — cột `3.1 #` (#1–#10), gộp dòng cũ #4 "Tướng ra đòn/chết" trùng lặp vào `CombatEvents`, 4 dòng còn lại ghi **ngoài 3.1** kèm tham chiếu; thêm ghi chú 4 parameter Animator cho A-07 |
 | 16/10 | Sau khi PR #14 merge: tách day07 thành 4 nhánh theo quy ước `feature/<Sxx>_<mã>` (bỏ nhánh cha/con) — `feature/S09_A14` (A-14/A-15), `feature/S02_A05` (A-05), `feature/S02_A06` (A-06), `docs/agent-tools`; nhánh cũ `feature_a05_a06_s9` merge `main` làm backup. Sau đó: nhánh `refactor/enemy-asset-names` (đổi id quái sang tiếng Anh, GUID giữ nguyên) merge vào 3 nhánh gameplay; API S9 giữ nguyên tên, không đổi bàn giao. Ngày 8: thêm hồ sơ bàn giao S9 ("Cách dùng", "Hướng dẫn lắp") + Sandbox `A_Save` (mở Editor + Play thử OK); dòng S9 chuyển ◐ bàn giao, chờ B xác nhận. Chạy lại test sau tích hợp rename: **`S09_A14` 299/299 EM + 45/45 PM, `S02_A06` 298/298 EM + 50/50 PM** (0 fail); thêm luật 9 MCP timeout vào `README.md` |
 | T-07 | Ghi nhận đề xuất tương lai hỗ trợ nhiều passive độc lập; giữ nguyên schema hiện tại cho T-07, chờ chốt S6/importer trước khi mở rộng |
-| T-08 | Bổ sung Cone/Line/Zone/Buff, chốt hình học theo quyết định TVA, nối status Lửa/Băng vào SkillData; test code S6 pass trong T-16 integrated suite; PR #38 còn draft; scene A_Skills đã tạo trên A-08 nhưng chưa Playtest |
+| T-08 | Bổ sung Cone/Line/Zone/Buff, chốt hình học theo quyết định TVA, nối status Lửa/Băng vào SkillData; PR #38 draft trên `feature/S06_A08`; test S6 pass trong T-16 integrated suite (675 EM, 116 PM), scene A_Skills đã tạo nhưng chưa Playtest; Projectile draft do TVA tạo |
 | T-09 | A-09 commit `5c2e634` đã push; draft PR #39 nhắm vào A-08 PR #38; buff aggregation/cap đã code, asset cap 0.6, tests viết nhưng hoãn chạy đến sau T-16 |
 | T-10 | A-10 commit `5689996` đã push; draft PR #40 nhắm vào A-08 PR #38; Editor mất kết nối, asset/prefab assignment và compile dời sang T-16, tests hoãn |
 | T-11 | A-11 code/test đang làm trên `feature/S07_A11`; asset, Player prefab của C, compile và tests dời sang T-16; cần B nghe event #10 |
@@ -116,18 +116,19 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | EditMode `FateBastion.Tests.EditMode` trên `feature/S09_A14` | **Xong:** 299/299 pass, 0 fail, 0 skip (93,5 s) — job `114c9205c6cb4f7bb1c8026d079ce1b6` | Không cần chạy lại | ✅ |
 | EditMode toàn Editor trên `feature/S09_A14` | **Xong:** 1912 test — 1840 pass, 3 fail, 69 skip (751 s). 3 fail đều là `UnitySkills.Tests.Core.*` của package `com.besty.unity-skills`, **không có test `FateBastion.*` nào đỏ** | Không cần chạy lại | — |
 
-## 6. T-07/T-08 / A-08 — test code đã pass trong T-16
+## 6. T-07/T-08 / A-08 — test tích hợp T-16 đã pass
 
 - PlayMode cases trong `Assets/_Project/Tests/PlayMode/S6/AttackModulePlayModeTests.cs` hiện bao gồm Melee + multiplier/status, pooled Projectile launch từ Muzzle, AreaAtPoint bounds/flying, Cone geometry, Line/Zone hit bounds, Line origin khi cast delay, Zone Slow refresh không gây lặp sát thương gốc, Buff vào/ra bán kính và cooldown theo scaled delta.
-- Snapshot `feature/A_T16_integration` có các test S6/A-08 (`AttackModulePlayModeTests`, `HeroControllerPlayModeTests`, `HeroTargetingPlayModeTests` và ba bộ EditMode). Full integrated suite đã pass EditMode **675/675** và PlayMode **116/116**, không fail/skip (job IDs ở mục 7). Vì vậy coi phần test code A-08 đã pass qua lượt validation T-16; đây không phải lượt chạy riêng trên `feature/S06_A08`.
+- T-16 integrated branch có các test S6/A-08 (`AttackModulePlayModeTests`, `HeroControllerPlayModeTests`, `HeroTargetingPlayModeTests` và ba bộ EditMode); lượt test toàn bộ ghi nhận EditMode **675/675 pass** và PlayMode **116/116 pass**, không fail/skip. Job: `cb4aede713514d83b261bbeff260396a` (EditMode, 329.7 s), `87b378136e49444aa9d5c386d4ebc169` (PlayMode, 41.1 s). Do đó coi test code A-08 đã pass trong snapshot tích hợp T-16; không phải lượt riêng trên A-08.
+- `Assets/_Project/Scenes/Sandbox/A_Skills.unity` đã tạo trên nhánh A-08 với ground, camera và directional light. Chưa Playtest, chưa wiring để tự khởi tạo hero/enemy; scene này chưa được tính là nghiệm thu tay hoặc demo đầy đủ.
 - PR #38 (`feature/S06_A08`) đã push ở trạng thái draft; theo lựa chọn của TVA, dừng ở ranh giới A-08 để chờ review/merge trước khi bắt đầu A-09.
 - `hero_phu_thuy_lua_passive` đã nối `status_burn`; `hero_linh_bang_passive` và `hero_nguoi_tuyet_passive` đã nối `status_slow`. Đây là gán tham chiếu thủ công trong Unity, không sửa CSV/importer.
 - Đã tạo `hero_long_vuong_ultimate` kiểu Line (length 5 m, width 5 m, x1, duration 5 s) và gán vào `hero_long_vuong.ultimateSkill`; đã tạo `hero_nguoi_tuyet_zone` (radius 3 m, x1, duration 5 s, status Slow). Cooldown/castDelay còn mặc định 0 vì tài liệu chưa cho số. Các giá trị TVA cung cấp tạm thời cho T-08; **TVA cần kiểm tra/chỉnh tay trước khi chốt cân bằng**. Line/Zone chỉ gây sát thương gốc một lần mỗi enemy trong field; status được làm mới khi enemy còn ở trong field, không lặp sát thương gốc.
-- Trên nhánh A-08 hiện tại, `Hero_Base.prefab` có `SkillRunner`, `_projectilePrefab` trỏ đến prefab draft do TVA tạo; `A_Skills.unity` đã tạo với ground/camera/light. Các thay đổi prefab/scene này được tạo sau snapshot T-16 và chưa nằm trong nhánh validation.
+- `Hero_Base.prefab` có `SkillRunner`, pool prewarm mặc định 8; `_projectilePrefab` đã trỏ tới `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` (draft do TVA tạo, root có `FateBastion.Combat.Projectile`, child hình cầu đơn giản).
 - Chưa có VFX gắn cho hai sample Ultimate/Zone; cần C bàn giao FX prefab để A gán các tham chiếu `SkillData.vfx`.
 - Unity MCP standard validation báo 0 lỗi cho các script đã đổi; hai cảnh báo heuristic về string trong `Update()` xuất hiện ở `SkillRunner`/`HeroController`, nhưng hai thân `Update()` không nối chuỗi. Console chỉ có log môi trường Unity Assistant/MCP (AssistantPerf sharing violation, WebSocket chưa khởi tạo, account API timeout), không có lỗi biên dịch.
-- Còn cần C bàn giao FX cho Long Vương Line và Người Tuyết Zone để A gán `SkillData.vfx`; C có thể review/thay prefab Projectile draft, giữ component contract trên root.
-- Scene A_Skills chưa Playtest và chưa có wiring khởi tạo hero/enemy. Còn kiểm tra tay trong Unity và rà soát các tiêu chí S6 chưa được covered bởi suite (cooldown ×1/×2, Nộ/Ultimate, buff stacking, boss targeting, thêm skill chỉ bằng data); không coi aggregate suite là playtest hoặc nghiệm thu S6 đầy đủ.
+- Projectile draft đã được TVA tạo để unblock A-08; C có thể review, thay model/VFX hoặc thay prefab, giữ tương thích với `FateBastion.Combat.Projectile`. Vẫn cần C bàn giao FX cho Long Vương Line và Người Tuyết Zone để A gán tham chiếu `SkillData.vfx`.
+- Còn kiểm tra tay trong Unity: Playtest scene A_Skills, xác nhận behavior/visuals và rà soát tiêu chí S6 chưa được covered bởi suite (cooldown ×1/×2, Nộ/Ultimate, buff stacking, boss targeting, thêm skill chỉ bằng data). Không coi suite pass là bằng chứng playtest hoặc nghiệm thu S6 đầy đủ.
 
 ## 7. T-16 – tích hợp và validation trên nhánh riêng
 
@@ -141,3 +142,10 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Đã sửa fixture EditMode cho Meteor và test PlayMode của S4/S7 phát hiện trong lượt đầu. Bản sửa `HeroController` không còn báo lỗi khi hero không Legendary thiếu `HeroRageSettings`; hero Legendary thiếu settings vẫn phát lỗi rõ trong `Init`.
 - Chưa playtest ba màn. Player prefab thuộc C, cần C wire các ability/settings và cung cấp provider `IMeteorAimRaySource`; issue draft nằm ở `daily/day20/handoff.md`.
 - `Docs/TRACEABILITY.md` chưa đổi vì validation còn dở và đây là vùng dùng chung.
+
+## 8. A-08 – quyết định projectile draft (29/10/2026)
+
+- Theo yêu cầu của TVA, TVA (A) đã tạo `Assets/_Project/Prefabs/FX/Projectile_Base.prefab` bản draft và gán vào `_projectilePrefab` của `Hero_Base.prefab`, không chờ C bàn giao prefab hoàn thiện. Root giữ contract `FateBastion.Combat.Projectile`; child hiện là hình cầu đơn giản, có thể thay.
+- Nếu C không đồng ý hoặc muốn bổ sung projectile khác, C chủ động liên hệ A để thay thế/bàn giao, tránh block việc A-08.
+- C có thể review, sửa/thay prefab và phối hợp với A nếu cần; phần draft được ghi nhận cho TVA, không ghi công cho C. Runtime/Sandbox chưa được kiểm tra; validation vẫn chờ sau T-16.
+- `TRACEABILITY.md` ghi chú A-08 và C-09 về người tạo draft và quyền C chỉnh sửa/thay thế. Sau khi TVA xác nhận PR chung đủ 3 người duyệt, quy tắc takeover đã được bổ sung ở `TEAM_ASSIGNMENT.md` mục 5 và đồng bộ trong `CLAUDE.md`.
