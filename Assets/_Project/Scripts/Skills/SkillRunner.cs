@@ -17,6 +17,18 @@ namespace FateBastion.Skills
         private const int MaxActiveFields = 2;
         // Matches EnemySettings.MaxActiveEnemies for the current project balance.
         private const int MaxEnemiesPerField = 100;
+        // A hero can overlap its passive and Ultimate VFX; copies are created during HeroPool.Prewarm.
+        private const int SkillVfxPrewarmCount = 4;
+        private const int MaxActiveSkillVfx = SkillVfxPrewarmCount * 2;
+
+        private struct ActiveSkillVfx
+        {
+            public SkillData Skill;
+            public ParticleSystem Instance;
+            public float Remaining;
+            public bool Timed;
+        }
+
         private static readonly ISkillExecutor[] SkillExecutors =
         {
             new MeleeHitExecutor(),
@@ -32,6 +44,9 @@ namespace FateBastion.Skills
         [SerializeField, Min(1)] private int _projectilePrewarmCount = 8;
 
         private readonly List<Projectile> _ownedProjectiles = new List<Projectile>();
+        private readonly Dictionary<SkillData, ObjectPool<ParticleSystem>> _skillVfxPools =
+            new Dictionary<SkillData, ObjectPool<ParticleSystem>>();
+        private readonly ActiveSkillVfx[] _activeSkillVfx = new ActiveSkillVfx[MaxActiveSkillVfx];
         private readonly SkillData[] _fieldSkills = new SkillData[MaxActiveFields];
         private readonly Vector3[] _fieldOrigins = new Vector3[MaxActiveFields];
         private readonly Vector3[] _fieldDirections = new Vector3[MaxActiveFields];
@@ -51,6 +66,7 @@ namespace FateBastion.Skills
         private ISkillContext _context;
         private ObjectPool<Projectile> _projectiles;
         private int _activeProjectileCount;
+        private int _activeSkillVfxCount;
         private int _basicAttackCount;
         private float _cooldownRemaining;
         private float _abilityCooldownRemaining;
@@ -66,6 +82,7 @@ namespace FateBastion.Skills
         private bool _reportedMissingProjectile;
         private bool _reportedPoolExhaustion;
         private bool _reportedInvalidSkill;
+        private bool _reportedSkillVfxPoolExhaustion;
 
         private void Update()
         {
@@ -73,6 +90,7 @@ namespace FateBastion.Skills
             TickCooldown(deltaTime);
             TickPendingCast(deltaTime);
             TickActiveFields(deltaTime);
+            TickSkillVfx(deltaTime);
             TickPassiveBuff(deltaTime);
         }
 
@@ -103,6 +121,13 @@ namespace FateBastion.Skills
                 _cooldownRemaining = Mathf.Max(0f, _cooldownRemaining - scaledDeltaTime);
             if (_abilityCooldownRemaining > 0f)
                 _abilityCooldownRemaining = Mathf.Max(0f, _abilityCooldownRemaining - scaledDeltaTime);
+        }
+
+        /// <summary>Creates pooled skill presentation while the owning hero is being prewarmed.</summary>
+        public void PrewarmVfx(SkillData passiveSkill, SkillData ultimateSkill)
+        {
+            PrewarmVfx(passiveSkill);
+            if (!ReferenceEquals(passiveSkill, ultimateSkill)) PrewarmVfx(ultimateSkill);
         }
 
         /// <summary>Returns whether the next basic attack can be executed without growing the projectile pool.</summary>
@@ -252,6 +277,7 @@ namespace FateBastion.Skills
             _pendingBasicAttack = false;
             _buffRefreshTimer = 0f;
             ClearActiveFields();
+            ClearActiveSkillVfx();
             RemoveBuffFromAllHeroes();
 
             for (int i = _activeProjectileCount - 1; i >= 0; i--)
@@ -309,7 +335,10 @@ namespace FateBastion.Skills
                 return false;
             }
 
-            return executor.ExecuteBasic(this, target, aimPoint, origin, shape, triggeredSkill, multiplier);
+            bool executed = executor.ExecuteBasic(this, target, aimPoint, origin, shape, triggeredSkill, multiplier);
+            if (executed && triggeredSkill != null)
+                PlaySkillVfx(triggeredSkill, aimPoint, origin);
+            return executed;
         }
 
         private void TickPendingCast(float deltaTime)
@@ -442,7 +471,9 @@ namespace FateBastion.Skills
         private bool ExecuteSkillNow(SkillData skill, EnemyController target, Vector3 aimPoint, Vector3 origin)
         {
             ISkillExecutor executor = GetExecutor(skill.kind);
-            return executor != null && executor.ExecuteActive(this, skill, target, aimPoint, origin);
+            if (executor == null || !executor.ExecuteActive(this, skill, target, aimPoint, origin)) return false;
+            PlaySkillVfx(skill, aimPoint, origin);
+            return true;
         }
 
         private bool StartField(SkillData skill, Vector3 aimPoint, Vector3 origin)
@@ -795,6 +826,177 @@ namespace FateBastion.Skills
             StatusEffectData status = triggeredSkill != null ? triggeredSkill.status : null;
             return new DamageInfo(_context.Damage * multiplier, damageType, _context.Element, gameObject,
                 canHitFlying, status, hitPoint);
+        }
+
+        private void PrewarmVfx(SkillData skill)
+        {
+            if (skill == null || skill.vfx == null || _skillVfxPools.ContainsKey(skill)) return;
+
+            ParticleSystem prefab = skill.vfx.GetComponent<ParticleSystem>();
+            if (prefab == null)
+            {
+                Debug.LogError($"SkillData '{skill.id}' VFX prefab needs a root ParticleSystem.", skill);
+                return;
+            }
+
+            bool looping = (skill.kind == SkillKind.Line || skill.kind == SkillKind.Zone) && skill.duration > 0f;
+            if (prefab.main.loop != looping)
+            {
+                Debug.LogError($"SkillData '{skill.id}' VFX loop setting does not match its skill lifetime.", skill);
+                return;
+            }
+
+            var pool = new ObjectPool<ParticleSystem>(
+                () => CreateSkillVfx(prefab),
+                null,
+                ReleaseSkillVfx,
+                instance => { if (instance != null) Destroy(instance.gameObject); },
+                false,
+                SkillVfxPrewarmCount,
+                SkillVfxPrewarmCount);
+            _skillVfxPools.Add(skill, pool);
+
+            ParticleSystem[] prewarmedInstances = new ParticleSystem[SkillVfxPrewarmCount];
+            for (int i = 0; i < prewarmedInstances.Length; i++)
+                prewarmedInstances[i] = pool.Get();
+            for (int i = 0; i < prewarmedInstances.Length; i++)
+                pool.Release(prewarmedInstances[i]);
+        }
+
+        private ParticleSystem CreateSkillVfx(ParticleSystem prefab)
+        {
+            ParticleSystem instance = Instantiate(prefab, transform);
+            instance.gameObject.SetActive(false);
+            return instance;
+        }
+
+        private void PlaySkillVfx(SkillData skill, Vector3 aimPoint, Vector3 origin)
+        {
+            if (skill == null || skill.vfx == null) return;
+            if (!_skillVfxPools.TryGetValue(skill, out ObjectPool<ParticleSystem> pool))
+            {
+                Debug.LogError($"SkillData '{skill.id}' VFX was not prewarmed by HeroPool.", skill);
+                return;
+            }
+            if (pool.CountInactive == 0)
+            {
+                if (!_reportedSkillVfxPoolExhaustion)
+                {
+                    Debug.LogWarning("SkillRunner VFX pool is exhausted; the effect was skipped.", this);
+                    _reportedSkillVfxPoolExhaustion = true;
+                }
+                return;
+            }
+
+            int slot = FindInactiveSkillVfxSlot();
+            if (slot < 0)
+            {
+                if (!_reportedSkillVfxPoolExhaustion)
+                {
+                    Debug.LogWarning("SkillRunner active VFX capacity is exhausted; the effect was skipped.", this);
+                    _reportedSkillVfxPoolExhaustion = true;
+                }
+                return;
+            }
+
+            ParticleSystem instance = pool.Get();
+            instance.transform.SetParent(null, true);
+            ConfigureSkillVfxTransform(skill, instance.transform, aimPoint, origin);
+            instance.gameObject.SetActive(true);
+            instance.Clear(true);
+            instance.Play(true);
+
+            bool timed = (skill.kind == SkillKind.Line || skill.kind == SkillKind.Zone) && skill.duration > 0f;
+            _activeSkillVfx[_activeSkillVfxCount++] = new ActiveSkillVfx
+            {
+                Skill = skill,
+                Instance = instance,
+                Remaining = skill.duration,
+                Timed = timed
+            };
+        }
+
+        private void TickSkillVfx(float deltaTime)
+        {
+            for (int i = _activeSkillVfxCount - 1; i >= 0; i--)
+            {
+                ActiveSkillVfx active = _activeSkillVfx[i];
+                bool finished;
+                if (active.Timed)
+                {
+                    active.Remaining -= deltaTime;
+                    finished = active.Remaining <= 0f;
+                    _activeSkillVfx[i] = active;
+                }
+                else
+                {
+                    finished = active.Instance == null || !active.Instance.IsAlive(true);
+                }
+
+                if (finished) ReleaseSkillVfx(i);
+            }
+        }
+
+        private int FindInactiveSkillVfxSlot()
+        {
+            return _activeSkillVfxCount < _activeSkillVfx.Length ? _activeSkillVfxCount : -1;
+        }
+
+        private void ReleaseSkillVfx(int index)
+        {
+            ActiveSkillVfx active = _activeSkillVfx[index];
+            int last = --_activeSkillVfxCount;
+            _activeSkillVfx[index] = _activeSkillVfx[last];
+            _activeSkillVfx[last] = default;
+            if (active.Instance != null && _skillVfxPools.TryGetValue(active.Skill, out ObjectPool<ParticleSystem> pool))
+                pool.Release(active.Instance);
+        }
+
+        private void ClearActiveSkillVfx()
+        {
+            for (int i = _activeSkillVfxCount - 1; i >= 0; i--)
+                ReleaseSkillVfx(i);
+        }
+
+        private void ReleaseSkillVfx(ParticleSystem instance)
+        {
+            if (instance == null) return;
+            instance.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            instance.transform.SetParent(transform, false);
+            instance.gameObject.SetActive(false);
+        }
+
+        private void ConfigureSkillVfxTransform(SkillData skill, Transform target, Vector3 aimPoint, Vector3 origin)
+        {
+            Vector3 direction = aimPoint - origin;
+            direction.y = 0f;
+            Quaternion rotation = direction.sqrMagnitude > 1e-6f
+                ? Quaternion.LookRotation(direction.normalized)
+                : Quaternion.identity;
+            Vector3 position = aimPoint;
+            Vector3 scale = Vector3.one;
+
+            switch (skill.kind)
+            {
+                case SkillKind.AreaAtPoint:
+                    scale = Vector3.one * skill.radius;
+                    break;
+                case SkillKind.Zone:
+                    position = origin;
+                    scale = Vector3.one * skill.radius;
+                    break;
+                case SkillKind.Cone:
+                    position = origin;
+                    scale = new Vector3(skill.radius, 1f, _context.Range);
+                    break;
+                case SkillKind.Line:
+                    position = origin;
+                    scale = new Vector3(skill.width, 1f, skill.length);
+                    break;
+            }
+
+            target.SetPositionAndRotation(position, rotation);
+            target.localScale = scale;
         }
 
         private void InitializeProjectilePool()

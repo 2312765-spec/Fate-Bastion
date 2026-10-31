@@ -149,3 +149,11 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Nếu C không đồng ý hoặc muốn bổ sung projectile khác, C chủ động liên hệ A để thay thế/bàn giao, tránh block việc A-08.
 - C có thể review, sửa/thay prefab và phối hợp với A nếu cần; phần draft được ghi nhận cho TVA, không ghi công cho C. Runtime/Sandbox chưa được kiểm tra; validation vẫn chờ sau T-16.
 - `TRACEABILITY.md` ghi chú A-08 và C-09 về người tạo draft và quyền C chỉnh sửa/thay thế. Sau khi TVA xác nhận PR chung đủ 3 người duyệt, quy tắc takeover đã được bổ sung ở `TEAM_ASSIGNMENT.md` mục 5 và đồng bộ trong `CLAUDE.md`.
+
+## 8. Issue #56 – C-09 gameplay VFX
+
+- A (Thành / Tson-dev) triển khai hook gameplay và tiếp quản phần `HeroPool`/`HeroLevel` thuộc B sau khi TVA xác nhận B chưa phản hồi và việc đang bị block. Phần code takeover là draft, chờ B review; quyền sở hữu thư mục không đổi.
+- PR #57 được cập nhật theo PR #59: stack #60 là `main <- GDD12_C09_2 (#59) <- fix/C-09_Issue#56 (#57)`. Branch #59 đã được merge vào nhánh PR #57.
+- A gán VFX vào sáu `SkillData` và hai `StatusEffectData`, thêm `HeroStats.BuffsChanged` / `HasSkillBuff(BuffType)` theo yêu cầu trong PR #59.
+- C còn nối VFX rơi vào `Player.prefab`, aura cấp 3 vào scene Game, và wire `HeroBuffIndicator` tới event/API mới. B review code takeover; Issue chưa được coi là hoàn tất trước các bước này.
+- Chi tiết, kiểm thử và hướng dẫn lắp: [issue56.md](./issue/issue56.md). `TRACEABILITY.md` chưa sửa vì là tài liệu dùng chung cần review theo quy định.

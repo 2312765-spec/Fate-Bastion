@@ -1,3 +1,4 @@
+using System.Text;
 using NUnit.Framework;
 using FateBastion.Core;
 using FateBastion.Heroes;
@@ -45,6 +46,18 @@ namespace FateBastion.Tests.EditMode.UI
             Assert.AreEqual("0:27", HudFormat.Cooldown(26.3f));
             Assert.AreEqual("Lửa", HudFormat.ElementName(Element.Fire));
             Assert.AreEqual("Hỗ trợ", HudFormat.RoleName(Role.Support));
+        }
+
+        [TestCase(0)]
+        [TestCase(5)]
+        [TestCase(999)]
+        [TestCase(1000)]
+        [TestCase(1250)]
+        [TestCase(105000)]
+        [TestCase(1000000)]
+        public void AppendGold_AnyAmount_MatchesGold(int gold)
+        {
+            Assert.AreEqual(HudFormat.Gold(gold), HudFormat.AppendGold(new StringBuilder(), gold).ToString());
         }
 
         [Test]

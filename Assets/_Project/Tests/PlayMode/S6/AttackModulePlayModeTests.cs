@@ -29,6 +29,8 @@ namespace FateBastion.Tests.PlayMode.S6
         private GameObject _buffRecipientObject;
         private HeroController _buffRecipient;
         private HeroData _buffRecipientData;
+        private SkillData _vfxSkill;
+        private GameObject _skillVfxTemplate;
 
         [SetUp]
         public void SetUp()
@@ -101,6 +103,8 @@ namespace FateBastion.Tests.PlayMode.S6
             if (_projectileTemplate != null) Object.Destroy(_projectileTemplate);
             if (_buffRecipientObject != null) Object.Destroy(_buffRecipientObject);
             if (_buffRecipientData != null) Object.Destroy(_buffRecipientData);
+            if (_vfxSkill != null) Object.Destroy(_vfxSkill);
+            if (_skillVfxTemplate != null) Object.Destroy(_skillVfxTemplate);
             _rig.Dispose();
         }
 
@@ -408,6 +412,40 @@ namespace FateBastion.Tests.PlayMode.S6
             _rig.Manager.Prewarm(_enemyData, 1);
             _rig.Manager.RequestSpawn(_enemyData, 0, 1, 6f);
             _hero.SetEnemyManager(_rig.Manager);
+        }
+
+        [UnityTest]
+        public IEnumerator TryCast_AreaSkillVfx_UsesRadiusAndReturnsToPoolAfterParticlesFinish()
+        {
+            _vfxSkill = ScriptableObject.CreateInstance<SkillData>();
+            _vfxSkill.id = "fireball_vfx_test";
+            _vfxSkill.kind = SkillKind.AreaAtPoint;
+            _vfxSkill.radius = 2f;
+            _skillVfxTemplate = new GameObject("SkillVfxTemplate");
+            _skillVfxTemplate.SetActive(false);
+            ParticleSystem particles = _skillVfxTemplate.AddComponent<ParticleSystem>();
+            ParticleSystem.MainModule main = particles.main;
+            main.loop = false;
+            main.duration = 0.05f;
+            main.startLifetime = 0.05f;
+            _vfxSkill.vfx = _skillVfxTemplate;
+
+            SkillRunner runner = _heroObject.GetComponent<SkillRunner>();
+            int existingChildren = _heroObject.transform.childCount;
+            _hero.PrewarmSkillVfx(null, _vfxSkill);
+            Assert.AreEqual(existingChildren + 4, _heroObject.transform.childCount, "VFX copies should be created during prewarm.");
+
+            Vector3 point = new Vector3(2f, 0f, 4f);
+            Assert.IsTrue(runner.TryCast(_vfxSkill, point));
+            GameObject activeVfx = GameObject.Find("SkillVfxTemplate(Clone)");
+            Assert.IsNotNull(activeVfx);
+            Assert.AreEqual(point, activeVfx.transform.position);
+            Assert.AreEqual(Vector3.one * _vfxSkill.radius, activeVfx.transform.localScale);
+
+            yield return new WaitForSeconds(0.2f);
+
+            Assert.IsNull(GameObject.Find("SkillVfxTemplate(Clone)"), "Finished effect should be inactive in its pool.");
+            Assert.AreEqual(existingChildren + 4, _heroObject.transform.childCount, "Playing and returning VFX must not grow the pool.");
         }
 
         private static void SetField<T>(object instance, string name, T value)

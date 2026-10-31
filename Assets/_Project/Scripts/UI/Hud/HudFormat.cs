@@ -1,3 +1,4 @@
+using System.Text;
 using FateBastion.Core;
 using FateBastion.Heroes;
 
@@ -38,6 +39,38 @@ namespace FateBastion.UI
         public static string Castle(int current, int max) => $"Thành {current}/{max}";
 
         public static string Gold(int gold) => $"Vàng {UiText.Number(gold)}";
+
+        /// <summary>
+        /// Same text as <see cref="Gold"/> written into <paramref name="builder"/> digit by digit, so the HUD can refresh the
+        /// gold on every kill without allocating (S10: no GC while gold changes).
+        /// </summary>
+        public static StringBuilder AppendGold(StringBuilder builder, int gold)
+        {
+            builder.Append("Vàng ");
+            long value = gold;
+            if (value < 0)
+            {
+                builder.Append('-');
+                value = -value;
+            }
+
+            long divisor = 1;
+            int digits = 1;
+            while (value / divisor >= 10)
+            {
+                divisor *= 10;
+                digits++;
+            }
+
+            for (; divisor > 0; divisor /= 10, digits--)
+            {
+                builder.Append((char)('0' + value / divisor % 10));
+                // Thousands separator "." as in UiText.Number (1.250).
+                if (digits > 1 && (digits - 1) % 3 == 0) builder.Append('.');
+            }
+
+            return builder;
+        }
 
         public static string UnitCount(int placed, int max) => $"Quân số {placed}/{max}";
 

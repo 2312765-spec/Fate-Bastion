@@ -23,10 +23,16 @@ namespace FateBastion.Player
         [SerializeField] private Transform _rangeIndicator;
         [SerializeField] private Renderer _blastPreview;
         [SerializeField] private Renderer _impactMarker;
+        [Tooltip("Optional fall/telegraph effect. Created once during scene setup and shown during the scaled fall delay.")]
+        [SerializeField] private GameObject _fallFxPrefab;
 
-        private readonly MaterialPropertyBlock _colorProperties = new MaterialPropertyBlock();
+        // Created in Awake: Unity forbids MaterialPropertyBlock in a field initializer (CreateImpl exception, field stays null).
+        // Takeover fix by C (TEAM_ASSIGNMENT 5.3), draft until A reviews.
+        private MaterialPropertyBlock _colorProperties;
         private MeteorAbility _ability;
         private MeteorDamageApplier _damageApplier;
+        private GameObject _fallFx;
+        private ParticleSystem _fallFxParticles;
         private IMeteorAimRaySource _aimRaySource;
         private InputRouter _inputRouter;
         private Vector3 _aimPoint;
@@ -38,6 +44,7 @@ namespace FateBastion.Player
 
         private void Awake()
         {
+            _colorProperties = new MaterialPropertyBlock();
             if (!TryInitialize()) enabled = false;
         }
 
@@ -50,6 +57,7 @@ namespace FateBastion.Player
                 _ability.OnImpactReady -= OnImpactReady;
                 _ability.Dispose();
             }
+            if (_fallFx != null) Destroy(_fallFx);
 
             GameEvents.OnWaveStarted -= OnWaveStarted;
             GameEvents.OnMatchEnded -= OnMatchEnded;
@@ -109,6 +117,7 @@ namespace FateBastion.Player
             _rangeIndicator.gameObject.SetActive(false);
             _blastPreview.gameObject.SetActive(false);
             _impactMarker.gameObject.SetActive(false);
+            PrepareFallFx();
             return true;
         }
 
@@ -164,12 +173,20 @@ namespace FateBastion.Player
 
             bool falling = state == MeteorAbility.State.Falling;
             if (falling)
+            {
                 _impactMarker.transform.position = _ability.ImpactPoint;
+                ShowFallFx();
+            }
+            else
+            {
+                HideFallFx();
+            }
             _impactMarker.gameObject.SetActive(falling);
         }
 
         private void OnImpactReady(Vector3 point)
         {
+            HideFallFx();
             if (_matchEnded) return;
 
             LevelData level = _waveManager.Level;
@@ -198,8 +215,53 @@ namespace FateBastion.Player
         private void OnMatchEnded(MatchResult result)
         {
             _matchEnded = true;
+            HideFallFx();
+            _impactMarker.gameObject.SetActive(false);
             if (_ability.CurrentState == MeteorAbility.State.Aiming)
                 _ability.OnCancel();
+        }
+
+        private void PrepareFallFx()
+        {
+            if (_fallFxPrefab == null) return;
+
+            _fallFx = Instantiate(_fallFxPrefab);
+            _fallFxParticles = _fallFx.GetComponent<ParticleSystem>();
+            if (_fallFxParticles == null)
+            {
+                Debug.LogError($"{nameof(MeteorAimIndicator)}: fall VFX prefab needs a root ParticleSystem.", _fallFxPrefab);
+                Destroy(_fallFx);
+                _fallFx = null;
+                return;
+            }
+            if (_fallFxParticles.main.loop)
+            {
+                Debug.LogError($"{nameof(MeteorAimIndicator)}: fall VFX must be a one-shot effect.", _fallFxPrefab);
+                Destroy(_fallFx);
+                _fallFx = null;
+                _fallFxParticles = null;
+                return;
+            }
+            _fallFx.SetActive(false);
+        }
+
+        private void ShowFallFx()
+        {
+            if (_fallFx == null || _fallFxParticles == null) return;
+
+            _fallFx.transform.SetPositionAndRotation(_ability.ImpactPoint, Quaternion.identity);
+            _fallFx.transform.localScale = Vector3.one * _settings.Skill.radius;
+            _fallFx.SetActive(true);
+            _fallFxParticles.Clear(true);
+            _fallFxParticles.Play(true);
+        }
+
+        private void HideFallFx()
+        {
+            if (_fallFx == null || _fallFxParticles == null || !_fallFx.activeSelf) return;
+
+            _fallFxParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            _fallFx.SetActive(false);
         }
 
         private void SetRendererColor(Renderer target, Color color)
