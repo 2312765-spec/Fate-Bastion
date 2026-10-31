@@ -29,6 +29,7 @@
 ## 5. T-16 – kết quả tích hợp (30/10/2026)
 
 - Trên `feature/A_T16_integration`, Unity MCP đã tạo `CommandAuraSettings.asset` (bán kính 6 m, +25% AttackSpeed, chu kỳ 0.2 s). Asset chưa được gắn vào Player prefab vì prefab thuộc C.
-- `CommandAuraPlayModeTests` đã chạy trong suite tích hợp: PlayMode **116/116 pass**, EditMode **675/675 pass**, 0 fail/0 skip (job `87b378136e49444aa9d5c386d4ebc169` và `cb4aede713514d83b261bbeff260396a`).
+- `CommandAuraPlayModeTests` có mặt trong suite tổng hợp T-16 sau merge `main`: EditMode **717/717 pass**; PlayMode **154 pass / 157 total, 0 fail, 3 skip** (job `b64e5b6d634f417f842260fc9959be1a` và `d6a119afa40a46c48588c34e6e9354ce`). Đây là aggregate, không phải lượt riêng của A-11; ba test skip không hỗ trợ trên WindowsEditor.
 - Lượt PlayMode đầu tiên fail 1 test vì test đăng ký listener `OnHeroEnteredAura` sau khi aura đã bật. Bản sửa trên nhánh tích hợp đăng ký listener trong `SetUp` trước khi `SetActive(true)`; chạy lại pass.
 - **Chưa có trên `main`:** `CommandAuraSettings.asset` và bản sửa `CommandAuraPlayModeTests`. Cần một PR follow-up port từ `feature/A_T16_integration`.
+- Chưa kiểm tra tay/playtest aura trong scene; lượt PlayMode trên là tự động qua Unity MCP trong Editor, không bao gồm kiểm tra/chỉnh tay lại prefab hoặc asset.

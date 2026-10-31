@@ -13,11 +13,11 @@
 
 ## 2. Bằng chứng hiện có
 
-- T-16 integrated branch có các test S6/A-08 (`AttackModulePlayModeTests`, `HeroControllerPlayModeTests`, `HeroTargetingPlayModeTests` và ba bộ EditMode); lượt test toàn bộ ghi nhận EditMode 675/675 pass và PlayMode 116/116 pass, không fail/skip. Job: `cb4aede713514d83b261bbeff260396a` (EditMode, 329.7 s), `87b378136e49444aa9d5c386d4ebc169` (PlayMode, 41.1 s).
-- Đây là kết quả suite tích hợp T-16, không phải lượt chạy riêng trên A-08. A-08 được coi là có test pass vì các test S6 hiện diện trong snapshot T-16 đã chạy trong suite và toàn bộ suite pass.
-- **Lưu ý (30/10/2026):** snapshot 675/116 **thiếu** `010c558` (#33) và `4e42dc0` (#35), nên chỉ là bằng chứng lịch sử; cần chạy lại trên `main` sau #38.
+- T-16 aggregate chạy lại sau khi merge `main`: EditMode **717/717 pass** (job `b64e5b6d634f417f842260fc9959be1a`); PlayMode **154 pass / 157 total, 0 fail, 3 skip** (job `d6a119afa40a46c48588c34e6e9354ce`).
+- Các test S6/A-08 (`AttackModulePlayModeTests`, `HeroControllerPlayModeTests`, `HeroTargetingPlayModeTests` và ba bộ EditMode) có mặt trong suite tích hợp. Đây là bằng chứng aggregate, không phải lượt chạy riêng trên A-08.
+- Ba PlayMode skip là test GC Alloc không hỗ trợ trên WindowsEditor. Tổng cả hai suite: **871 pass, 0 fail, 3 skip / 874 test cases**.
 - Scene `A_Skills.unity` đã được tạo với ground, camera và directional light làm sandbox nền. Scene chưa được Playtest, chưa có wiring để tự khởi tạo hero/enemy và chưa thay thế các bài test PlayMode.
-- Chưa có bằng chứng playtest ba màn; không coi test suite là nghiệm thu runtime/S6 hoàn chỉnh.
+- Chưa kiểm tra tay/playtest ba màn; test tự động qua Unity MCP trong Editor không bao gồm kiểm tra/chỉnh tay lại scene, prefab, asset hoặc cân bằng.
 
 ## 3. Cần người khác
 
@@ -31,13 +31,13 @@
 ## 4. Kiểm thử và việc còn lại
 
 - PlayMode `AttackModulePlayModeTests`: Melee + status/multiplier, projectile Muzzle, AreaAtPoint XZ/flying, Cone geometry, Line/Zone bounds and one-hit-per-field, Line cast-delay origin, Buff enter/exit và cooldown với scaled delta.
-- Không cần chạy lại A-08 suite chỉ để xác nhận test code: T-16 aggregate EditMode/PlayMode đã pass, bao gồm các test S6 liệt kê ở trên (snapshot lịch sử, xem lưu ý mục 2).
+- Không cần chạy lại A-08 suite chỉ để xác nhận test code nếu không có thay đổi mới: T-16 aggregate sau merge `main` đã pass, bao gồm các test S6 liệt kê ở trên.
 - Nếu A-08 code/test thay đổi sau snapshot T-16, chạy lại các test S6 liên quan và ghi kết quả/job mới.
 - Còn kiểm tra tay trong Unity: Playtest scene A_Skills, xác nhận behavior/visuals và rà soát các tiêu chí S6 chưa được covered bởi suite (đặc biệt cooldown ×1/×2, Nộ/Ultimate, buff stacking, boss targeting và thêm kỹ năng chỉ bằng data).
-- Ghi job id, thời lượng, pass/fail/skip và thao tác Unity thực tế nếu phát sinh lượt validation mới.
+- Ghi job id, thời lượng, pass/fail/skip và thao tác Unity thực tế nếu phát sinh lượt validation mới; không ghi nhận playtest tay nếu chưa thực hiện.
 
 ## 5. Nhánh và PR
 
 - Commit `e21358e` đã push lên `feature/S06_A08`.
 - PR #38 đã **merge vào `main`** ngày 30/10/2026 (`623c820`).
-- A-09 (#39) đã merge tiếp vào `feature/S06_A08` (`55feec2`); PR #46 (base `main`) đang mở để đưa A-08 + A-09 vào `main` và phải merge trước #40.
+- A-09 (#39) đã merge tiếp vào `feature/S06_A08` (`55feec2`); PR #46 sau đó đã đưa A-08 + A-09 vào `main` (`15b8bf2`). Các PR A-10…A-13 cũng đã merge `main`.

@@ -25,5 +25,6 @@
 ## T-16 – kết quả tích hợp (30/10/2026)
 
 - Trên `feature/A_T16_integration`, commit `10d804e` xóa `MeteorTestInputRouter`, chuyển `MeteorAbilityTests` sang `InputRouter.Instance` và gọi `RaiseMeteor`/`RaiseDeckSlot` qua reflection.
-- Năm test Meteor chạy lại pass; toàn bộ EditMode **675/675 pass** (job `cb4aede713514d83b261bbeff260396a`, 329.7 s) và PlayMode **116/116 pass** (job `87b378136e49444aa9d5c386d4ebc169`, 41.1 s), 0 fail/0 skip.
-- Lượt chạy này diễn ra trên nhánh tích hợp, không phải trên `main`. Trên `main` sau #42, fixture cũ vẫn có thể làm 5 test Meteor fail khi chạy EditMode; cần port `10d804e` (hoặc merge `feature/A_T16_integration`) trước khi coi A-12 pass trên `main`.
+- Năm test Meteor được chạy trong suite tổng hợp T-16 sau merge `main`: EditMode **717/717 pass**; PlayMode **154 pass / 157 total, 0 fail, 3 skip** (job `b64e5b6d634f417f842260fc9959be1a` và `d6a119afa40a46c48588c34e6e9354ce`). Đây là aggregate, không phải lượt riêng của A-12.
+- `feature/A_T16_integration` đã merge `main` và bỏ fixture cũ không được dùng; `main` vẫn giữ fixture cho đến khi PR #47 được merge. Ba test skip là các bài GC Alloc không hỗ trợ trên WindowsEditor.
+- Chưa kiểm tra tay/playtest Meteor trong trận; validation trên chỉ là test tự động qua Unity MCP trong Editor, không bao gồm kiểm tra/chỉnh tay lại prefab hoặc asset.

@@ -25,6 +25,7 @@
 ## 4. T-16 – kết quả tích hợp (30/10/2026)
 
 - Trên `feature/A_T16_integration`, Unity MCP đã tạo `HeroRageSettings.asset` (+5 Nộ/đòn, ngưỡng 100) và gán vào `_rageSettings` của `Hero_Base.prefab`; không sửa YAML bằng tay.
-- `RageMeterTests` (EditMode) cùng `HeroControllerPlayModeTests`/`AttackModulePlayModeTests` (PlayMode) đã chạy trong suite tích hợp: EditMode **675/675 pass**, PlayMode **116/116 pass**, 0 fail/0 skip (job `cb4aede713514d83b261bbeff260396a` và `87b378136e49444aa9d5c386d4ebc169`). Đây là lượt trên nhánh tích hợp, không phải lượt riêng của #40.
+- `RageMeterTests` (EditMode) cùng `HeroControllerPlayModeTests`/`AttackModulePlayModeTests` (PlayMode) có mặt trong suite tổng hợp T-16 sau merge `main`: EditMode **717/717 pass**; PlayMode **154 pass / 157 total, 0 fail, 3 skip** (job `b64e5b6d634f417f842260fc9959be1a` và `d6a119afa40a46c48588c34e6e9354ce`). Đây là aggregate, không phải lượt riêng của A-10.
 - Lượt PlayMode đầu tiên fail 2 test vì `HeroController.Awake` báo thiếu `HeroRageSettings` cho cả hero không Legendary. Bản sửa trên nhánh tích hợp chỉ tạo `RageMeter` khi có settings và chỉ báo lỗi trong `Init` với hero Legendary; chạy lại pass.
 - **Chưa có trên `main`:** `HeroRageSettings.asset`, gán `_rageSettings` trong `Hero_Base.prefab`, và bản sửa `HeroController` nêu trên. Cần một PR follow-up port các thay đổi này từ `feature/A_T16_integration`.
+- Chưa kiểm tra tay/playtest; kết quả trên chỉ là test tự động qua Unity MCP trong Editor, không bao gồm kiểm tra hoặc chỉnh tay lại prefab/asset.

@@ -31,13 +31,13 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | #2 | Wave | `Init`, `StartWave`, `StopAndClear`, `OnWaveFinished` | B (S5) | ☑ (A-04) | xong |
 | #3 | Đặt tướng → tướng hoạt động | `Init(HeroData)`, `ResetState()`, `OnDespawn()` | B (S4 đặt/nâng tướng) | ☑ code (`main`, PR #25 merged; chờ B xác nhận) | 10 (T-06) |
 | #4 | Nâng cấp → chỉ số | `HeroStats.SetLevelMultipliers` | B (S4 nâng cấp) | ☑ code (`main`, PR #25 merged; chờ B xác nhận) | 10 (T-06) |
-| #5 | Nộ / Ultimate | `OnRageChanged`, `TryActivateUltimate()` | B (nút R, HUD Nộ) | ◐ code có, PR #40 mở (base `main`), chờ B nối HUD | 14 (T-10) |
-| #6 | Hủy ngắm Thiên thạch | `CancelStack.Push/Remove` | C (InputRouter, Esc) | ◐ (`CancelStack` có; A-12 đã nối, PR #42 mở) | 16 (T-12) |
-| #7 | Chọn tướng hủy ngắm | nghe `DeckSlot` | C | ◐ code có, PR #42 mở | 16 (T-12) |
+| #5 | Nộ / Ultimate | `OnRageChanged`, `TryActivateUltimate()` | B (nút R, HUD Nộ) | ☑ code đã merge (`main`, #40); chờ B nối HUD | 14 (T-10) |
+| #6 | Hủy ngắm Thiên thạch | `CancelStack.Push/Remove` | C (InputRouter, Esc) | ☑ code đã merge (`main`, #42); chờ C wire prefab | 16 (T-12) |
+| #7 | Chọn tướng hủy ngắm | nghe `DeckSlot` | C | ☑ code đã merge (`main`, #42); chờ C wire prefab | 16 (T-12) |
 | #8 | Vàng | `Wallet` | (A-04 **không** đụng; B sở hữu) | ☑ (B) | — |
 | #9 | UI thế giới | `OnEnemySpawned/Despawned`, `ActiveEnemies`, `CurrentHP/MaxHP/IsBoss/Progress/HealthBarAnchor`, `OnHealthChanged` | C (thanh máu, cảnh báo) | ☑ (A-04) | xong |
-| #10 | Hào quang | `OnHeroEnteredAura` | B (`TutorialController` bước 3) | ◐ code có, PR #41 mở (base `feature/S06_A10`) | 15 (T-11) |
-| ngoài 3.1 | Thiên thạch (HUD/FX) | `OnMeteorCooldownChanged`, `OnMeteorExploded(Vector3, radius)` — theo `AbilityEvents` (mục 3) | B (HUD), C (FX) | ◐ code có, PR #42/#43 mở | 17 (T-13) |
+| #10 | Hào quang | `OnHeroEnteredAura` | B (`TutorialController` bước 3) | ☑ code đã merge (`main`, #41); chờ B nối tutorial | 15 (T-11) |
+| ngoài 3.1 | Thiên thạch (HUD/FX) | `OnMeteorCooldownChanged`, `OnMeteorExploded(Vector3, radius)` — theo `AbilityEvents` (mục 3) | B (HUD), C (FX) | ☑ code đã merge (`main`, #42/#43); chờ B/C nối UI/FX và prefab | 17 (T-13) |
 | ngoài 3.1 | Sát thương / quái chết | `OnDamageDealt(DamageDealtInfo)`, `OnEnemyKilled(EnemyKilledInfo)` — `CombatEvents` (mục 3), cũng là nguồn Vàng của 3.1 #8 | B (kinh tế, số sát thương), C (nháy trắng) | ☑ (S1) | xong |
 | ngoài 3.1 | Lưu trữ (S9) | `SaveService.Load/Save/Delete`, `SaveData`, `SaveSanitizer` (JSON Newtonsoft) | B (S8 gọi) | ☑ code · ◐ bàn giao: "Cách dùng" + "Hướng dẫn lắp" ở `daily/day08/handoff.md`, Sandbox `A_Save` đã chạy được trong Editor, chờ B xác nhận | 9 (T-04) |
 | ngoài 3.1 | Quái Bay / boss gọi con | `EnemyController.Spawn(...,pathIndex,...)`, `BossSummonSettings` (SO) | C (prefab Bay); asset đã gắn sẵn | ☑ code (298/298 EM + 50/50 PM, đo lại sau tích hợp rename) | 8 (T-14) |
@@ -51,9 +51,9 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | Rủi ro | Mức | Giảm thiểu |
 |---|---|---|
 | S5 (B) chưa xong → A không playtest được màn | Cao | Test trong Sandbox A; giữ stub đúng tên 3.1 |
-| S6/S7 code xong nhưng chưa lên `main`/chưa playtest | Cao | #46 → #40 → #41, #42 → #43; chạy lại EditMode/PlayMode + playtest `A_Skills` sau khi merge |
-| PR #39 lỡ merge vào `feature/S06_A08` thay vì `main` | Trung bình | #46 đang mở để đưa A-08 + A-09 vào `main`; phải merge #46 trước #40 |
-| Snapshot T-16 (675 EM / 116 PM) thiếu `010c558` (#33) và `4e42dc0` (#35) | Trung bình | Không dùng làm bằng chứng cho `main`; chạy lại test trên `main` sau #38 |
+| S6/S7 code đã lên `main`, nhưng chưa wire đầy đủ hoặc playtest tay | Cao | Suite T-16 aggregate đã pass trên nhánh tích hợp sau merge `main`; chờ C/B hoàn tất hookup rồi kiểm tra tay |
+| PR #39 ban đầu merge vào `feature/S06_A08` thay vì `main` | — | **Đã xử lý:** PR #46 đã đưa A-08 + A-09 vào `main`; các PR #40–#43 cũng đã merge |
+| Snapshot T-16 cũ thiếu #33/#35 và không phải suite hiện tại | — | **Đã xử lý:** lượt cuối EditMode 717/717, PlayMode 154/157 (3 skip), tổng 871 pass / 0 fail / 3 skip; chỉ là test tự động, chưa kiểm tra tay |
 | PR #42 còn fixture `MeteorTestInputRouter` | Trung bình | Áp fix T-16 `10d804e` trước khi merge #42 |
 | `CancelStack`/`InputRouter` (C) đổi signature | Trung bình | Chốt sớm ở T-12; theo dõi PR của C |
 | HUD B gọi sai tên event | Trung bình | Dùng đúng tên 3.1; phát bằng `Raise…()` của hub |
@@ -69,11 +69,11 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - T-07 giữ nguyên schema hiện tại; `damageMultiplier` điều chỉnh sát thương đòn, còn `status` là hiệu ứng gắn thêm khi đòn trúng. Không thêm nhiều passive hoặc hiệu ứng Độc trong lượt này.
 - Nếu nhóm muốn phát triển tiếp, cần chốt cách biểu diễn nhiều skill trong `HeroData`, định dạng/import CSV, trigger/cooldown và phạm vi hiệu ứng trong S6 trước khi sửa schema dùng chung hoặc importer.
 
-### A-09 – đã merge vào nhánh A-08, đang chờ vào `main`
+### A-09 – đã merge vào `main`
 
 - `feature/S06_A09` implement buff stacking theo `(sourceType, BuffType)` và trần AttackSpeed lấy từ `HeroStatsSettings`; asset hiện có đặt ở `0.6`.
-- PR #39 đã merge vào `feature/S06_A08` (`55feec2`, 30/10/2026). PR #46 (base `main`) đang mở để đưa A-08 + A-09 vào `main`; **phải merge #46 trước #40**.
-- Sáu EditMode cases đã được viết; theo quyết định của TVA, vẫn chưa chạy EditMode/PlayMode riêng cho A-09 — bằng chứng hiện có là snapshot tích hợp T-16 và Unity MCP script validation.
+- PR #39 đã merge vào `feature/S06_A08` (`55feec2`); PR #46 sau đó đưa A-08 + A-09 vào `main` (`15b8bf2`).
+- Sáu EditMode cases A-09 nằm trong suite T-16 sau merge `main`: 717/717 EditMode pass. Không chạy riêng A-09; chưa kiểm tra tay/playtest buff stacking.
 - Handoff chi tiết và queue kiểm thử nằm ở `daily/day13/handoff.md`; `TRACEABILITY.md` chưa sửa do là tài liệu dùng chung cần duyệt.
 
 ### S6/S7 – trạng thái PR (30/10/2026)
@@ -82,21 +82,21 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 |---|---|---|---|---|
 | A-08 | `feature/S06_A08` | #38 | `main` | ☑ merged `main` (`623c820`) |
 | A-09 | `feature/S06_A09` | #39 | `feature/S06_A08` | ☑ merged vào A-08 (`55feec2`) |
-| A-08 + A-09 | `feature/S06_A08` | #46 | `main` | ◐ open, `MERGEABLE/CLEAN` |
-| A-10 | `feature/S06_A10` | #40 | `main` | ◐ open, Ready, `CLEAN` |
-| A-11 | `feature/S07_A11` | #41 | `feature/S06_A10` | ◐ open, Ready, `CLEAN` |
-| A-12 | `feature/S07_A12` | #42 | `main` | ◐ open, Ready, `CLEAN` |
-| A-13 | `feature/S07_A13` | #43 | `feature/S07_A12` | ◐ open, Ready, `CLEAN` |
+| A-08 + A-09 | `feature/S06_A08` | #46 | `main` | ☑ merged `main` (`15b8bf2`) |
+| A-10 | `feature/S06_A10` | #40 | `main` | ☑ merged `main` (`d1e653f`) |
+| A-11 | `feature/S07_A11` | #41 | `feature/S06_A10` | ☑ merged `main` (`ce578cd`) |
+| A-12 | `feature/S07_A12` | #42 | `main` | ☑ merged `main` (`277d784`) |
+| A-13 | `feature/S07_A13` | #43 | `feature/S07_A12` | ☑ merged `main` (`d374a6c`) |
 
-- Thứ tự merge đề xuất: **#46 → #40 → #41**, và **#42 → #43**.
+- Các PR code A-08…A-13 đã vào `main`; PR #47 là nhánh validation T-16, vẫn Draft và chưa merge.
 - C còn phải gắn `CommandAura`, `IMeteorAimRaySource`, indicator và các reference vào Player prefab; B nối HUD Nộ/meteor và tutorial bước 3.
-- PR #42 vẫn còn fixture `MeteorTestInputRouter`; fix T-16 `10d804e` chưa được áp.
+- `main` vẫn có fixture `MeteorTestInputRouter` do #42; nhánh T-16 bỏ fixture và PR #47 đang mang bản sửa.
 
-### A-11 – đang triển khai
+### A-11 – code đã merge; còn lắp prefab và kiểm tra
 
-- `feature/S07_A11` thêm `CommandAuraSettings`, `CommandAura` và active-hero accessors/version trong `HeroController`; đã viết PlayMode coverage, chưa chạy theo lựa chọn code-only.
-- Unity MCP standalone validation hiện không có error; heuristic cảnh báo `Update()` cần được rà trong compile cuối. Không có compile/test run.
-- Unity asset/prefab hookup và compile được dời sang T-16. C sở hữu Player prefab cần gắn component + settings; B nghe event `OnHeroEnteredAura(GameObject)` cho tutorial bước 3.
+- PR #41 đã merge `main` (`ce578cd`). `CommandAuraPlayModeTests` có trong suite tổng hợp T-16 sau merge `main`: 717/717 EditMode pass, 154/157 PlayMode (0 fail, 3 skip).
+- `CommandAuraSettings.asset` và test fix hiện ở PR #47; C vẫn sở hữu việc wire component/settings vào Player prefab, B nối event `OnHeroEnteredAura(GameObject)` cho tutorial bước 3.
+- Chưa kiểm tra tay/playtest aura trong trận; suite MCP không bao gồm kiểm tra/chỉnh tay lại prefab.
 - Chi tiết, issue draft và validation queue ở `daily/day15/handoff.md`.
 
 ---
@@ -129,10 +129,10 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 | EditMode `FateBastion.Tests.EditMode` trên `feature/S09_A14` | **Xong:** 299/299 pass, 0 fail, 0 skip (93,5 s) — job `114c9205c6cb4f7bb1c8026d079ce1b6` | Không cần chạy lại | ✅ |
 | EditMode toàn Editor trên `feature/S09_A14` | **Xong:** 1912 test — 1840 pass, 3 fail, 69 skip (751 s). 3 fail đều là `UnitySkills.Tests.Core.*` của package `com.besty.unity-skills`, **không có test `FateBastion.*` nào đỏ** | Không cần chạy lại | — |
 
-## 6. T-07/T-08 / A-08 — đã merge `main`, test tích hợp T-16 là snapshot cũ
+## 6. T-07/T-08 / A-08 — đã merge `main`, snapshot T-16 cũ
 
 - PlayMode cases trong `Assets/_Project/Tests/PlayMode/S6/AttackModulePlayModeTests.cs` hiện bao gồm Melee + multiplier/status, pooled Projectile launch từ Muzzle, AreaAtPoint bounds/flying, Cone geometry, Line/Zone hit bounds, Line origin khi cast delay, Zone Slow refresh không gây lặp sát thương gốc, Buff vào/ra bán kính và cooldown theo scaled delta.
-- T-16 integrated branch có các test S6/A-08 (`AttackModulePlayModeTests`, `HeroControllerPlayModeTests`, `HeroTargetingPlayModeTests` và ba bộ EditMode); lượt test toàn bộ ghi nhận EditMode **675/675 pass** và PlayMode **116/116 pass**, không fail/skip. Job: `cb4aede713514d83b261bbeff260396a` (EditMode, 329.7 s), `87b378136e49444aa9d5c386d4ebc169` (PlayMode, 41.1 s). Đây là snapshot **lịch sử** (thiếu `010c558` và `4e42dc0`) nên không thay thế lượt test trên `main` sau #38.
+- T-16 integrated branch có các test S6/A-08 (`AttackModulePlayModeTests`, `HeroControllerPlayModeTests`, `HeroTargetingPlayModeTests` và ba bộ EditMode); lượt 675/116 với job `cb4aede713514d83b261bbeff260396a` / `87b378136e49444aa9d5c386d4ebc169` là snapshot **lịch sử** (thiếu `010c558` và `4e42dc0`), không phải kết quả mới nhất.
 - `Assets/_Project/Scenes/Sandbox/A_Skills.unity` đã tạo trên A-08 với ground, camera và directional light. Chưa Playtest, chưa wiring để tự khởi tạo hero/enemy; scene này chưa được tính là nghiệm thu tay hoặc demo đầy đủ.
 - PR #38 (`feature/S06_A08`) đã merge vào `main` (`623c820`, 30/10/2026). Snapshot T-16 nêu trên **thiếu** hai commit cuối `010c558` (#33) và `4e42dc0` (#35), nên chỉ là bằng chứng lịch sử; cần chạy lại test trên `main` hiện tại.
 - `hero_phu_thuy_lua_passive` đã nối `status_burn`; `hero_linh_bang_passive` và `hero_nguoi_tuyet_passive` đã nối `status_slow`. Đây là gán tham chiếu thủ công trong Unity, không sửa CSV/importer.
@@ -149,3 +149,11 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Nếu C không đồng ý hoặc muốn bổ sung projectile khác, C chủ động liên hệ A để thay thế/bàn giao, tránh block việc A-08.
 - C có thể review, sửa/thay prefab và phối hợp với A nếu cần; phần draft được ghi nhận cho TVA, không ghi công cho C. Runtime/Sandbox chưa được kiểm tra; validation vẫn chờ sau T-16.
 - `TRACEABILITY.md` ghi chú A-08 và C-09 về người tạo draft và quyền C chỉnh sửa/thay thế. Sau khi TVA xác nhận PR chung đủ 3 người duyệt, quy tắc takeover đã được bổ sung ở `TEAM_ASSIGNMENT.md` mục 5 và đồng bộ trong `CLAUDE.md`.
+
+## 8. T-16 – lượt test sau khi merge `main` (30/10/2026)
+
+- `feature/A_T16_integration` đã merge `origin/main` tại `944a525`; hai assembly được chạy toàn bộ qua Unity MCP trong Unity Editor.
+- EditMode: **717/717 pass**, 0 fail/skip (job `b64e5b6d634f417f842260fc9959be1a`, 171.3 s).
+- PlayMode: **154 pass / 157 total**, 0 fail, 3 skip (job `d6a119afa40a46c48588c34e6e9354ce`, 19.3 s); ba test GC Alloc không hỗ trợ trên WindowsEditor.
+- Aggregate: **871 pass, 0 fail, 3 skip / 874 test cases**. Đây là test tổng hợp cho các A-xx có trong nhánh tích hợp, không phải số test/lượt xác nhận riêng của từng A-xx.
+- Chưa kiểm tra tay hoặc playtest ba màn; lượt PlayMode là tự động, không bao gồm kiểm tra/chỉnh tay lại prefab, asset, scene hay cân bằng. PR #47 vẫn là PR Draft, chưa merge vào `main`.
