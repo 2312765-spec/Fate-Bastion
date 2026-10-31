@@ -34,6 +34,9 @@ namespace FateBastion.Game
         [Tooltip("Summoner's CommandAura (A). Empty = found in the scene; relayed as HeroEnteredAura for the tutorial.")]
         [SerializeField] private CommandAura _commandAura;
 
+        [Tooltip("Spline paths of the map (C's Map_Level<n>). Empty = found in the scene once at load.")]
+        [SerializeField] private LevelPaths _levelPaths;
+
         [Header("Data")]
         [SerializeField] private MatchEconomySettings _economy;
         [SerializeField] private EndlessRewardSettings _endlessRewards;
@@ -180,6 +183,13 @@ namespace FateBastion.Game
             Wallet = new Wallet(Level.startingGold);
             Wallet.ListenToKills();
             _placement.BeginMatch(Deck, Wallet);
+
+            // ASSUMPTION: _GameSystems is a prefab and cannot reference the map, so when the scene has not assigned
+            // _levelPaths it is looked up once here, at load (never during play; CLAUDE.md 5 otherwise forbids it).
+            if (_levelPaths == null) _levelPaths = FindAnyObjectByType<LevelPaths>();
+            LevelPaths paths = _levelPaths;
+            if (paths != null) _enemyManager.SetPaths(paths);
+            else Debug.LogWarning($"{name}: no LevelPaths in the scene (Map_Level<n>); enemies have no path.", this);
 
             _waveManager.OnWaveFinished += _onWaveFinished;
             _waveManager.Init(Level, IsEndless && _catalog != null ? _catalog.EndlessSettings : null);
@@ -366,6 +376,7 @@ namespace FateBastion.Game
 
         private void SubscribeAura()
         {
+            // ASSUMPTION: same as _levelPaths – the Summoner lives in the scene, so a missing reference is looked up once.
             if (_commandAura == null) _commandAura = FindAnyObjectByType<CommandAura>();
             if (_commandAura != null) _commandAura.OnHeroEnteredAura += RelayHeroEnteredAura;
         }
