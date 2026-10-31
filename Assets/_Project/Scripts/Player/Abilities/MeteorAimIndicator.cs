@@ -24,7 +24,9 @@ namespace FateBastion.Player
         [SerializeField] private Renderer _blastPreview;
         [SerializeField] private Renderer _impactMarker;
 
-        private readonly MaterialPropertyBlock _colorProperties = new MaterialPropertyBlock();
+        // Created in Awake: Unity forbids MaterialPropertyBlock in a field initializer (CreateImpl exception, field stays null).
+        // Takeover fix by C (TEAM_ASSIGNMENT 5.3), draft until A reviews.
+        private MaterialPropertyBlock _colorProperties;
         private MeteorAbility _ability;
         private MeteorDamageApplier _damageApplier;
         private IMeteorAimRaySource _aimRaySource;
@@ -38,6 +40,7 @@ namespace FateBastion.Player
 
         private void Awake()
         {
+            _colorProperties = new MaterialPropertyBlock();
             if (!TryInitialize()) enabled = false;
         }
 

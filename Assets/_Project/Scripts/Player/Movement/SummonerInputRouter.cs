@@ -3,15 +3,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using FateBastion.Core;
+using FateBastion.Heroes;
 
 namespace FateBastion.Player
 {
     /// <summary>
     /// The real InputRouter (S3): reads FateBastion.inputactions, keeps exactly one action map enabled and
     /// republishes input as InputRouter events. Esc / right tap go through CancelStack (TEAM_ASSIGNMENT 3.1 #6).
+    /// Also the pointer source for meteor aiming (S7) and hero placement (S4), so nothing else reads the mouse.
     /// </summary>
+    // Awake before every gameplay script that reads InputRouter.Instance in its own Awake (MeteorAimIndicator,
+    // PlacementSystem, CameraRig at -100) when they share a prefab or scene; still after GameManager (-1000).
+    [DefaultExecutionOrder(-900)]
     [DisallowMultipleComponent]
-    public class SummonerInputRouter : InputRouter
+    public class SummonerInputRouter : InputRouter, IMeteorAimRaySource, IPointerSource
     {
         // Spec S3: a right click is a cancel tap only if the mouse moved less than this while pressed.
         // The 0.2 s limit is the Tap interaction's duration in the .inputactions asset.
@@ -22,6 +27,9 @@ namespace FateBastion.Player
         [Tooltip("Editor only. Clicking any other Editor window also loses focus, so Alt-Tab pause is off in the Editor " +
                  "unless ticked here. Builds always pause on focus loss.")]
         [SerializeField] private bool _pauseOnFocusLostInEditor;
+
+        [Tooltip("Camera for the meteor aim ray (Main Camera in Player.prefab). Empty = Camera.main, looked up once in Awake.")]
+        [SerializeField] private Camera _pointerCamera;
 
         private readonly InputActionMap[] _maps = new InputActionMap[2];
         private readonly InputAction[] _deckActions = new InputAction[5];
@@ -63,6 +71,44 @@ namespace FateBastion.Player
             {
                 Initialize(_actions);
             }
+
+            if (_pointerCamera == null)
+            {
+                _pointerCamera = Camera.main;
+                if (_pointerCamera != null)
+                {
+                    UnityEngine.Debug.LogWarning($"{nameof(SummonerInputRouter)} on '{name}': {nameof(_pointerCamera)} is not assigned; using Camera.main.", this);
+                }
+            }
+        }
+
+        /// <summary>Tests and scene setup: the camera used for <see cref="TryGetAimRay"/>.</summary>
+        public void SetPointerCamera(Camera pointerCamera) => _pointerCamera = pointerCamera;
+
+        /// <summary>
+        /// Ray from the camera through the mouse (S7). False while the UI map is active, the pointer is over UI,
+        /// or there is no mouse / camera. Call from Update or an InputRouter event, not from inside an input callback
+        /// (EventSystem cannot be queried there).
+        /// </summary>
+        public bool TryGetAimRay(out Ray ray)
+        {
+            bool hasPointer = TryGetPointerPosition(out Vector2 position);
+            return PointerRay.TryBuild(_initialized && ActiveMap == ActionMapId.Summoner, hasPointer, position,
+                _pointerCamera, hasPointer && IsPointerOverUi(), out ray);
+        }
+
+        /// <summary>Mouse position in screen pixels for PlacementSystem (S4); false when no mouse is connected.</summary>
+        public bool TryGetPointerPosition(out Vector2 screenPosition)
+        {
+            Mouse mouse = Mouse.current;
+            if (mouse == null)
+            {
+                screenPosition = default;
+                return false;
+            }
+
+            screenPosition = mouse.position.ReadValue();
+            return true;
         }
 
         private void Start()
