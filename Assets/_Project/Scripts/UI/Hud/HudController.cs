@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using PrimeTween;
 using TMPro;
 using UnityEngine;
@@ -23,10 +24,13 @@ namespace FateBastion.UI
     {
         private const float ToastSeconds = 1.6f;
 
-        [Tooltip("Optional: opens the settings screen from the HUD button. Empty = found in the scene.")]
+        [Tooltip("MatchMenus_Canvas of the scene: the HUD settings button opens its settings screen. Empty = the button only pauses.")]
         [SerializeField] private MatchMenusController _menus;
 
         private readonly List<DeckSlotView> _slots = new List<DeckSlotView>(MatchDeck.Size);
+        // Reused for the gold line, which changes on every kill.
+        private readonly StringBuilder _goldBuilder = new StringBuilder(24);
+        private int _shownGold = int.MinValue;
         private GameManager _game;
         private PlacementSystem _placement;
         private Wallet _wallet;
@@ -96,7 +100,8 @@ namespace FateBastion.UI
             _placement = _game.Placement;
             _wallet = _game.Wallet;
             _deck = _game.Deck;
-            if (_menus == null) _menus = FindAnyObjectByType<MatchMenusController>();
+            if (_menus == null)
+                Debug.LogWarning($"{name}: MatchMenusController is not assigned; the settings button will only pause.", this);
 
             _heroPanel?.Bind(_placement);
             SetupSlots();
@@ -117,6 +122,8 @@ namespace FateBastion.UI
         private void Update()
         {
             // Countdown of Preparing / Resting: the text changes once a second, never every frame.
+            // ASSUMPTION: reading MatchFlow.TimeLeft here is the one exception to "UI only listens to events" (S10): the
+            // flow has no per-second event, and polling a float allocates nothing between the once-a-second text updates.
             MatchFlow flow = _game != null ? _game.Flow : null;
             if (flow == null || !flow.CanSkip) return;
 
@@ -277,7 +284,13 @@ namespace FateBastion.UI
 
         private void HandleGold(int gold)
         {
-            SetText(_goldText, HudFormat.Gold(gold));
+            if (_goldText != null && gold != _shownGold)
+            {
+                _shownGold = gold;
+                _goldBuilder.Clear();
+                _goldText.SetText(HudFormat.AppendGold(_goldBuilder, gold));
+            }
+
             RefreshSlots();
             RefreshHeroPanel();
         }

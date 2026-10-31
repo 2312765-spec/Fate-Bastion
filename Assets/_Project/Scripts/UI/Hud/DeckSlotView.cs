@@ -21,6 +21,8 @@ namespace FateBastion.UI
         private readonly Transform _selected;
         private readonly CanvasGroup _group;
         private bool _available = true;
+        private int _shownPlaced = -1;
+        private int _shownMax = -1;
 
         public DeckSlotView(Transform root)
         {
@@ -55,9 +57,13 @@ namespace FateBastion.UI
             }
         }
 
+        /// <summary>Called on every gold change, so the text is only rebuilt when the numbers change (no GC, no mesh rebuild).</summary>
         public void SetCount(int placed, int max)
         {
-            if (_count != null) _count.text = $"{placed}/{max}";
+            if (_count == null || (placed == _shownPlaced && max == _shownMax)) return;
+            _shownPlaced = placed;
+            _shownMax = max;
+            _count.SetText("{0}/{1}", placed, max);
         }
 
         public void SetAvailable(bool available)
