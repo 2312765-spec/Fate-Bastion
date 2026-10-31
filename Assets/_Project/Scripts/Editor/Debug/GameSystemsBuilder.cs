@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using FateBastion.Audio;
 using FateBastion.Editor.Import;
 using FateBastion.Enemies;
 using FateBastion.Game;
@@ -157,7 +158,7 @@ namespace FateBastion.Editor.DebugTools
 
                 var hud = (GameObject)PrefabUtility.InstantiatePrefab(hudPrefab, preview);
                 hud.transform.SetParent(root.transform, false);
-                hud.AddComponent<HudController>();
+                var hudController = hud.AddComponent<HudController>();
                 hud.AddComponent<TutorialController>();
 
                 var menus = (GameObject)PrefabUtility.InstantiatePrefab(menusPrefab, preview);
@@ -169,7 +170,9 @@ namespace FateBastion.Editor.DebugTools
                 AddConfirmDialog(m);
                 var manager = menus.AddComponent<UIManager>();
                 manager.Configure(null, false); // In a match GameManager switches the action maps.
-                menus.AddComponent<MatchMenusController>();
+                var menusController = menus.AddComponent<MatchMenusController>();
+                // Both live in _UIRoot, so the HUD settings button gets its screen without a scene lookup.
+                Set(hudController, "_menus", menusController);
 
                 PrefabUtility.SaveAsPrefabAsset(root, UiRootPath);
                 return true;
@@ -214,7 +217,8 @@ namespace FateBastion.Editor.DebugTools
             var debug = new GameObject("DebugPanel (F1)").AddComponent<DebugPanel>();
             Set(debug, "_heroCatalog", Load<HeroCatalog>(MatchAssetsBuilder.HeroCatalogPath));
 
-            AddAudio(scene);
+            // C-13 plays the lobby track here; the _Audio prefab itself starts with no music.
+            AddAudio(scene, MusicTrack.Lobby);
             Save(scene, LobbyScenePath);
         }
 
@@ -306,10 +310,23 @@ namespace FateBastion.Editor.DebugTools
             Set(router, "_actions", AssetDatabase.LoadMainAssetAtPath(InputActionsPath));
         }
 
-        private static void AddAudio(Scene scene)
+        private static void AddAudio(Scene scene, MusicTrack startTrack)
         {
             var audio = AssetDatabase.LoadAssetAtPath<GameObject>(AudioPath);
-            if (audio != null) PrefabUtility.InstantiatePrefab(audio, scene);
+            if (audio == null) return;
+
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(audio, scene);
+            var music = instance.GetComponentInChildren<MusicPlayer>(true);
+            if (music == null)
+            {
+                Debug.LogError("[B Systems] _Audio has no MusicPlayer; the scene starts without music.");
+                return;
+            }
+
+            // Scene override on C's prefab instance, the prefab asset is not modified.
+            var data = new SerializedObject(music);
+            data.FindProperty("_startTrack").intValue = (int)startTrack;
+            data.ApplyModifiedPropertiesWithoutUndo();
         }
 
         private static void Save(Scene scene, string path)
