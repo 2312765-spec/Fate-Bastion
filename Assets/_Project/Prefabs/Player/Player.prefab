@@ -542,6 +542,7 @@ MonoBehaviour:
   _rangeIndicator: {fileID: 313851340157171085}
   _blastPreview: {fileID: 1702820923418068938}
   _impactMarker: {fileID: 2938638036945772507}
+  _fallFxPrefab: {fileID: 5952902797514449387, guid: 19eee93f0d7ae3b47a942fd11237d012, type: 3}
 --- !u!114 &8943597808095550867
 MonoBehaviour:
   m_ObjectHideFlags: 0
