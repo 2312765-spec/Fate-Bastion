@@ -16,7 +16,7 @@
 
 ## Tài nguyên và nối scene còn chờ
 
-Các prefab theo Issue #56 hiện đã có trong branch PR #59 và được đưa vào parent của PR #57:
+Các prefab theo Issue #56 hiện đã có trong PR #59 và được đưa vào PR #57. Stack GitHub hiện là #60: `main <- PR #59 <- PR #57`.
 
 - `FX_Skill_Area_Fire`, `FX_Skill_Area_Lightning`, `FX_Skill_Area_Ice`, `FX_Skill_Cone_Fire`, `FX_Ult_DragonLine`, `FX_Skill_FrostZone`
 - `FX_Status_Burn`, `FX_Status_Slow`
