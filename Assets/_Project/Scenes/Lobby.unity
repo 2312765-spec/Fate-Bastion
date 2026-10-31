@@ -119,134 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &194144089
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 194144091}
-  - component: {fileID: 194144090}
-  - component: {fileID: 194144092}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &194144090
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194144089}
-  m_Enabled: 1
-  serializedVersion: 12
-  m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize2D: {x: 0.5, y: 0.5}
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
---- !u!4 &194144091
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194144089}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &194144092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194144089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_CustomShadowLayers: 0
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
-  m_RenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ShadowRenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_Version: 4
-  m_LightLayerMask: 1
-  m_ShadowLayerMask: 1
-  m_RenderingLayers: 1
-  m_ShadowRenderingLayers: 1
---- !u!1001 &911579638
+--- !u!1001 &53841351
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -258,21 +131,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: _Audio
       objectReference: {fileID: 0}
-    - target: {fileID: 7760941618239022540, guid: 28a4e9448f060d34281cf3b42d772f28, type: 3}
-      propertyPath: _startTrack
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9140811495263205206, guid: 28a4e9448f060d34281cf3b42d772f28, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00009
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9140811495263205206, guid: 28a4e9448f060d34281cf3b42d772f28, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1736.2308
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9140811495263205206, guid: 28a4e9448f060d34281cf3b42d772f28, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3640.5913
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9140811495263205206, guid: 28a4e9448f060d34281cf3b42d772f28, type: 3}
       propertyPath: m_LocalRotation.w
@@ -307,7 +176,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28a4e9448f060d34281cf3b42d772f28, type: 3}
---- !u!1 &1378069459
+--- !u!1 &107602188
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,9 +184,55 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1378069462}
-  - component: {fileID: 1378069461}
-  - component: {fileID: 1378069460}
+  - component: {fileID: 107602190}
+  - component: {fileID: 107602189}
+  m_Layer: 0
+  m_Name: DebugPanel (F1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &107602189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107602188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e02425d71c24498a87b6c8b3d0a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.DebugTools.DebugPanel
+  _heroCatalog: {fileID: 11400000, guid: 5773d97a39ca16b4e8c5a3956ea87cf7, type: 2}
+  _visible: 0
+  _showCornerButton: 1
+--- !u!4 &107602190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107602188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &964826637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 964826639}
+  - component: {fileID: 964826638}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -325,25 +240,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1378069460
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378069459}
-  m_Enabled: 1
---- !u!20 &1378069461
+--- !u!20 &964826638
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378069459}
+  m_GameObject: {fileID: 964826637}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.101960786, g: 0.07058824, b: 0.050980393, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -369,7 +276,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -384,25 +291,576 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &1378069462
+--- !u!4 &964826639
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378069459}
+  m_GameObject: {fileID: 964826637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1196115013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5bd4b89a2a2d64fae280b1905b45d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.MainMenuScreen
+  _isOverlay: 0
+  _closeOnCancel: 1
+  _fadeDuration: 0.2
+  _transition: 1
+  _content: {fileID: 0}
+  _motionDuration: 0.34
+  _slideDistance: 90
+--- !u!1 &1217328896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217328899}
+  - component: {fileID: 1217328898}
+  - component: {fileID: 1217328897}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1217328897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217328896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
+--- !u!114 &1217328898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217328896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1217328899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217328896}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373232688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a7502f48e005b49b33b9caf7ad1b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.SettingsScreen
+  _isOverlay: 1
+  _closeOnCancel: 1
+  _fadeDuration: 0.2
+  _transition: 2
+  _content: {fileID: 1603652899}
+  _motionDuration: 0.36
+  _slideDistance: 90
+--- !u!1001 &1603652889
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4787880303991623441, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_Name
+      value: Lobby_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021956236445752605, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4787880303991623441, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1890251185}
+    - targetCorrespondingSourceObject: {fileID: 4787880303991623441, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1890251184}
+    - targetCorrespondingSourceObject: {fileID: 1838095540749700543, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1196115013}
+    - targetCorrespondingSourceObject: {fileID: 1625554570478062139, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1603652910}
+    - targetCorrespondingSourceObject: {fileID: 5943866122108311046, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1603652909}
+    - targetCorrespondingSourceObject: {fileID: 3461767323510635734, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1603652908}
+    - targetCorrespondingSourceObject: {fileID: 3461767323510635734, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1603652907}
+    - targetCorrespondingSourceObject: {fileID: 3838039728894387847, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1603652906}
+    - targetCorrespondingSourceObject: {fileID: 6341709926603152656, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1373232688}
+    - targetCorrespondingSourceObject: {fileID: 4697007216584632429, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2026016091}
+  m_SourcePrefab: {fileID: 100100000, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+--- !u!1 &1603652890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4787880303991623441, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1603652891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1838095540749700543, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1603652892 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8673503964889777339, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1603652893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 796983341087076360, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1603652894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1660025002011918443, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1603652895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7208962252164837790, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
+--- !u!114 &1603652896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6310951466073646354, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &1603652897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8826748681015149207, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1603652898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4697007216584632429, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1603652899 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7730214566473807712, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1603652900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6341709926603152656, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1603652901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3838039728894387847, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1603652902 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8204003759681640900, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1603652903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3461767323510635734, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1603652904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5943866122108311046, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1603652905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1625554570478062139, guid: d74c4f21a9180124f983df24057b08ad, type: 3}
+  m_PrefabInstance: {fileID: 1603652889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1603652906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e987373886820542bfdfdf5fc09eb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.CollectionScreen
+  _isOverlay: 0
+  _closeOnCancel: 1
+  _fadeDuration: 0.2
+  _transition: 1
+  _content: {fileID: 0}
+  _motionDuration: 0.34
+  _slideDistance: 90
+--- !u!114 &1603652907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c56287f1445a3a4cafe5f8ce11046ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.GachaResultScreen
+  _isOverlay: 1
+  _closeOnCancel: 1
+  _fadeDuration: 0.2
+  _transition: 2
+  _content: {fileID: 1603652902}
+  _motionDuration: 0.36
+  _slideDistance: 90
+  _firstDelay: 0.2
+  _step: 0.09
+  _flipDuration: 0.35
+--- !u!225 &1603652908
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652903}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1603652909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c4d671ca1f51043aead113c1947a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.GachaScreen
+  _isOverlay: 0
+  _closeOnCancel: 1
+  _fadeDuration: 0.2
+  _transition: 1
+  _content: {fileID: 0}
+  _motionDuration: 0.34
+  _slideDistance: 90
+  _result: {fileID: 0}
+--- !u!114 &1603652910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f3bf2d041087343a621140d41c4056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.LevelSelectScreen
+  _isOverlay: 0
+  _closeOnCancel: 1
+  _fadeDuration: 0.2
+  _transition: 1
+  _content: {fileID: 0}
+  _motionDuration: 0.34
+  _slideDistance: 90
+--- !u!1 &1744438669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1744438671}
+  - component: {fileID: 1744438670}
+  m_Layer: 0
+  m_Name: InputRouter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1744438670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744438669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d68829abdac2b408b3d19e227d4452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Player::FateBastion.Player.SummonerInputRouter
+  _actions: {fileID: -944628639613478452, guid: a4a16e1595a9d0048b073de6213170c8, type: 3}
+  _pauseOnFocusLostInEditor: 0
+--- !u!4 &1744438671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744438669}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1890251184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51dee6cb7e3558a48a8eb54bc37751e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.LobbyController
+  _gachaTable: {fileID: 11400000, guid: 838103dfc8593d846930b3039ed10596, type: 2}
+  _starterSettings: {fileID: 11400000, guid: a2949290a0f198b4ead1b3a85ef86306, type: 2}
+  _heroCatalog: {fileID: 11400000, guid: 5773d97a39ca16b4e8c5a3956ea87cf7, type: 2}
+  _matchCatalog: {fileID: 11400000, guid: a2df65392a6cc004680d07726f9aa3b6, type: 2}
+  _confirm: {fileID: 0}
+--- !u!114 &1890251185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fa016b1b1bf0a40b22c5bf6ad71b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.UIManager
+  _rootScreen: {fileID: 1196115013}
+  _enableUiActionMapOnStart: 1
+--- !u!114 &2026016091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603652898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447b87caa0bfde7448d6bfb236616daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.ConfirmDialog
+  _isOverlay: 1
+  _closeOnCancel: 1
+  _fadeDuration: 0.2
+  _transition: 2
+  _content: {fileID: 1603652892}
+  _motionDuration: 0.36
+  _slideDistance: 90
+  _manager: {fileID: 0}
+  _titleText: {fileID: 1603652897}
+  _messageText: {fileID: 1603652896}
+  _confirmButton: {fileID: 1603652893}
+  _cancelButton: {fileID: 1603652894}
+  _dontAskToggle: {fileID: 1603652895}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1378069462}
-  - {fileID: 194144091}
-  - {fileID: 911579638}
+  - {fileID: 964826639}
+  - {fileID: 1217328899}
+  - {fileID: 1744438671}
+  - {fileID: 1603652889}
+  - {fileID: 107602190}
+  - {fileID: 53841351}

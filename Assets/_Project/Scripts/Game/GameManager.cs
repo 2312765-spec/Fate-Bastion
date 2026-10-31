@@ -5,6 +5,7 @@ using FateBastion.Core;
 using FateBastion.Enemies;
 using FateBastion.Heroes;
 using FateBastion.Meta;
+using FateBastion.Player;
 
 namespace FateBastion.Game
 {
@@ -29,6 +30,9 @@ namespace FateBastion.Game
         [SerializeField] private HeroPool _heroPool;
         [SerializeField] private GhostPreview _ghostPreview;
         [SerializeField] private TimeController _timeController;
+
+        [Tooltip("Summoner's CommandAura (A). Empty = found in the scene; relayed as HeroEnteredAura for the tutorial.")]
+        [SerializeField] private CommandAura _commandAura;
 
         [Header("Data")]
         [SerializeField] private MatchEconomySettings _economy;
@@ -66,6 +70,12 @@ namespace FateBastion.Game
         /// with no listener the skip happens at once.
         /// </summary>
         public event Action SkipConfirmRequested;
+
+        /// <summary>
+        /// Relay of CommandAura.OnHeroEnteredAura (TEAM_ASSIGNMENT 3.1 #10) for UI listeners such as the level-1
+        /// tutorial (B-17), whose assembly does not reference Player.
+        /// </summary>
+        public event Action<GameObject> HeroEnteredAura;
 
         public MatchFlow Flow { get; private set; }
         public Wallet Wallet { get; private set; }
@@ -116,12 +126,14 @@ namespace FateBastion.Game
         private void Start()
         {
             SubscribeInput();
+            SubscribeAura();
             BeginLoading();
         }
 
         private void OnDestroy()
         {
             UnsubscribeInput();
+            if (_commandAura != null) _commandAura.OnHeroEnteredAura -= RelayHeroEnteredAura;
             if (_waveManager != null) _waveManager.OnWaveFinished -= _onWaveFinished;
             if (_castle != null) _castle.Destroyed -= _onCastleDestroyed;
             Wallet?.StopListeningToKills();
@@ -168,6 +180,11 @@ namespace FateBastion.Game
             Wallet = new Wallet(Level.startingGold);
             Wallet.ListenToKills();
             _placement.BeginMatch(Deck, Wallet);
+
+            // The map (C) carries the spline paths; _GameSystems is a prefab and cannot reference it, so look it up.
+            LevelPaths paths = FindAnyObjectByType<LevelPaths>();
+            if (paths != null) _enemyManager.SetPaths(paths);
+            else Debug.LogWarning($"{name}: no LevelPaths in the scene (Map_Level<n>); enemies have no path.", this);
 
             _waveManager.OnWaveFinished += _onWaveFinished;
             _waveManager.Init(Level, IsEndless && _catalog != null ? _catalog.EndlessSettings : null);
@@ -351,6 +368,14 @@ namespace FateBastion.Game
         }
 
         // ---------- Input ----------
+
+        private void SubscribeAura()
+        {
+            if (_commandAura == null) _commandAura = FindAnyObjectByType<CommandAura>();
+            if (_commandAura != null) _commandAura.OnHeroEnteredAura += RelayHeroEnteredAura;
+        }
+
+        private void RelayHeroEnteredAura(GameObject hero) => HeroEnteredAura?.Invoke(hero);
 
         private void SubscribeInput()
         {

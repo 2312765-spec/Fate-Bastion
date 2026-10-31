@@ -1,0 +1,325 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2960003427897726811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503936480386823836}
+  - component: {fileID: 2276297319449294460}
+  - component: {fileID: 8954452118807131648}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503936480386823836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960003427897726811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4722926618221260293}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2276297319449294460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960003427897726811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92e5b5b939dc9b41922382ea397f5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.EnemyManager
+  _settings: {fileID: 11400000, guid: 056c44c4e0a1d954f9b8b64d4e6ed5c2, type: 2}
+  _combatSettings: {fileID: 11400000, guid: 99ac3ee879d80414bb4f7876d8ca0fa1, type: 2}
+  _bossSummonSettings: {fileID: 11400000, guid: b01d5a677a3904149842340072477a18, type: 2}
+  _levelPaths: {fileID: 0}
+--- !u!114 &8954452118807131648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960003427897726811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8734e5abe762cf44ae0420326704bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Enemies::FateBastion.Enemies.WaveManager
+  _enemyManager: {fileID: 2276297319449294460}
+--- !u!1 &3858161758132502754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513957249645312670}
+  - component: {fileID: 6646718700811555588}
+  m_Layer: 0
+  m_Name: DebugPanel (F1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513957249645312670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3858161758132502754}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4722926618221260293}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6646718700811555588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3858161758132502754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e02425d71c24498a87b6c8b3d0a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.DebugTools.DebugPanel
+  _heroCatalog: {fileID: 11400000, guid: 5773d97a39ca16b4e8c5a3956ea87cf7, type: 2}
+  _visible: 0
+  _showCornerButton: 1
+--- !u!1 &4344043211789252474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3386698227100525425}
+  - component: {fileID: 7411700320765694826}
+  - component: {fileID: 1228739800730549037}
+  - component: {fileID: 1494212363318918084}
+  m_Layer: 0
+  m_Name: Placement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3386698227100525425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344043211789252474}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4722926618221260293}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7411700320765694826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344043211789252474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7a547d03d68f34489f1b8880a92913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.HeroPool
+  _fallbackPrefab: {fileID: 9053079202901677469, guid: 340c3ef01ba829048ba9196cce7c0f90, type: 3}
+  _topLevelAuraPrefab: {fileID: 0}
+  _container: {fileID: 0}
+--- !u!114 &1228739800730549037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344043211789252474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c6b8c42eccec94e9b981b5812519c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.GhostPreview
+  _ghostMaterial: {fileID: 0}
+  _ringMaterial: {fileID: 0}
+  _fallbackPrefab: {fileID: 9053079202901677469, guid: 340c3ef01ba829048ba9196cce7c0f90, type: 3}
+  _validColor: {r: 0.35, g: 1, b: 0.45, a: 0.45}
+  _invalidColor: {r: 1, g: 0.3, b: 0.25, a: 0.45}
+  _ringWidth: 0.06
+  _ringLift: 0.05
+--- !u!114 &1494212363318918084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344043211789252474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bedb69828c2f7547b46aae37c2b7144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.PlacementSystem
+  _rules: {fileID: 11400000, guid: 512c2578677233149a1f2c42b9bb46a6, type: 2}
+  _levelTable: {fileID: 11400000, guid: 9eefe8fd32b4eee4fbb7d3e602f27087, type: 2}
+  _pool: {fileID: 7411700320765694826}
+  _ghost: {fileID: 1228739800730549037}
+  _camera: {fileID: 0}
+  _pointerSource: {fileID: 0}
+--- !u!1 &4957398816762525702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241060417085129585}
+  - component: {fileID: 3752251807469412847}
+  m_Layer: 0
+  m_Name: Castle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &241060417085129585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957398816762525702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4722926618221260293}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3752251807469412847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957398816762525702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cef0a12bf5a5e4081d54c7c2f9005b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Game::FateBastion.Game.Castle
+  _enemyManager: {fileID: 2276297319449294460}
+--- !u!1 &6071531753545537146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4722926618221260293}
+  - component: {fileID: 3754441060289057151}
+  - component: {fileID: 4079556485347790482}
+  m_Layer: 0
+  m_Name: _GameSystems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4722926618221260293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071531753545537146}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 503936480386823836}
+  - {fileID: 241060417085129585}
+  - {fileID: 3386698227100525425}
+  - {fileID: 513957249645312670}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3754441060289057151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071531753545537146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4674339317395748ad3b106488817e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Game::FateBastion.Game.TimeController
+--- !u!114 &4079556485347790482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071531753545537146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea3679f19d1c544db0e11a271cacd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FateBastion.Game::FateBastion.Game.GameManager
+  _waveManager: {fileID: 8954452118807131648}
+  _enemyManager: {fileID: 2276297319449294460}
+  _castle: {fileID: 3752251807469412847}
+  _placement: {fileID: 1494212363318918084}
+  _heroPool: {fileID: 7411700320765694826}
+  _ghostPreview: {fileID: 1228739800730549037}
+  _timeController: {fileID: 3754441060289057151}
+  _commandAura: {fileID: 0}
+  _economy: {fileID: 11400000, guid: f705d569102358c439574a251d25759d, type: 2}
+  _endlessRewards: {fileID: 11400000, guid: 222417619d14eeb47aea530f90faf9fa, type: 2}
+  _catalog: {fileID: 11400000, guid: a2df65392a6cc004680d07726f9aa3b6, type: 2}
+  _heroCatalog: {fileID: 11400000, guid: 5773d97a39ca16b4e8c5a3956ea87cf7, type: 2}
+  _gachaTable: {fileID: 11400000, guid: 838103dfc8593d846930b3039ed10596, type: 2}
+  _starterSettings: {fileID: 11400000, guid: a2949290a0f198b4ead1b3a85ef86306, type: 2}
+  _defaultLevel: {fileID: 11400000, guid: 9bfdcb9bfd2f61a45a9dda17bf0fb784, type: 2}
+  _defaultEndless: 0
+  _defaultDeck:
+  - {fileID: 11400000, guid: 918323c70147ee048a370efcb46a6636, type: 2}
+  - {fileID: 11400000, guid: f701fd6e80e051048bc29d7e65fcfec4, type: 2}
+  - {fileID: 11400000, guid: ebd86251a66cbdd41be879d5d1eb128d, type: 2}
+  - {fileID: 11400000, guid: 2fbac075510b0694ca60c3eb9b6d98bf, type: 2}
+  - {fileID: 11400000, guid: b3a8dda99cfa720418c46e2439075441, type: 2}
