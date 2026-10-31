@@ -49,11 +49,11 @@
 
 | Yêu cầu | Việc thực hiện | Trạng thái |
 |---|---|---|
-| R01 | B-08, B-09 | ☐ |
-| R02 | B-10 | ☐ |
-| R03 | B-11, B-12 | ☐ |
-| R04 | B-01, B-02, B-03 | ☐ |
-| R05 | B-04, B-05 | ☐ |
+| R01 | B-08, B-09 | ☑ |
+| R02 | B-10 | ☑ |
+| R03 | B-11, B-12 | ☑ |
+| R04 | B-01, B-02, B-03 | ☑ |
+| R05 | B-04, B-05 | ☑ |
 | R06 | A-01 | ☑ |
 | R07 | A-02 | ☑ |
 | R08 | A-07, A-08, A-09 | ☐ |
@@ -61,18 +61,18 @@
 | R10 | A-04, A-05 | ☐ |
 | R11 | A-04, A-06 | ☐ |
 | R12 | A-06, B-07 | ☐ |
-| R13 | B-06 | ☐ |
-| R14 | B-03, B-06 | ☐ |
-| R15 | B-07, B-11 | ☐ |
+| R13 | B-06 | ☑ |
+| R14 | B-03, B-06 | ☑ |
+| R15 | B-07, B-11 | ☑ |
 | R16 | C-03, C-04 | ☐ |
 | R17 | A-11 | ☐ |
 | R18 | A-12, A-13 | ☐ |
 | R19 | C-05 | ☐ |
-| R20 | B-06 | ☐ |
+| R20 | B-06 | ☑ |
 | R21 | B-13, B-14, C-11, C-14 | ☐ |
-| R22 | B-15, C-12 | ☐ |
+| R22 | B-15, C-12 | ☑ |
 | R23 | B-17 | ☐ |
-| R24 | B-16 | ☐ |
+| R24 | B-16 | ☑ |
 | R25 | A-14, A-15 | ☐ |
 | R26 | C-13, C-14, C-18 | ☑ |
 | R27 | C-14, C-15, mọi PR (mục 6) | ☐ |
@@ -143,22 +143,22 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 
 | ID | Ngày | Việc | Spec | Vùng file | Kiểm tra | Xong | Ghi chú |
 |---|---|---|---|---|---|---|---|
-| B-01 | 3 | `PlacementRules`, kiểm tra hợp lệ theo thứ tự 6 bước (class thuần) | S4 | `Heroes/Placement/` | EM: giới hạn số con, quân số 15, thiếu Vàng | ☐ | |
-| B-02 | 4–5 | `PlacementSystem`, `GhostPreview`; giữ chế độ đặt nếu còn đặt được; Q hủy xem trước · `HeroPool` (3.1 #3), `CancelStack` (#6), nghe `InputRouter.Meteor` để thoát (#7) | S4 | `Heroes/Placement/` | PM: không đặt trên đường, nước, vách, chồng tướng | ☐ | |
-| B-03 | 4 | `Wallet` + `OnGoldChanged` · nghe `OnEnemyKilled` cộng `GoldReward` (3.1 #8) | S4 | `Heroes/Placement/` | EM | ☐ | |
-| B-04 | 8 | `HeroLevel`, `HeroLevelTable` 3 cấp, hiệu ứng cấp 3 qua `HeroVisual.AuraAnchor` · gọi `HeroStats.SetLevelMultipliers` (3.1 #4) | S4 | `Heroes/Placement/` | EM: giá và chỉ số khớp bảng | ☐ | |
-| B-05 | 5 | Bán: `floor(goldSpent × 0.5)` | S4 | `Heroes/Placement/` | EM: Epic cấp 2 bán 306 | ☐ | |
-| B-06 | 6–7 | `GameManager` (state machine thuần), `TimeController`, `Castle`, sao, Alt-Tab tạm dừng · gọi `WaveManager` + nghe `OnWaveFinished` (3.1 #2); `Castle` nghe `OnEnemyReachedCastle` (#1); Tạm dừng nghe `PauseRequested` (#6) | S5 | `Game/` | EM: mọi dòng bảng chuyển trạng thái; sao ở 20/15/14/8/7/1 | ☐ | |
-| B-07 | 7, 17 | Ngọc thưởng sau trận, chỉ trả phần sao cao hơn; Vô tận ghi kỷ lục | S5 | `Game/` | EM: lần đầu 2 sao, lần sau 3 sao +50 | ☐ | |
-| B-08 | 15 | `GachaService`: x1, x10 tính trước trong bộ nhớ, bảo đảm Epic+ | S8 | `Meta/Gacha/` | EM: 100.000 lượt lệch ≤ 0.5 điểm % | ☐ | |
-| B-09 | 15 | Pity 25, giữ qua lưu/tải | S8 | `Meta/Gacha/` | EM | ☐ | |
-| B-10 | 16 | `CollectionService`: ghép 3 bản thừa cùng độ hiếm, không ghép Legendary | S8 | `Meta/Collection/` | EM: không bao giờ về 0 bản | ☐ | |
-| B-11 | 16 | `StarterSettings`: 5 tướng + 1.000 Ngọc, `ownedEver` có sẵn 5 tướng | S8 | `Meta/Collection/` | EM | ☐ | |
-| B-12 | 16 | `DeckService`: 5 tướng khác nhau, kiểm tra trước khi vào trận | S8 | `Meta/Collection/` | EM | ☐ | |
-| B-13 | 9 | `UIManager` (Push/Pop, Esc đóng màn trên cùng), `ConfirmDialog` | S10 | `UI/` | PM | ☐ | |
+| B-01 | 3 | `PlacementRules`, kiểm tra hợp lệ theo thứ tự 6 bước (class thuần) | S4 | `Heroes/Placement/` | EM: giới hạn số con, quân số 15, thiếu Vàng | ☑ | PR #31 · EM `PlacementValidatorTests` |
+| B-02 | 4–5 | `PlacementSystem`, `GhostPreview`; giữ chế độ đặt nếu còn đặt được; Q hủy xem trước · `HeroPool` (3.1 #3), `CancelStack` (#6), nghe `InputRouter.Meteor` để thoát (#7) | S4 | `Heroes/Placement/` | PM: không đặt trên đường, nước, vách, chồng tướng | ☑ | PR #33 · PM `PlacementProbePlayModeTests` (đường, nước, vách đá, chồng tướng) · Sandbox `B_Placement` |
+| B-03 | 4 | `Wallet` + `OnGoldChanged` · nghe `OnEnemyKilled` cộng `GoldReward` (3.1 #8) | S4 | `Heroes/Placement/` | EM | ☑ | PR #31 · EM `WalletTests` |
+| B-04 | 8 | `HeroLevel`, `HeroLevelTable` 3 cấp, hiệu ứng cấp 3 qua `HeroVisual.AuraAnchor` · gọi `HeroStats.SetLevelMultipliers` (3.1 #4) | S4 | `Heroes/Placement/` | EM: giá và chỉ số khớp bảng | ☑ | PR #33 · EM `PlacedHeroTests`, PM `HeroLevelPlayModeTests` (chỉ số cấp 1–3 qua `HeroStats` của A) |
+| B-05 | 5 | Bán: `floor(goldSpent × 0.5)` | S4 | `Heroes/Placement/` | EM: Epic cấp 2 bán 306 | ☑ | PR #31 · EM `HeroEconomyTests` (Epic cấp 2 bán 306) |
+| B-06 | 6–7 | `GameManager` (state machine thuần), `TimeController`, `Castle`, sao, Alt-Tab tạm dừng · gọi `WaveManager` + nghe `OnWaveFinished` (3.1 #2); `Castle` nghe `OnEnemyReachedCastle` (#1); Tạm dừng nghe `PauseRequested` (#6) | S5 | `Game/` | EM: mọi dòng bảng chuyển trạng thái; sao ở 20/15/14/8/7/1 | ☑ | PR #35 · EM `MatchFlowTests` (mọi dòng bảng S5), `MatchSystemsTests` (×2 sau tạm dừng) |
+| B-07 | 7, 17 | Ngọc thưởng sau trận, chỉ trả phần sao cao hơn; Vô tận ghi kỷ lục | S5 | `Game/` | EM: lần đầu 2 sao, lần sau 3 sao +50 | ☑ | PR #32 · EM `StarRatingTests` (20/15/14/8/7/1), `MatchRewardsTests` (2 sao rồi 3 sao +50) |
+| B-08 | 15 | `GachaService`: x1, x10 tính trước trong bộ nhớ, bảo đảm Epic+ | S8 | `Meta/Gacha/` | EM: 100.000 lượt lệch ≤ 0.5 điểm % | ☑ | PR #34 · EM `Tests/EditMode/S8` (`GachaServiceTests`) |
+| B-09 | 15 | Pity 25, giữ qua lưu/tải | S8 | `Meta/Gacha/` | EM | ☑ | PR #34 · EM pity 25, giữ qua `SaveData` |
+| B-10 | 16 | `CollectionService`: ghép 3 bản thừa cùng độ hiếm, không ghép Legendary | S8 | `Meta/Collection/` | EM: không bao giờ về 0 bản | ☑ | PR #34 · EM `CollectionServiceTests` (không về 0 bản) |
+| B-11 | 16 | `StarterSettings`: 5 tướng + 1.000 Ngọc, `ownedEver` có sẵn 5 tướng | S8 | `Meta/Collection/` | EM | ☑ | PR #34 · EM `StarterSaveFactoryTests` |
+| B-12 | 16 | `DeckService`: 5 tướng khác nhau, kiểm tra trước khi vào trận | S8 | `Meta/Collection/` | EM | ☑ | PR #34 · EM `DeckServiceTests` |
+| B-13 | 9 | `UIManager` (Push/Pop, Esc đóng màn trên cùng), `ConfirmDialog` | S10 | `UI/` | PM | ☑ | PR #29 · EM `ScreenStack`, `ConfirmPrompt`; PM `UIManager`, `ConfirmDialog` · Sandbox `B_UI` |
 | B-14 | 9–10, 12 | HUD trận (Canvas tĩnh): thanh trên, 5 ô deck, ô Thiên thạch, bảng tướng – chỉ nhận event · thanh Nộ (3.1 #5); bảng tướng dùng `CancelStack` (#6). Thanh máu, cảnh báo, số sát thương: xem C-14 | S10 | `UI/` | EM: phát event giả, giá trị khớp | ☐ | |
-| B-15 | 13, 18–20 | Script cho màn hình sảnh: Chọn màn, Gacha, Túi & Deck, Kết quả, Cài đặt · ngày 13 màn Kết quả; 18 sảnh; 19 hiệu ứng gacha, xác nhận Ghép; 20 Cài đặt | S10 | `UI/` | Tay | ☐ | |
-| B-16 | 22 | Bảng Debug F1 (`#if UNITY_EDITOR \|\| DEVELOPMENT_BUILD`) | S9, S10 | `UI/Debug/`, `Editor/Debug/` | Tay: không có trong build Release | ☐ | |
+| B-15 | 13, 18–20 | Script cho màn hình sảnh: Chọn màn, Gacha, Túi & Deck, Kết quả, Cài đặt · ngày 13 màn Kết quả; 18 sảnh; 19 hiệu ứng gacha, xác nhận Ghép; 20 Cài đặt | S10 | `UI/` | Tay | ☑ | PR #36 · Tay: Quang 29/10/2026 (`B_UI`: chọn màn, gacha x10, ghép, đổi deck); 31/10/2026 Tạm dừng, Cài đặt, Kết quả trong `B_Match` |
+| B-16 | 22 | Bảng Debug F1 (`#if UNITY_EDITOR \|\| DEVELOPMENT_BUILD`) | S9, S10 | `UI/Debug/`, `Editor/Debug/` | Tay: không có trong build Release | ☑ | PR #37 · EM `DebugCommandsTests`; Tay: Quang 31/10/2026 (F1, Thua ngay). Chưa kiểm bản build Release |
 | B-17 | 11, 17 | Hướng dẫn màn 1: `TutorialController`, 4 bước theo event (đặt tướng `OnHeroPlaced`, nâng cấp `OnHeroUpgraded`, Hào quang, Thiên thạch `OnMeteorExploded`), nút Bỏ qua, chỉ lần đầu. Ngày 11: khung + bước 1–2; ngày 17: bước 3–4 + lưu `tutorialDone` (S9) · bước 3 nghe `CommandAura.OnHeroEnteredAura` (3.1 #10) | S10 | `UI/Tutorial/` | Tay: chơi màn 1 lần đầu và lần hai | ☐ | Chuyển từ A-16 (phiên bản 1.1) |
 
 ---
