@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using FateBastion.Core;
 
@@ -24,6 +25,7 @@ namespace FateBastion.Combat
         private bool _isBoss;
 
         private bool _burnActive;
+        private StatusEffectData _burnSource;
         private float _burnDamagePerSecond;
         private float _burnRemaining;
         private float _burnTickInterval;
@@ -47,6 +49,8 @@ namespace FateBastion.Combat
 
         public bool IsBurning => _burnActive;
         public bool IsSlowed => _slowCount > 0;
+        /// <summary>Raised only when a specific status effect starts or stops on this enemy.</summary>
+        public event Action<StatusEffectData, bool> OnStatusChanged;
 
         /// <summary>Damage type of burn ticks: same as the hit that applied the burn, so resist still applies.</summary>
         public DamageType BurnDamageType { get; private set; }
@@ -62,8 +66,14 @@ namespace FateBastion.Combat
         /// <summary>Call when the enemy is taken from the pool (and returned to it). Clears every effect.</summary>
         public void ResetState(bool isBoss)
         {
+            if (_burnActive && _burnSource != null)
+                OnStatusChanged?.Invoke(_burnSource, false);
+            for (int i = 0; i < _slowCount; i++)
+                if (_slowSources[i] != null) OnStatusChanged?.Invoke(_slowSources[i], false);
+
             _isBoss = isBoss;
             _burnActive = false;
+            _burnSource = null;
             _burnDamagePerSecond = 0f;
             _burnRemaining = 0f;
             _burnTickTimer = 0f;
@@ -113,7 +123,13 @@ namespace FateBastion.Combat
                     burnDamage += _burnDamagePerSecond * _burnTickInterval;
                 }
 
-                if (_burnRemaining <= TimeEpsilon) _burnActive = false;
+                if (_burnRemaining <= TimeEpsilon)
+                {
+                    _burnActive = false;
+                    StatusEffectData source = _burnSource;
+                    _burnSource = null;
+                    if (source != null) OnStatusChanged?.Invoke(source, false);
+                }
             }
 
             if (_slowCount > 0)
@@ -149,11 +165,18 @@ namespace FateBastion.Combat
                 _burnActive = true;
                 _burnTickTimer = 0f;
                 SetBurn(data, damagePerSecond, interval, hitType);
+                OnStatusChanged?.Invoke(data, true);
             }
             else if (data.stackRule == StackRule.StrongestWins && damagePerSecond > _burnDamagePerSecond)
             {
                 // Keep the tick phase: a hero hitting faster than the tick interval must not delay the next tick.
+                StatusEffectData previous = _burnSource;
                 SetBurn(data, damagePerSecond, interval, hitType);
+                if (!ReferenceEquals(previous, data))
+                {
+                    if (previous != null) OnStatusChanged?.Invoke(previous, false);
+                    OnStatusChanged?.Invoke(data, true);
+                }
             }
 
             // Both stack rules restart the duration.
@@ -164,6 +187,7 @@ namespace FateBastion.Combat
         {
             _burnDamagePerSecond = damagePerSecond;
             _burnTickInterval = interval;
+            _burnSource = data;
             BurnDamageType = hitType;
             BurnElement = data.element;
         }
@@ -190,6 +214,14 @@ namespace FateBastion.Combat
                 // ASSUMPTION: all slots full (never in GDD data) -> a stronger slow replaces the weakest one.
                 slot = WeakestSlowSlot();
                 if (value <= _slowValues[slot]) return;
+                StatusEffectData replaced = _slowSources[slot];
+                _slowSources[slot] = data;
+                _slowValues[slot] = value;
+                _slowRemaining[slot] = data.duration;
+                RecalculateSlow();
+                if (replaced != null) OnStatusChanged?.Invoke(replaced, false);
+                OnStatusChanged?.Invoke(data, true);
+                return;
             }
             else
             {
@@ -200,6 +232,7 @@ namespace FateBastion.Combat
             _slowValues[slot] = value;
             _slowRemaining[slot] = data.duration;
             RecalculateSlow();
+            OnStatusChanged?.Invoke(data, true);
         }
 
         private int WeakestSlowSlot()
@@ -214,12 +247,14 @@ namespace FateBastion.Combat
 
         private void RemoveSlowAt(int index)
         {
+            StatusEffectData removed = _slowSources[index];
             int last = _slowCount - 1;
             _slowSources[index] = _slowSources[last];
             _slowValues[index] = _slowValues[last];
             _slowRemaining[index] = _slowRemaining[last];
             _slowSources[last] = null;
             _slowCount = last;
+            if (removed != null) OnStatusChanged?.Invoke(removed, false);
         }
 
         // Different sources add, the total is capped, then a boss takes only part of it (S1).

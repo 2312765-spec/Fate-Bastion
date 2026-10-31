@@ -86,6 +86,18 @@ namespace FateBastion.Heroes
             RefreshTarget();
         }
 
+        /// <summary>Prewarms presentation pools for this hero's skills while HeroPool is creating its load-time copies.</summary>
+        public void PrewarmSkillVfx(SkillData passiveSkill, SkillData ultimateSkill)
+        {
+            if (_skillRunner == null)
+            {
+                Debug.LogError($"{name}: SkillRunner is missing; skill VFX cannot be prewarmed.", this);
+                return;
+            }
+
+            _skillRunner.PrewarmVfx(passiveSkill, ultimateSkill);
+        }
+
         /// <summary>Returns an initialized hero in the active roster without searching the scene.</summary>
         public static HeroController GetActiveHero(int index)
         {

@@ -43,7 +43,6 @@ namespace FateBastion.Heroes
             _table = table;
             if (topLevelAuraPrefab != null) _topLevelAuraPrefab = topLevelAuraPrefab;
 
-            // STUB: thay bằng prefab hào quang cấp 3 của C (Prefabs/FX) khi có; chưa có thì cấp 3 không có hiệu ứng.
             if (_aura == null && _topLevelAuraPrefab != null)
             {
                 HeroVisual visual = GetComponentInChildren<HeroVisual>(true);

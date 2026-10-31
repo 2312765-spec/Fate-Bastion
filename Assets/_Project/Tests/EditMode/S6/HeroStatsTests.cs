@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using FateBastion.Core;
 using FateBastion.Heroes;
+using FateBastion.Skills;
 
 namespace FateBastion.Tests.EditMode.S6
 {
@@ -15,6 +16,7 @@ namespace FateBastion.Tests.EditMode.S6
         private HeroData _hero;
         private HeroData _auraType;
         private HeroData _otherBuffType;
+        private SkillData _skillBuffType;
         private GameObject _heroObject;
         private GameObject _buffSourceA;
         private GameObject _buffSourceB;
@@ -39,6 +41,7 @@ namespace FateBastion.Tests.EditMode.S6
             _hero.range = 9f;
             _auraType = ScriptableObject.CreateInstance<HeroData>();
             _otherBuffType = ScriptableObject.CreateInstance<HeroData>();
+            _skillBuffType = ScriptableObject.CreateInstance<SkillData>();
 
             _heroObject = new GameObject("HeroStatsTest");
             _stats = _heroObject.AddComponent<HeroStats>();
@@ -57,6 +60,7 @@ namespace FateBastion.Tests.EditMode.S6
             UnityEngine.Object.DestroyImmediate(_hero);
             UnityEngine.Object.DestroyImmediate(_auraType);
             UnityEngine.Object.DestroyImmediate(_otherBuffType);
+            UnityEngine.Object.DestroyImmediate(_skillBuffType);
             UnityEngine.Object.DestroyImmediate(_settings);
             UnityEngine.Object.DestroyImmediate(_buffSourceA);
             UnityEngine.Object.DestroyImmediate(_buffSourceB);
@@ -187,6 +191,52 @@ namespace FateBastion.Tests.EditMode.S6
             _stats.SetBuff(_buffSourceB, _auraType, BuffType.Damage, 0.8f);
 
             Assert.AreEqual(31.2f, _stats.Damage, 1e-5f);
+        }
+
+        [Test]
+        public void HasSkillBuff_OnlyReturnsTrueForActiveSkillContributions()
+        {
+            _stats.Initialize(_hero);
+            _stats.SetBuff(_buffSourceA, _hero, BuffType.AttackSpeed, 0.25f);
+            _stats.SetBuff(_buffSourceB, _skillBuffType, BuffType.Damage, 0.3f);
+
+            Assert.IsFalse(_stats.HasSkillBuff(BuffType.AttackSpeed), "Command Aura is not a hero skill buff.");
+            Assert.IsTrue(_stats.HasSkillBuff(BuffType.Damage));
+
+            _stats.RemoveBuff(_buffSourceB);
+
+            Assert.IsFalse(_stats.HasSkillBuff(BuffType.Damage));
+            Assert.IsFalse(_stats.HasSkillBuff(BuffType.None));
+        }
+
+        [Test]
+        public void BuffsChanged_OnlyFiresWhenContributionsActuallyChange()
+        {
+            _stats.Initialize(_hero);
+            int changeCount = 0;
+            _stats.BuffsChanged += () => changeCount++;
+
+            _stats.SetBuff(_buffSourceA, _skillBuffType, BuffType.Damage, 0.3f);
+            _stats.SetBuff(_buffSourceA, _skillBuffType, BuffType.Damage, 0.3f);
+            _stats.SetBuff(_buffSourceA, _skillBuffType, BuffType.Damage, 0.4f);
+            _stats.RemoveBuff(_buffSourceA);
+            _stats.RemoveBuff(_buffSourceA);
+
+            Assert.AreEqual(3, changeCount);
+        }
+
+        [Test]
+        public void Clear_BuffsChanged_RaisesWhenActiveContributionsAreCleared()
+        {
+            _stats.Initialize(_hero);
+            _stats.SetBuff(_buffSourceA, _skillBuffType, BuffType.Damage, 0.3f);
+            int changeCount = 0;
+            _stats.BuffsChanged += () => changeCount++;
+
+            _stats.Clear();
+
+            Assert.AreEqual(1, changeCount);
+            Assert.IsFalse(_stats.HasSkillBuff(BuffType.Damage));
         }
     }
 }
