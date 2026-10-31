@@ -231,15 +231,52 @@ namespace FateBastion.Tests.EditMode.S11
         {
             Create();
 
-            foreach (ParticleSystem system in Load(FxPrefabBuilder.MeteorFallName).GetComponentsInChildren<ParticleSystem>(true))
-            {
-                float startY = system.transform.localPosition.y + system.shape.position.y;
-                float life = system.main.startLifetime.constantMax;
-                float endY = startY + system.velocityOverLifetime.y.constant * life;
-                Assert.AreEqual(FxPrefabBuilder.MeteorFallHeight, startY, 0.01f, system.name);
-                Assert.AreEqual(FxPrefabBuilder.MeteorFallSeconds, life, 0.01f, system.name);
-                Assert.AreEqual(0f, endY, 0.05f, $"{system.name} phải chạm đất đúng lúc nổ.");
-            }
+            // The rock is the root particle; fire, glow and smoke are sub-emitters that follow it.
+            var rock = Load(FxPrefabBuilder.MeteorFallName).GetComponent<ParticleSystem>();
+            float startY = rock.shape.position.y;
+            float life = rock.main.startLifetime.constantMax;
+            float endY = startY + rock.velocityOverLifetime.y.constant * life;
+            Assert.AreEqual(FxPrefabBuilder.MeteorFallHeight, startY, 0.01f);
+            Assert.AreEqual(FxPrefabBuilder.MeteorFallSeconds, life, 0.01f);
+            Assert.AreEqual(0f, endY, 0.05f, "Thiên thạch phải chạm đất đúng lúc nổ.");
+
+            Assert.GreaterOrEqual(rock.subEmitters.subEmittersCount, 2, "Lửa và khói phải bám theo hòn đá.");
+            foreach (ParticleSystem trail in rock.GetComponentsInChildren<ParticleSystem>(true))
+                Assert.LessOrEqual(trail.main.duration, FxPrefabBuilder.MeteorFallSeconds + 0.01f, $"{trail.name} không được kéo dài sau lúc nổ.");
+        }
+
+        [Test]
+        public void Create_MeteorFall_RockIsOutwardFacingMesh()
+        {
+            Create();
+
+            var renderer = Load(FxPrefabBuilder.MeteorFallName).GetComponent<ParticleSystemRenderer>();
+            Assert.AreEqual(ParticleSystemRenderMode.Mesh, renderer.renderMode);
+            Mesh mesh = renderer.mesh;
+            Assert.IsNotNull(mesh);
+
+            // Normals pointing in would make Unity cull the rock's outside faces and the rock would vanish.
+            Vector3[] vertices = mesh.vertices;
+            Vector3[] normals = mesh.normals;
+            for (int i = 0; i < vertices.Length; i++)
+                Assert.Greater(Vector3.Dot(vertices[i], normals[i]), 0f, $"Đỉnh {i}: pháp tuyến hướng vào trong.");
+        }
+
+        [Test]
+        public void RebuildMeteorFall_ExistingPrefab_OverwritesAndKeepsGuid()
+        {
+            Create();
+            string path = FxPrefabBuilder.GetPrefabPath(PrefabFolder, FxPrefabBuilder.MeteorFallName);
+            string guid = AssetDatabase.AssetPathToGUID(path);
+            GameObject root = PrefabUtility.LoadPrefabContents(path);
+            new GameObject(MarkerName).transform.SetParent(root.transform);
+            PrefabUtility.SaveAsPrefabAsset(root, path);
+            PrefabUtility.UnloadPrefabContents(root);
+
+            Assert.AreEqual(1, FxPrefabBuilder.RebuildMeteorFall(PrefabFolder, MaterialFolder, TextureFolder));
+
+            Assert.AreEqual(guid, AssetDatabase.AssetPathToGUID(path), "GUID đổi thì Player.prefab mất tham chiếu.");
+            Assert.IsNull(Load(FxPrefabBuilder.MeteorFallName).transform.Find(MarkerName), "Phải dựng lại từ đầu.");
         }
 
         [TestCase(FxPrefabBuilder.BuffDamageName)]
@@ -283,6 +320,28 @@ namespace FateBastion.Tests.EditMode.S11
 
             LogAssert.Expect(LogType.Error, new System.Text.RegularExpressions.Regex("Overhead"));
             Assert.IsFalse(FxPrefabBuilder.AddBuffIndicator(heroPath, PrefabFolder));
+        }
+
+        [Test]
+        public void AssignMeteorFallFx_EmptyField_SetsFallPrefabAndKeepsHandChoice()
+        {
+            Create();
+            var root = new GameObject("Player_Test");
+            new GameObject("Summoner").transform.SetParent(root.transform);
+            root.transform.GetChild(0).gameObject.AddComponent<FateBastion.Player.MeteorAimIndicator>();
+            string path = TempFolder + "/Player_Test.prefab";
+            LogAssert.ignoreFailingMessages = true; // The indicator logs its empty Inspector fields; not under test.
+            PrefabUtility.SaveAsPrefabAsset(root, path);
+            Object.DestroyImmediate(root);
+
+            Assert.IsTrue(FxPrefabBuilder.AssignMeteorFallFx(path, PrefabFolder));
+            Assert.IsTrue(FxPrefabBuilder.AssignMeteorFallFx(path, PrefabFolder), "Chạy lần 2 giữ nguyên, vẫn báo thành công.");
+            LogAssert.ignoreFailingMessages = false;
+
+            var indicator = AssetDatabase.LoadAssetAtPath<GameObject>(path)
+                .GetComponentInChildren<FateBastion.Player.MeteorAimIndicator>(true);
+            var assigned = new SerializedObject(indicator).FindProperty("_fallFxPrefab").objectReferenceValue;
+            Assert.AreEqual(Load(FxPrefabBuilder.MeteorFallName), assigned);
         }
 
         private static string CreateHeroPrefab(bool withOverhead = true)

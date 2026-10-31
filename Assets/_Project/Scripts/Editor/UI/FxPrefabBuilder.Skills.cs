@@ -1,6 +1,9 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using FateBastion.Editor.Import;
 using FateBastion.Heroes;
+using FateBastion.Player;
 
 namespace FateBastion.Editor.UI
 {
@@ -40,8 +43,57 @@ namespace FateBastion.Editor.UI
         // Meteor falls from this height (×radius once scaled) and lands exactly when MeteorAbility explodes (0.8 s).
         public const float MeteorFallHeight = 5f;
         public const float MeteorFallSeconds = 0.8f;
+        public const string MeteorRockMeshName = "FX_MeteorRock";
+        public const string MeteorRockMaterialName = "M_FX_MeteorRock";
+        private const string ParticleLitShader = "Universal Render Pipeline/Particles/Lit";
         private const float BuffIconHeight = 0.3f;
         private const float BuffIconSpacing = 0.45f;
+
+        [MenuItem("Tools/FX/5. Assign Meteor Fall FX to Player")]
+        public static void AssignMeteorFallFromMenu() => AssignMeteorFallFx(PlayerPrefabPath, PrefabFolder);
+
+        /// <summary>
+        /// Sets MeteorAimIndicator._fallFxPrefab in the Player prefab to FX_Meteor_Fall (C-09). Leaves a prefab already
+        /// chosen by hand untouched; false when the prefab or the indicator is missing.
+        /// </summary>
+        public static bool AssignMeteorFallFx(string playerPrefabPath, string prefabFolder)
+        {
+            var fall = AssetDatabase.LoadAssetAtPath<GameObject>(GetPrefabPath(prefabFolder, MeteorFallName));
+            if (fall == null)
+            {
+                Debug.LogError($"[FX] {MeteorFallName} not found; run 'Create FX Prefabs' first.");
+                return false;
+            }
+
+            GameObject root = PrefabUtility.LoadPrefabContents(playerPrefabPath);
+            try
+            {
+                var indicator = root.GetComponentInChildren<MeteorAimIndicator>(true);
+                if (indicator == null)
+                {
+                    Debug.LogError($"[FX] {playerPrefabPath} has no MeteorAimIndicator; run Tools > Meteor Aim > 2. Wire Player Prefab.");
+                    return false;
+                }
+
+                var so = new SerializedObject(indicator);
+                SerializedProperty field = so.FindProperty("_fallFxPrefab");
+                if (field.objectReferenceValue != null)
+                {
+                    Debug.Log($"[FX] Fall FX already set to '{field.objectReferenceValue.name}'; not changed.");
+                    return true;
+                }
+
+                field.objectReferenceValue = fall;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                PrefabUtility.SaveAsPrefabAsset(root, playerPrefabPath);
+                Debug.Log($"[FX] {MeteorFallName} assigned to MeteorAimIndicator in {playerPrefabPath}.");
+                return true;
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
 
         [MenuItem("Tools/FX/Add Buff Indicator To Selected Hero Prefab")]
         public static void AddBuffIndicatorFromMenu()
@@ -307,28 +359,216 @@ namespace FateBastion.Editor.UI
             return created;
         }
 
-        // The shadow on the ground is MeteorAimFX/ImpactMarker (already shown while falling); this is the rock itself.
-        // Built for a 1 m blast radius: scaled ×4 it falls from 20 m.
-        private static int BuildMeteorFall(string folder, MaterialCache materials)
+        [MenuItem("Tools/FX/6. Rebuild Meteor Fall (overwrite)")]
+        public static void RebuildMeteorFallFromMenu() => RebuildMeteorFall(PrefabFolder, MaterialFolder, TextureFolder);
+
+        /// <summary>
+        /// Rebuilds FX_Meteor_Fall in place even if it exists. Overwriting the same path keeps the prefab GUID, so the
+        /// reference in Player.prefab (MeteorAimIndicator._fallFxPrefab) stays valid. Returns 1, or 0 when URP is missing.
+        /// </summary>
+        public static int RebuildMeteorFall(string prefabFolder, string materialFolder, string textureFolder)
         {
+            if (Shader.Find(ParticleShader) == null || Shader.Find(ParticleLitShader) == null)
+            {
+                Debug.LogError("[FX] URP particle shaders not found; Meteor Fall not rebuilt.");
+                return 0;
+            }
+
+            int built = BuildMeteorFall(prefabFolder, new MaterialCache(materialFolder, textureFolder), overwrite: true);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"[FX] {MeteorFallName} rebuilt in {prefabFolder}.");
+            return built;
+        }
+
+        private static int BuildMeteorFall(string folder, MaterialCache materials) =>
+            BuildMeteorFall(folder, materials, overwrite: false);
+
+        // The shadow on the ground is MeteorAimFX/ImpactMarker (already shown while falling); this is the meteor itself:
+        // a tumbling rock (lit mesh particle) whose fire, glow and smoke follow it as Birth sub-emitters.
+        // Built for a 1 m blast radius: scaled x4 it falls from 20 m and lands when MeteorAbility explodes.
+        private static int BuildMeteorFall(string folder, MaterialCache materials, bool overwrite)
+        {
+            string path = GetPrefabPath(folder, MeteorFallName);
+            if (!overwrite && Exists(path)) return 0;
+
             var start = new Vector3(0f, MeteorFallHeight, 0f);
             var fall = new Vector3(0f, -MeteorFallHeight / MeteorFallSeconds, 0f);
             var lifetime = new Vector2(MeteorFallSeconds, MeteorFallSeconds);
-            return SaveLayers(folder, MeteorFallName, materials, new[]
+            var root = new GameObject(MeteorFallName);
+            try
             {
-                new Layer
+                ConfigureLayer(root, new Layer
                 {
-                    Name = MeteorFallName, Texture = FxTexture.Flame, Additive = true, Velocity = fall, Lifetime = lifetime,
-                    Size = new Vector2(0.9f, 0.9f), Color = new Color(1f, 0.6f, 0.2f), Burst = 1, MaxParticles = 1,
-                    TrailLifetime = 0.35f, NoFade = true, Offset = start
-                },
-                new Layer
+                    // Texture/blend are placeholders (an existing material); MakeTumblingRock swaps in the rock mesh.
+                    Name = MeteorFallName, Texture = FxTexture.Glow, Additive = true, Velocity = fall, Lifetime = lifetime,
+                    Size = new Vector2(0.7f, 0.7f), Color = Color.white, Burst = 1, MaxParticles = 1, NoFade = true,
+                    Offset = start
+                }, materials, isRoot: true);
+                var rock = root.GetComponent<ParticleSystem>();
+                MakeTumblingRock(rock, materials);
+
+                // Sub-emitters spawn at the rock while it lives; world space so the trail stays behind it.
+                AddLayer(root.transform, new Layer
                 {
-                    Name = "Core", Texture = FxTexture.Glow, Additive = true, Velocity = fall, Lifetime = lifetime,
-                    Size = new Vector2(0.5f, 0.5f), Color = new Color(1f, 0.9f, 0.6f), Burst = 1, MaxParticles = 1,
-                    NoFade = true, Offset = start
+                    Name = "FireTrail", Texture = FxTexture.Flame, Additive = true, World = true,
+                    Duration = MeteorFallSeconds, Rate = 70f, ShapeRadius = 0.15f, Speed = new Vector2(0f, 0.3f),
+                    Lifetime = new Vector2(0.2f, 0.35f), Size = new Vector2(0.5f, 0.9f), Color = new Color(1f, 0.55f, 0.15f),
+                    Curve = SizeCurve.Shrink, MaxParticles = 40
+                }, materials);
+                AddLayer(root.transform, new Layer
+                {
+                    Name = "SmokeTrail", Texture = FxTexture.Smoke, World = true, Duration = MeteorFallSeconds, Rate = 30f,
+                    ShapeRadius = 0.2f, Lifetime = new Vector2(0.5f, 0.8f), Size = new Vector2(0.5f, 0.9f),
+                    Color = new Color(0.15f, 0.12f, 0.1f, 0.7f), Curve = SizeCurve.Grow, MaxParticles = 30
+                }, materials);
+                AddLayer(root.transform, new Layer
+                {
+                    Name = "Glow", Texture = FxTexture.Glow, Additive = true, World = true, Duration = MeteorFallSeconds,
+                    Rate = 40f, Lifetime = new Vector2(0.08f, 0.1f), Size = new Vector2(1.6f, 1.8f),
+                    Color = new Color(1f, 0.5f, 0.15f, 0.8f), MaxParticles = 6
+                }, materials);
+
+                ParticleSystem.SubEmittersModule subEmitters = rock.subEmitters;
+                subEmitters.enabled = true;
+                foreach (Transform child in root.transform)
+                {
+                    subEmitters.AddSubEmitter(child.GetComponent<ParticleSystem>(), ParticleSystemSubEmitterType.Birth,
+                        ParticleSystemSubEmitterProperties.InheritNothing);
                 }
-            });
+
+                PrefabUtility.SaveAsPrefabAsset(root, path);
+                return 1;
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        /// <summary>Turns the root layer into a lit rock mesh that spins on all three axes while it falls.</summary>
+        private static void MakeTumblingRock(ParticleSystem rock, MaterialCache materials)
+        {
+            ParticleSystem.MainModule main = rock.main;
+            main.startRotation3D = true;
+            var anyAngle = new ParticleSystem.MinMaxCurve(0f, Mathf.PI * 2f);
+            main.startRotationX = anyAngle;
+            main.startRotationY = anyAngle;
+            main.startRotationZ = anyAngle;
+
+            ParticleSystem.RotationOverLifetimeModule spin = rock.rotationOverLifetime;
+            spin.enabled = true;
+            spin.separateAxes = true;
+            spin.x = new ParticleSystem.MinMaxCurve(-5f, 5f);
+            spin.y = new ParticleSystem.MinMaxCurve(-5f, 5f);
+            spin.z = new ParticleSystem.MinMaxCurve(-5f, 5f);
+
+            string meshFolder = materials.Folder.Replace("/Materials", "/Meshes");
+            var renderer = rock.GetComponent<ParticleSystemRenderer>();
+            renderer.renderMode = ParticleSystemRenderMode.Mesh;
+            renderer.mesh = LoadOrCreateRockMesh(meshFolder);
+            renderer.sharedMaterial = LoadOrCreateRockMaterial(materials.Folder);
+            renderer.alignment = ParticleSystemRenderSpace.Local;
+        }
+
+        private static Mesh LoadOrCreateRockMesh(string folder)
+        {
+            string path = $"{folder}/{MeteorRockMeshName}.asset";
+            var existing = AssetDatabase.LoadAssetAtPath<Mesh>(path);
+            if (existing != null) return existing;
+
+            AssetFolderUtility.EnsureFolder(folder);
+            Mesh mesh = BuildRockMesh();
+            AssetDatabase.CreateAsset(mesh, path);
+            return mesh;
+        }
+
+        /// <summary>
+        /// Low-poly boulder about 1 m across: an icosphere subdivided once, each corner pushed in or out a little, with
+        /// unshared vertices so every face is flat-shaded. Fixed seed, so a rebuild gives the same rock.
+        /// </summary>
+        private static Mesh BuildRockMesh()
+        {
+            const float radius = 0.5f;
+            const float jitter = 0.18f;
+            float t = (1f + Mathf.Sqrt(5f)) * 0.5f;
+            var corners = new List<Vector3>
+            {
+                new Vector3(-1, t, 0), new Vector3(1, t, 0), new Vector3(-1, -t, 0), new Vector3(1, -t, 0),
+                new Vector3(0, -1, t), new Vector3(0, 1, t), new Vector3(0, -1, -t), new Vector3(0, 1, -t),
+                new Vector3(t, 0, -1), new Vector3(t, 0, 1), new Vector3(-t, 0, -1), new Vector3(-t, 0, 1)
+            };
+            int[] faces =
+            {
+                0, 11, 5, 0, 5, 1, 0, 1, 7, 0, 7, 10, 0, 10, 11, 1, 5, 9, 5, 11, 4, 11, 10, 2, 10, 7, 6, 7, 1, 8,
+                3, 9, 4, 3, 4, 2, 3, 2, 6, 3, 6, 8, 3, 8, 9, 4, 9, 5, 2, 4, 11, 6, 2, 10, 8, 6, 7, 9, 8, 1
+            };
+
+            // One subdivision: each triangle becomes four, midpoints shared through the cache.
+            var midpoints = new Dictionary<long, int>();
+            var subdivided = new List<int>(faces.Length * 4);
+            for (int i = 0; i < faces.Length; i += 3)
+            {
+                int a = faces[i], b = faces[i + 1], c = faces[i + 2];
+                int ab = Midpoint(corners, midpoints, a, b);
+                int bc = Midpoint(corners, midpoints, b, c);
+                int ca = Midpoint(corners, midpoints, c, a);
+                subdivided.AddRange(new[] { a, ab, ca, b, bc, ab, c, ca, bc, ab, bc, ca });
+            }
+
+            var random = new System.Random(20261031);
+            for (int i = 0; i < corners.Count; i++)
+            {
+                float scale = radius * (1f + jitter * ((float)random.NextDouble() * 2f - 1f));
+                corners[i] = corners[i].normalized * scale;
+            }
+
+            // The face list is counter-clockwise (right-handed); Unity's front faces are clockwise, so each triangle is
+            // written b, a, c to keep the normals pointing out.
+            var vertices = new Vector3[subdivided.Count];
+            var triangles = new int[subdivided.Count];
+            for (int i = 0; i < subdivided.Count; i += 3)
+            {
+                vertices[i] = corners[subdivided[i + 1]];
+                vertices[i + 1] = corners[subdivided[i]];
+                vertices[i + 2] = corners[subdivided[i + 2]];
+                triangles[i] = i;
+                triangles[i + 1] = i + 1;
+                triangles[i + 2] = i + 2;
+            }
+
+            var mesh = new Mesh { name = MeteorRockMeshName, vertices = vertices, triangles = triangles };
+            mesh.RecalculateNormals();
+            mesh.RecalculateBounds();
+            return mesh;
+        }
+
+        private static int Midpoint(List<Vector3> corners, Dictionary<long, int> cache, int a, int b)
+        {
+            long key = a < b ? ((long)a << 32) | (uint)b : ((long)b << 32) | (uint)a;
+            if (cache.TryGetValue(key, out int index)) return index;
+
+            corners.Add((corners[a] + corners[b]) * 0.5f);
+            index = corners.Count - 1;
+            cache.Add(key, index);
+            return index;
+        }
+
+        /// <summary>Opaque lit rock: dark brown, lit by the scene's sun, with a hot red-orange glow (emission).</summary>
+        private static Material LoadOrCreateRockMaterial(string folder)
+        {
+            string path = $"{folder}/{MeteorRockMaterialName}.mat";
+            var existing = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (existing != null) return existing;
+
+            var material = new Material(Shader.Find(ParticleLitShader)) { name = MeteorRockMaterialName };
+            material.SetFloat("_Surface", 0f); // Opaque
+            material.SetColor("_BaseColor", new Color(0.32f, 0.2f, 0.14f));
+            material.SetFloat("_Smoothness", 0.1f);
+            material.EnableKeyword("_EMISSION");
+            material.SetColor("_EmissionColor", new Color(0.55f, 0.15f, 0.03f));
+            material.enableInstancing = true;
+            AssetDatabase.CreateAsset(material, path);
+            return material;
         }
 
         private static int BuildLevel3AndBuffs(string folder, MaterialCache materials)

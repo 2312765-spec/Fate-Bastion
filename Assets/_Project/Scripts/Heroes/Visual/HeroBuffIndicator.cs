@@ -1,3 +1,4 @@
+using FateBastion.Core;
 using UnityEngine;
 
 namespace FateBastion.Heroes
@@ -19,6 +20,8 @@ namespace FateBastion.Heroes
         [Tooltip("Distance in metres between the two icons when both are shown.")]
         [SerializeField, Min(0f)] private float _spacing = 0.45f;
 
+        private HeroStats _stats;
+
         public bool DamageShown => _damageIcon != null && _damageIcon.activeSelf;
         public bool AttackSpeedShown => _attackSpeedIcon != null && _attackSpeedIcon.activeSelf;
 
@@ -26,17 +29,28 @@ namespace FateBastion.Heroes
         {
             if (_damageIcon == null || _attackSpeedIcon == null)
                 Debug.LogError($"{nameof(HeroBuffIndicator)} on '{name}': assign both icons (Tools > FX > Add Buff Indicator).", this);
+            // HeroStats sits on the hero root, above the model that holds this object.
+            _stats = GetComponentInParent<HeroStats>(true);
+            if (_stats == null) Debug.LogError($"{nameof(HeroBuffIndicator)} on '{name}': no HeroStats above it; icons stay hidden.", this);
             Refresh(false, false);
         }
 
-        // STUB: thay bằng HeroStats.BuffsChanged + HasSkillBuff khi A thêm (issue [Cần A] C-09):
-        //   OnEnable: _stats = GetComponentInParent<HeroStats>(); _stats.BuffsChanged += HandleBuffsChanged; HandleBuffsChanged();
-        //   OnDisable: _stats.BuffsChanged -= HandleBuffsChanged;
-        //   HandleBuffsChanged: Refresh(_stats.HasSkillBuff(BuffType.Damage), _stats.HasSkillBuff(BuffType.AttackSpeed));
-        // Until then nothing calls Refresh and the icons stay hidden.
+        private void OnEnable()
+        {
+            if (_stats == null) return;
+            _stats.BuffsChanged += HandleBuffsChanged;
+            HandleBuffsChanged();
+        }
 
         // Pooled hero: hide on return so it does not come back with icons from its last match.
-        private void OnDisable() => Refresh(false, false);
+        private void OnDisable()
+        {
+            if (_stats != null) _stats.BuffsChanged -= HandleBuffsChanged;
+            Refresh(false, false);
+        }
+
+        private void HandleBuffsChanged() =>
+            Refresh(_stats.HasSkillBuff(BuffType.Damage), _stats.HasSkillBuff(BuffType.AttackSpeed));
 
         /// <summary>Sets the assets from code (tests and the Editor tool).</summary>
         public void Configure(GameObject damageIcon, GameObject attackSpeedIcon, float spacing)

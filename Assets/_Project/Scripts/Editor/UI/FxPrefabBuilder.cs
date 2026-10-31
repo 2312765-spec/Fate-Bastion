@@ -142,6 +142,7 @@ namespace FateBastion.Editor.UI
             Create(PrefabFolder, MaterialFolder, TextureFolder, ProjectileBasePath);
             WireAudioFromMenu();
             AddRingFromMenu();
+            AssignMeteorFallFromMenu();
         }
 
         public static string GetPrefabPath(string folder, string prefabName) => folder + "/" + prefabName + ".prefab";
@@ -750,6 +751,9 @@ namespace FateBastion.Editor.UI
             private readonly Dictionary<string, Material> _materials = new Dictionary<string, Material>();
 
             public bool UsedFallback { get; private set; }
+
+            /// <summary>Where this run saves materials; the meteor rock mesh goes to the sibling "Meshes" folder.</summary>
+            public string Folder => _materialFolder;
 
             public MaterialCache(string materialFolder, string textureFolder)
             {
