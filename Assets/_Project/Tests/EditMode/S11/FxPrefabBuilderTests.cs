@@ -1,9 +1,11 @@
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TestTools;
 using FateBastion.Audio;
 using FateBastion.Combat;
 using FateBastion.Editor.UI;
+using FateBastion.Heroes;
 
 namespace FateBastion.Tests.EditMode.S11
 {
@@ -35,7 +37,8 @@ namespace FateBastion.Tests.EditMode.S11
         public void Create_EmptyFolder_CreatesEveryPrefab()
         {
             int expected = FxPrefabBuilder.OneShotNames.Length + FxPrefabBuilder.ProjectileNames.Length
-                           + FxPrefabBuilder.AuraNames.Length + 1;
+                           + FxPrefabBuilder.AuraNames.Length + 1
+                           + FxPrefabBuilder.SkillOneShotNames.Length + FxPrefabBuilder.SkillLoopNames.Length;
 
             Assert.AreEqual(expected, Create());
 
@@ -47,7 +50,7 @@ namespace FateBastion.Tests.EditMode.S11
         {
             Create();
 
-            foreach (string prefabName in FxPrefabBuilder.OneShotNames)
+            foreach (string prefabName in OneShotNames())
             {
                 GameObject prefab = Load(prefabName);
                 Assert.IsNotNull(prefab.GetComponent<ParticleSystem>(), $"{prefabName}: gốc phải có ParticleSystem.");
@@ -190,6 +193,122 @@ namespace FateBastion.Tests.EditMode.S11
             Assert.AreEqual(0, FxPrefabBuilder.FixFlatRingClamp(PrefabFolder), "Chạy lần 2 không được sửa gì.");
         }
 
+        [TestCase(FxPrefabBuilder.ConeFireName)]
+        [TestCase(FxPrefabBuilder.DragonLineName)]
+        public void Create_ForwardFx_StaysWithinUnitLengthAlongZ(string prefabName)
+        {
+            Create();
+
+            // A scales Z by length/range, so anything outside z in [0, 1] would draw outside the damage area.
+            foreach (ParticleSystem system in Load(prefabName).GetComponentsInChildren<ParticleSystem>(true))
+            {
+                ParticleSystem.MainModule main = system.main;
+                ParticleSystem.ShapeModule shape = system.shape;
+                float start = system.transform.localPosition.z + shape.position.z;
+                float life = main.startLifetime.constantMax;
+                float near = start;
+                float far = start;
+                if (shape.shapeType == ParticleSystemShapeType.Box)
+                {
+                    near -= shape.scale.z * 0.5f;
+                    far += shape.scale.z * 0.5f;
+                }
+                else
+                {
+                    far += main.startSpeed.constantMax * life;
+                }
+
+                ParticleSystem.VelocityOverLifetimeModule velocity = system.velocityOverLifetime;
+                if (velocity.enabled) far += Mathf.Abs(velocity.z.constant) * life;
+
+                Assert.GreaterOrEqual(near, -0.01f, $"{prefabName}/{system.name}");
+                Assert.LessOrEqual(far, 1.01f, $"{prefabName}/{system.name}");
+            }
+        }
+
+        [Test]
+        public void Create_MeteorFall_LandsWhenMeteorExplodes()
+        {
+            Create();
+
+            foreach (ParticleSystem system in Load(FxPrefabBuilder.MeteorFallName).GetComponentsInChildren<ParticleSystem>(true))
+            {
+                float startY = system.transform.localPosition.y + system.shape.position.y;
+                float life = system.main.startLifetime.constantMax;
+                float endY = startY + system.velocityOverLifetime.y.constant * life;
+                Assert.AreEqual(FxPrefabBuilder.MeteorFallHeight, startY, 0.01f, system.name);
+                Assert.AreEqual(FxPrefabBuilder.MeteorFallSeconds, life, 0.01f, system.name);
+                Assert.AreEqual(0f, endY, 0.05f, $"{system.name} phải chạm đất đúng lúc nổ.");
+            }
+        }
+
+        [TestCase(FxPrefabBuilder.BuffDamageName)]
+        [TestCase(FxPrefabBuilder.BuffAttackSpeedName)]
+        public void Create_BuffIcon_OneUprightIconWithoutFade(string prefabName)
+        {
+            Create();
+
+            var system = Load(prefabName).GetComponent<ParticleSystem>();
+            ParticleSystem.MainModule main = system.main;
+            Assert.LessOrEqual(main.maxParticles, 2);
+            Assert.AreEqual(0f, main.startRotation.constantMax, "Ký hiệu phải đứng thẳng.");
+            Assert.IsFalse(system.colorOverLifetime.enabled, "Ký hiệu không được mờ dần rồi hiện lại.");
+            Assert.Greater(main.startLifetime.constantMin, main.duration, "Phải luôn có một hạt đang sống.");
+            Assert.IsNotNull(system.GetComponent<ParticleSystemRenderer>().sharedMaterial.GetTexture("_BaseMap"));
+        }
+
+        [Test]
+        public void AddBuffIndicator_HeroWithOverhead_AddsHiddenIconsOnce()
+        {
+            Create();
+            string heroPath = CreateHeroPrefab();
+
+            Assert.IsTrue(FxPrefabBuilder.AddBuffIndicator(heroPath, PrefabFolder));
+            Assert.IsFalse(FxPrefabBuilder.AddBuffIndicator(heroPath, PrefabFolder), "Chạy lần 2 không được thêm nữa.");
+
+            var hero = AssetDatabase.LoadAssetAtPath<GameObject>(heroPath);
+            Transform icons = hero.transform.Find("Model/Overhead/" + FxPrefabBuilder.BuffIconsObjectName);
+            Assert.IsNotNull(icons);
+            var indicator = icons.GetComponent<HeroBuffIndicator>();
+            Assert.IsNotNull(indicator);
+            Assert.AreEqual(2, icons.childCount);
+            foreach (Transform icon in icons) Assert.IsFalse(icon.gameObject.activeSelf, $"{icon.name} phải ẩn khi chưa có buff.");
+        }
+
+        [Test]
+        public void AddBuffIndicator_NoOverhead_ReturnsFalse()
+        {
+            Create();
+            string heroPath = CreateHeroPrefab(withOverhead: false);
+
+            LogAssert.Expect(LogType.Error, new System.Text.RegularExpressions.Regex("Overhead"));
+            Assert.IsFalse(FxPrefabBuilder.AddBuffIndicator(heroPath, PrefabFolder));
+        }
+
+        private static string CreateHeroPrefab(bool withOverhead = true)
+        {
+            var root = new GameObject("Hero_Test");
+            var model = new GameObject("Model");
+            model.transform.SetParent(root.transform);
+            var visual = model.AddComponent<HeroVisual>();
+            if (withOverhead)
+            {
+                var overhead = new GameObject("Overhead");
+                overhead.transform.SetParent(model.transform);
+                overhead.transform.localPosition = new Vector3(0f, 2f, 0f);
+                var so = new SerializedObject(visual);
+                so.FindProperty("_overhead").objectReferenceValue = overhead.transform;
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+
+            string path = TempFolder + "/Hero_Test.prefab";
+            LogAssert.ignoreFailingMessages = true; // HeroVisual.OnValidate warns about the fields left empty here.
+            PrefabUtility.SaveAsPrefabAsset(root, path);
+            LogAssert.ignoreFailingMessages = false;
+            Object.DestroyImmediate(root);
+            return path;
+        }
+
         [Test]
         public void CreateOrFillSettings_AfterCreate_EveryKindHasPrefab()
         {
@@ -221,11 +340,18 @@ namespace FateBastion.Tests.EditMode.S11
             foreach (string n in FxPrefabBuilder.ProjectileNames) yield return n;
             foreach (string n in FxPrefabBuilder.AuraNames) yield return n;
             yield return FxPrefabBuilder.CommandAuraName;
+            foreach (string n in FxPrefabBuilder.SkillLoopNames) yield return n;
+        }
+
+        private static System.Collections.Generic.IEnumerable<string> OneShotNames()
+        {
+            foreach (string n in FxPrefabBuilder.OneShotNames) yield return n;
+            foreach (string n in FxPrefabBuilder.SkillOneShotNames) yield return n;
         }
 
         private static System.Collections.Generic.IEnumerable<string> AllNames()
         {
-            foreach (string n in FxPrefabBuilder.OneShotNames) yield return n;
+            foreach (string n in OneShotNames()) yield return n;
             foreach (string n in LoopingNames()) yield return n;
         }
     }

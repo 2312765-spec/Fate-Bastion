@@ -17,7 +17,7 @@ namespace FateBastion.Editor.UI
     /// Command Aura ring), FxSettings, and wires FxService into _Audio and the ring into Player. Only creates what is
     /// missing, never overwrites, so prefabs tuned by hand in the Editor survive a re-run.
     /// </summary>
-    public static class FxPrefabBuilder
+    public static partial class FxPrefabBuilder
     {
         public const string PrefabFolder = "Assets/_Project/Prefabs/FX";
         public const string MaterialFolder = "Assets/_Project/Art/Materials/FX";
@@ -67,11 +67,14 @@ namespace FateBastion.Editor.UI
         // Roughly chest height of a 1.6-2 m enemy model; hits and deaths spawn above the enemy root by this much.
         private const float HitHeight = 0.8f;
 
-        private enum FxTexture { Glow, Spark, Flame, Smoke, Star, Ring }
+        private enum FxTexture { Glow, Spark, Flame, Smoke, Star, Ring, IconDamage, IconAttackSpeed }
 
         private enum RenderKind { Billboard, Stretched, Flat }
 
-        private enum SizeCurve { Constant, Shrink, Grow }
+        private enum SizeCurve { Constant, Shrink, Grow, Pulse }
+
+        // Sphere: burst around a point. Box: Line area. ConeForward: opens along +Z. DiscUp: flat circle on the ground.
+        private enum ShapeKind { Sphere, Box, ConeForward, DiscUp }
 
         // Kenney Particle Pack (CC0), "PNG (Transparent)" folder: white shapes on alpha, tinted by start colour.
         // Copy only these files into Art/Textures/FX/Kenney; a missing one falls back to a generated soft texture.
@@ -82,7 +85,9 @@ namespace FateBastion.Editor.UI
             "flame_03.png",  // Flame
             "smoke_04.png",  // Smoke
             "star_06.png",   // Star
-            "circle_03.png"  // Ring
+            "circle_03.png", // Ring
+            null,            // IconDamage: drawn by GenerateIcon
+            null             // IconAttackSpeed: drawn by GenerateIcon
         };
 
         private struct Layer
@@ -106,6 +111,13 @@ namespace FateBastion.Editor.UI
             public SizeCurve Curve;
             public int MaxParticles;
             public Vector3 Offset;
+            public ShapeKind Shape;
+            public Vector3 ShapeScale;
+            public float ShapeAngle;
+            public Vector3 Velocity;
+            public float TrailLifetime;
+            public bool FixedRotation;
+            public bool NoFade;
         }
 
         [MenuItem("Tools/FX/1. Create FX Prefabs")]
@@ -158,6 +170,7 @@ namespace FateBastion.Editor.UI
                 created += BuildOneShots(prefabFolder, materials);
                 created += BuildProjectiles(prefabFolder, projectileBasePath, materials);
                 created += BuildAuras(prefabFolder, materials);
+                created += BuildSkillFx(prefabFolder, materials);
                 FixFlatRingClamp(prefabFolder);
             }
             finally
@@ -586,7 +599,7 @@ namespace FateBastion.Editor.UI
             main.startLifetime = new ParticleSystem.MinMaxCurve(layer.Lifetime.x, layer.Lifetime.y);
             main.startSpeed = new ParticleSystem.MinMaxCurve(layer.Speed.x, layer.Speed.y);
             main.startSize = new ParticleSystem.MinMaxCurve(layer.Size.x, layer.Size.y);
-            main.startRotation = layer.Render == RenderKind.Billboard
+            main.startRotation = layer.Render == RenderKind.Billboard && !layer.FixedRotation
                 ? new ParticleSystem.MinMaxCurve(0f, Mathf.PI * 2f)
                 : new ParticleSystem.MinMaxCurve(0f);
             main.startColor = layer.Color;
@@ -608,22 +621,65 @@ namespace FateBastion.Editor.UI
 
             ParticleSystem.ShapeModule shape = system.shape;
             bool offsetInShape = isRoot && layer.Offset != Vector3.zero;
-            shape.enabled = layer.ShapeRadius > 0f || offsetInShape;
-            shape.shapeType = ParticleSystemShapeType.Sphere;
+            shape.enabled = layer.ShapeRadius > 0f || offsetInShape || layer.Shape != ShapeKind.Sphere;
             shape.radius = Mathf.Max(0.0001f, layer.ShapeRadius);
             shape.position = offsetInShape ? layer.Offset : Vector3.zero;
+            switch (layer.Shape)
+            {
+                case ShapeKind.Box:
+                    shape.shapeType = ParticleSystemShapeType.Box;
+                    shape.scale = layer.ShapeScale;
+                    break;
+                case ShapeKind.ConeForward:
+                    // Unity's cone already opens along +Z.
+                    shape.shapeType = ParticleSystemShapeType.Cone;
+                    shape.angle = layer.ShapeAngle;
+                    break;
+                case ShapeKind.DiscUp:
+                    // Circle lies on XY; -90 degrees on X lays it on the ground (XZ).
+                    shape.shapeType = ParticleSystemShapeType.Circle;
+                    shape.rotation = new Vector3(-90f, 0f, 0f);
+                    break;
+                default:
+                    shape.shapeType = ParticleSystemShapeType.Sphere;
+                    break;
+            }
+
+            ParticleSystem.VelocityOverLifetimeModule velocity = system.velocityOverLifetime;
+            velocity.enabled = layer.Velocity != Vector3.zero;
+            if (velocity.enabled)
+            {
+                velocity.space = ParticleSystemSimulationSpace.Local;
+                velocity.x = new ParticleSystem.MinMaxCurve(layer.Velocity.x);
+                velocity.y = new ParticleSystem.MinMaxCurve(layer.Velocity.y);
+                velocity.z = new ParticleSystem.MinMaxCurve(layer.Velocity.z);
+            }
+
+            ParticleSystem.TrailModule trails = system.trails;
+            trails.enabled = layer.TrailLifetime > 0f;
+            if (trails.enabled)
+            {
+                trails.lifetime = new ParticleSystem.MinMaxCurve(layer.TrailLifetime);
+                trails.dieWithParticles = true;
+            }
 
             ParticleSystem.ColorOverLifetimeModule color = system.colorOverLifetime;
-            color.enabled = true;
+            color.enabled = !layer.NoFade;
             color.color = new ParticleSystem.MinMaxGradient(layer.Loop ? FadeInOut() : FadeOut());
 
             ParticleSystem.SizeOverLifetimeModule size = system.sizeOverLifetime;
             size.enabled = layer.Curve != SizeCurve.Constant;
             if (size.enabled)
             {
-                AnimationCurve curve = layer.Curve == SizeCurve.Shrink
-                    ? AnimationCurve.Linear(0f, 1f, 1f, 0f)
-                    : AnimationCurve.EaseInOut(0f, 0.3f, 1f, 1f);
+                AnimationCurve curve;
+                switch (layer.Curve)
+                {
+                    case SizeCurve.Shrink: curve = AnimationCurve.Linear(0f, 1f, 1f, 0f); break;
+                    case SizeCurve.Pulse:
+                        curve = new AnimationCurve(new Keyframe(0f, 1f), new Keyframe(0.5f, 1.15f), new Keyframe(1f, 1f));
+                        break;
+                    default: curve = AnimationCurve.EaseInOut(0f, 0.3f, 1f, 1f); break;
+                }
                 size.size = new ParticleSystem.MinMaxCurve(1f, curve);
             }
 
@@ -633,6 +689,7 @@ namespace FateBastion.Editor.UI
             renderer.receiveShadows = false;
             renderer.lightProbeUsage = LightProbeUsage.Off;
             renderer.reflectionProbeUsage = ReflectionProbeUsage.Off;
+            if (trails.enabled) renderer.trailMaterial = renderer.sharedMaterial;
             switch (layer.Render)
             {
                 case RenderKind.Stretched:
@@ -748,6 +805,9 @@ namespace FateBastion.Editor.UI
 
             private Texture2D LoadTexture(FxTexture texture)
             {
+                if (KenneyFiles[(int)texture] == null)
+                    return GenerateIcon($"{_textureFolder}/FX_{texture}.png", texture == FxTexture.IconAttackSpeed);
+
                 string kenneyPath = $"{_textureFolder}/{KenneyFolderName}/{KenneyFiles[(int)texture]}";
                 var kenney = AssetDatabase.LoadAssetAtPath<Texture2D>(kenneyPath);
                 if (kenney != null)
@@ -757,8 +817,9 @@ namespace FateBastion.Editor.UI
                 }
 
                 UsedFallback = true;
-                bool ring = texture == FxTexture.Ring;
-                return GenerateTexture(_textureFolder + (ring ? "/FX_SoftRing.png" : "/FX_SoftCircle.png"), ring);
+                return texture == FxTexture.Ring
+                    ? GenerateTexture(_textureFolder + "/FX_SoftRing.png", d => Mathf.Clamp01(1f - Mathf.Abs(d.magnitude - 0.85f) / 0.12f))
+                    : GenerateTexture(_textureFolder + "/FX_SoftCircle.png", d => Mathf.Clamp01(1f - d.magnitude));
             }
 
             private static Material BuildMaterial(string materialName, Texture2D texture, bool additive)
@@ -781,8 +842,43 @@ namespace FateBastion.Editor.UI
         }
 
         /// <summary>White soft dot or ring on alpha, written once as PNG; used when a Kenney texture is missing.</summary>
-        private static Texture2D GenerateTexture(string path, bool ring)
+        /// <param name="alphaAt">Coverage at a point in [-1, 1] squared space, y up; squared for a soft falloff.</param>
+        private static Texture2D GenerateTexture(string path, Func<Vector2, float> alphaAt) =>
+            WriteTexture(path, p =>
+            {
+                float alpha = alphaAt(p);
+                return alpha * alpha;
+            });
+
+        /// <summary>
+        /// Buff icon drawn on alpha (white, tinted by the particle colour): one thick arrow (damage up) or two chevrons
+        /// (attack speed up). Readable at 0.4 m above a hero; any PNG saved under the same name replaces it.
+        /// </summary>
+        private static Texture2D GenerateIcon(string path, bool doubleChevron) =>
+            WriteTexture(path, p => doubleChevron ? Chevrons(p) : Arrow(p));
+
+        private static float Arrow(Vector2 p)
         {
+            bool head = p.y >= 0.05f && p.y <= 0.9f && Mathf.Abs(p.x) <= (0.9f - p.y) * 0.95f;
+            bool shaft = p.y >= -0.85f && p.y < 0.05f && Mathf.Abs(p.x) <= 0.24f;
+            return head || shaft ? 1f : 0f;
+        }
+
+        private static float Chevrons(Vector2 p)
+        {
+            const float thickness = 0.36f;
+            const float gap = 0.62f;
+            if (Mathf.Abs(p.x) > 0.8f) return 0f;
+            float top = 0.85f - 0.9f * Mathf.Abs(p.x);
+            bool upper = p.y <= top && p.y >= top - thickness;
+            bool lower = p.y <= top - gap && p.y >= top - gap - thickness;
+            return upper || lower ? 1f : 0f;
+        }
+
+        /// <summary>Renders coverage with 4x4 supersampling (smooth edges), saves it as PNG once and imports it.</summary>
+        private static Texture2D WriteTexture(string path, Func<Vector2, float> coverage)
+        {
+            const int samples = 4;
             var existing = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
             if (existing != null) return existing;
 
@@ -792,11 +888,18 @@ namespace FateBastion.Editor.UI
             {
                 for (int x = 0; x < GeneratedTextureSize; x++)
                 {
-                    float distance = new Vector2(x + 0.5f - half, y + 0.5f - half).magnitude / half;
-                    float alpha = ring
-                        ? Mathf.Clamp01(1f - Mathf.Abs(distance - 0.85f) / 0.12f)
-                        : Mathf.Clamp01(1f - distance);
-                    texture.SetPixel(x, y, new Color(1f, 1f, 1f, alpha * alpha));
+                    float sum = 0f;
+                    for (int sy = 0; sy < samples; sy++)
+                    {
+                        for (int sx = 0; sx < samples; sx++)
+                        {
+                            var p = new Vector2((x + (sx + 0.5f) / samples - half) / half,
+                                (y + (sy + 0.5f) / samples - half) / half);
+                            sum += coverage(p);
+                        }
+                    }
+
+                    texture.SetPixel(x, y, new Color(1f, 1f, 1f, sum / (samples * samples)));
                 }
             }
 
