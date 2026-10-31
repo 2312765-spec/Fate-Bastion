@@ -40,6 +40,6 @@ Các tham chiếu asset do A sở hữu đã được gán; C cần hoàn tất 
 - Unity EditMode mục tiêu `HeroStatsTests` + `HeroBuffIndicatorTests`: 23/23 pass, gồm test event/idempotency, lọc skill buff khỏi Command Aura và clear buff.
 - Lần chạy kết hợp thêm `FxPrefabBuilderTests`: 26/27 pass; test còn lại lỗi môi trường khi Unity không ghi được `Assets/_FxPrefabBuilderTest.meta`, không phải assertion gameplay.
 - PlayMode trước khi tích hợp PR #59: các test mục tiêu Issue #56 4/4 pass. Toàn bộ PlayMode 173 pass, 1 lỗi CommandAura ngoài phạm vi và 3 test GC allocation bị skip trên Windows Editor.
-- PlayMode mục tiêu sau khi tích hợp PR #59: 4/4 pass (status VFX, aura cấp 3, pool VFX kỹ năng và Meteor fall).
-- Test mới xác nhận status VFX của quái thường dùng scale 1, boss dùng đúng multiplier cấu hình trong `EnemySettings`.
+- PlayMode mục tiêu sau khi cập nhật Issue #61: 6/6 pass, gồm status VFX (3 test), aura cấp 3, pool VFX kỹ năng và Meteor fall.
+- Test xác nhận status VFX của quái thường dùng scale 1, boss dùng đúng multiplier cấu hình trong `EnemySettings`.
 - Issue chưa hoàn tất tới khi C gắn ref scene/prefab, nối `HeroBuffIndicator`, và B review phần takeover.
