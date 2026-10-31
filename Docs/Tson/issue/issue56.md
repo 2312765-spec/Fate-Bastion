@@ -10,6 +10,7 @@
 
 - `SkillRunner` prewarm VFX từ `SkillData.vfx` cùng lúc `HeroPool` tạo pool lúc tải trận. VFX vùng/đường được đặt và scale theo loại kỹ năng; Line/Zone được trả pool khi hết `duration`; one-shot được trả pool khi particle kết thúc.
 - `StatusEffectController` phát sự kiện khi từng hiệu ứng trạng thái bắt đầu/kết thúc. `EnemyManager` nhận các status từ deck trước khi prewarm quái; `EnemyController` tạo trước VFX theo status cho từng quái và chỉ bật/tắt khi trạng thái đổi.
+- Status VFX trên boss dùng hệ số `_bossStatusVfxScale` trong `EnemySettings` (mặc định 2, có thể chỉnh trong asset); quái thường giữ scale chuẩn 1. Không hardcode scale trong gameplay logic.
 - `MeteorAimIndicator` có field tùy chọn `_fallFxPrefab`, tạo một instance lúc khởi tạo và bật tại điểm rơi trong trạng thái Falling; ẩn khi impact hoặc trận kết thúc.
 - Phần B được A hoàn thiện: bỏ STUB ở `HeroLevel`; hook `HeroPool` vào prewarm skill/status VFX. Aura cấp 3 vẫn dùng field `_topLevelAuraPrefab` hiện có và neo tại `HeroVisual.AuraAnchor`.
 - Tích hợp prefab và yêu cầu nối tiếp từ PR #59: gán VFX cho sáu `SkillData` và hai `StatusEffectData`; thêm `HeroStats.BuffsChanged` và `HeroStats.HasSkillBuff(BuffType)` để chỉ báo buff do `SkillData` cung cấp. `CommandAuraSettings` không được tính là skill buff.
@@ -40,4 +41,5 @@ Các tham chiếu asset do A sở hữu đã được gán; C cần hoàn tất 
 - Lần chạy kết hợp thêm `FxPrefabBuilderTests`: 26/27 pass; test còn lại lỗi môi trường khi Unity không ghi được `Assets/_FxPrefabBuilderTest.meta`, không phải assertion gameplay.
 - PlayMode trước khi tích hợp PR #59: các test mục tiêu Issue #56 4/4 pass. Toàn bộ PlayMode 173 pass, 1 lỗi CommandAura ngoài phạm vi và 3 test GC allocation bị skip trên Windows Editor.
 - PlayMode mục tiêu sau khi tích hợp PR #59: 4/4 pass (status VFX, aura cấp 3, pool VFX kỹ năng và Meteor fall).
+- Test mới xác nhận status VFX của quái thường dùng scale 1, boss dùng đúng multiplier cấu hình trong `EnemySettings`.
 - Issue chưa hoàn tất tới khi C gắn ref scene/prefab, nối `HeroBuffIndicator`, và B review phần takeover.

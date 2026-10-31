@@ -134,6 +134,12 @@ namespace FateBastion.Enemies
                 Debug.LogError($"{name}: EnemyManager cần EnemySettings và CombatSettings trong Inspector.", this);
                 return false;
             }
+            if (float.IsNaN(_settings.BossStatusVfxScale) || float.IsInfinity(_settings.BossStatusVfxScale)
+                || _settings.BossStatusVfxScale <= 0f)
+            {
+                Debug.LogError($"{name}: EnemySettings.BossStatusVfxScale must be a positive finite value.", this);
+                return false;
+            }
 
             // Unity null check on the component: an unassigned serialized field is a fake-null object in the Editor.
             if (_paths == null && _levelPaths != null) _paths = _levelPaths;
@@ -374,7 +380,8 @@ namespace FateBastion.Enemies
             go.name = data.prefab.name;
             go.SetActive(false);
             EnemyController enemy = go.GetComponent<EnemyController>();
-            enemy.Initialize(this, _combatSettings, _bossSummonSettings);
+            float statusVfxScale = data.boss ? _settings.BossStatusVfxScale : 1f;
+            enemy.Initialize(this, _combatSettings, _bossSummonSettings, statusVfxScale);
             for (int i = 0; i < _statusVfxData.Count; i++)
                 enemy.RegisterStatusVfx(_statusVfxData[i]);
             return enemy;

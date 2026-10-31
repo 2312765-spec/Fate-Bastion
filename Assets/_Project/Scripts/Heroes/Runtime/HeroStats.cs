@@ -82,7 +82,6 @@ namespace FateBastion.Heroes
                 _buffKinds[i] = type;
                 _buffValues[i] = value;
                 RecalculateBuffs();
-                BuffsChanged?.Invoke();
                 return;
             }
 
@@ -95,7 +94,6 @@ namespace FateBastion.Heroes
             _buffValues[_buffCount] = value;
             _buffCount++;
             RecalculateBuffs();
-            BuffsChanged?.Invoke();
         }
 
         /// <summary>Removes all buff contributions registered by one source.</summary>
@@ -112,10 +110,7 @@ namespace FateBastion.Heroes
             }
 
             if (changed)
-            {
                 RecalculateBuffs();
-                BuffsChanged?.Invoke();
-            }
         }
 
         /// <summary>Returns whether a hero SkillData currently contributes the requested buff type.</summary>
@@ -207,6 +202,7 @@ namespace FateBastion.Heroes
             if (_settings == null)
                 throw new InvalidOperationException($"{name}: HeroStatsSettings is not assigned.");
             _attackSpeedBuff = Mathf.Min(_attackSpeedBuff, _settings.AttackSpeedBuffCap);
+            BuffsChanged?.Invoke();
         }
 
         private void RemoveBuffAt(int index)

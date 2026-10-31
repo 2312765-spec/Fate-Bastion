@@ -36,6 +36,7 @@ namespace FateBastion.Enemies
         private EnemyManager _owner;
         private Transform _transform;
         private BossSummonSettings _summonSettings;
+        private float _statusVfxScale = 1f;
         private int _pathIndex;
         private int _statusVfxCount;
 
@@ -69,11 +70,13 @@ namespace FateBastion.Enemies
         }
 
         /// <summary>Called once by EnemyManager right after the instance is created for the pool.</summary>
-        internal void Initialize(EnemyManager owner, CombatSettings combatSettings, BossSummonSettings bossSummonSettings)
+        internal void Initialize(EnemyManager owner, CombatSettings combatSettings, BossSummonSettings bossSummonSettings,
+            float statusVfxScale)
         {
             _owner = owner;
             _transform = transform;
             _summonSettings = bossSummonSettings;
+            _statusVfxScale = statusVfxScale;
             _status = new StatusEffectController(combatSettings);
             _status.OnStatusChanged += HandleStatusChanged;
         }
@@ -106,7 +109,7 @@ namespace FateBastion.Enemies
 
             GameObject instance = Instantiate(data.vfx, _transform);
             instance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-            instance.transform.localScale = Vector3.one;
+            instance.transform.localScale = Vector3.one * _statusVfxScale;
             instance.SetActive(false);
             _statusVfx[_statusVfxCount++] = new StatusVfxInstance
             {
