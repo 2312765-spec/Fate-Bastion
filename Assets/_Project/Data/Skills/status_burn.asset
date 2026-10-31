@@ -18,4 +18,4 @@ MonoBehaviour:
   tickInterval: 1
   value: 0.2
   stackRule: 1
-  vfx: {fileID: 0}
+  vfx: {fileID: 100100000, guid: 8a5d3b5880f4a7e4e8ce2bd4ce5bda21, type: 3}

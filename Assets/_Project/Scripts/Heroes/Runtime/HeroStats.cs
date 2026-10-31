@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using FateBastion.Core;
+using FateBastion.Skills;
 
 namespace FateBastion.Heroes
 {
@@ -27,6 +28,8 @@ namespace FateBastion.Heroes
         public float Damage => GetBaseDamage() * _damageMultiplier * (1f + _damageBuff);
         public float AttacksPerSecond => GetData().attacksPerSecond * _attackSpeedMultiplier * (1f + _attackSpeedBuff);
         public float Range => GetData().range * _rangeMultiplier;
+        /// <summary>Raised after a buff contribution is added, changed, removed, or cleared.</summary>
+        public event Action BuffsChanged;
 
         public void Initialize(HeroData data)
         {
@@ -79,6 +82,7 @@ namespace FateBastion.Heroes
                 _buffKinds[i] = type;
                 _buffValues[i] = value;
                 RecalculateBuffs();
+                BuffsChanged?.Invoke();
                 return;
             }
 
@@ -91,6 +95,7 @@ namespace FateBastion.Heroes
             _buffValues[_buffCount] = value;
             _buffCount++;
             RecalculateBuffs();
+            BuffsChanged?.Invoke();
         }
 
         /// <summary>Removes all buff contributions registered by one source.</summary>
@@ -106,7 +111,23 @@ namespace FateBastion.Heroes
                 changed = true;
             }
 
-            if (changed) RecalculateBuffs();
+            if (changed)
+            {
+                RecalculateBuffs();
+                BuffsChanged?.Invoke();
+            }
+        }
+
+        /// <summary>Returns whether a hero SkillData currently contributes the requested buff type.</summary>
+        public bool HasSkillBuff(BuffType type)
+        {
+            if (type == BuffType.None) return false;
+
+            for (int i = 0; i < _buffCount; i++)
+                if (_buffKinds[i] == type && _buffValues[i] > 0f && _buffTypes[i] is SkillData skill && skill != null)
+                    return true;
+
+            return false;
         }
 
         public void Clear()
@@ -133,6 +154,7 @@ namespace FateBastion.Heroes
 
         private void ClearBuffs()
         {
+            bool hadBuffs = _buffCount > 0;
             for (int i = 0; i < _buffCount; i++)
             {
                 _buffSources[i] = null;
@@ -143,6 +165,7 @@ namespace FateBastion.Heroes
             _buffCount = 0;
             _damageBuff = 0f;
             _attackSpeedBuff = 0f;
+            if (hadBuffs) BuffsChanged?.Invoke();
         }
 
         private void RecalculateBuffs()

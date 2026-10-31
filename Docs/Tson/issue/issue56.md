@@ -12,32 +12,32 @@
 - `StatusEffectController` phát sự kiện khi từng hiệu ứng trạng thái bắt đầu/kết thúc. `EnemyManager` nhận các status từ deck trước khi prewarm quái; `EnemyController` tạo trước VFX theo status cho từng quái và chỉ bật/tắt khi trạng thái đổi.
 - `MeteorAimIndicator` có field tùy chọn `_fallFxPrefab`, tạo một instance lúc khởi tạo và bật tại điểm rơi trong trạng thái Falling; ẩn khi impact hoặc trận kết thúc.
 - Phần B được A hoàn thiện: bỏ STUB ở `HeroLevel`; hook `HeroPool` vào prewarm skill/status VFX. Aura cấp 3 vẫn dùng field `_topLevelAuraPrefab` hiện có và neo tại `HeroVisual.AuraAnchor`.
+- Tích hợp prefab và yêu cầu nối tiếp từ PR #59: gán VFX cho sáu `SkillData` và hai `StatusEffectData`; thêm `HeroStats.BuffsChanged` và `HeroStats.HasSkillBuff(BuffType)` để chỉ báo buff do `SkillData` cung cấp. `CommandAuraSettings` không được tính là skill buff.
 
-## Tài nguyên còn chờ C
+## Tài nguyên và nối scene còn chờ
 
-Đã kiểm tra `Assets/_Project/Prefabs/FX/`. Có `FX_Meteor_Explosion`, `MeteorAimFX`, các FX hit/death, projectile và aura độ hiếm; **chưa có** các prefab được Issue #56 yêu cầu:
+Các prefab theo Issue #56 hiện đã có trong branch PR #59 và được đưa vào parent của PR #57:
 
-- `FX_Skill_Fireball`, `FX_Skill_Cone`, `FX_Ult_DragonLine`, `FX_Skill_FrostZone`
+- `FX_Skill_Area_Fire`, `FX_Skill_Area_Lightning`, `FX_Skill_Area_Ice`, `FX_Skill_Cone_Fire`, `FX_Ult_DragonLine`, `FX_Skill_FrostZone`
 - `FX_Status_Burn`, `FX_Status_Slow`
-- `FX_Meteor_Fall`
-- `FX_Hero_Level3`
+- `FX_Meteor_Fall`, `FX_Hero_Level3`
 
-`status_burn.asset` và `status_slow.asset` hiện có `vfx` để trống. Code xử lý null an toàn theo yêu cầu trong Issue #56; không tạo prefab thay C. Cần gán các prefab khi được bàn giao trước khi xác nhận hiệu ứng hình ảnh hoạt động hoàn chỉnh.
+Các `SkillData` và `StatusEffectData` thuộc phần A đã được gán prefab tương ứng. Cần C gán `FX_Meteor_Fall` vào `MeteorAimIndicator._fallFxPrefab` trên `Player.prefab` và `FX_Hero_Level3` vào `HeroPool._topLevelAuraPrefab` trong scene Game. `HeroBuffIndicator` vẫn có STUB đăng ký event trong file vùng C; C cần nối subscriber sau khi API A có mặt.
 
 ## Hướng dẫn lắp trong Unity
 
-Sau khi C bàn giao prefab:
+Các tham chiếu asset do A sở hữu đã được gán; C cần hoàn tất các tham chiếu prefab/scene thuộc vùng C:
 
-1. Gán prefab tương ứng vào `SkillData.vfx` cho Fireball, Cone, Ultimate Line và Frost Zone.
-2. Gán `FX_Status_Burn` / `FX_Status_Slow` vào `StatusEffectData.vfx`. Prefab cần có `ParticleSystem` ở root và bật loop.
-3. Gán `FX_Meteor_Fall` vào field `_fallFxPrefab` của `MeteorAimIndicator`. Prefab cần có `ParticleSystem` root không loop.
-4. Gán `FX_Hero_Level3` vào field **Top Level Aura Prefab** trên `HeroPool` trong scene Game. `HeroPool` tạo một bản lúc prewarm; `HeroLevel` bật/tắt bản đó dưới `HeroVisual.AuraAnchor`.
-5. Chạy một wave thử: xác nhận VFX skill/status theo vị trí, status tắt khi hết hạn, VFX Thiên thạch tắt ở impact, aura cấp 3 chỉ bật tại level 3.
+1. Gán `FX_Meteor_Fall` vào `_fallFxPrefab` trên `Player.prefab` (prefab root ParticleSystem, one-shot).
+2. Gán `FX_Hero_Level3` vào **Top Level Aura Prefab** trên `HeroPool` trong scene Game; `HeroPool` prewarm và `HeroLevel` bật/tắt tại `HeroVisual.AuraAnchor`.
+3. Nối `HeroBuffIndicator` tới `HeroStats.BuffsChanged` trong `OnEnable`/`OnDisable`, khởi tạo bằng `HasSkillBuff(Damage/AttackSpeed)`, rồi xác nhận ký hiệu ẩn khi buff hết và khi hero về pool.
+4. Chạy wave thử: xác nhận VFX skill/status theo vị trí, status tắt khi hết hạn, VFX Thiên thạch tắt ở impact, aura cấp 3 chỉ bật tại level 3 và icon buff phản ánh đúng loại nguồn.
 
 ## Kiểm thử
 
 - `dotnet build Fate-Bastion.slnx --no-restore`: pass, 0 warning, 0 error.
-- Unity EditMode: 157/157 pass.
-- PlayMode mục tiêu Issue #56: 4/4 pass (status VFX, aura cấp 3, pool VFX kỹ năng, VFX rơi Thiên thạch).
-- Toàn bộ PlayMode: 173 pass, 1 fail, 3 skipped. Test fail là `CommandAuraPlayModeTests.Aura_EnterExitAndDisable_UpdatesBuffAndPublishesOnlyEntryTransitions` (ngoài phạm vi, không thay đổi trong PR); 3 test GC allocation bị skip trên Windows Editor.
-- PR được tạo dạng draft và không đóng Issue #56 cho đến khi C bàn giao/gán đủ prefab còn thiếu và code takeover được review.
+- Unity EditMode mục tiêu `HeroStatsTests` + `HeroBuffIndicatorTests`: 23/23 pass, gồm test event/idempotency, lọc skill buff khỏi Command Aura và clear buff.
+- Lần chạy kết hợp thêm `FxPrefabBuilderTests`: 26/27 pass; test còn lại lỗi môi trường khi Unity không ghi được `Assets/_FxPrefabBuilderTest.meta`, không phải assertion gameplay.
+- PlayMode trước khi tích hợp PR #59: các test mục tiêu Issue #56 4/4 pass. Toàn bộ PlayMode 173 pass, 1 lỗi CommandAura ngoài phạm vi và 3 test GC allocation bị skip trên Windows Editor.
+- PlayMode mục tiêu sau khi tích hợp PR #59: 4/4 pass (status VFX, aura cấp 3, pool VFX kỹ năng và Meteor fall).
+- Issue chưa hoàn tất tới khi C gắn ref scene/prefab, nối `HeroBuffIndicator`, và B review phần takeover.

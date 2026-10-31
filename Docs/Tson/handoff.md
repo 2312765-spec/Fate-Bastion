@@ -153,6 +153,7 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 ## 8. Issue #56 – C-09 gameplay VFX
 
 - A (Thành / Tson-dev) triển khai hook gameplay và tiếp quản phần `HeroPool`/`HeroLevel` thuộc B sau khi TVA xác nhận B chưa phản hồi và việc đang bị block. Phần code takeover là draft, chờ B review; quyền sở hữu thư mục không đổi.
-- Chi tiết phạm vi, kiểm thử và hướng dẫn lắp: [issue56.md](./issue/issue56.md). PR được mở dạng draft trên `GDD12_C09`, stacked trên PR #55.
-- Các prefab C giao theo Issue #56 vẫn chưa có trong `Prefabs/FX`; không dùng prefab khác thay thế. Không coi issue hoàn tất cho đến khi C bàn giao và các tham chiếu được gán.
-- `TRACEABILITY.md` chưa sửa vì là tài liệu dùng chung; cập nhật sau khi đủ điều kiện duyệt theo quy định.
+- PR #57 được cập nhật theo PR #59: chain dự kiến `main <- GDD12_C09_2 (#59) <- fix/C-09_Issue#56 (#57)`. Branch #59 đã được merge vào nhánh cập nhật của PR #57.
+- A gán VFX vào sáu `SkillData` và hai `StatusEffectData`, thêm `HeroStats.BuffsChanged` / `HasSkillBuff(BuffType)` theo yêu cầu trong PR #59.
+- C còn nối VFX rơi vào `Player.prefab`, aura cấp 3 vào scene Game, và wire `HeroBuffIndicator` tới event/API mới. B review code takeover; Issue chưa được coi là hoàn tất trước các bước này.
+- Chi tiết, kiểm thử và hướng dẫn lắp: [issue56.md](./issue/issue56.md). `TRACEABILITY.md` chưa sửa vì là tài liệu dùng chung cần review theo quy định.
