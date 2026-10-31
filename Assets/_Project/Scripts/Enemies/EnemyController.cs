@@ -14,6 +14,14 @@ namespace FateBastion.Enemies
     [DisallowMultipleComponent]
     public class EnemyController : MonoBehaviour, IDamageable
     {
+        private sealed class StatusVfxInstance
+        {
+            public StatusEffectData Data;
+            public ParticleSystem Root;
+        }
+
+        private const int MaxStatusVfx = StatusEffectController.MaxSlowSources + 1;
+
         [Tooltip("Point above the head for the health bar; the enemy root is used when empty.")]
         [SerializeField] private Transform _healthBarAnchor;
 
@@ -23,11 +31,13 @@ namespace FateBastion.Enemies
         private readonly Health _health = new Health();
         private readonly PathFollower _follower = new PathFollower();
         private readonly BossSummonAbility _summon = new BossSummonAbility();
+        private readonly StatusVfxInstance[] _statusVfx = new StatusVfxInstance[MaxStatusVfx];
         private StatusEffectController _status;
         private EnemyManager _owner;
         private Transform _transform;
         private BossSummonSettings _summonSettings;
         private int _pathIndex;
+        private int _statusVfxCount;
 
         public EnemyData Data { get; private set; }
 
@@ -65,6 +75,44 @@ namespace FateBastion.Enemies
             _transform = transform;
             _summonSettings = bossSummonSettings;
             _status = new StatusEffectController(combatSettings);
+            _status.OnStatusChanged += HandleStatusChanged;
+        }
+
+        /// <summary>Creates one looping visual per status while the enemy pool is being prepared.</summary>
+        internal void RegisterStatusVfx(StatusEffectData data)
+        {
+            if (data == null || data.vfx == null) return;
+
+            for (int i = 0; i < _statusVfxCount; i++)
+                if (ReferenceEquals(_statusVfx[i].Data, data)) return;
+
+            if (_statusVfxCount >= _statusVfx.Length)
+            {
+                Debug.LogError($"{name}: status VFX capacity ({_statusVfx.Length}) exceeded.", this);
+                return;
+            }
+
+            ParticleSystem prefab = data.vfx.GetComponent<ParticleSystem>();
+            if (prefab == null)
+            {
+                Debug.LogError($"StatusEffectData '{data.id}' VFX prefab needs a root ParticleSystem.", data);
+                return;
+            }
+            if (!prefab.main.loop)
+            {
+                Debug.LogError($"StatusEffectData '{data.id}' VFX prefab must loop while the status is active.", data);
+                return;
+            }
+
+            GameObject instance = Instantiate(data.vfx, _transform);
+            instance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            instance.transform.localScale = Vector3.one;
+            instance.SetActive(false);
+            _statusVfx[_statusVfxCount++] = new StatusVfxInstance
+            {
+                Data = data,
+                Root = instance.GetComponent<ParticleSystem>()
+            };
         }
 
         /// <summary>Called by EnemyManager when taken from the pool.</summary>
@@ -97,6 +145,8 @@ namespace FateBastion.Enemies
             OnHealthChanged = null;
             _summon.Clear();
             _status?.ResetState(IsBoss);
+            for (int i = 0; i < _statusVfxCount; i++)
+                SetStatusVfx(_statusVfx[i], false);
             _health.TryMarkDead();
         }
 
@@ -170,6 +220,36 @@ namespace FateBastion.Enemies
             forward.y = 0f;
             Quaternion rotation = forward.sqrMagnitude > 1e-6f ? Quaternion.LookRotation(forward) : _transform.rotation;
             _transform.SetPositionAndRotation(position, rotation);
+        }
+
+        private void HandleStatusChanged(StatusEffectData data, bool active)
+        {
+            for (int i = 0; i < _statusVfxCount; i++)
+            {
+                StatusVfxInstance entry = _statusVfx[i];
+                if (ReferenceEquals(entry.Data, data))
+                {
+                    SetStatusVfx(entry, active);
+                    return;
+                }
+            }
+        }
+
+        private static void SetStatusVfx(StatusVfxInstance entry, bool active)
+        {
+            if (entry == null || entry.Root == null || entry.Root.gameObject.activeSelf == active) return;
+
+            if (active)
+            {
+                entry.Root.gameObject.SetActive(true);
+                entry.Root.Clear(true);
+                entry.Root.Play(true);
+            }
+            else
+            {
+                entry.Root.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                entry.Root.gameObject.SetActive(false);
+            }
         }
     }
 }

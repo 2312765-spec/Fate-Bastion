@@ -149,3 +149,10 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Nếu C không đồng ý hoặc muốn bổ sung projectile khác, C chủ động liên hệ A để thay thế/bàn giao, tránh block việc A-08.
 - C có thể review, sửa/thay prefab và phối hợp với A nếu cần; phần draft được ghi nhận cho TVA, không ghi công cho C. Runtime/Sandbox chưa được kiểm tra; validation vẫn chờ sau T-16.
 - `TRACEABILITY.md` ghi chú A-08 và C-09 về người tạo draft và quyền C chỉnh sửa/thay thế. Sau khi TVA xác nhận PR chung đủ 3 người duyệt, quy tắc takeover đã được bổ sung ở `TEAM_ASSIGNMENT.md` mục 5 và đồng bộ trong `CLAUDE.md`.
+
+## 8. Issue #56 – C-09 gameplay VFX
+
+- A (Thành / Tson-dev) triển khai hook gameplay và tiếp quản phần `HeroPool`/`HeroLevel` thuộc B sau khi TVA xác nhận B chưa phản hồi và việc đang bị block. Phần code takeover là draft, chờ B review; quyền sở hữu thư mục không đổi.
+- Chi tiết phạm vi, kiểm thử và hướng dẫn lắp: [issue56.md](./issue/issue56.md). PR được mở dạng draft trên `GDD12_C09`, stacked trên PR #55.
+- Các prefab C giao theo Issue #56 vẫn chưa có trong `Prefabs/FX`; không dùng prefab khác thay thế. Không coi issue hoàn tất cho đến khi C bàn giao và các tham chiếu được gán.
+- `TRACEABILITY.md` chưa sửa vì là tài liệu dùng chung; cập nhật sau khi đủ điều kiện duyệt theo quy định.

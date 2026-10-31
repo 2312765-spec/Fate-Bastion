@@ -37,6 +37,7 @@ namespace FateBastion.Enemies
         private readonly Dictionary<EnemyData, ObjectPool<EnemyController>> _pools =
             new Dictionary<EnemyData, ObjectPool<EnemyController>>();
         private readonly HashSet<EnemyData> _warnedPoolGrowth = new HashSet<EnemyData>();
+        private readonly List<StatusEffectData> _statusVfxData = new List<StatusEffectData>(StatusEffectController.MaxSlowSources + 1);
         private readonly WaveEnemyCounter _counter = new WaveEnemyCounter();
 
         private IEnemyPathProvider _paths;
@@ -74,6 +75,36 @@ namespace FateBastion.Enemies
         public void SetPaths(IEnemyPathProvider paths)
         {
             _paths = paths;
+        }
+
+        /// <summary>Registers a hero status so every pooled enemy can create its looping VFX before the match.</summary>
+        public void RegisterStatusVfx(StatusEffectData data)
+        {
+            if (data == null) return;
+
+            for (int i = 0; i < _statusVfxData.Count; i++)
+                if (ReferenceEquals(_statusVfxData[i], data)) return;
+
+            foreach (ObjectPool<EnemyController> pool in _pools.Values)
+            {
+                if (pool.CountActive > 0)
+                {
+                    Debug.LogError($"{name}: status VFX must be registered before enemies become active.", this);
+                    return;
+                }
+            }
+
+            _statusVfxData.Add(data);
+            foreach (ObjectPool<EnemyController> pool in _pools.Values)
+            {
+                int inactiveCount = pool.CountInactive;
+                for (int i = 0; i < inactiveCount; i++)
+                {
+                    EnemyController enemy = pool.Get();
+                    enemy.RegisterStatusVfx(data);
+                    pool.Release(enemy);
+                }
+            }
         }
 
         /// <summary>Sets the boss summon config (when it was not dragged in the Inspector).</summary>
@@ -344,6 +375,8 @@ namespace FateBastion.Enemies
             go.SetActive(false);
             EnemyController enemy = go.GetComponent<EnemyController>();
             enemy.Initialize(this, _combatSettings, _bossSummonSettings);
+            for (int i = 0; i < _statusVfxData.Count; i++)
+                enemy.RegisterStatusVfx(_statusVfxData[i]);
             return enemy;
         }
 
