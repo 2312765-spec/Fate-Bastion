@@ -17,6 +17,7 @@ namespace FateBastion.Tests.PlayMode.S4
         private HeroStatsSettings _settings;
         private PlacementRules _rules;
         private HeroLevelTable _table;
+        private HeroRageSettings _rageSettings;
 
         [SetUp]
         public void SetUp()
@@ -48,7 +49,9 @@ namespace FateBastion.Tests.PlayMode.S4
             _hero.SetActive(false);
             var stats = _hero.AddComponent<HeroStats>();
             SetPrivate(stats, "_settings", _settings);
-            _hero.AddComponent<HeroController>();
+            var controller = _hero.AddComponent<HeroController>();
+            _rageSettings = ScriptableObject.CreateInstance<HeroRageSettings>();
+            SetPrivate(controller, "_rageSettings", _rageSettings); // A-10 made it required.
             new GameObject("Visual", typeof(HeroVisual)).transform.SetParent(_hero.transform, false);
             _hero.AddComponent<HeroLevel>();
             _hero.SetActive(true);
@@ -62,6 +65,7 @@ namespace FateBastion.Tests.PlayMode.S4
             Object.Destroy(_settings);
             Object.Destroy(_rules);
             Object.Destroy(_table);
+            Object.Destroy(_rageSettings);
         }
 
         private static void SetPrivate(object target, string field, object value)
