@@ -49,6 +49,8 @@ namespace FateBastion.Editor.DebugTools
         private const string MapPath = Root + "Prefabs/Map/Map_Level1.prefab";
         private const string PlayerPath = Root + "Prefabs/Player/Player.prefab";
         private const string AudioPath = Root + "Prefabs/Systems/_Audio.prefab";
+        // C-09: glow under a hero at level 3, created once per pooled hero by HeroLevel.
+        private const string Level3AuraPath = Root + "Prefabs/FX/FX_Hero_Level3.prefab";
         private const string InputActionsPath = Root + "Input/FateBastion.inputactions";
         private const string InputModuleType = "UnityEngine.InputSystem.UI.InputSystemUIInputModule, Unity.InputSystem";
         private const float Fade = 0.2f;
@@ -99,7 +101,7 @@ namespace FateBastion.Editor.DebugTools
 
                 var placementGo = Child(root, "Placement");
                 var pool = placementGo.AddComponent<HeroPool>();
-                pool.Configure(heroController);
+                pool.Configure(heroController, Load<GameObject>(Level3AuraPath));
                 var ghost = placementGo.AddComponent<GhostPreview>();
                 ghost.Configure(heroController);
                 var placement = placementGo.AddComponent<PlacementSystem>();

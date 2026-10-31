@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242cdb0ca6fea2d468072bee025cc1f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FateBastion.UI::FateBastion.UI.HudController
-  _menus: {fileID: 0}
+  _menus: {fileID: 8029381835163551486}
 --- !u!114 &2564351744132056060
 MonoBehaviour:
   m_ObjectHideFlags: 0

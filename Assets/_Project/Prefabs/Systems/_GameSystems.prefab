@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FateBastion.Heroes::FateBastion.Heroes.HeroPool
   _fallbackPrefab: {fileID: 9053079202901677469, guid: 340c3ef01ba829048ba9196cce7c0f90, type: 3}
-  _topLevelAuraPrefab: {fileID: 0}
+  _topLevelAuraPrefab: {fileID: 2400675315700371603, guid: 79c35dd183577d94fb4c3cf4b8a9fa2a, type: 3}
   _container: {fileID: 0}
 --- !u!114 &1228739800730549037
 MonoBehaviour:
@@ -309,6 +309,7 @@ MonoBehaviour:
   _ghostPreview: {fileID: 1228739800730549037}
   _timeController: {fileID: 3754441060289057151}
   _commandAura: {fileID: 0}
+  _levelPaths: {fileID: 0}
   _economy: {fileID: 11400000, guid: f705d569102358c439574a251d25759d, type: 2}
   _endlessRewards: {fileID: 11400000, guid: 222417619d14eeb47aea530f90faf9fa, type: 2}
   _catalog: {fileID: 11400000, guid: a2df65392a6cc004680d07726f9aa3b6, type: 2}
