@@ -33,6 +33,6 @@ MonoBehaviour:
   trigger: 0
   nthHit: 1
   animTrigger: 
-  vfx: {fileID: 0}
+  vfx: {fileID: 100100000, guid: a197cb17e6d680d4c9580c8f71b110ce, type: 3}
   sfx: {fileID: 0}
   cameraShake: 0

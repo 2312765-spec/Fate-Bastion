@@ -131,6 +131,27 @@ namespace FateBastion.Tests.EditMode.S1
             Assert.AreEqual(Element.Fire, _controller.BurnElement);
         }
 
+        [Test]
+        public void Burn_StatusChanged_ReapplyAndExpiryRaiseOnlyStateTransitions()
+        {
+            int started = 0;
+            int stopped = 0;
+            _controller.OnStatusChanged += (data, active) =>
+            {
+                if (!ReferenceEquals(data, _burn)) return;
+                if (active) started++;
+                else stopped++;
+            };
+
+            _controller.Apply(_burn, 100f, DamageType.Magic);
+            _controller.Apply(_burn, 100f, DamageType.Magic);
+            Assert.AreEqual(1, started);
+            Assert.AreEqual(0, stopped);
+
+            TickFor(_burn.duration + FrameStep);
+            Assert.AreEqual(1, stopped);
+        }
+
         // --- Slow ---
 
         [Test]
@@ -146,6 +167,27 @@ namespace FateBastion.Tests.EditMode.S1
             _controller.Apply(_slow, 100f, DamageType.Magic);
             _controller.Apply(_slow, 100f, DamageType.Magic);
             Assert.AreEqual(0.3f, _controller.SlowAmount, 1e-5f);
+        }
+
+        [Test]
+        public void Slow_StatusChanged_ReapplyAndExpiryRaiseOnlyStateTransitions()
+        {
+            int started = 0;
+            int stopped = 0;
+            _controller.OnStatusChanged += (data, active) =>
+            {
+                if (!ReferenceEquals(data, _slow)) return;
+                if (active) started++;
+                else stopped++;
+            };
+
+            _controller.Apply(_slow, 100f, DamageType.Magic);
+            _controller.Apply(_slow, 100f, DamageType.Magic);
+            Assert.AreEqual(1, started);
+            Assert.AreEqual(0, stopped);
+
+            _controller.Tick(_slow.duration + FrameStep);
+            Assert.AreEqual(1, stopped);
         }
 
         [Test]

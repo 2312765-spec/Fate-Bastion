@@ -89,6 +89,14 @@ namespace FateBastion.UI
             if (_settings != null) _manager.Push(_settings);
         }
 
+        /// <summary>HUD "Cài đặt" button (B-14): pauses the match, then opens Settings over the pause screen.</summary>
+        public void OpenSettingsFromHud()
+        {
+            if (_game == null) return;
+            _game.Pause();
+            if (_game.IsPaused) OpenSettings();
+        }
+
         private void HandleMatchEnded(MatchResult result)
         {
             _manager.PopToRoot();

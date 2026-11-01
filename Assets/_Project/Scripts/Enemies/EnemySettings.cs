@@ -15,8 +15,20 @@ namespace FateBastion.Enemies
         [Tooltip("Initial capacity of the active list and the spawn queue, so they do not grow during a match.")]
         [SerializeField, Min(1)] private int _listCapacity = 128;
 
+        [Tooltip("Multiplier for looping status VFX on boss enemy pools.")]
+        [SerializeField, Min(0.01f)] private float _bossStatusVfxScale = 2f;
+
         public int MaxActiveEnemies => _maxActiveEnemies;
         public int ExtraPrewarmPerType => _extraPrewarmPerType;
         public int ListCapacity => _listCapacity;
+        public float BossStatusVfxScale => _bossStatusVfxScale;
+
+        private void OnValidate()
+        {
+            if (float.IsNaN(_bossStatusVfxScale) || float.IsInfinity(_bossStatusVfxScale))
+                _bossStatusVfxScale = 2f;
+            else
+                _bossStatusVfxScale = Mathf.Max(0.01f, _bossStatusVfxScale);
+        }
     }
 }

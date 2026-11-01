@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68746a91379ee754f88c52af1b10bc86, type: 3}
+  m_Name: FxSettings
+  m_EditorClassIdentifier: FateBastion.Audio::FateBastion.Audio.FxSettings
+  hitFire:
+    prefab: {fileID: 7451807593640399100, guid: 4d8e13c25b228384aa8ca749866b7d3d, type: 3}
+    maxConcurrent: 12
+    minInterval: 0.03
+  hitIce:
+    prefab: {fileID: 6900657004712611917, guid: 874c39940b2de704a879e75ac29ebc92, type: 3}
+    maxConcurrent: 12
+    minInterval: 0.03
+  hitLightning:
+    prefab: {fileID: 5435699107017720262, guid: 68c1eb0a1a852b34189d8d9278681053, type: 3}
+    maxConcurrent: 12
+    minInterval: 0.03
+  enemyDeath:
+    prefab: {fileID: 9113048662937664878, guid: f0040d765a657cd4fa250ff5065f1864, type: 3}
+    maxConcurrent: 12
+    minInterval: 0
+  bossDeath:
+    prefab: {fileID: 8856780892355728961, guid: 3f8e3b1a628b8f643bb8b533ff292fe4, type: 3}
+    maxConcurrent: 2
+    minInterval: 0
+  meteorExplosion:
+    prefab: {fileID: 324023174782618358, guid: 9cd69403411c69d4ebbbb93720d10e42, type: 3}
+    maxConcurrent: 2
+    minInterval: 0

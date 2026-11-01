@@ -157,3 +157,10 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - PlayMode: **154 pass / 157 total**, 0 fail, 3 skip (job `d6a119afa40a46c48588c34e6e9354ce`, 19.3 s); ba test GC Alloc không hỗ trợ trên WindowsEditor.
 - Aggregate: **871 pass, 0 fail, 3 skip / 874 test cases**. Đây là test tổng hợp cho các A-xx có trong nhánh tích hợp, không phải số test/lượt xác nhận riêng của từng A-xx.
 - Chưa kiểm tra tay hoặc playtest ba màn; lượt PlayMode là tự động, không bao gồm kiểm tra/chỉnh tay lại prefab, asset, scene hay cân bằng. PR #47 vẫn là PR Draft, chưa merge vào `main`.
+## 8. Issue #56 – C-09 gameplay VFX
+
+- A (Thành / Tson-dev) triển khai hook gameplay và tiếp quản phần `HeroPool`/`HeroLevel` thuộc B sau khi TVA xác nhận B chưa phản hồi và việc đang bị block. Phần code takeover là draft, chờ B review; quyền sở hữu thư mục không đổi.
+- PR #57 được cập nhật theo PR #59: stack #60 là `main <- GDD12_C09_2 (#59) <- fix/C-09_Issue#56 (#57)`. Branch #59 đã được merge vào nhánh PR #57.
+- A gán VFX vào sáu `SkillData` và hai `StatusEffectData`, thêm `HeroStats.BuffsChanged` / `HasSkillBuff(BuffType)` theo yêu cầu trong PR #59.
+- C còn nối VFX rơi vào `Player.prefab`, aura cấp 3 vào scene Game, và wire `HeroBuffIndicator` tới event/API mới. B review code takeover; Issue chưa được coi là hoàn tất trước các bước này.
+- Chi tiết, kiểm thử và hướng dẫn lắp: [issue56.md](./issue/issue56.md). `TRACEABILITY.md` chưa sửa vì là tài liệu dùng chung cần review theo quy định.

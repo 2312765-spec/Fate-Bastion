@@ -55,6 +55,17 @@ namespace FateBastion.Heroes
             if (_heroLayer < 0) Debug.LogError($"{name}: layer '{HeroLayerName}' is missing (Tags & Layers).", this);
             if (heroes == null) return;
 
+            if (_enemyManager != null)
+            {
+                for (int i = 0; i < heroes.Count; i++)
+                {
+                    HeroData data = heroes[i];
+                    if (data == null) continue;
+                    if (data.passiveSkill != null) _enemyManager.RegisterStatusVfx(data.passiveSkill.status);
+                    if (data.ultimateSkill != null) _enemyManager.RegisterStatusVfx(data.ultimateSkill.status);
+                }
+            }
+
             for (int i = 0; i < heroes.Count; i++)
             {
                 HeroData data = heroes[i];
@@ -168,6 +179,7 @@ namespace FateBastion.Heroes
             }
 
             level.Setup(_levelTable, _topLevelAuraPrefab);
+            instance.PrewarmSkillVfx(data.passiveSkill, data.ultimateSkill);
 
             go.SetActive(false);
             return level;

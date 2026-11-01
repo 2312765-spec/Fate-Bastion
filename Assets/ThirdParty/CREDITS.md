@@ -14,6 +14,7 @@ Danh sach asset ben thu ba su dung trong du an (ten, nguon, giay phep).
 | Music Jingles | Kenney | https://kenney.nl/assets/music-jingles | CC0 1.0 | Wave, thang/thua, boss xuat hien, gacha Epic/Legendary, ghep (C-13) | `Assets/_Project/Audio/SFX/` |
 | Casino Audio | Kenney | https://kenney.nl/assets/casino-audio | CC0 1.0 | Gacha Common (C-13) | `Assets/_Project/Audio/SFX/Gacha/` |
 | Interface Sounds | Kenney | https://kenney.nl/assets/interface-sounds | CC0 1.0 | Bam nut, mo/dong bang, loi, Thien thach hoi xong (C-13) | `Assets/_Project/Audio/SFX/` |
+| Particle Pack | Kenney | https://kenney.nl/assets/particle-pack | CC0 1.0 | Texture hat VFX: tran trung don, chet, Thien thach, dan, hao quang (C-09); chi chep 6 file `circle_03/05`, `spark_05`, `flame_03`, `smoke_04`, `star_06` tu thu muc PNG (Transparent) | `Assets/_Project/Art/Textures/FX/Kenney/` |
 | Medieval: The Old Tower Inn | RandomMind | https://opengameart.org/content/medieval-the-old-tower-inn | CC0 1.0 | Nhac sanh `MUS_Lobby` (C-13) | `Assets/_Project/Audio/Music/` |
 | Heartfelt Battle (loop) | request (OpenGameArt; tac gia mong duoc ghi nguon) | https://opengameart.org/content/heartfelt-battle-loopable-fantasy-stringspianohorn | CC0 1.0 | Nhac tran `MUS_Match` (C-13) | `Assets/_Project/Audio/Music/` |
 | Determined Pursuit (loop) | Emma_MA | https://opengameart.org/content/determined-pursuit-epic-orchestra-loop | CC0 1.0 | Nhac boss `MUS_Boss` (C-13) | `Assets/_Project/Audio/Music/` |

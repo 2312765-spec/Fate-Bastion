@@ -17,6 +17,8 @@ namespace FateBastion.Tests.PlayMode.S4
         private HeroStatsSettings _settings;
         private PlacementRules _rules;
         private HeroLevelTable _table;
+        private HeroRageSettings _rageSettings;
+        private GameObject _auraPrefab;
 
         [SetUp]
         public void SetUp()
@@ -48,8 +50,14 @@ namespace FateBastion.Tests.PlayMode.S4
             _hero.SetActive(false);
             var stats = _hero.AddComponent<HeroStats>();
             SetPrivate(stats, "_settings", _settings);
-            _hero.AddComponent<HeroController>();
-            new GameObject("Visual", typeof(HeroVisual)).transform.SetParent(_hero.transform, false);
+            var controller = _hero.AddComponent<HeroController>();
+            _rageSettings = ScriptableObject.CreateInstance<HeroRageSettings>();
+            SetPrivate(controller, "_rageSettings", _rageSettings); // A-10 made it required.
+            GameObject visual = new GameObject("Visual", typeof(HeroVisual));
+            visual.transform.SetParent(_hero.transform, false);
+            Transform auraAnchor = new GameObject("AuraAnchor").transform;
+            auraAnchor.SetParent(visual.transform, false);
+            SetPrivate(visual.GetComponent<HeroVisual>(), "_auraAnchor", auraAnchor);
             _hero.AddComponent<HeroLevel>();
             _hero.SetActive(true);
         }
@@ -62,6 +70,8 @@ namespace FateBastion.Tests.PlayMode.S4
             Object.Destroy(_settings);
             Object.Destroy(_rules);
             Object.Destroy(_table);
+            Object.Destroy(_rageSettings);
+            if (_auraPrefab != null) Object.Destroy(_auraPrefab);
         }
 
         private static void SetPrivate(object target, string field, object value)
@@ -124,6 +134,30 @@ namespace FateBastion.Tests.PlayMode.S4
             controller.Init(_data);
             level.BeginPlaced(0, 350);
             Assert.AreEqual(4f, _hero.GetComponent<HeroStats>().Range, 1e-4f, "A reused hero starts again at level 1.");
+        }
+
+        [Test]
+        public void TopLevelAura_ActivatesAtVisualAnchor_AndClearDisablesIt()
+        {
+            _auraPrefab = new GameObject("Level3Aura");
+            HeroController controller = _hero.GetComponent<HeroController>();
+            HeroLevel level = _hero.GetComponent<HeroLevel>();
+            Transform auraAnchor = _hero.transform.Find("Visual/AuraAnchor");
+
+            level.Setup(_table, _auraPrefab);
+            controller.Init(_data);
+            level.BeginPlaced(0, 350);
+            var wallet = new Wallet(2000);
+            Assert.AreEqual(UpgradeError.None, level.TryUpgrade(_rules, wallet, out _));
+            Assert.AreEqual(UpgradeError.None, level.TryUpgrade(_rules, wallet, out _));
+
+            Assert.IsTrue(level.IsTopLevel);
+            Assert.AreEqual(1, auraAnchor.childCount);
+            GameObject aura = auraAnchor.GetChild(0).gameObject;
+            Assert.IsTrue(aura.activeSelf);
+
+            level.Clear();
+            Assert.IsFalse(aura.activeSelf);
         }
     }
 }
