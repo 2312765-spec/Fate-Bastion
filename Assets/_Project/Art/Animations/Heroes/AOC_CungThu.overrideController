@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AOC_CungThu
+  m_Controller: {fileID: 9100000, guid: 916004b1e2b88944e9d9d94616b1dc86, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 5302596876453452655, guid: bcc1d2b47fc84c94cb897d1956edfff4, type: 3}
+    m_OverrideClip: {fileID: -7261822576779246895, guid: a0d6f7994efba774ab81544ad7181bfb, type: 3}
+  - m_OriginalClip: {fileID: -5212736711164130753, guid: bcc1d2b47fc84c94cb897d1956edfff4, type: 3}
+    m_OverrideClip: {fileID: -7789765272595596032, guid: a0d6f7994efba774ab81544ad7181bfb, type: 3}
+  - m_OriginalClip: {fileID: 7691141311009915180, guid: bcc1d2b47fc84c94cb897d1956edfff4, type: 3}
+    m_OverrideClip: {fileID: 2490026667594714677, guid: a0d6f7994efba774ab81544ad7181bfb, type: 3}
+  - m_OriginalClip: {fileID: -7712033186711689028, guid: bcc1d2b47fc84c94cb897d1956edfff4, type: 3}
+    m_OverrideClip: {fileID: -7261822576779246895, guid: a0d6f7994efba774ab81544ad7181bfb, type: 3}
