@@ -28,6 +28,11 @@ namespace FateBastion.Editor.Heroes
         public const string OverheadName = "Overhead";
         public const string AuraAnchorName = "AuraAnchor";
 
+        // Selection capsule over the body: bottom 0.6 m up and 0.4 m wide keeps it clear of the 0.8 m occupancy sphere
+        // the placement check casts at ground level (sphere centre + capsule bottom cap never meet beyond 0.66 m).
+        private const float PickColliderBottom = 0.6f;
+        private const float PickColliderRadius = 0.4f;
+
         private const string LongVuongModelPath = "Assets/_Project/Art/Models/Heroes/LongVuong/CH_LongVuong.fbx";
         private const string LongVuongAnimationsPath = "Assets/_Project/Art/Animations/Heroes/AOC_LongVuong.overrideController";
         // Long Vương breathes fire (Cone): the muzzle sits in front of the face, not in the hand.
@@ -116,6 +121,7 @@ namespace FateBastion.Editor.Heroes
                 modelRoot.localScale = Vector3.one * entry.modelScale;
                 GameObject model = PlaceModel(entry, modelRoot);
                 HeroVisual visual = AddVisual(entry, catalog, model);
+                AddPickCollider(root, ModelBounds(model));
                 AddRarityAura(hero.rarity, visual.AuraAnchor, fxFolder);
                 AssignProjectile(entry, root);
 
@@ -250,6 +256,27 @@ namespace FateBastion.Editor.Heroes
             serialized.FindProperty("_animator").objectReferenceValue = animator;
             serialized.ApplyModifiedPropertiesWithoutUndo();
             return visual;
+        }
+
+        /// <summary>
+        /// Adds a capsule over the model's body so a click on the hero selects it (PlacementProbe.PickHero raycasts the
+        /// Hero layer). Hero_Base's own capsule (A) is 1 m tall and centred on the ground, so it only covers the feet;
+        /// it stays untouched because the placement CheckSphere relies on it. This one starts PickColliderBottom above
+        /// the ground, out of reach of the occupancy sphere, so placing heroes behaves exactly as before.
+        /// </summary>
+        private static void AddPickCollider(GameObject root, Bounds model)
+        {
+            foreach (CapsuleCollider existing in root.GetComponents<CapsuleCollider>())
+            {
+                if (PrefabUtility.IsAddedComponentOverride(existing)) Object.DestroyImmediate(existing);
+            }
+
+            float top = Mathf.Max(model.max.y, PickColliderBottom + 2f * PickColliderRadius);
+            var pick = root.AddComponent<CapsuleCollider>();
+            pick.direction = 1;
+            pick.radius = PickColliderRadius;
+            pick.height = top - PickColliderBottom;
+            pick.center = new Vector3(0f, (top + PickColliderBottom) * 0.5f, 0f);
         }
 
         private static Transform CreateAnchor(string anchorName, Transform parent, Vector3 worldPosition)

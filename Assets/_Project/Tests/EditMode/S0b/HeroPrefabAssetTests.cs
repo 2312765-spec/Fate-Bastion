@@ -118,6 +118,33 @@ namespace FateBastion.Tests.EditMode.S0b
             }
         }
 
+        [TestCaseSource(nameof(HeroIds))]
+        public void Variant_ClickOnChest_HitsHeroCollider(string heroId)
+        {
+            HeroData hero = RequireBuiltHero(heroId, out _);
+
+            // PlacementProbe.PickHero raycasts from the camera; a ray at chest height must find the hero's colliders.
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(hero.prefab);
+            try
+            {
+                Physics.SyncTransforms();
+                var ray = new Ray(new Vector3(0f, ChestHeight, -5f), Vector3.forward);
+                bool hit = false;
+                foreach (Collider c in instance.GetComponents<Collider>())
+                {
+                    hit |= c.Raycast(ray, out _, 10f);
+                }
+
+                Assert.IsTrue(hit, $"{heroId}: click vào ngực tướng ({ChestHeight} m) không trúng collider nào.");
+            }
+            finally
+            {
+                Object.DestroyImmediate(instance);
+            }
+        }
+
+        private const float ChestHeight = 1.2f;
+
         private static HeroData RequireBuiltHero(string heroId, out HeroArtEntry entry)
         {
             var catalog = AssetDatabase.LoadAssetAtPath<HeroArtCatalog>(HeroVariantBuilder.CatalogPath);
