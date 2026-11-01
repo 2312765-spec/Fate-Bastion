@@ -2,9 +2,9 @@ Danh sach asset ben thu ba su dung trong du an (ten, nguon, giay phep).
 
 | Asset | Tac gia | Nguon | Giay phep | Dung cho | Thu muc |
 |---|---|---|---|---|---|
-| RPG Character Pack | Quaternius | https://quaternius.com/packs/rpgcharacters.html | CC0 1.0 | Tuong nguoi, Trieu Hoi Su | `Quaternius/Characters/RPGCharacters/` |
+| RPG Character Pack (Nov 2020) | Quaternius | https://quaternius.com/packs/rpgcharacters.html | CC0 1.0 | Trieu Hoi Su: `Wizard.fbx` + `Wizard_Texture.png`, `Wizard_Staff_Texture.png` (C-08; bo cube mac dinh, rut gon ten clip – `Quaternius/Source~/build/process_summoner.py`) | `Quaternius/Characters/RPGCharacters/` |
 | Ultimate Modular Men Pack | Quaternius | https://quaternius.com/packs/ultimatemodularcharacters.html | CC0 1.0 | Tuong nguoi (them bien the), than Long Vuong | `Quaternius/Characters/ModularMen/` |
-| Ultimate Monsters | Quaternius | https://quaternius.com/packs/ultimatemonsters.html | CC0 1.0 | 5 loai quai | `Quaternius/Creatures/UltimateMonsters/` |
+| Ultimate Monsters | Quaternius | https://quaternius.com/packs/ultimatemonsters.html | CC0 1.0 | 5 loai quai (C-08): Orc (Thuong), Ninja (Nhanh), Orc_Skull (Giap), Dragon (Bay), Demon (Boss) + `Atlas_Monsters.png`; da giam con ~3000 tam giac, giu rig va clip (`Quaternius/Source~/build/process_monsters.py`) | `Quaternius/Creatures/UltimateMonsters/` |
 | Tower Defense Kit (v2.1) | Kenney | https://kenney.nl/assets/tower-defense-kit | CC0 1.0 | Map: Cong, Thanh, duong, vat can | `Kenney/TowerDefenseKit/` |
 | Be Vietnam Pro (Regular, SemiBold) | The Be Vietnam Pro Project Authors | https://github.com/google/fonts/tree/main/ofl/bevietnampro | SIL OFL 1.1 | Font TextMeshPro moi man hinh (C-10) | `Assets/_Project/Art/Fonts/BeVietnamPro/` (kem `OFL.txt`) |
 | Impact Sounds | Kenney | https://kenney.nl/assets/impact-sounds | CC0 1.0 | Dat tuong, quai trung don/chet, buoc chan, Thanh mat mau (C-13) | `Assets/_Project/Audio/SFX/` |
