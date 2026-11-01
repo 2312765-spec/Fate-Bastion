@@ -9,6 +9,7 @@
         "FateBastion.Enemies",
         "FateBastion.Game",
         "FateBastion.Meta",
+        "FateBastion.Audio",
         "UnityEngine.UI",
         "Unity.TextMeshPro",
         "PrimeTween.Runtime"
