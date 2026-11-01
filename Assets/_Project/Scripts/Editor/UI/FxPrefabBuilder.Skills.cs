@@ -474,7 +474,19 @@ namespace FateBastion.Editor.UI
         {
             string path = $"{folder}/{MeteorRockMeshName}.asset";
             var existing = AssetDatabase.LoadAssetAtPath<Mesh>(path);
-            if (existing != null) return existing;
+            if (existing != null)
+            {
+                // Rewrite in place: same asset and GUID, so prefabs keep their reference, but a fixed builder takes effect.
+                Mesh fresh = BuildRockMesh();
+                existing.Clear();
+                existing.vertices = fresh.vertices;
+                existing.triangles = fresh.triangles;
+                existing.normals = fresh.normals;
+                existing.RecalculateBounds();
+                Object.DestroyImmediate(fresh);
+                EditorUtility.SetDirty(existing);
+                return existing;
+            }
 
             AssetFolderUtility.EnsureFolder(folder);
             Mesh mesh = BuildRockMesh();
@@ -522,14 +534,14 @@ namespace FateBastion.Editor.UI
                 corners[i] = corners[i].normalized * scale;
             }
 
-            // The face list is counter-clockwise (right-handed); Unity's front faces are clockwise, so each triangle is
-            // written b, a, c to keep the normals pointing out.
+            // The face list already winds clockwise seen from outside, which is Unity's front face: keep a, b, c.
+            // (Swapping to b, a, c turned the normals inward, Unity culled the outside and the rock vanished.)
             var vertices = new Vector3[subdivided.Count];
             var triangles = new int[subdivided.Count];
             for (int i = 0; i < subdivided.Count; i += 3)
             {
-                vertices[i] = corners[subdivided[i + 1]];
-                vertices[i + 1] = corners[subdivided[i]];
+                vertices[i] = corners[subdivided[i]];
+                vertices[i + 1] = corners[subdivided[i + 1]];
                 vertices[i + 2] = corners[subdivided[i + 2]];
                 triangles[i] = i;
                 triangles[i + 1] = i + 1;
