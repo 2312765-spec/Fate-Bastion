@@ -23,6 +23,6 @@ MonoBehaviour:
   attacksPerSecond: 1
   range: 6
   icon: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 7015017379638325925, guid: 8e69ee618a7ef284d992aeee89087ba6, type: 3}
   passiveSkill: {fileID: 11400000, guid: a7e1d1d2c8101d24cb3c3d1f5c50854c, type: 2}
   ultimateSkill: {fileID: 0}

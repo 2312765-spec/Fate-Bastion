@@ -1,0 +1,60 @@
+{
+  "blend": "D:\\TowerDenfenseRNG\\Assets\\_Project\\Art\\Models\\Heroes\\ThanhNu\\Source~\\ThanhNu_master.blend",
+  "summary": {
+    "tris_by_lod": {
+      "0": 9000
+    },
+    "fail": [],
+    "warn": [
+      "CH_ThanhNu_Body_LOD0: 1 edges shared by more than two faces"
+    ]
+  },
+  "objects": [
+    {
+      "name": "CH_ThanhNu_Body_LOD0",
+      "type": "MESH",
+      "warn": [
+        "1 edges shared by more than two faces"
+      ],
+      "fail": [],
+      "info": {
+        "tris_evaluated": 9000,
+        "verts_evaluated": 4490,
+        "verts": 4490,
+        "faces": 9000,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 1,
+        "islands": 2,
+        "uv_loops_outside_0_1": 0,
+        "materials": [
+          "Material.001"
+        ],
+        "modifiers": [
+          "ARMATURE:Armature",
+          "NODES:Smooth by Angle"
+        ],
+        "skin": {
+          "armature": "CH_ThanhNu_Rig",
+          "unweighted": 0,
+          "over_influences": 0,
+          "not_normalised": 0,
+          "tiny_weights": 0,
+          "orphan_groups": []
+        }
+      }
+    },
+    {
+      "name": "CH_ThanhNu_Rig",
+      "type": "ARMATURE",
+      "warn": [],
+      "fail": [],
+      "info": {
+        "bones": 22,
+        "deform_bones": 22,
+        "roots": [
+          "Hips"
+        ]
+      }
+    }
+  ]
+}

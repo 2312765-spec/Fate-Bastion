@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56ca23d05408364da1aa32a73169296, type: 3}
+  m_Name: HeroArtCatalog
+  m_EditorClassIdentifier: FateBastion.Editor::FateBastion.Editor.Heroes.HeroArtCatalog
+  overheadMargin: 0.3
+  fallbackMuzzleHeight: 0.6
+  heroes:
+  - heroId: hero_cung_thu
+    variantName: CungThu
+    model: {fileID: 919132149155446097, guid: a0d6f7994efba774ab81544ad7181bfb, type: 3}
+    animations: {fileID: 22100000, guid: 3eb1b6c3976c76b46afc239004366b6c, type: 2}
+    modelScale: 1
+    muzzleBone: 17
+    muzzleOffset: {x: 0, y: 0, z: 0}
+    projectile: {fileID: 8475719215299339475, guid: ae2ea17b623e9884a8076aa1e47fef41, type: 3}
+  - heroId: hero_phu_thuy_lua
+    variantName: PhuThuyLua
+    model: {fileID: 919132149155446097, guid: 28209f666ba96b5409a11d4c89053e16, type: 3}
+    animations: {fileID: 22100000, guid: 00a71c83a87050b4293d8f237e7ce069, type: 2}
+    modelScale: 1
+    muzzleBone: 18
+    muzzleOffset: {x: 0.12, y: 0.27, z: 0.87}
+    projectile: {fileID: 0}
+  - heroId: hero_linh_bang
+    variantName: LinhBang
+    model: {fileID: 919132149155446097, guid: 091ad4b1405209c468a2531dbae48a2e, type: 3}
+    animations: {fileID: 22100000, guid: cddabfa7875e4cf48a41f8fe55f3b131, type: 2}
+    modelScale: 1
+    muzzleBone: 18
+    muzzleOffset: {x: 0.11, y: -0.35, z: 0.77}
+    projectile: {fileID: 8421682607031813189, guid: 5198b7337814dd24198da75eeaf547fa, type: 3}
+  - heroId: hero_tu_si
+    variantName: TuSi
+    model: {fileID: 919132149155446097, guid: ce80e9158846c5f46b2a98b4de402275, type: 3}
+    animations: {fileID: 22100000, guid: df2d5a2723eef68488dbcef728b966fe, type: 2}
+    modelScale: 1
+    muzzleBone: 18
+    muzzleOffset: {x: 0.02, y: -0.37, z: 0}
+    projectile: {fileID: 8837764350337759908, guid: c8d1b82b6d1dde940a8427cd4460acad, type: 3}
+  - heroId: hero_nguoi_tuyet
+    variantName: NguoiTuyet
+    model: {fileID: 919132149155446097, guid: 79c91311e3b561b4996b9dfe5b6a7457, type: 3}
+    animations: {fileID: 22100000, guid: 1077be59e037b5d47b3a6d6a356c7b1d, type: 2}
+    modelScale: 1
+    muzzleBone: 18
+    muzzleOffset: {x: 0.05, y: 0, z: 0.95}
+    projectile: {fileID: 0}
+  - heroId: hero_phap_su_sam
+    variantName: PhapSuSam
+    model: {fileID: 919132149155446097, guid: d1d2744e066b83c4784550ddca46daa4, type: 3}
+    animations: {fileID: 22100000, guid: 5e1b1272f2372a242a16194d50064865, type: 2}
+    modelScale: 1
+    muzzleBone: 18
+    muzzleOffset: {x: 0.22, y: 0.28, z: 0.73}
+    projectile: {fileID: 0}
+  - heroId: hero_chien_binh_sam
+    variantName: ChienBinhSam
+    model: {fileID: 919132149155446097, guid: bf9d1fcd322b87a4ea0d9abd70629f24, type: 3}
+    animations: {fileID: 22100000, guid: 3dddc326e770f7e4e86ad5cc05051ea7, type: 2}
+    modelScale: 1
+    muzzleBone: 18
+    muzzleOffset: {x: 0, y: 0, z: 0}
+    projectile: {fileID: 0}
+  - heroId: hero_thanh_nu
+    variantName: ThanhNu
+    model: {fileID: 919132149155446097, guid: 7abc64d99f022c042b16d7d6548cfb3d, type: 3}
+    animations: {fileID: 22100000, guid: a50f70714be4d534584449e997239aed, type: 2}
+    modelScale: 1
+    muzzleBone: 17
+    muzzleOffset: {x: -0.16, y: 0.55, z: 0.01}
+    projectile: {fileID: 8837764350337759908, guid: c8d1b82b6d1dde940a8427cd4460acad, type: 3}
+  - heroId: hero_long_vuong
+    variantName: LongVuong
+    model: {fileID: 919132149155446097, guid: bcc1d2b47fc84c94cb897d1956edfff4, type: 3}
+    animations: {fileID: 22100000, guid: 81602c7ce18f1e3439bf50309415ee41, type: 2}
+    modelScale: 1
+    muzzleBone: 10
+    muzzleOffset: {x: 0, y: 0, z: 0.25}
+    projectile: {fileID: 0}
