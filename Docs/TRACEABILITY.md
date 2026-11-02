@@ -4,6 +4,7 @@
 > **Cách dùng:** mỗi người chỉ tick ☐ → ☑ ở **phần của mình** (mục 4 = A, 5 = B, 6 = C; mục 3 tick chung trong PR S0) trong PR của việc đó. Không sửa phần của người khác → không xung đột khi merge. Bảng mục 2 do trưởng nhóm kỹ thuật cập nhật cuối tuần.
 > Cột **Ngày** khớp lịch `ROADMAP.md` mục 2 (dời ngày ở đây thì dời cả ở ROADMAP và ngược lại). Cột **Vùng file** khớp `TEAM_ASSIGNMENT.md` mục 2.
 > Ký hiệu cột **Kiểm tra**: `EM` = unit test EditMode, `PM` = test PlayMode, `Tay` = kiểm tra tay trong Unity (ghi người kiểm và ngày vào cột Ghi chú).
+> Bằng chứng A-04…A-15 được cập nhật theo regression Unity MCP ngày 02/11/2026 trên T-16; các trạng thái này chỉ xác nhận tiêu chí tự động của phần A, không thay playtest tay hoặc phần tích hợp của owner khác.
 
 ---
 
@@ -56,24 +57,24 @@
 | R05 | B-04, B-05 | ☑ |
 | R06 | A-01 | ☑ |
 | R07 | A-02 | ☑ |
-| R08 | A-07, A-08, A-09 | ☐ |
-| R09 | A-10 | ☐ |
-| R10 | A-04, A-05 | ☐ |
-| R11 | A-04, A-06 | ☐ |
+| R08 | A-07, A-08, A-09 | ☑ |
+| R09 | A-10 | ☑ |
+| R10 | A-04, A-05 | ☑ |
+| R11 | A-04, A-06 | ☑ |
 | R12 | A-06, B-07 | ☐ |
 | R13 | B-06 | ☑ |
 | R14 | B-03, B-06 | ☑ |
 | R15 | B-07, B-11 | ☑ |
 | R16 | C-03, C-04 | ☐ |
-| R17 | A-11 | ☐ |
-| R18 | A-12, A-13 | ☐ |
+| R17 | A-11 | ☑ |
+| R18 | A-12, A-13 | ☑ |
 | R19 | C-05 | ☐ |
 | R20 | B-06 | ☑ |
 | R21 | B-13, B-14, C-11, C-14 | ☐ |
 | R22 | B-15, C-12 | ☑ |
 | R23 | B-17 | ☐ |
 | R24 | B-16 | ☑ |
-| R25 | A-14, A-15 | ☐ |
+| R25 | A-14, A-15 | ☑ |
 | R26 | C-13, C-14, C-18 | ☑ |
 | R27 | C-14, C-15, mọi PR (mục 6) | ☐ |
 | R28 | S0-04, S0-05, A-06, A-17 | ☑ công cụ · ☐ số liệu |
@@ -123,19 +124,19 @@ Việc nền không gắn với một yêu cầu đơn lẻ (vẫn bắt buộc,
 | A-01 | 3 | `DamageCalculator` (`DamageInfo` đã có từ S0, vùng khóa) (kháng 0/50/80%, True, hệ số kỹ năng, làm tròn, tối thiểu 1) | S1 | `Combat/` | EM | ☑ | 33 test EditMode pass; làm tròn xuống có epsilon tương đối 1e-6 (ASSUMPTION) |
 | A-02 | 4 | `StatusEffectController`: Bỏng lấy mạnh nhất, Chậm ≤ 60% và boss 50%, Nảy không lặp | S1 | `Combat/` | EM | ☑ | `StatusEffectController`, `ChainLightning`, `CombatSettings` (trần chậm, boss, nảy); Sandbox `A_Combat` |
 | A-03 | 4 | Chết một lần khi 3 đòn cùng frame; đạn bay tới vị trí cuối khi mục tiêu chết; XZ | S1 | `Combat/`, `Heroes/Runtime/` | EM + PM | ☑ | `Health`, `ProjectileFlight`/`Projectile` (đặt ở `Combat/` để S6 dùng chung), `CombatMath`; 93 EM + 5 PM |
-| A-04 | 5 | `EnemyController` trên Spline (lấy từ `LevelPaths`), `EnemyManager` (≤ 100 quái), `WaveManager` (nhóm song song, lệch 2 s), pool · API 3.1 #1, #2: `OnEnemyReachedCastle`, `Init/StartWave/StopAndClear/OnWaveFinished`; không đụng `Wallet` (#8) · API 3.1 #9 cho UI thế giới (C): `OnEnemySpawned/Despawned`, `ActiveEnemies`, `CurrentHP/MaxHP/IsBoss/Progress/HealthBarAnchor`, `OnHealthChanged` | S2 | `Enemies/` | PM: tới Thành trừ đúng 1 lần ở ×1 và ×2 | ☑ | 49 EM + 27 PM; đếm riêng từng wave, quái chết trả pool ngay, pool thiếu thì tạo thêm + cảnh báo 1 lần; Sandbox `A_Enemies` (`WaveSandboxDemo`); Vô tận là STUB chờ A-06 |
-| A-05 | 6 | Quái Bay (đường riêng, cao 2 m), boss gọi 3 quái Nhanh mỗi 12 s | S2 | `Enemies/` | PM: wave kết thúc đúng khi có quái con | ☐ | |
-| A-06 | 6, 13 | Máu theo công thức có `hpMultiplier`; dữ liệu 3 màn + Vô tận kiểm tra sau import | S2 | `Enemies/`, `Data/Balance/` | EM: wave 1/5/15 cả 3 màn khớp sheet Wave | ☐ | |
-| A-07 | 6–7 | `HeroController`, `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay), `AttackModule` (timer, bắn từ `HeroVisual.Muzzle`) · API 3.1 #3, #4: `Init(HeroData)`, `ResetState()`, `OnDespawn()`, `HeroStats.SetLevelMultipliers` | S1, S6 | `Heroes/Runtime/` | PM | ☐ | |
-| A-08 | 8–9 | `SkillData`, `SkillRunner`, 7 kind: MeleeHit, Projectile, AreaAtPoint, Cone, Line, Zone, Buff | S6 | `Skills/` | PM: mỗi kind một kỹ năng mẫu | ☐ | Để gỡ block PR #38, TVA (A) đã tạo `Prefabs/FX/Projectile_Base.prefab` dạng draft và gán vào `Hero_Base`; component `Projectile` giữ nguyên hợp đồng. |
-| A-09 | 9 | Cộng buff: cùng loại lấy mạnh nhất, khác nguồn cộng, trần +60% | S6 | `Heroes/Runtime/`, `Skills/` | EM: 2 Thánh Nữ = +30%, Thánh Nữ + Hào quang = +55% | ☐ | |
-| A-10 | 10 | Nộ +5 mỗi đòn, Ultimate Long Vương kích hoạt tay · API 3.1 #5: `OnRageChanged`, `TryActivateUltimate()` | S6 | `Skills/` | EM | ☐ | |
-| A-11 | 11 | `CommandAura` (6 m, +25%, 5 lần/s, chỉ tính lại khi vào/ra) · event `OnHeroEnteredAura` cho Hướng dẫn (3.1 #10) | S7 | `Player/Abilities/` | PM: vào/ra đổi tốc đánh; bán tướng gỡ buff | ☐ | |
-| A-12 | 12 | `MeteorAbility` (state machine thuần): hủy không tốn hồi chiêu, hồi 45 s game time · `CancelStack` + nghe `DeckSlot` để hủy ngắm (3.1 #6, #7) | S7 | `Player/Abilities/` | EM: 45 s (×1), 22.5 s thực (×2) | ☐ | |
-| A-13 | 12 | `MeteorAimIndicator`, tầm 20 m, sát thương theo wave × k_màn, trúng quái Bay | S7 | `Player/Abilities/` | EM: sát thương wave 1/5/15 | ☐ | |
-| A-14 | 15 | `SaveData`, `SaveService` ghi an toàn | S9 | `Meta/Save/` | EM: lưu/đọc giống hệt; lần lưu đầu | ☐ | |
-| A-15 | 16 | Đọc lỗi → bak → tạo mới từ `StarterSettings` | S9 | `Meta/Save/` | EM: file hỏng, cả hai hỏng | ☐ | |
-| A-17 | 18–19, 23 | Cân bằng lần 1 và 2 (Excel → CSV → import), ghi lý do vào cột ghi chú | — | `Docs/root/Can bang…xlsx`, `Data/Balance/` | Tay: chơi 3 màn | ☐ | |
+| A-04 | 5 | `EnemyController` trên Spline (lấy từ `LevelPaths`), `EnemyManager` (≤ 100 quái), `WaveManager` (nhóm song song, lệch 2 s), pool · API 3.1 #1, #2: `OnEnemyReachedCastle`, `Init/StartWave/StopAndClear/OnWaveFinished`; không đụng `Wallet` (#8) · API 3.1 #9 cho UI thế giới (C): `OnEnemySpawned/Despawned`, `ActiveEnemies`, `CurrentHP/MaxHP/IsBoss/Progress/HealthBarAnchor`, `OnHealthChanged` | S2 | `Enemies/` | PM: tới Thành trừ đúng 1 lần ở ×1 và ×2 | ☑ | T16: `EnemyManagerPlayModeTests` xác nhận tới Thành đúng 1 lần ×1/×2; `WaveManagerPlayModeTests` xác nhận wave/queue. Chưa playtest tay; xem handoff T-16. |
+| A-05 | 6 | Quái Bay (đường riêng, cao 2 m), boss gọi 3 quái Nhanh mỗi 12 s | S2 | `Enemies/` | PM: wave kết thúc đúng khi có quái con | ☑ | T16: `BossSummonPlayModeTests` (boss summon/wave còn mở), Flying hit check và `WaveManagerPlayModeTests.Wave_150EnemiesOverCap_NeverExceeds100AndFinishes` pass. PlayMode toàn bộ `FateBastion`: 179 pass, 0 fail, 3 skip; chưa playtest tay. |
+| A-06 | 6, 13 | Máu theo công thức có `hpMultiplier`; dữ liệu 3 màn + Vô tận kiểm tra sau import | S2 | `Enemies/`, `Data/Balance/` | EM: wave 1/5/15 cả 3 màn khớp sheet Wave | ☑ | T16: thêm 9 case đối chiếu tổng HP imported `WaveData`/`EnemyData` với `calc_totalHP` workbook tại wave 1/5/15 cả 3 màn; nhóm S2 EditMode 70/70 pass. Endless tự động có test; map/routing thiếu nên chưa sign-off gameplay ba màn/A-17. |
+| A-07 | 6–7 | `HeroController`, `TargetingModule` (Đầu đoàn, DPS đơn ưu tiên boss, Melee không chọn Bay), `AttackModule` (timer, bắn từ `HeroVisual.Muzzle`) · API 3.1 #3, #4: `Init(HeroData)`, `ResetState()`, `OnDespawn()`, `HeroStats.SetLevelMultipliers` | S1, S6 | `Heroes/Runtime/` | PM | ☑ | T16 full EditMode/PlayMode: target boss/flying, attack, controller/pool regression pass; chưa playtest tay. |
+| A-08 | 8–9 | `SkillData`, `SkillRunner`, 7 kind: MeleeHit, Projectile, AreaAtPoint, Cone, Line, Zone, Buff | S6 | `Skills/` | PM: mỗi kind một kỹ năng mẫu | ☑ | T16 PlayMode `AttackModulePlayModeTests` cover melee, projectile, area, cone, line, zone và buff; pass. Để gỡ block PR #38, TVA (A) đã tạo `Prefabs/FX/Projectile_Base.prefab` dạng draft và gán vào `Hero_Base`; component `Projectile` giữ nguyên hợp đồng. Chưa playtest tay. |
+| A-09 | 9 | Cộng buff: cùng loại lấy mạnh nhất, khác nguồn cộng, trần +60% | S6 | `Heroes/Runtime/`, `Skills/` | EM: 2 Thánh Nữ = +30%, Thánh Nữ + Hào quang = +55% | ☑ | T16 `HeroStatsTests` regression cùng loại/lấy mức mạnh nhất, cộng khác nguồn và cap +60% pass; chưa playtest tay. |
+| A-10 | 10 | Nộ +5 mỗi đòn, Ultimate Long Vương kích hoạt tay · API 3.1 #5: `OnRageChanged`, `TryActivateUltimate()` | S6 | `Skills/` | EM | ☑ | T16 `RageMeterTests` + `AttackModulePlayModeTests` Ultimate regression pass; hookup HUD Nộ của B và xác nhận trong scene vẫn cần kiểm tra riêng. |
+| A-11 | 11 | `CommandAura` (6 m, +25%, 5 lần/s, chỉ tính lại khi vào/ra) · event `OnHeroEnteredAura` cho Hướng dẫn (3.1 #10) | S7 | `Player/Abilities/` | PM: vào/ra đổi tốc đánh; bán tướng gỡ buff | ☑ | T16 `CommandAuraPlayModeTests.Aura_EnterExitAndDisable_UpdatesBuffAndPublishesOnlyEntryTransitions` xác nhận vào/ra, despawn/re-init và cleanup khi disable; pass. Bước tutorial thuộc B-17 vẫn cần kiểm tra trong scene. |
+| A-12 | 12 | `MeteorAbility` (state machine thuần): hủy không tốn hồi chiêu, hồi 45 s game time · `CancelStack` + nghe `DeckSlot` để hủy ngắm (3.1 #6, #7) | S7 | `Player/Abilities/` | EM: 45 s (×1), 22.5 s thực (×2) | ☑ | T16 `MeteorAbilityTests`: cancel, ×1 45 giây game, ×2 22,5 giây thực và DeckSlot cancel đều pass. |
+| A-13 | 12 | `MeteorAimIndicator`, tầm 20 m, sát thương theo wave × k_màn, trúng quái Bay | S7 | `Player/Abilities/` | EM: sát thương wave 1/5/15 | ☑ | T16 `MeteorDamageCalculatorTests` wave 1/5/15 và PlayMode hit quái Bay pass; chưa playtest aim/UI/FX trong scene. |
+| A-14 | 15 | `SaveData`, `SaveService` ghi an toàn | S9 | `Meta/Save/` | EM: lưu/đọc giống hệt; lần lưu đầu | ☑ | T16 full `FateBastion` EditMode pass; `SaveServiceTests` cover round-trip, lần lưu đầu, backup. Chưa E2E persistence qua UI bằng thao tác tay. |
+| A-15 | 16 | Đọc lỗi → bak → tạo mới từ `StarterSettings` | S9 | `Meta/Save/` | EM: file hỏng, cả hai hỏng | ☑ | T16 full `FateBastion` EditMode pass; `SaveServiceTests` cover main hỏng → bak và cả hai file hỏng → tạo mới. |
+| A-17 | 18–19, 23 | Cân bằng lần 1 và 2 (Excel → CSV → import), ghi lý do vào cột ghi chú | — | `Docs/root/Can bang…xlsx`, `Data/Balance/` | Tay: chơi 3 màn | ☐ | Chưa chỉnh số liệu/chưa sign-off. Chỉ có `Map_Level1`, routing LevelData → map chưa có; blocker B/C được ghi ở issue #68. Automated HP check không thay playtest/cân bằng tay. |
 
 ---
 
