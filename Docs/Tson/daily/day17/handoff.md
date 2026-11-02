@@ -31,6 +31,6 @@
 - Unity MCP trên `feature/A_T16_integration` đã tạo:
   - `Assets/_Project/Data/Skills/meteor.asset`: `AreaAtPoint`, `GroundPoint`, True damage ×3, bán kính 4 m, hồi chiêu 45 s, castDelay 0.8 s.
   - `Assets/_Project/Data/Settings/meteor_settings.asset`: tham chiếu `meteor` + `enemy_normal`, tầm 20 m, vertical query padding 2 m.
-- `MeteorAimMathTests` và `MeteorDamageCalculatorTests` (EditMode) cùng `MeteorDamageApplierPlayModeTests` đã chạy trong suite tích hợp: EditMode **675/675 pass**, PlayMode **116/116 pass**, 0 fail/0 skip (job `cb4aede713514d83b261bbeff260396a` và `87b378136e49444aa9d5c386d4ebc169`).
-- **Chưa có trên `main`:** hai asset trên, wiring `CommandAura`/`MeteorAbility`/`MeteorAimIndicator`/`IMeteorAimRaySource` trong Player prefab (C sở hữu), và fixture fix `10d804e`. Cần một PR follow-up port từ nhánh tích hợp.
-- Chưa playtest tay ba màn; `Game.unity` thuộc C. Issue draft cho C nằm ở `daily/day20/handoff.md` trên nhánh tích hợp.
+- `MeteorAimMathTests` và `MeteorDamageCalculatorTests` (EditMode) cùng `MeteorDamageApplierPlayModeTests` có mặt trong suite tổng hợp T-16 sau merge `main`: EditMode **717/717 pass**; PlayMode **154 pass / 157 total, 0 fail, 3 skip** (job `b64e5b6d634f417f842260fc9959be1a` và `d6a119afa40a46c48588c34e6e9354ce`). Đây là aggregate, không phải lượt riêng của A-13.
+- **Chưa có trên `main`:** hai asset trên, wiring `CommandAura`/`MeteorAbility`/`MeteorAimIndicator`/`IMeteorAimRaySource` trong Player prefab (C sở hữu), và fixture fix trên nhánh tích hợp. Cần PR #47 được merge để port các thay đổi của nhánh validation.
+- Chưa kiểm tra tay/playtest ba màn; `Game.unity` thuộc C. Kết quả MCP không bao gồm kiểm tra/chỉnh tay lại prefab, asset hoặc scene. Issue draft cho C nằm ở `daily/day20/handoff.md`.

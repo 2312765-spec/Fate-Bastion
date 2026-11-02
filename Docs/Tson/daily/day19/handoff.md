@@ -7,3 +7,9 @@
 - Kiểm tra Vô tận lặp block wave 6–15 nhưng wave thật tiếp tục tăng trong hệ số `hpGrowth`.
 - Xác nhận dữ liệu level 1/2/3 vẫn đúng; không sửa asset do importer quản lý.
 - PR #22 đã merge; 298 EM + 50 PM là bằng chứng lịch sử, không thay cho lượt test tổng hợp T-16.
+
+## Kết quả regression trong T-16 sau merge `main`
+
+- A-06 regression hiện có trong suite tổng hợp: EditMode `EnemyHealthFormulaTests`/`LevelBalanceDataTests` và PlayMode `Endless_WavesBeyondLast_RepeatLoopBlockWithRealWaveNumbers`.
+- Lượt Unity MCP cuối: EditMode **717/717 pass** (job `b64e5b6d634f417f842260fc9959be1a`); PlayMode **154 pass / 157 total, 0 fail, 3 skip** (job `d6a119afa40a46c48588c34e6e9354ce`). Đây là số liệu aggregate cho mọi test trong hai assembly, không phải số test riêng của A-06.
+- Chưa kiểm tra tay công thức/dữ liệu trong scene hoặc chỉnh lại asset; chưa playtest ba màn.

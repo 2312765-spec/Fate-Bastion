@@ -91,11 +91,11 @@ Nguồn chi tiết: [S1](../Specs/S1.md), [S6](../Specs/S6.md), [S0b](../Specs/S
 
 ## 4. S6/S7 – Kỹ năng, Nộ, Hào quang, Thiên thạch
 
-**Trạng thái:** A-08 đã merge `main` (#38). A-09 đã merge vào nhánh A-08 (#39) và đang được đưa vào `main` qua #46. A-10…A-13 đang mở PR #40–#43 (Ready, `CLEAN`) — **chưa có trên `main`**. Thứ tự merge đề xuất: **#46 → #40 → #41** và **#42 → #43**.
+**Trạng thái:** A-08…A-13 đã merge vào `main` (#38, #46, #40–#43). Các settings assets và fixture fix của T-16 nằm trong PR #47; Player prefab wiring và kiểm tra tay vẫn chờ C/B.
 
 **Dành cho B:**
 
-- **Nộ / Ultimate (A-10, #40):** đăng ký `HeroController.OnRageChanged(float current, float max)` để vẽ thanh Nộ; gọi `TryActivateUltimate()` từ nút R. `HeroRageSettings` cấu hình Nộ mỗi đòn và ngưỡng Ultimate; T-16 còn phải tạo `.asset` và gán vào `Hero_Base.prefab` trong Editor.
+- **Nộ / Ultimate (A-10, #40):** đăng ký `HeroController.OnRageChanged(float current, float max)` để vẽ thanh Nộ; gọi `TryActivateUltimate()` từ nút R. `HeroRageSettings` cấu hình Nộ mỗi đòn và ngưỡng Ultimate; asset đã được tạo/gán qua Unity MCP trong nhánh T-16, nhưng chưa kiểm tra tay hoặc chỉnh lại prefab.
 - **Hào quang (A-11, #41):** đăng ký `CommandAura.OnHeroEnteredAura(GameObject)` cho tutorial bước 3, đúng điểm nối 3.1 #10.
 - **Thiên thạch (A-12/A-13, #42/#43):** nghe `AbilityEvents.OnMeteorCooldownChanged` và `OnMeteorExploded(Vector3 position, float radius)` để vẽ ô hồi chiêu/HUD.
 - Không tự phát lại các event trên; A phát từ hub `AbilityEvents`/`HeroEvents`.
@@ -105,12 +105,12 @@ Nguồn chi tiết: [S1](../Specs/S1.md), [S6](../Specs/S6.md), [S0b](../Specs/S
 - Gắn `CommandAura` + `CommandAuraSettings.asset` vào prefab Player/Summoner của C (bán kính 6 m, +25% AttackSpeed, chu kỳ 0.2 s).
 - Cung cấp implementation `IMeteorAimRaySource` (ray camera → mặt đất) và gắn `MeteorAimIndicator` + `MeteorSettings.asset` theo hướng dẫn ở [handoff Ngày 17](./daily/day17/handoff.md).
 - `SkillData.vfx` cho Long Vương Line và Người Tuyết Zone vẫn chờ FX prefab từ C.
-- PR #42 còn fixture test `MeteorTestInputRouter`; fix T-16 `10d804e` chưa được áp — cần áp trước khi merge.
+- `main` vẫn có fixture test `MeteorTestInputRouter`; nhánh T-16/PR #47 đã bỏ fixture và dùng router runtime. Chưa port vào `main` cho đến khi PR #47 merge.
 
 ## 5. Việc cần xác nhận khi nhận bàn giao
 
 - **B / S9:** thử Bootstrap/Save flow và xác nhận “Đã thử, dùng được” theo `TEAM_ASSIGNMENT.md` 4.1 #5; nối starter data thật và gọi Save sau các thay đổi S8.
 - **B / S4:** nối `HeroPool` với lifecycle/chỉ số nêu trên (đã có trên `main`); không tự thay chữ ký #3/#4.
-- **B / S6–S7:** sau khi #46/#40/#41/#42/#43 merge, nối HUD Nộ, tutorial bước 3 và ô Thiên thạch; xác nhận đã chạy thử.
+- **B / S6–S7:** nối HUD Nộ, tutorial bước 3 và ô Thiên thạch; xác nhận đã chạy thử sau khi C wire prefab.
 - **C:** duyệt riêng Animator contract #11 với A trước khi tạo animation controller theo các parameter đó; gắn `CommandAura`/`MeteorAimIndicator`/`IMeteorAimRaySource` vào prefab và bàn giao FX.
 - Nếu cần đổi tên/chữ ký hoặc event tại điểm nối, tạo issue `[Cần A]` theo quy trình nhóm trước khi sửa hợp đồng.

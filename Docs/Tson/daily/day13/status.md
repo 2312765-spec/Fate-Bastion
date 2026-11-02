@@ -11,6 +11,6 @@
 
 ## Chưa hoàn tất
 
-- Chưa chạy EditMode/PlayMode tests riêng cho A-09 theo quyết định hoãn validation đến sau T-16; bằng chứng hiện có là snapshot tích hợp T-16 (thiếu `010c558`/`4e42dc0`) và Unity MCP script validation.
-- A-09 đã nằm trên `feature/S06_A08`; PR #46 (base `main`) đang mở để đưa A-08 + A-09 vào `main` và **phải merge trước #40**.
+- Chưa chạy EditMode/PlayMode tests riêng cho A-09; suite tích hợp T-16 sau merge `main` đã chạy 717/717 EditMode và 154/157 PlayMode (0 fail, 3 skip). Đây là kiểm thử tự động, chưa kiểm tra tay/playtest hay chỉnh tay prefab/asset/scene.
+- PR #46 đã đưa A-08 + A-09 vào `main` (`15b8bf2`); các PR A-10…A-13 (#40–#43) cũng đã merge. Sáu EditMode tests A-09 nằm trong aggregate T-16 (717/717 pass); không có lượt chạy riêng.
 - Chưa cập nhật `TRACEABILITY.md`; đây là file dùng chung và cần quy trình duyệt trước khi sửa.
