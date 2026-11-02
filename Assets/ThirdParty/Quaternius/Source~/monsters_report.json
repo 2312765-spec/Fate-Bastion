@@ -1,0 +1,106 @@
+[
+ {
+  "name": "Orc",
+  "tris_before": 7344,
+  "tris_after": 2997,
+  "clips": [
+   "Death",
+   "Duck",
+   "HitReact",
+   "Idle",
+   "Jump",
+   "Jump_Idle",
+   "Jump_Land",
+   "No",
+   "Punch",
+   "Run",
+   "Walk",
+   "Wave",
+   "Weapon",
+   "Yes"
+  ],
+  "type": "Normal"
+ },
+ {
+  "name": "Ninja",
+  "tris_before": 5964,
+  "tris_after": 2998,
+  "clips": [
+   "Death",
+   "Duck",
+   "HitReact",
+   "Idle",
+   "Jump",
+   "Jump_Idle",
+   "Jump_Land",
+   "No",
+   "Punch",
+   "Run",
+   "Walk",
+   "Wave",
+   "Weapon",
+   "Yes"
+  ],
+  "type": "Fast"
+ },
+ {
+  "name": "Orc_Skull",
+  "tris_before": 7364,
+  "tris_after": 2998,
+  "clips": [
+   "Death",
+   "Duck",
+   "HitReact",
+   "Idle",
+   "Jump",
+   "Jump_Idle",
+   "Jump_Land",
+   "No",
+   "Punch",
+   "Run",
+   "Walk",
+   "Wave",
+   "Weapon",
+   "Yes"
+  ],
+  "type": "Armor"
+ },
+ {
+  "name": "Dragon",
+  "tris_before": 4562,
+  "tris_after": 3000,
+  "clips": [
+   "Death",
+   "Fast_Flying",
+   "Flying_Idle",
+   "Headbutt",
+   "HitReact",
+   "No",
+   "Punch",
+   "Yes"
+  ],
+  "type": "Fly"
+ },
+ {
+  "name": "Demon",
+  "tris_before": 6712,
+  "tris_after": 2998,
+  "clips": [
+   "Death",
+   "Duck",
+   "HitReact",
+   "Idle",
+   "Jump",
+   "Jump_Idle",
+   "Jump_Land",
+   "No",
+   "Punch",
+   "Run",
+   "Walk",
+   "Wave",
+   "Weapon",
+   "Yes"
+  ],
+  "type": "Boss"
+ }
+]
