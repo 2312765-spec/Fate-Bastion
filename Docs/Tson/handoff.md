@@ -10,13 +10,13 @@
 
 | Việc A | Mã | Chờ ai | Vì sao | Trong lúc chờ dùng | Ngày cần |
 |---|---|---|---|---|---|
-| Ghép trận hoàn chỉnh / playtest màn | A-04…A-13 | **B** (S5 `GameManager`, S4 đặt tướng) | Cần luồng trận + đặt tướng để chơi thật | Stub theo 3.1; test trong Sandbox `A_Enemies`, `A_Combat` | 20 (T-16) |
+| Playtest tay luồng trận/đặt tướng | A-04…A-13 | **B/C** (B: S4/S5 hookup; C: scene/map) | Code tích hợp và regression đã có, nhưng chưa có lượt chơi tay xác nhận wiring/flow trên scene Game | Regression tự động trên `feature/A_T16_integration`; không coi pass test là playtest tay | 02/11/2026 |
 | A-10 Ultimate hiển thị thanh Nộ | A-10 | **B** (HUD Nộ) | HUD do B; A chỉ phát `OnRageChanged` (#5) | Phát event đúng tên, B nối sau | 14 (T-10) |
 | A-11 Hào quang bước 3 Tutorial | A-11 | **B** (`TutorialController`) | Tutorial do B; A phát `OnHeroEnteredAura` (#10) | Phát event đúng tên | 15 (T-11) |
 | A-13 ô Thiên thạch trên HUD | A-13 | **B** (HUD hồi chiêu) | Ô/hồi chiêu do B; A phát `OnMeteorCooldownChanged`/`OnMeteorExploded` | Phát event đúng tên | 17 (T-13) |
 | A-14/A-15 Save phục vụ S8 lưu | A-14, A-15 | **B** (S8 gọi `SaveService`) | A đã cung cấp API S9; B cần gọi sau gacha/ghép/deck/kết quả trận/cài đặt/Thoát | API đã có (`SaveService.Load/Save/Delete`, `SaveData`, `SaveSanitizer`) | 8 (T-04) |
 | Prefab quái Bay/boss | A-05, A-06 | **C** (prefab) | Prefab do C làm; A chỉ trỏ `EnemyData.prefab` | Asset `BossSummonSettings` + gắn `EnemyManager` **đã xong** trong `A_Enemies.unity` | 18–19 |
-| A-17 cân bằng | A-17 | **B, C** (game chơi được + FX) | Cần trận chạy thật | — | 21–22 |
+| Cân bằng và xác nhận đủ 3 màn | A-17 | **B** (routing LevelData → map), **C** (Map_Level2/3 và scene/map hookup) | Chỉ có `Map_Level1`; chưa có routing chọn map theo màn, nên chưa thể playtest/cân bằng cuối màn 2–3 | Chỉ dùng số liệu workbook/asset và test tự động làm baseline; chưa chỉnh số cân bằng, chưa tuyên bố A-17 hoàn tất | Chờ B/C |
 
 ---
 
@@ -164,3 +164,12 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - A gán VFX vào sáu `SkillData` và hai `StatusEffectData`, thêm `HeroStats.BuffsChanged` / `HasSkillBuff(BuffType)` theo yêu cầu trong PR #59.
 - C còn nối VFX rơi vào `Player.prefab`, aura cấp 3 vào scene Game, và wire `HeroBuffIndicator` tới event/API mới. B review code takeover; Issue chưa được coi là hoàn tất trước các bước này.
 - Chi tiết, kiểm thử và hướng dẫn lắp: [issue56.md](./issue/issue56.md). `TRACEABILITY.md` chưa sửa vì là tài liệu dùng chung cần review theo quy định.
+
+## 9. T-16 — kiểm thử sau khi đồng bộ `main` (02/11/2026)
+
+- Nhánh `feature/A_T16_integration` đã merge `origin/main` tại commit `50b0ee9` (main parent `2add07e`). `A_Combat` giữ bản của nhánh tích hợp; `A_Enemies` và prefab quái dùng bản từ `main`. Bốn material placeholder riêng cũ đã được xóa.
+- Full EditMode trên Unity Editor: **2.429 pass, 2 fail, 70 skip / 2.501**. Cả **888/888 test `FateBastion.*` đều pass**; hai lỗi thuộc `UnitySkills.Tests` của package, không thuộc gameplay.
+- Full PlayMode: **180 pass, 0 fail, 3 skip / 183**. Trong đó `FateBastion.Tests.PlayMode`: **179 pass, 0 fail, 3 skip**; ba test GC Alloc bị đánh dấu không hỗ trợ trên WindowsEditor.
+- Bổ sung kiểm tra EditMode `LevelBalanceDataTests.ImportedWave_TotalEnemyHp_MatchesBalanceSheet`: tổng HP từ `WaveData`/`EnemyData` nhập thật phải khớp `calc_totalHP` trong workbook ở wave 1/5/15 của cả ba màn. Chín case mới pass; toàn bộ nhóm S2 EditMode **70/70 pass**.
+- Đây là regression tự động, **chưa phải playtest tay**. Không chỉnh workbook/CSV trong lượt này: chỉ `Map_Level1` hiện có và chưa có routing chọn map theo `LevelData`. Cần B xác nhận/triển khai routing và C bàn giao `Map_Level2/3` trước khi cân bằng cuối hoặc nghiệm thu A-17 ba màn.
+- Không tạo issue/PR trong lượt này; handoff ghi blocker cụ thể để phối hợp ở bước cập nhật tiếp theo. `TRACEABILITY.md` chưa sửa vì là tài liệu dùng chung cần review theo quy định.

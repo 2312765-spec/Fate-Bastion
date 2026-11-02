@@ -53,5 +53,41 @@ namespace FateBastion.Tests.EditMode.S2
             float expected = 40f * Mathf.Pow(1.12f, WaveCount - 1) * 1.3f;
             Assert.AreEqual(expected, EnemyHealthFormula.Calculate(normal.baseHP, data.hpGrowth, WaveCount, data.hpMultiplier), 1e-1f);
         }
+
+        [TestCase(1, 1, 280f)]
+        [TestCase(1, 5, 1353.2266f)]
+        [TestCase(1, 15, 5669.0503f)]
+        [TestCase(2, 1, 322f)]
+        [TestCase(2, 5, 1664.7835f)]
+        [TestCase(2, 15, 7531.0400f)]
+        [TestCase(3, 1, 312f)]
+        [TestCase(3, 5, 1865.5646f)]
+        [TestCase(3, 15, 8869.1314f)]
+        public void ImportedWave_TotalEnemyHp_MatchesBalanceSheet(int level, int waveNumber, float expectedTotalHp)
+        {
+            LevelData data = LoadLevel(level);
+            WaveData wave = data.waves[waveNumber - 1];
+
+            Assert.IsNotNull(wave, $"level_{level} thiếu WaveData wave {waveNumber}");
+            Assert.AreEqual(level, wave.level);
+            Assert.AreEqual(waveNumber, wave.wave);
+
+            float totalHp = 0f;
+            foreach (SpawnGroup group in wave.groups)
+            {
+                Assert.IsNotNull(group, $"L{level}_W{waveNumber} có SpawnGroup null");
+                Assert.IsNotNull(group.enemy, $"L{level}_W{waveNumber} có EnemyData null");
+
+                float enemyHp = EnemyHealthFormula.Calculate(
+                    group.enemy.baseHP,
+                    data.hpGrowth,
+                    waveNumber,
+                    data.hpMultiplier);
+                totalHp += enemyHp * group.count;
+            }
+
+            Assert.AreEqual(expectedTotalHp, totalHp, 1e-1f,
+                $"L{level}_W{waveNumber} tổng HP phải khớp calc_totalHP trong workbook cân bằng");
+        }
     }
 }
