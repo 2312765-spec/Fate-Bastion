@@ -1,6 +1,6 @@
 # Bàn giao tổng thể – Thành viên A (Gameplay)
 
-> Cập nhật: **30/10/2026**. Bàn giao **tổng thể**; bàn giao phát sinh trong ngày ở `daily/dayNN/handoff.md`.
+> Cập nhật: **02/11/2026**. Bàn giao **tổng thể**; bàn giao phát sinh trong ngày ở `daily/dayNN/handoff.md`.
 > "Đã bàn giao" theo `TEAM_ASSIGNMENT.md` mục 4.1: (1) merge `main` + test xanh, (2) mục "Cách dùng" (API khớp mục 3.1), (3) "Hướng dẫn lắp trong Unity", (4) scene Sandbox chạy được, (5) người nhận xác nhận.
 > Ký hiệu: ☐ chưa · ◐ đang · ☑ xong.
 
@@ -14,8 +14,8 @@
 | A-10 Ultimate hiển thị thanh Nộ | A-10 | **B** (HUD Nộ) | HUD do B; A chỉ phát `OnRageChanged` (#5) | Phát event đúng tên, B nối sau | 14 (T-10) |
 | A-11 Hào quang bước 3 Tutorial | A-11 | **B** (`TutorialController`) | Tutorial do B; A phát `OnHeroEnteredAura` (#10) | Phát event đúng tên | 15 (T-11) |
 | A-13 ô Thiên thạch trên HUD | A-13 | **B** (HUD hồi chiêu) | Ô/hồi chiêu do B; A phát `OnMeteorCooldownChanged`/`OnMeteorExploded` | Phát event đúng tên | 17 (T-13) |
-| A-14/A-15 Save phục vụ S8 lưu | A-14, A-15 | **B** (S8 gọi `SaveService`) | A đã cung cấp API S9; B cần gọi sau gacha/ghép/deck/kết quả trận/cài đặt/Thoát | API đã có (`SaveService.Load/Save/Delete`, `SaveData`, `SaveSanitizer`) | 8 (T-04) |
-| Prefab quái Bay/boss | A-05, A-06 | **C** (prefab) | Prefab do C làm; A chỉ trỏ `EnemyData.prefab` | Asset `BossSummonSettings` + gắn `EnemyManager` **đã xong** trong `A_Enemies.unity` | 18–19 |
+| E2E Save qua S8/S5/S10 | A-14, A-15 | **B** (xác nhận hookup Save) | Các call-site đã có trên `main`, nhưng chưa có lượt thao tác tay lưu sau gacha/ghép/deck/kết quả/cài đặt rồi mở lại game | `SaveService` EditMode regression pass; chưa xác nhận persistence E2E bằng UI | 02/11/2026 |
+| Đối chiếu prefab/model quái Bay và boss | A-05, A-06 | **C** (review hình ảnh/prefab) | Đã lấy các prefab từ `main` có model mới; chưa kiểm tra thủ công visual/hierarchy sau merge | `A_Enemies` từ `main`; automated boss/flying tests pass, không tự chỉnh sâu prefab | 02/11/2026 |
 | Cân bằng và xác nhận đủ 3 màn | A-17 | **B** (routing LevelData → map), **C** (Map_Level2/3 và scene/map hookup) | Chỉ có `Map_Level1`; chưa có routing chọn map theo màn, nên chưa thể playtest/cân bằng cuối màn 2–3 | Chỉ dùng số liệu workbook/asset và test tự động làm baseline; chưa chỉnh số cân bằng, chưa tuyên bố A-17 hoàn tất | Chờ B/C |
 
 ---
@@ -172,4 +172,4 @@ Cột **3.1 #** dùng đúng số trong mục 3.1 để trao đổi giữa các 
 - Full PlayMode: **180 pass, 0 fail, 3 skip / 183**. Trong đó `FateBastion.Tests.PlayMode`: **179 pass, 0 fail, 3 skip**; ba test GC Alloc bị đánh dấu không hỗ trợ trên WindowsEditor.
 - Bổ sung kiểm tra EditMode `LevelBalanceDataTests.ImportedWave_TotalEnemyHp_MatchesBalanceSheet`: tổng HP từ `WaveData`/`EnemyData` nhập thật phải khớp `calc_totalHP` trong workbook ở wave 1/5/15 của cả ba màn. Chín case mới pass; toàn bộ nhóm S2 EditMode **70/70 pass**.
 - Đây là regression tự động, **chưa phải playtest tay**. Không chỉnh workbook/CSV trong lượt này: chỉ `Map_Level1` hiện có và chưa có routing chọn map theo `LevelData`. Cần B xác nhận/triển khai routing và C bàn giao `Map_Level2/3` trước khi cân bằng cuối hoặc nghiệm thu A-17 ba màn.
-- Không tạo issue/PR trong lượt này; handoff ghi blocker cụ thể để phối hợp ở bước cập nhật tiếp theo. `TRACEABILITY.md` chưa sửa vì là tài liệu dùng chung cần review theo quy định.
+- Blocker routing/map được ghi thành issue #68. PR #47 đã cập nhật kết quả T-16; checklist dùng chung được cập nhật riêng trong PR #69 để C review. `TRACEABILITY.md` chỉ ghi các tiêu chí tự động thuộc A đã xác minh; chưa tick A-17, R12 hay phần số liệu R28.
