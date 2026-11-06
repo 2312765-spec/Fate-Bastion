@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using FateBastion.Core;
 using FateBastion.Heroes;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace FateBastion.Tests.PlayMode.S6
 {
@@ -98,6 +101,57 @@ namespace FateBastion.Tests.PlayMode.S6
             Assert.IsFalse(_controller.TryActivateUltimate());
             Assert.AreEqual(0f, _controller.CurrentRage);
         }
+
+#if UNITY_EDITOR
+        [Test]
+        public void Animator_BasicAttackAndStatChanges_UpdateAnimation()
+        {
+            RuntimeAnimatorController runtimeController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(
+                "Assets/_Project/Art/Animations/Heroes/AC_Hero_Base.controller");
+            Assert.IsNotNull(runtimeController);
+
+            var animatedRoot = new GameObject("AnimatedHeroTest");
+            animatedRoot.SetActive(false);
+            HeroStats stats = animatedRoot.AddComponent<HeroStats>();
+            SetField(stats, "_settings", _settings);
+            HeroController controller = animatedRoot.AddComponent<HeroController>();
+            SetField(controller, "_rageSettings", _rageSettings);
+
+            var model = new GameObject("HeroModel");
+            model.transform.SetParent(animatedRoot.transform, false);
+            Animator animator = model.AddComponent<Animator>();
+            animator.runtimeAnimatorController = runtimeController;
+            HeroVisual visual = model.AddComponent<HeroVisual>();
+            SetField(visual, "_animator", animator);
+
+            animatedRoot.SetActive(true);
+            try
+            {
+                controller.Init(_hero);
+                Assert.AreEqual(1f, animator.GetFloat(Animator.StringToHash("AttackSpeed")), 1e-5f);
+
+                stats.SetLevelMultipliers(1f, 1.5f, 1f);
+                Assert.AreEqual(1.5f, animator.GetFloat(Animator.StringToHash("AttackSpeed")), 1e-5f);
+
+                animator.Update(0.1f);
+                LogAssert.Expect(LogType.Warning,
+                    "AnimatorSoundBehaviour: no HeroSoundSet on or above 'HeroModel'; hero is silent.");
+                MethodInfo notifyAttack = typeof(HeroController).GetMethod(
+                    "NotifyBasicAttackExecuted", BindingFlags.Instance | BindingFlags.NonPublic);
+                Assert.IsNotNull(notifyAttack);
+                notifyAttack.Invoke(controller, null);
+                animator.Update(0.1f);
+                Assert.IsTrue(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
+
+                controller.ResetState();
+                Assert.AreEqual(1f, animator.GetFloat(Animator.StringToHash("AttackSpeed")), 1e-5f);
+            }
+            finally
+            {
+                Object.Destroy(animatedRoot);
+            }
+        }
+#endif
 
         private static void SetField<T>(object instance, string name, T value)
         {

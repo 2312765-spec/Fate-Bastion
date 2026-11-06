@@ -30,6 +30,8 @@ namespace FateBastion.Heroes
         public float Range => GetData().range * _rangeMultiplier;
         /// <summary>Raised after a buff contribution is added, changed, removed, or cleared.</summary>
         public event Action BuffsChanged;
+        /// <summary>Raised after a change to any calculated combat stat.</summary>
+        public event Action StatsChanged;
 
         public void Initialize(HeroData data)
         {
@@ -52,6 +54,7 @@ namespace FateBastion.Heroes
             _damageMultiplier = damage;
             _attackSpeedMultiplier = attackSpeed;
             _rangeMultiplier = range;
+            StatsChanged?.Invoke();
         }
 
         public void ResetLevelMultipliers()
@@ -59,6 +62,7 @@ namespace FateBastion.Heroes
             _damageMultiplier = 1f;
             _attackSpeedMultiplier = 1f;
             _rangeMultiplier = 1f;
+            StatsChanged?.Invoke();
         }
 
         /// <summary>Sets or replaces one source's contribution for a buff type.</summary>
@@ -203,6 +207,7 @@ namespace FateBastion.Heroes
                 throw new InvalidOperationException($"{name}: HeroStatsSettings is not assigned.");
             _attackSpeedBuff = Mathf.Min(_attackSpeedBuff, _settings.AttackSpeedBuffCap);
             BuffsChanged?.Invoke();
+            StatsChanged?.Invoke();
         }
 
         private void RemoveBuffAt(int index)
