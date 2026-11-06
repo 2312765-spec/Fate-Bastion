@@ -13,6 +13,10 @@ namespace FateBastion.Heroes
     {
         // 0.2 scaled seconds gives five target scans per second without querying every frame.
         private const float TargetSearchInterval = 0.2f;
+        private static readonly int AttackTriggerHash = Animator.StringToHash("Attack");
+        private static readonly int UltimateTriggerHash = Animator.StringToHash("Ultimate");
+        private static readonly int SpawnTriggerHash = Animator.StringToHash("Spawn");
+        private static readonly int AttackSpeedHash = Animator.StringToHash("AttackSpeed");
         private static readonly List<HeroController> ActiveHeroes = new List<HeroController>(15);
 
         [SerializeField] private EnemyManager _enemyManager;
@@ -24,6 +28,7 @@ namespace FateBastion.Heroes
         private RageMeter _rage;
         private readonly TargetingModule _targeting = new TargetingModule();
         private HeroVisual _visual;
+        private Animator _animator;
         private Transform _anchorFallback;
         private float _targetSearchTimer;
 
@@ -57,6 +62,8 @@ namespace FateBastion.Heroes
             _stats = GetComponent<HeroStats>();
             if (_stats == null)
                 Debug.LogError($"{name}: HeroStats component is missing from this hero.", this);
+            else
+                _stats.StatsChanged += UpdateAnimationSpeed;
             if (_rageSettings == null)
                 Debug.LogError($"{name}: HeroRageSettings is not assigned.", this);
             else
@@ -68,6 +75,12 @@ namespace FateBastion.Heroes
             _anchorFallback = transform;
             if (_visual == null)
                 Debug.LogError($"{name}: no HeroVisual found under this hero; using the hero root as the visual anchor.", this);
+            else
+            {
+                _animator = _visual.Animator;
+                if (_animator == null)
+                    Debug.LogError($"{name}: HeroVisual has no Animator assigned; hero animations will not play.", this);
+            }
         }
 
         /// <summary>Sets the shared enemy source when the hero is acquired by the placement/pool system.</summary>
@@ -138,6 +151,7 @@ namespace FateBastion.Heroes
             InitializationVersion++;
             RegisterActiveHero();
             RefreshTarget();
+            TriggerAnimation(SpawnTriggerHash);
         }
 
         /// <summary>Clears transient state and level factors whenever this hero is taken from its pool.</summary>
@@ -148,6 +162,8 @@ namespace FateBastion.Heroes
             if (_rage != null && _rage.Reset())
                 RaiseRageChanged();
             _stats?.ResetLevelMultipliers();
+            _animator?.Rebind();
+            UpdateAnimationSpeed();
             _attackModule?.ResetState();
             _skillRunner?.ResetState();
         }
@@ -161,11 +177,13 @@ namespace FateBastion.Heroes
             if (!_skillRunner.TryCastAuto(Data.ultimateSkill)) return false;
             if (_rage.TryConsumeFull())
                 RaiseRageChanged();
+            TriggerAnimation(UltimateTriggerHash);
             return true;
         }
 
         internal void NotifyBasicAttackExecuted()
         {
+            TriggerAnimation(AttackTriggerHash);
             if (Data == null || Data.rarity != Rarity.Legendary || _rage == null) return;
             if (_rage.Add(_rageSettings.RagePerAttack))
                 RaiseRageChanged();
@@ -205,6 +223,8 @@ namespace FateBastion.Heroes
 
         private void OnDestroy()
         {
+            if (_stats != null)
+                _stats.StatsChanged -= UpdateAnimationSpeed;
             UnregisterActiveHero();
         }
 
@@ -250,6 +270,24 @@ namespace FateBastion.Heroes
         private void RaiseRageChanged()
         {
             OnRageChanged?.Invoke(CurrentRage, MaximumRage);
+        }
+
+        private void UpdateAnimationSpeed()
+        {
+            if (_animator == null || Data == null || _stats == null) return;
+            if (Data.attacksPerSecond <= 0f)
+            {
+                Debug.LogError($"{name}: HeroData.attacksPerSecond must be positive to drive the Animator.", this);
+                return;
+            }
+
+            _animator.SetFloat(AttackSpeedHash, _stats.AttacksPerSecond / Data.attacksPerSecond);
+        }
+
+        private void TriggerAnimation(int triggerHash)
+        {
+            if (_animator != null)
+                _animator.SetTrigger(triggerHash);
         }
     }
 }
