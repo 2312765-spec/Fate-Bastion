@@ -199,6 +199,7 @@ namespace FateBastion.UI
             DeckError error = Context.Session.SetDeckSlot(slot, heroId); // Saves and raises Changed → Refresh.
             if (error != DeckError.None)
             {
+                LobbySounds.Error();
                 Context.Message("Không đổi được deck", DeckStatus(error));
                 Refresh();
             }
@@ -226,12 +227,14 @@ namespace FateBastion.UI
             MergeResult result = Context.Session.MergeAuto(rarity);
             if (!result.Success)
             {
+                LobbySounds.Error();
                 Context.Message("Không ghép được", result.Error == MergeError.NotEnoughSpare
                     ? $"Còn thiếu {result.Missing} bản thừa."
                     : $"Lỗi: {result.Error}.");
                 return;
             }
 
+            LobbySounds.Merge();
             string bonus = result.GemsAwarded > 0 ? $" Tướng mới: +{UiText.Gems(result.GemsAwarded)}." : string.Empty;
             Context.Message("Ghép thành công", $"Bạn nhận được {Context.HeroName(result.HeroId)} ({UiText.RarityName(result.Rarity)}).{bonus}");
         }
