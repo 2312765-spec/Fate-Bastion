@@ -22,7 +22,7 @@ MonoBehaviour:
   damage: 16
   attacksPerSecond: 0.8
   range: 8
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 73ebc666cf421e64eb1c86bbc001af0f, type: 3}
   prefab: {fileID: 8252942354403732325, guid: fafe8bf319fbdb54aadaecc3dec1fc78, type: 3}
   passiveSkill: {fileID: 11400000, guid: feeb1f4c433070e40950c6d77534c2df, type: 2}
   ultimateSkill: {fileID: 11400000, guid: 72fea18290cfc2045b12a1ff6f59f168, type: 2}

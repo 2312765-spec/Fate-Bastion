@@ -16,7 +16,7 @@ MonoBehaviour:
   yaw: 20
   pitch: 12
   fieldOfView: 25
-  distanceMultiplier: 1.15
+  distanceMultiplier: 1.08
   lookAtHeight: 0.55
   keyLightEuler: {x: 40, y: -30, z: 0}
   keyLightIntensity: 1.2
