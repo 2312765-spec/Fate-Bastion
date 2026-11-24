@@ -63,6 +63,40 @@ namespace FateBastion.Tests.EditMode.S0b
             }
         }
 
+        [Test]
+        public void BaseController_AttackState_SpeedMultipliedByAttackSpeed()
+        {
+            // TEAM_ASSIGNMENT 3.1 #11: HeroController sets AttackSpeed = current / base attacks per second (larger = faster);
+            // only the Attack state scales with it, Idle/Spawn/Ultimate keep their authored speed.
+            var controller = AssetDatabase.LoadAssetAtPath<UnityEditor.Animations.AnimatorController>(BaseControllerPath);
+            Assert.IsNotNull(controller, "Không tìm thấy AC_Hero_Base.");
+
+            bool hasFloat = false;
+            foreach (AnimatorControllerParameter p in controller.parameters)
+            {
+                hasFloat |= p.name == AttackSpeedParameter && p.type == AnimatorControllerParameterType.Float
+                    && Mathf.Approximately(p.defaultFloat, 1f);
+            }
+            Assert.IsTrue(hasFloat, "AC_Hero_Base cần Float 'AttackSpeed' mặc định 1.");
+
+            foreach (var child in controller.layers[0].stateMachine.states)
+            {
+                UnityEditor.Animations.AnimatorState state = child.state;
+                if (state.name == "Attack")
+                {
+                    Assert.IsTrue(state.speedParameterActive, "State Attack phải bật Multiplier.");
+                    Assert.AreEqual(AttackSpeedParameter, state.speedParameter);
+                    Assert.AreEqual(1f, state.speed, 1e-5f, "Speed gốc của Attack phải là 1 (áp chung 9 tướng).");
+                }
+                else
+                {
+                    Assert.IsFalse(state.speedParameterActive, $"State {state.name} không nhân theo tốc đánh.");
+                }
+            }
+        }
+
+        private const string AttackSpeedParameter = "AttackSpeed";
+
         [TestCaseSource(nameof(HeroIds))]
         public void Model_Triangles_WithinBudget(string heroId)
         {
