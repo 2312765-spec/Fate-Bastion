@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb883e16d9622442a648ec8ff83e9e4, type: 3}
+  m_Name: MapDressingSettings
+  m_EditorClassIdentifier: FateBastion.Editor::FateBastion.Editor.UI.MapDressingSettings
+  seed: 17
+  playHalfSize: 30
+  sceneryHalfSize: 62
+  roadClearance: 0.8
+  blockerMargin: 1
+  trees:
+  - {fileID: 919132149155446097, guid: 23ab0846956dfdf4c9be51bd67b036df, type: 3}
+  - {fileID: 919132149155446097, guid: 56c47ab708f7f764ea2cd31b6acc49b7, type: 3}
+  - {fileID: 919132149155446097, guid: 4f257877694a6f240be3c6ac880dd833, type: 3}
+  - {fileID: 919132149155446097, guid: d08885b265f49ad46b5dac81bf0d02d0, type: 3}
+  - {fileID: 919132149155446097, guid: 1b7e84e7065c81a43896d011d174b37e, type: 3}
+  - {fileID: 919132149155446097, guid: feaf59b83f6f9134a97d2329194e6c5f, type: 3}
+  - {fileID: 919132149155446097, guid: 33810418d1619f346ab0c7ab836058b4, type: 3}
+  - {fileID: 919132149155446097, guid: 8f4e3d6d588168f4493bf3080d686a8d, type: 3}
+  - {fileID: 919132149155446097, guid: 2fc64fd79b503dc45b9aabc068ebca65, type: 3}
+  - {fileID: 919132149155446097, guid: 555184a7fe22dc34ab069ad7b788286d, type: 3}
+  - {fileID: 919132149155446097, guid: ebe95aabc246d224e8d3c013544edad8, type: 3}
+  - {fileID: 919132149155446097, guid: 20f5e476e1c31c141a29e1e307743483, type: 3}
+  - {fileID: 919132149155446097, guid: d04ac87ff754ba64aa5b95cd4916038b, type: 3}
+  forestAttempts: 1200
+  forestSpacing: 4.5
+  treeScale: {x: 3.2, y: 5}
+  outerRocks:
+  - {fileID: 919132149155446097, guid: 965fb0103e8b0a747907d4b0705a2614, type: 3}
+  - {fileID: 919132149155446097, guid: 6ac61d47e4e9f2f43b1e694c4f67360a, type: 3}
+  - {fileID: 919132149155446097, guid: 7bda854a04e7d9148b7f0c8b528c318e, type: 3}
+  - {fileID: 919132149155446097, guid: bea4e6140e352e947b4c3ad1bbd30237, type: 3}
+  - {fileID: 919132149155446097, guid: a0037b9f31bd0da4a845eab8653ff990, type: 3}
+  - {fileID: 919132149155446097, guid: d4c6f1fbf0180194b8cae6ed030fc734, type: 3}
+  - {fileID: 919132149155446097, guid: 17eb47e61487a614591bac37cfa53c43, type: 3}
+  - {fileID: 919132149155446097, guid: 89d980298c36cd94da76c67b9d5c4c4e, type: 3}
+  - {fileID: 919132149155446097, guid: 39dceaeb20625c54a9bc1a8958c7a131, type: 3}
+  - {fileID: 919132149155446097, guid: 817ff0169e0ea6741838ca74b3d387e2, type: 3}
+  outerRockAttempts: 160
+  outerRockSpacing: 7
+  outerRockScale: {x: 3.5, y: 7}
+  decor:
+  - {fileID: 919132149155446097, guid: ac7bd6efb4f95fc4aac663e89dbf186d, type: 3}
+  - {fileID: 919132149155446097, guid: 759febf40643c32429695f26a655808e, type: 3}
+  - {fileID: 919132149155446097, guid: 68cc4acf3298d3b4fbb95625dfae9606, type: 3}
+  - {fileID: 919132149155446097, guid: 9370eb001e2138a4da318f54710c6c81, type: 3}
+  - {fileID: 919132149155446097, guid: 68cc4acf3298d3b4fbb95625dfae9606, type: 3}
+  - {fileID: 919132149155446097, guid: ba7c28e5690fff14fa9d5fcfb589afba, type: 3}
+  - {fileID: 919132149155446097, guid: afe770e0284866047b661b1e11ca643d, type: 3}
+  - {fileID: 919132149155446097, guid: 476f4cbc060ffb84da7ea2acd30def6b, type: 3}
+  - {fileID: 919132149155446097, guid: 1494573531d9d2a41b8bd39898a822d6, type: 3}
+  - {fileID: 919132149155446097, guid: 8811a998c2a79a44da182f53f6743a6c, type: 3}
+  - {fileID: 919132149155446097, guid: 1451c96e0680f3742b5b7f9ee79f1e7e, type: 3}
+  - {fileID: 919132149155446097, guid: 6be396259e15ee94b80abbce1dd8e7bc, type: 3}
+  - {fileID: 919132149155446097, guid: f58935d772fb18d4ab178cf0fe5155a6, type: 3}
+  - {fileID: 919132149155446097, guid: 569a18abf0b5ffb4d975d25f5fcd1e94, type: 3}
+  - {fileID: 919132149155446097, guid: 263ff1102795b4440bc10786cb9ba6ad, type: 3}
+  decorAttempts: 1500
+  decorSpacing: 2
+  decorScale: {x: 2, y: 3}
+  pebbles:
+  - {fileID: 919132149155446097, guid: 5397800a77cc6eb4482622131c0f3a9e, type: 3}
+  - {fileID: 919132149155446097, guid: 21d8b9952d0a2ad469694e03db6c556c, type: 3}
+  - {fileID: 919132149155446097, guid: 559adf3b144d26e42a26e2360c7d0e8c, type: 3}
+  - {fileID: 919132149155446097, guid: 3a7f9994d9e0d374182d2f1ed18e2a46, type: 3}
+  - {fileID: 919132149155446097, guid: aa32757a1e2410f48b4daa78d491bde6, type: 3}
+  - {fileID: 919132149155446097, guid: 68cc4acf3298d3b4fbb95625dfae9606, type: 3}
+  pebbleAttempts: 900
+  pebbleSpacing: 1.6
+  pebbleScale: {x: 1.5, y: 2.5}
+  obstacleRocks:
+  - {fileID: 919132149155446097, guid: 17eb47e61487a614591bac37cfa53c43, type: 3}
+  - {fileID: 919132149155446097, guid: 89d980298c36cd94da76c67b9d5c4c4e, type: 3}
+  - {fileID: 919132149155446097, guid: bea4e6140e352e947b4c3ad1bbd30237, type: 3}
+  - {fileID: 919132149155446097, guid: d4c6f1fbf0180194b8cae6ed030fc734, type: 3}
+  waterEdge:
+  - {fileID: 919132149155446097, guid: 5397800a77cc6eb4482622131c0f3a9e, type: 3}
+  - {fileID: 919132149155446097, guid: aa32757a1e2410f48b4daa78d491bde6, type: 3}
+  - {fileID: 919132149155446097, guid: bdf5cc659e22f2341a30da230a6d8a0b, type: 3}
+  - {fileID: 919132149155446097, guid: 7cfb3bef0ce51b54a926e500583159de, type: 3}
+  - {fileID: 919132149155446097, guid: 68cc4acf3298d3b4fbb95625dfae9606, type: 3}
+  grassColor: {r: 0.42, g: 0.62, b: 0.3, a: 1}
+  dirtColor: {r: 0.62, g: 0.48, b: 0.33, a: 1}
+  waterColor: {r: 0.25, g: 0.52, b: 0.7, a: 1}
+  sunEuler: {x: 50, y: -40, z: 0}
+  sunColor: {r: 1, g: 0.95, b: 0.85, a: 1}
+  sunIntensity: 1.4
+  sunShadowStrength: 0.75
