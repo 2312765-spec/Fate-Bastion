@@ -78,8 +78,10 @@ namespace FateBastion.Heroes
             else
             {
                 _animator = _visual.Animator;
+                // Warning, not error: the hero still fights without animation, and Tools > Validate Hero Prefabs
+                // already reports a missing Animator on the real prefabs.
                 if (_animator == null)
-                    Debug.LogError($"{name}: HeroVisual has no Animator assigned; hero animations will not play.", this);
+                    Debug.LogWarning($"{name}: HeroVisual has no Animator assigned; hero animations will not play.", this);
             }
         }
 
@@ -148,6 +150,8 @@ namespace FateBastion.Heroes
                 return;
             }
             _targeting.Initialize(data);
+            // ResetState ran before Data was set, so the Animator speed is applied here from the fresh stats.
+            UpdateAnimationSpeed();
             InitializationVersion++;
             RegisterActiveHero();
             RefreshTarget();

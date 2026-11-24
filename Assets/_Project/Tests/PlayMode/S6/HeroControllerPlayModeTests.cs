@@ -133,15 +133,17 @@ namespace FateBastion.Tests.PlayMode.S6
                 stats.SetLevelMultipliers(1f, 1.5f, 1f);
                 Assert.AreEqual(1.5f, animator.GetFloat(Animator.StringToHash("AttackSpeed")), 1e-5f);
 
-                animator.Update(0.1f);
+                // Init fired Spawn: Any State transitions are not evaluated mid-transition, so let Spawn settle
+                // before the attack, as it does in play.
+                Assert.IsTrue(StepUntilState(animator, "Spawn"), "Spawn trigger from Init did not play.");
+
                 LogAssert.Expect(LogType.Warning,
                     "AnimatorSoundBehaviour: no HeroSoundSet on or above 'HeroModel'; hero is silent.");
                 MethodInfo notifyAttack = typeof(HeroController).GetMethod(
                     "NotifyBasicAttackExecuted", BindingFlags.Instance | BindingFlags.NonPublic);
                 Assert.IsNotNull(notifyAttack);
                 notifyAttack.Invoke(controller, null);
-                animator.Update(0.1f);
-                Assert.IsTrue(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
+                Assert.IsTrue(StepUntilState(animator, "Attack"), "Attack trigger did not play.");
 
                 controller.ResetState();
                 Assert.AreEqual(1f, animator.GetFloat(Animator.StringToHash("AttackSpeed")), 1e-5f);
@@ -150,6 +152,18 @@ namespace FateBastion.Tests.PlayMode.S6
             {
                 Object.Destroy(animatedRoot);
             }
+        }
+        // Steps the Animator by hand (50 ms each, at most 0.5 s) until the state is current with no transition left.
+        private static bool StepUntilState(Animator animator, string state)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                animator.Update(0.05f);
+                if (!animator.IsInTransition(0) && animator.GetCurrentAnimatorStateInfo(0).IsName(state))
+                    return true;
+            }
+
+            return false;
         }
 #endif
 
