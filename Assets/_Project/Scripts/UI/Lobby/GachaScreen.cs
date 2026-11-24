@@ -94,6 +94,7 @@ namespace FateBastion.UI
             if (!session.Gacha.CanAfford(session.Data, count))
             {
                 int missing = session.Gacha.CostOf(count) - session.Data.gems;
+                LobbySounds.Error();
                 Context.Message("Không đủ Ngọc", $"Cần thêm {UiText.Gems(missing)} để quay x{count}.");
                 return;
             }
@@ -101,6 +102,7 @@ namespace FateBastion.UI
             GachaPullResult result = count == 1 ? session.PullOne() : session.PullTen();
             if (!result.Success)
             {
+                LobbySounds.Error();
                 Context.Message("Không quay được", $"Lỗi: {result.Error}.");
                 return;
             }

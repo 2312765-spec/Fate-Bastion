@@ -295,6 +295,8 @@ namespace FateBastion.Editor.DebugTools
             var camera = go.AddComponent<Camera>();
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = background;
+            // Lobby and Boot have no Player prefab (which carries the match's listener): without this the scene is silent.
+            go.AddComponent<AudioListener>();
         }
 
         private static void AddEventSystem(Transform parent)

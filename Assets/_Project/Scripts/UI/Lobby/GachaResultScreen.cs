@@ -46,6 +46,7 @@ namespace FateBastion.UI
         {
             _pending = result;
             Context.Open(this);
+            LobbySounds.GachaReveal(result);
             Reveal();
         }
 
