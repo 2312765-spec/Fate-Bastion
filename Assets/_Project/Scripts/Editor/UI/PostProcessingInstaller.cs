@@ -20,6 +20,66 @@ namespace FateBastion.Editor.UI
         // The Editor asmdef does not reference the render pipeline assemblies; the Volume type is found by name instead.
         public const string VolumeTypeName = "UnityEngine.Rendering.Volume, Unity.RenderPipelines.Core.Runtime";
 
+        public const string ProfileTypeName = "UnityEngine.Rendering.VolumeProfile, Unity.RenderPipelines.Core.Runtime";
+        public const string TonemappingTypeName = "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime";
+        public const string VignetteTypeName = "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime";
+
+        // C-17 light grading on top of Bloom. Tonemapping mode 1 = Neutral (keeps Kenney's flat colours, unlike ACES).
+        private const int NeutralTonemapping = 1;
+        private const float VignetteIntensity = 0.2f;
+        private const float VignetteSmoothness = 0.4f;
+
+        /// <summary>
+        /// Adds Neutral Tonemapping and a light Vignette to the profile if missing (C-17). Existing overrides are left
+        /// as tuned in the Inspector. False when URP types or the profile cannot be found.
+        /// </summary>
+        public static bool EnsureGrading(string profilePath)
+        {
+            Type profileType = Type.GetType(ProfileTypeName);
+            Type tonemapping = Type.GetType(TonemappingTypeName);
+            Type vignette = Type.GetType(VignetteTypeName);
+            Object profile = profileType != null ? AssetDatabase.LoadAssetAtPath(profilePath, profileType) : null;
+            if (profile == null || tonemapping == null || vignette == null)
+            {
+                Debug.LogError($"[Map] {profilePath} or the URP Tonemapping/Vignette types not found.");
+                return false;
+            }
+
+            AddIfMissing(profile, profileType, tonemapping, data =>
+            {
+                SetParameter(data, "mode", p => p.intValue = NeutralTonemapping);
+            });
+            AddIfMissing(profile, profileType, vignette, data =>
+            {
+                SetParameter(data, "intensity", p => p.floatValue = VignetteIntensity);
+                SetParameter(data, "smoothness", p => p.floatValue = VignetteSmoothness);
+            });
+            EditorUtility.SetDirty(profile);
+            AssetDatabase.SaveAssets();
+            return true;
+        }
+
+        private static void AddIfMissing(Object profile, Type profileType, Type componentType, Action<SerializedObject> setup)
+        {
+            bool has = (bool)profileType.GetMethod("Has", new[] { typeof(Type) }).Invoke(profile, new object[] { componentType });
+            if (has) return;
+
+            var component = (ScriptableObject)profileType.GetMethod("Add", new[] { typeof(Type), typeof(bool) })
+                .Invoke(profile, new object[] { componentType, false });
+            component.name = componentType.Name;
+            component.hideFlags = HideFlags.HideInInspector | HideFlags.HideInHierarchy;
+            AssetDatabase.AddObjectToAsset(component, profile);
+            var data = new SerializedObject(component);
+            setup(data);
+            data.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void SetParameter(SerializedObject data, string parameter, Action<SerializedProperty> setValue)
+        {
+            data.FindProperty(parameter + ".m_OverrideState").boolValue = true;
+            setValue(data.FindProperty(parameter + ".m_Value"));
+        }
+
         [MenuItem("Tools/Map/Add Post Processing to Map_Level1")]
         public static void InstallFromMenu() => Install(MapPath, ProfilePath);
 
