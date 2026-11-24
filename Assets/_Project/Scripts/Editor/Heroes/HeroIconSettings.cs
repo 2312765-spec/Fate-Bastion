@@ -21,8 +21,8 @@ namespace FateBastion.Editor.Heroes
 
         public float fieldOfView = 25f;
 
-        [Tooltip("1 = model bounds just fit the frame; larger leaves more margin.")]
-        public float distanceMultiplier = 1.15f;
+        [Tooltip("1 = the hero's drawn silhouette touches the icon edge on its longer side; larger leaves more margin.")]
+        public float distanceMultiplier = 1.08f;
 
         [Tooltip("Aim point as a fraction of the model height (0 = feet, 1 = top).")]
         [Range(0f, 1f)] public float lookAtHeight = 0.55f;

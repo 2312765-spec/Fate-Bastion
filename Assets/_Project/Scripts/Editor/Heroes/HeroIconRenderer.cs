@@ -131,12 +131,24 @@ namespace FateBastion.Editor.Heroes
             RenderTexture previousActive = RenderTexture.active;
             try
             {
-                FrameCamera(camera, instance, settings);
-                RenderCamera(camera, rt);
+                float distance = FrameCamera(camera, instance, settings, out Vector3 target);
+                Capture(camera, rt, pixels, settings.size);
 
-                RenderTexture.active = rt;
-                pixels.ReadPixels(new Rect(0, 0, settings.size, settings.size), 0, 0);
-                pixels.Apply();
+                // Mesh bounds are looser than the silhouette (skinned bounds, back corners), so refine from what was
+                // actually drawn: centre the opaque pixels and scale them to the margin. Two passes settle within a pixel.
+                for (int pass = 0; pass < RefinePasses; pass++)
+                {
+                    if (!HeroIconFraming.TryGetOpaqueRect(pixels.GetPixels32(), settings.size, OpaqueAlpha, out RectInt opaque))
+                        break;
+
+                    float refined = HeroIconFraming.RefineFromOpaqueRect(opaque, settings.size, distance,
+                        settings.fieldOfView, settings.distanceMultiplier, out Vector2 shift);
+                    target += camera.transform.right * shift.x + camera.transform.up * shift.y;
+                    distance = refined;
+                    camera.transform.position = target - camera.transform.forward * distance;
+                    Capture(camera, rt, pixels, settings.size);
+                }
+
                 return pixels.EncodeToPNG();
             }
             finally
@@ -144,6 +156,19 @@ namespace FateBastion.Editor.Heroes
                 RenderTexture.active = previousActive;
                 Object.DestroyImmediate(instance);
             }
+        }
+
+        // Technical constants: refine passes after the first render, and the alpha that counts as part of the hero
+        // (skips the faint anti-aliased fringe).
+        private const int RefinePasses = 2;
+        private const byte OpaqueAlpha = 8;
+
+        private static void Capture(Camera camera, RenderTexture rt, Texture2D pixels, int size)
+        {
+            RenderCamera(camera, rt);
+            RenderTexture.active = rt;
+            pixels.ReadPixels(new Rect(0, 0, size, size), 0, 0);
+            pixels.Apply();
         }
 
         private static void RenderCamera(Camera camera, RenderTexture rt)
@@ -160,30 +185,45 @@ namespace FateBastion.Editor.Heroes
             }
         }
 
-        /// <summary>Places the camera so the model's renderer bounds fill the frame with the configured margin.</summary>
-        private static void FrameCamera(Camera camera, GameObject instance, HeroIconSettings settings)
+        /// <summary>
+        /// Places the camera so the model's mesh bounds fill the frame with the configured margin. Particle renderers
+        /// (rarity aura, buff icons, level 3 FX) are hidden and left out of the bounds: unsimulated they draw nothing
+        /// useful, and the buff icons above the head would shrink every hero in the icon.
+        /// </summary>
+        private static float FrameCamera(Camera camera, GameObject instance, HeroIconSettings settings, out Vector3 aim)
         {
             Renderer[] renderers = instance.GetComponentsInChildren<Renderer>();
             var bounds = new Bounds(instance.transform.position, Vector3.one);
-            if (renderers.Length > 0)
+            bool hasModel = false;
+            for (int i = 0; i < renderers.Length; i++)
             {
-                bounds = renderers[0].bounds;
-                for (int i = 1; i < renderers.Length; i++)
+                if (!HeroIconFraming.IsModelRenderer(renderers[i]))
                 {
-                    bounds.Encapsulate(renderers[i].bounds);
+                    renderers[i].enabled = false;
+                    continue;
                 }
+
+                if (hasModel) bounds.Encapsulate(renderers[i].bounds);
+                else bounds = renderers[i].bounds;
+                hasModel = true;
             }
 
-            Vector3 target = new Vector3(bounds.center.x, bounds.min.y + bounds.size.y * settings.lookAtHeight, bounds.center.z);
-            float radius = bounds.extents.magnitude;
-            float distance = radius * settings.distanceMultiplier / Mathf.Sin(settings.fieldOfView * 0.5f * Mathf.Deg2Rad);
+            if (!hasModel) Debug.LogWarning($"[Render Hero Icons] {instance.name}: no mesh renderer found; framing the prefab root.");
 
+            Vector3 target = new Vector3(bounds.center.x, bounds.min.y + bounds.size.y * settings.lookAtHeight, bounds.center.z);
             // Hero faces +Z, so yaw 0 puts the camera on +Z looking back at its face.
             Quaternion rotation = Quaternion.Euler(settings.pitch, 180f + settings.yaw, 0f);
+            float distance = HeroIconFraming.FitDistance(bounds, target, rotation, settings.fieldOfView,
+                settings.distanceMultiplier);
+            float radius = bounds.extents.magnitude;
+
             camera.transform.position = target - rotation * Vector3.forward * distance;
             camera.transform.rotation = rotation;
-            camera.nearClipPlane = Mathf.Max(0.01f, distance - radius * 2f);
-            camera.farClipPlane = distance + radius * 2f;
+            // Refining may move the camera closer, so the near plane leaves room for the whole model in front.
+            camera.nearClipPlane = 0.05f;
+            camera.farClipPlane = distance + radius * 4f;
+            aim = target;
+            return distance;
         }
 
         private static Sprite ImportAsSprite(string path, int size)
