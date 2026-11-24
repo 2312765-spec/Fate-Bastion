@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using FateBastion.Core;
 using FateBastion.Heroes;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace FateBastion.Tests.PlayMode.S6
 {
@@ -98,6 +101,71 @@ namespace FateBastion.Tests.PlayMode.S6
             Assert.IsFalse(_controller.TryActivateUltimate());
             Assert.AreEqual(0f, _controller.CurrentRage);
         }
+
+#if UNITY_EDITOR
+        [Test]
+        public void Animator_BasicAttackAndStatChanges_UpdateAnimation()
+        {
+            RuntimeAnimatorController runtimeController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(
+                "Assets/_Project/Art/Animations/Heroes/AC_Hero_Base.controller");
+            Assert.IsNotNull(runtimeController);
+
+            var animatedRoot = new GameObject("AnimatedHeroTest");
+            animatedRoot.SetActive(false);
+            HeroStats stats = animatedRoot.AddComponent<HeroStats>();
+            SetField(stats, "_settings", _settings);
+            HeroController controller = animatedRoot.AddComponent<HeroController>();
+            SetField(controller, "_rageSettings", _rageSettings);
+
+            var model = new GameObject("HeroModel");
+            model.transform.SetParent(animatedRoot.transform, false);
+            Animator animator = model.AddComponent<Animator>();
+            animator.runtimeAnimatorController = runtimeController;
+            HeroVisual visual = model.AddComponent<HeroVisual>();
+            SetField(visual, "_animator", animator);
+
+            animatedRoot.SetActive(true);
+            try
+            {
+                controller.Init(_hero);
+                Assert.AreEqual(1f, animator.GetFloat(Animator.StringToHash("AttackSpeed")), 1e-5f);
+
+                stats.SetLevelMultipliers(1f, 1.5f, 1f);
+                Assert.AreEqual(1.5f, animator.GetFloat(Animator.StringToHash("AttackSpeed")), 1e-5f);
+
+                // Init fired Spawn: Any State transitions are not evaluated mid-transition, so let Spawn settle
+                // before the attack, as it does in play.
+                Assert.IsTrue(StepUntilState(animator, "Spawn"), "Spawn trigger from Init did not play.");
+
+                LogAssert.Expect(LogType.Warning,
+                    "AnimatorSoundBehaviour: no HeroSoundSet on or above 'HeroModel'; hero is silent.");
+                MethodInfo notifyAttack = typeof(HeroController).GetMethod(
+                    "NotifyBasicAttackExecuted", BindingFlags.Instance | BindingFlags.NonPublic);
+                Assert.IsNotNull(notifyAttack);
+                notifyAttack.Invoke(controller, null);
+                Assert.IsTrue(StepUntilState(animator, "Attack"), "Attack trigger did not play.");
+
+                controller.ResetState();
+                Assert.AreEqual(1f, animator.GetFloat(Animator.StringToHash("AttackSpeed")), 1e-5f);
+            }
+            finally
+            {
+                Object.Destroy(animatedRoot);
+            }
+        }
+        // Steps the Animator by hand (50 ms each, at most 0.5 s) until the state is current with no transition left.
+        private static bool StepUntilState(Animator animator, string state)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                animator.Update(0.05f);
+                if (!animator.IsInTransition(0) && animator.GetCurrentAnimatorStateInfo(0).IsName(state))
+                    return true;
+            }
+
+            return false;
+        }
+#endif
 
         private static void SetField<T>(object instance, string name, T value)
         {
